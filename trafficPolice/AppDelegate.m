@@ -36,7 +36,7 @@
     }
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
     self.vc_login = [LoginHomeVC new];
     

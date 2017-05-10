@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		08BAB73D640A9733CA3C7E0D /* libPods-trafficPolice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */; };
+		C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C72B56C81EC30BD6002523DE /* MainCellButton.m */; };
 		C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138A91EC2C29300A124B7 /* ImagePlayerView.m */; };
+		C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138AE1EC2E79E00A124B7 /* MainHomeCell.m */; };
+		C78138B11EC2E79E00A124B7 /* MainHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78138AF1EC2E79E00A124B7 /* MainHomeCell.xib */; };
+		C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D690971EC3038500E9A6B3 /* LRRippleButton.m */; };
 		C7E0DB891EC15DBA008ED063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DB881EC15DBA008ED063 /* main.m */; };
 		C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DB8B1EC15DBA008ED063 /* AppDelegate.m */; };
 		C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DB931EC15DBA008ED063 /* Assets.xcassets */; };
@@ -36,8 +40,15 @@
 		5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-trafficPolice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C9B4FC58051EEBD5942638 /* Pods-trafficPolice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trafficPolice.release.xcconfig"; path = "Pods/Target Support Files/Pods-trafficPolice/Pods-trafficPolice.release.xcconfig"; sourceTree = "<group>"; };
 		90CAB9E901A1BC58DFB058D5 /* Pods-trafficPolice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trafficPolice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-trafficPolice/Pods-trafficPolice.debug.xcconfig"; sourceTree = "<group>"; };
+		C72B56C71EC30BD6002523DE /* MainCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCellButton.h; sourceTree = "<group>"; };
+		C72B56C81EC30BD6002523DE /* MainCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCellButton.m; sourceTree = "<group>"; };
 		C78138A81EC2C29300A124B7 /* ImagePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayerView.h; sourceTree = "<group>"; };
 		C78138A91EC2C29300A124B7 /* ImagePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayerView.m; sourceTree = "<group>"; };
+		C78138AD1EC2E79E00A124B7 /* MainHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeCell.h; sourceTree = "<group>"; };
+		C78138AE1EC2E79E00A124B7 /* MainHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeCell.m; sourceTree = "<group>"; };
+		C78138AF1EC2E79E00A124B7 /* MainHomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHomeCell.xib; sourceTree = "<group>"; };
+		C7D690961EC3038500E9A6B3 /* LRRippleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRRippleButton.h; sourceTree = "<group>"; };
+		C7D690971EC3038500E9A6B3 /* LRRippleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRRippleButton.m; sourceTree = "<group>"; };
 		C7E0DB841EC15DBA008ED063 /* trafficPolice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trafficPolice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E0DB881EC15DBA008ED063 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C7E0DB8A1EC15DBA008ED063 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,6 +108,27 @@
 				C78138A91EC2C29300A124B7 /* ImagePlayerView.m */,
 			);
 			path = ImagePlayerView;
+			sourceTree = "<group>";
+		};
+		C78138AC1EC2E77000A124B7 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				C78138AD1EC2E79E00A124B7 /* MainHomeCell.h */,
+				C78138AE1EC2E79E00A124B7 /* MainHomeCell.m */,
+				C78138AF1EC2E79E00A124B7 /* MainHomeCell.xib */,
+				C72B56C71EC30BD6002523DE /* MainCellButton.h */,
+				C72B56C81EC30BD6002523DE /* MainCellButton.m */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		C7D690951EC3036500E9A6B3 /* LRZRippleButton */ = {
+			isa = PBXGroup;
+			children = (
+				C7D690961EC3038500E9A6B3 /* LRRippleButton.h */,
+				C7D690971EC3038500E9A6B3 /* LRRippleButton.m */,
+			);
+			path = LRZRippleButton;
 			sourceTree = "<group>";
 		};
 		C7E0DB7B1EC15DBA008ED063 = {
@@ -167,6 +199,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				C7D690951EC3036500E9A6B3 /* LRZRippleButton */,
 				C78138A61EC2C29300A124B7 /* ImagePlayerView */,
 				C7E0DBE21EC1A1C8008ED063 /* AKTabBarController */,
 			);
@@ -235,6 +268,7 @@
 		C7E0DBF51EC1A1C9008ED063 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C78138AC1EC2E77000A124B7 /* MainView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +402,7 @@
 				C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */,
 				C7E0DBF81EC1A1C9008ED063 /* AKTabBarController.bundle in Resources */,
 				C7E0DC1B1EC1AF18008ED063 /* MainHomeVC.xib in Resources */,
+				C78138B11EC2E79E00A124B7 /* MainHomeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,11 +468,14 @@
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
+				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
+				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,
 				C7E0DC1A1EC1AF18008ED063 /* MainHomeVC.m in Sources */,
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
+				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,

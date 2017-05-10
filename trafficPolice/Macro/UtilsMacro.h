@@ -55,6 +55,12 @@
 
 #define NSDictionaryIsValid(dictionary) ((dictionary) && [(dictionary) isKindOfClass:[NSDictionary class]] && ![(dictionary) isEqual:[NSNull null]] && (dictionary).count)
 
+
+//用于绘制一像素的线
+#define SINGLE_LINE_WIDTH           (1 / [UIScreen mainScreen].scale)
+#define SINGLE_LINE_ADJUST_OFFSET   ((1 / [UIScreen mainScreen].scale) / 2)
+
+
 #if TARGET_IPHONE_SIMULATOR
 #define SIMULATOR 1
 #elif TARGET_OS_IPHONE

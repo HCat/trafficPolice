@@ -51,6 +51,9 @@
         self.imageView.userInteractionEnabled = YES;
         self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
         
+        self.imageView.backgroundColor = [UIColor clearColor];
+        [self.contentView setBackgroundColor:[UIColor clearColor]];
+        
         [self.contentView addSubview:self.imageView];
         
         // fill cell
@@ -135,7 +138,7 @@
         layout.minimumLineSpacing = 0;
         
         self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
-        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.backgroundColor = [UIColor clearColor];
         
         self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         self.collectionView.pagingEnabled = YES;
