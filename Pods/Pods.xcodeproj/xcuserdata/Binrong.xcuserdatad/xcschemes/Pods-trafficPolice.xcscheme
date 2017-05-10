@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '975A452A1F9EFDBAE3906F9840687D38'
+               BlueprintIdentifier = '13A0CB18AF2AE587ABB0E578216EEE9A'
                BlueprintName = 'Pods-trafficPolice'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-trafficPolice.a'>

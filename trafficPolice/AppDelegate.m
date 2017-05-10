@@ -25,8 +25,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
+    
+    //******** 导航栏的设置 ********//
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4281e8)];
+    [UINavigationBar appearance].titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    if([[UIDevice currentDevice].systemVersion floatValue] >= 8 && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [UINavigationBar appearance].translucent = NO;
+    }
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
@@ -48,9 +56,21 @@
         
         self.vc_tabBar = [[AKTabBarController alloc]initWithTabBarHeight:50];
         [_vc_tabBar setTabTitleIsHidden:NO];
-        [_vc_tabBar setIconGlossyIsHidden:YES];
         [_vc_tabBar setTabEdgeColor:[UIColor clearColor]];
+        [_vc_tabBar setIconGlossyIsHidden:YES];
+        [_vc_tabBar setIconShadowOffset:CGSizeZero];
         [_vc_tabBar setTabColors:@[[UIColor clearColor],[UIColor clearColor]]];
+        [_vc_tabBar setSelectedTabColors:@[[UIColor clearColor],[UIColor clearColor]]];
+        [_vc_tabBar setBackgroundImageName:@"tab_white_bg"];
+        [_vc_tabBar setSelectedBackgroundImageName:@"tab_white_bg"];
+        [_vc_tabBar setTextColor:UIColorFromRGB(0xbbbbbb)];
+        [_vc_tabBar setSelectedTextColor:UIColorFromRGB(0x4281e8)];
+        [_vc_tabBar setTabStrokeColor:[UIColor clearColor]];
+        [_vc_tabBar setTabInnerStrokeColor:[UIColor clearColor]];
+        [_vc_tabBar setMinimumHeightToDisplayTitle:50];
+        [_vc_tabBar setTextFont:[UIFont systemFontOfSize:11.f]];
+        [_vc_tabBar setTopEdgeColor:[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]];
+   
         
         MainHomeVC *t_vc_main = [MainHomeVC new];
         UINavigationController *t_nav_main = [[UINavigationController alloc] initWithRootViewController:t_vc_main];

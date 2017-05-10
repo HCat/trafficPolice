@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08BAB73D640A9733CA3C7E0D /* libPods-trafficPolice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */; };
+		C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138A91EC2C29300A124B7 /* ImagePlayerView.m */; };
 		C7E0DB891EC15DBA008ED063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DB881EC15DBA008ED063 /* main.m */; };
 		C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DB8B1EC15DBA008ED063 /* AppDelegate.m */; };
 		C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DB931EC15DBA008ED063 /* Assets.xcassets */; };
@@ -35,6 +36,8 @@
 		5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-trafficPolice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C9B4FC58051EEBD5942638 /* Pods-trafficPolice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trafficPolice.release.xcconfig"; path = "Pods/Target Support Files/Pods-trafficPolice/Pods-trafficPolice.release.xcconfig"; sourceTree = "<group>"; };
 		90CAB9E901A1BC58DFB058D5 /* Pods-trafficPolice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-trafficPolice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-trafficPolice/Pods-trafficPolice.debug.xcconfig"; sourceTree = "<group>"; };
+		C78138A81EC2C29300A124B7 /* ImagePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayerView.h; sourceTree = "<group>"; };
+		C78138A91EC2C29300A124B7 /* ImagePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayerView.m; sourceTree = "<group>"; };
 		C7E0DB841EC15DBA008ED063 /* trafficPolice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trafficPolice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E0DB881EC15DBA008ED063 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C7E0DB8A1EC15DBA008ED063 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C78138A61EC2C29300A124B7 /* ImagePlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				C78138A81EC2C29300A124B7 /* ImagePlayerView.h */,
+				C78138A91EC2C29300A124B7 /* ImagePlayerView.m */,
+			);
+			path = ImagePlayerView;
+			sourceTree = "<group>";
+		};
 		C7E0DB7B1EC15DBA008ED063 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +167,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				C78138A61EC2C29300A124B7 /* ImagePlayerView */,
 				C7E0DBE21EC1A1C8008ED063 /* AKTabBarController */,
 			);
 			path = Extra;
@@ -426,6 +439,7 @@
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
+				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

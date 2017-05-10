@@ -11,7 +11,9 @@ pod 'MBProgressHUD'
 pod 'BaiduMapKit'
 pod 'Masonry'
 pod 'LxDBAnything'
-  
+pod 'MJRefresh'
+pod 'AMScrollingNavbar', '~> 1.5.1’
+ 
 
 
 end
