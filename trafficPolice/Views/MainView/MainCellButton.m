@@ -23,8 +23,6 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self == [super initWithCoder:aDecoder]){
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeLayetAnimation) name:@"TabSelected" object:nil];
-        
         self.rippleLineWidth = 1;
         self.rippleColor = [UIColor lightGrayColor];
        
@@ -66,18 +64,6 @@
         self.isIgnoreRipple = YES;
     }
 
-}
-
--(void)removeLayetAnimation{
-    
-    for (CALayer *subLayer in self.layer.sublayers) {
-        LxDBAnyVar(self.layer.sublayers);
-        if ([subLayer isKindOfClass:[CAShapeLayer class]]) {
-            [subLayer removeAllAnimations];
-        
-        }
-    }
-    
 }
 
 

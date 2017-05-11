@@ -75,7 +75,6 @@ static int kTopEdgeWidth   = 1;
 
 - (void)tabSelected:(AKTab *)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"TabSelected" object:nil];
     [_delegate tabBar:self didSelectTabAtIndex:[_tabs indexOfObject:sender]];
     
 }
