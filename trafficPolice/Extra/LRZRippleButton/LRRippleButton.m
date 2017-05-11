@@ -122,10 +122,9 @@ const CGFloat LRRippleInitialRaius = 20;
     }
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    CALayer *layer = [anim valueForKey:@"rippleLayer"];
+- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag{
+    CALayer *layer = [animation valueForKey:@"rippleLayer"];
     if (layer) {
-       
         [layer removeFromSuperlayer];
     }
     
