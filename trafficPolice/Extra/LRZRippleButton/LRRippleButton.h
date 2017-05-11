@@ -14,7 +14,7 @@ typedef void (^LRRippleButtonBlock)(void);
 
 @property (nonatomic, strong) UIColor *rippleColor;                 //涟漪颜色
 @property (nonatomic, assign) NSUInteger rippleLineWidth;           //涟漪线宽
-
+@property (nonatomic, assign) BOOL isIgnoreRipple;                  //是否关闭涟漪
 
 
 @property (nonatomic, copy)LRRippleButtonBlock rippleBlock;

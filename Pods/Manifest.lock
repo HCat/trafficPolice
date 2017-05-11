@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - AMScrollingNavbar (1.5.1)
-  - BaiduMapKit (3.3.0)
+  - BaiduMapKit (3.3.1)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -23,9 +23,9 @@ PODS:
   - LKDBHelper (2.4.2):
     - FMDB
   - LxDBAnything (1.1.0)
-  - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
+  - PureLayout (3.0.2)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -41,9 +41,9 @@ DEPENDENCIES:
   - IQKeyboardManager
   - LKDBHelper
   - LxDBAnything
-  - Masonry
   - MBProgressHUD
   - MJRefresh
+  - PureLayout
   - SDWebImage
   - YTKNetwork
   - YYKit
@@ -51,18 +51,18 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMScrollingNavbar: 767ed2db60d927a809bddff5d01b739b7020b12b
-  BaiduMapKit: 6517f84bdca032170ee9da39985bb64eba8ed900
+  BaiduMapKit: 9e8ff80bbcfb8f96b4a58b2844d728590dac90ca
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
   LKDBHelper: ab67373b32f47463bf5f838d730f225824f4492a
   LxDBAnything: 154a2ad1ae32e70355d886b5443260543bb60c71
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YTKNetwork: c4b0c29c9d639dc050d475de69ee626d53eac598
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 96c7d87d22b48b17004601e3e0d0c2aed3a56943
+PODFILE CHECKSUM: 73ef1996abcaaf267ea335dac7e0dcee3ac8cad0
 
 COCOAPODS: 1.2.1

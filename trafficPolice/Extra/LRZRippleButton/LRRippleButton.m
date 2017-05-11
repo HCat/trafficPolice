@@ -14,8 +14,6 @@ const CGFloat LRRippleInitialRaius = 20;
 
 @interface LRRippleButton()<CAAnimationDelegate>
 
-
-
 @end
 
 @implementation LRRippleButton
@@ -45,29 +43,40 @@ const CGFloat LRRippleInitialRaius = 20;
 
 #pragma mark - tapped
 - (void)tapped:(UITapGestureRecognizer *)tap{
-    //获取所点击的那个点
-    CGPoint tapPoint = [tap locationInView:self];
-    //创建涟漪
-    CAShapeLayer *rippleLayer = nil;
-    CGFloat buttonWidth = self.frame.size.width;
-    CGFloat buttonHeight = self.frame.size.height;
-    CGFloat bigBoard = buttonWidth >= buttonHeight ? buttonWidth : buttonHeight;
-    CGFloat smallBoard = buttonWidth <= buttonHeight ? buttonWidth : buttonHeight;
-    CGFloat rippleRadiius = smallBoard/2 <= LRRippleInitialRaius ? smallBoard/2 : LRRippleInitialRaius;
     
-//    CGFloat scale = bigBoard / rippleRadiius + 0.5;
+    if (self.isIgnoreRipple) {
+       
+        if (self.rippleBlock){
+            self.rippleBlock();
+        }
+        
+    }else{
+        
+        //获取所点击的那个点
+        CGPoint tapPoint = [tap locationInView:self];
+        //创建涟漪
+        CAShapeLayer *rippleLayer = nil;
+        CGFloat buttonWidth = self.frame.size.width;
+        CGFloat buttonHeight = self.frame.size.height;
+        //  CGFloat bigBoard = buttonWidth >= buttonHeight ? buttonWidth : buttonHeight;
+        CGFloat smallBoard = buttonWidth <= buttonHeight ? buttonWidth : buttonHeight;
+        CGFloat rippleRadiius = smallBoard/2 <= LRRippleInitialRaius ? smallBoard/2 : LRRippleInitialRaius;
+        
+        //   CGFloat scale = bigBoard / rippleRadiius + 0.5;
+        
+        rippleLayer = [self createRippleLayerWithPosition:tapPoint rect:CGRectMake(0, 0, rippleRadiius * 2, rippleRadiius * 2) radius:rippleRadiius];
+        
+        [self.layer addSublayer:rippleLayer];
+        
+        //layer动画
+        CAAnimationGroup *rippleAnimationGroup = [self createRippleAnimationWithScale:rippleRadiius duration:1.5f];
+        //使用KVC消除layer动画以防止内存泄漏
+        [rippleAnimationGroup setValue:rippleLayer forKey:@"rippleLayer"];
+        
+        [rippleLayer addAnimation:rippleAnimationGroup forKey:@"rippleLayerAnimation"];
+        rippleLayer.delegate = self;
+    }
     
-    rippleLayer = [self createRippleLayerWithPosition:tapPoint rect:CGRectMake(0, 0, rippleRadiius * 2, rippleRadiius * 2) radius:rippleRadiius];
-    
-    [self.layer addSublayer:rippleLayer];
-    
-    //layer动画
-    CAAnimationGroup *rippleAnimationGroup = [self createRippleAnimationWithScale:rippleRadiius duration:1.5f];
-    //使用KVC消除layer动画以防止内存泄漏
-    [rippleAnimationGroup setValue:rippleLayer forKey:@"rippleLayer"];
-    
-    [rippleLayer addAnimation:rippleAnimationGroup forKey:nil];
-    rippleLayer.delegate = self;
     
 }
 
@@ -116,9 +125,13 @@ const CGFloat LRRippleInitialRaius = 20;
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     CALayer *layer = [anim valueForKey:@"rippleLayer"];
     if (layer) {
+       
         [layer removeFromSuperlayer];
     }
+    
 }
+
+
 
 
 /*

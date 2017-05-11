@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol MainHomeVCDelegate;
+@protocol MainHomeCellDelegate;
 
 @interface MainHomeCell : UITableViewCell
-@property (nonatomic,weak) id<MainHomeVCDelegate> delegate;
+@property (nonatomic,weak) id<MainHomeCellDelegate> delegate;
 
 
 - (void)createCell:(NSString *)title withItems:(NSArray *)arr_item;
 
 @end
 
-@protocol MainHomeVCDelegate <NSObject>
+@protocol MainHomeCellDelegate <NSObject>
 
 - (void)itemClickInCell:(MainHomeCell *)cell withIndex:(NSInteger)index;
 

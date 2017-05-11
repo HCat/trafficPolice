@@ -9,8 +9,8 @@ pod 'IQKeyboardManager'
 pod 'LKDBHelper'
 pod 'MBProgressHUD'
 pod 'BaiduMapKit'
-pod 'Masonry'
 pod 'LxDBAnything'
+pod 'PureLayout'
 pod 'MJRefresh'
 pod 'AMScrollingNavbar', '~> 1.5.1’
  

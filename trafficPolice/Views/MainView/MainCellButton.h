@@ -10,8 +10,7 @@
 
 @interface MainCellButton : LRRippleButton
 
-@property (nonatomic,strong) UIImage *img_content;                  //图片视图
+@property (nonatomic,copy) NSString *img_content;                  //图片视图
 @property (nonatomic,copy) NSString *str_title;                         //title
-
 
 @end
