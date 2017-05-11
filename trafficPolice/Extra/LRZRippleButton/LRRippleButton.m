@@ -74,7 +74,7 @@ const CGFloat LRRippleInitialRaius = 20;
         [rippleAnimationGroup setValue:rippleLayer forKey:@"rippleLayer"];
         
         [rippleLayer addAnimation:rippleAnimationGroup forKey:@"rippleLayerAnimation"];
-        rippleLayer.delegate = self;
+        
     }
     
     
