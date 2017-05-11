@@ -15,8 +15,6 @@
 		C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D151EC43F0C00980058 /* ListBaseVC.m */; };
 		C7621D181EC43F0C00980058 /* ListBaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7621D161EC43F0C00980058 /* ListBaseVC.xib */; };
 		C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D1A1EC44D2800980058 /* UINavigationBar+Awesome.m */; };
-		C7621D1F1EC44FF700980058 /* ListParkDefyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D1D1EC44FF700980058 /* ListParkDefyVC.m */; };
-		C7621D201EC44FF700980058 /* ListParkDefyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7621D1E1EC44FF700980058 /* ListParkDefyVC.xib */; };
 		C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138A91EC2C29300A124B7 /* ImagePlayerView.m */; };
 		C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138AE1EC2E79E00A124B7 /* MainHomeCell.m */; };
 		C78138B11EC2E79E00A124B7 /* MainHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78138AF1EC2E79E00A124B7 /* MainHomeCell.xib */; };
@@ -42,6 +40,12 @@
 		C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC1E1EC1AF2D008ED063 /* ListHomeVC.xib */; };
 		C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */; };
 		C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */; };
+		CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51551EC49C48004A7611 /* ListTableCell.m */; };
+		CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51561EC49C48004A7611 /* ListTableCell.xib */; };
+		CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */; };
+		CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */; };
+		CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */; };
+		CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,9 +65,6 @@
 		C7621D161EC43F0C00980058 /* ListBaseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListBaseVC.xib; sourceTree = "<group>"; };
 		C7621D191EC44D2800980058 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		C7621D1A1EC44D2800980058 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
-		C7621D1C1EC44FF700980058 /* ListParkDefyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListParkDefyVC.h; sourceTree = "<group>"; };
-		C7621D1D1EC44FF700980058 /* ListParkDefyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListParkDefyVC.m; sourceTree = "<group>"; };
-		C7621D1E1EC44FF700980058 /* ListParkDefyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListParkDefyVC.xib; sourceTree = "<group>"; };
 		C78138A81EC2C29300A124B7 /* ImagePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayerView.h; sourceTree = "<group>"; };
 		C78138A91EC2C29300A124B7 /* ImagePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayerView.m; sourceTree = "<group>"; };
 		C78138AD1EC2E79E00A124B7 /* MainHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeCell.h; sourceTree = "<group>"; };
@@ -109,6 +110,15 @@
 		C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHomeVC.m; sourceTree = "<group>"; };
 		C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHomeVC.xib; sourceTree = "<group>"; };
 		C7E0DC261EC1B9E7008ED063 /* UtilsMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
+		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
+		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
+		CE9C51561EC49C48004A7611 /* ListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableCell.xib; sourceTree = "<group>"; };
+		CE9C515E1EC4B6E0004A7611 /* ListCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionVC.h; sourceTree = "<group>"; };
+		CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionVC.m; sourceTree = "<group>"; };
+		CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionVC.xib; sourceTree = "<group>"; };
+		CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionCell.h; sourceTree = "<group>"; };
+		CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionCell.m; sourceTree = "<group>"; };
+		CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,13 +140,6 @@
 				C7621D121EC43CD400980058 /* LRPageMenu.m */,
 			);
 			path = LRPageMenu;
-			sourceTree = "<group>";
-		};
-		C7621D211EC4503900980058 /* ListView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ListView;
 			sourceTree = "<group>";
 		};
 		C78138A61EC2C29300A124B7 /* ImagePlayerView */ = {
@@ -313,7 +316,7 @@
 		C7E0DBF51EC1A1C9008ED063 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C7621D211EC4503900980058 /* ListView */,
+				CE9C51531EC49C2C004A7611 /* ListView */,
 				C78138AC1EC2E77000A124B7 /* MainView */,
 			);
 			path = Views;
@@ -351,9 +354,9 @@
 				C7621D141EC43F0C00980058 /* ListBaseVC.h */,
 				C7621D151EC43F0C00980058 /* ListBaseVC.m */,
 				C7621D161EC43F0C00980058 /* ListBaseVC.xib */,
-				C7621D1C1EC44FF700980058 /* ListParkDefyVC.h */,
-				C7621D1D1EC44FF700980058 /* ListParkDefyVC.m */,
-				C7621D1E1EC44FF700980058 /* ListParkDefyVC.xib */,
+				CE9C515E1EC4B6E0004A7611 /* ListCollectionVC.h */,
+				CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */,
+				CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */,
 			);
 			path = ListHomeVC;
 			sourceTree = "<group>";
@@ -374,6 +377,19 @@
 				5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE9C51531EC49C2C004A7611 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				CE9C51541EC49C48004A7611 /* ListTableCell.h */,
+				CE9C51551EC49C48004A7611 /* ListTableCell.m */,
+				CE9C51561EC49C48004A7611 /* ListTableCell.xib */,
+				CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */,
+				CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */,
+				CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */,
+			);
+			path = ListView;
 			sourceTree = "<group>";
 		};
 		DDA5B09086610B74175F0DDB /* Pods */ = {
@@ -451,8 +467,10 @@
 				C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */,
 				C7E0DC121EC1AD55008ED063 /* PhoneLoginVC.xib in Resources */,
 				C7621D181EC43F0C00980058 /* ListBaseVC.xib in Resources */,
-				C7621D201EC44FF700980058 /* ListParkDefyVC.xib in Resources */,
+				CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
+				CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */,
+				CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */,
 				C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */,
 				C7E0DBF81EC1A1C9008ED063 /* AKTabBarController.bundle in Resources */,
 				C7E0DC1B1EC1AF18008ED063 /* MainHomeVC.xib in Resources */,
@@ -520,6 +538,7 @@
 				C7E0DC1F1EC1AF2D008ED063 /* ListHomeVC.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
+				CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */,
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
@@ -533,12 +552,13 @@
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
 				C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */,
+				CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
-				C7621D1F1EC44FF700980058 /* ListParkDefyVC.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
+				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

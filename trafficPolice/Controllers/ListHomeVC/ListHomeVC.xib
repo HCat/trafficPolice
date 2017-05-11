@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,8 +21,45 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTc-f1-4g4">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <color key="backgroundColor" red="1" green="0.34159973389999998" blue="0.3129559106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mny-sa-LiW">
+                            <rect key="frame" x="13" y="8" width="310" height="28"/>
+                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="请输入关键词搜索">
+                                <color key="titleColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNB-9X-Ze8">
+                            <rect key="frame" x="331" y="7" width="31" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="搜索">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rK-fZ-my9">
+                            <rect key="frame" x="0.0" y="43" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="od5-X7-AD9"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="4rK-fZ-my9" secondAttribute="trailing" id="K6q-33-U0e"/>
+                        <constraint firstAttribute="trailing" secondItem="LNB-9X-Ze8" secondAttribute="trailing" constant="13" id="PxO-hf-u5a"/>
+                        <constraint firstItem="LNB-9X-Ze8" firstAttribute="centerY" secondItem="Mny-sa-LiW" secondAttribute="centerY" id="SGu-B1-kE7"/>
+                        <constraint firstItem="4rK-fZ-my9" firstAttribute="leading" secondItem="qTc-f1-4g4" secondAttribute="leading" id="YtO-M6-Muu"/>
+                        <constraint firstItem="Mny-sa-LiW" firstAttribute="centerY" secondItem="qTc-f1-4g4" secondAttribute="centerY" id="ijO-SN-Mgn"/>
+                        <constraint firstItem="Mny-sa-LiW" firstAttribute="leading" secondItem="qTc-f1-4g4" secondAttribute="leading" constant="13" id="jUP-l5-FGz"/>
+                        <constraint firstAttribute="bottom" secondItem="4rK-fZ-my9" secondAttribute="bottom" id="lpc-3f-y1l"/>
+                        <constraint firstAttribute="trailing" secondItem="Mny-sa-LiW" secondAttribute="trailing" constant="52" id="o41-zM-G3d"/>
                         <constraint firstAttribute="height" constant="44" id="xJN-Mx-dus"/>
                     </constraints>
                 </view>

@@ -330,11 +330,6 @@ typedef enum {
 			[selectedViewController viewWillAppear:NO];
 		}
         
-        LxDBAnyVar(selectedViewController.view);
-        if (previousSelectedViewController) {
-             LxDBAnyVar(previousSelectedViewController.view);
-        }
-       
         [tabBarView setContentView:selectedViewController.view];
         
         if ((self.childViewControllers == nil || !self.childViewControllers.count) && visible)

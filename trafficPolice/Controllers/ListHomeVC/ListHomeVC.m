@@ -9,7 +9,9 @@
 #import "ListHomeVC.h"
 #import "LRPageMenu.h"
 #import "ListBaseVC.h"
-#import "ListParkDefyVC.h"
+#import "ListCollectionVC.h"
+
+
 
 @interface ListHomeVC ()
 
@@ -33,15 +35,15 @@
 
 - (void)initPageMenu{
 
-    ListParkDefyVC *vc_first = [ListParkDefyVC new];
+    ListBaseVC *vc_first = [ListBaseVC new];
     vc_first.title = @"违停";
     ListBaseVC *vc_second = [ListBaseVC new];
     vc_second.title = @"闯禁令";
     ListBaseVC *vc_third = [ListBaseVC new];
     vc_third.title = @"事故";
-    ListBaseVC *vc_foured = [ListBaseVC new];
+    ListCollectionVC *vc_foured = [ListCollectionVC new];
     vc_foured.title = @"快处";
-    ListBaseVC *vc_firved = [ListBaseVC new];
+    ListCollectionVC *vc_firved = [ListCollectionVC new];
     vc_firved.title = @"视频";
     
     NSArray *arr_controllers = @[vc_first,vc_second,vc_third,vc_foured,vc_firved];

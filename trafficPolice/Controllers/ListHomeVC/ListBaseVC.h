@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ListBaseVC : UIViewController
+@interface ListBaseVC : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tb_content;
 

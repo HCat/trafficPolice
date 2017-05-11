@@ -7,6 +7,7 @@
 //
 
 #import "ListBaseVC.h"
+#import "ListTableCell.h"
 
 
 @interface ListBaseVC ()
@@ -29,7 +30,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return 40;
     
 }
 
@@ -40,15 +41,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListBaseCellID"];
+    ListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListTableCellID"];
     if (!cell) {
-        
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ListBaseCellID"];
+        [tableView registerNib:[UINib nibWithNibName:@"ListTableCell" bundle:nil] forCellReuseIdentifier:@"ListTableCellID"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ListTableCellID"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-   cell.textLabel.text = @"尝试着看看";
-    
+
     return cell;
 }
 
