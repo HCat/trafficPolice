@@ -18,6 +18,7 @@
 		C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138A91EC2C29300A124B7 /* ImagePlayerView.m */; };
 		C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138AE1EC2E79E00A124B7 /* MainHomeCell.m */; };
 		C78138B11EC2E79E00A124B7 /* MainHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C78138AF1EC2E79E00A124B7 /* MainHomeCell.xib */; };
+		C79C99421EC58A1F00258CF1 /* DisplayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C79C99411EC58A1F00258CF1 /* DisplayHelper.m */; };
 		C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D690971EC3038500E9A6B3 /* LRRippleButton.m */; };
 		C7E0DB891EC15DBA008ED063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DB881EC15DBA008ED063 /* main.m */; };
 		C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DB8B1EC15DBA008ED063 /* AppDelegate.m */; };
@@ -70,6 +71,8 @@
 		C78138AD1EC2E79E00A124B7 /* MainHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeCell.h; sourceTree = "<group>"; };
 		C78138AE1EC2E79E00A124B7 /* MainHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeCell.m; sourceTree = "<group>"; };
 		C78138AF1EC2E79E00A124B7 /* MainHomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHomeCell.xib; sourceTree = "<group>"; };
+		C79C99401EC58A1F00258CF1 /* DisplayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayHelper.h; sourceTree = "<group>"; };
+		C79C99411EC58A1F00258CF1 /* DisplayHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayHelper.m; sourceTree = "<group>"; };
 		C7D690961EC3038500E9A6B3 /* LRRippleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRRippleButton.h; sourceTree = "<group>"; };
 		C7D690971EC3038500E9A6B3 /* LRRippleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRRippleButton.m; sourceTree = "<group>"; };
 		C7E0DB841EC15DBA008ED063 /* trafficPolice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trafficPolice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,6 +302,8 @@
 		C7E0DBF31EC1A1C9008ED063 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				C79C99401EC58A1F00258CF1 /* DisplayHelper.h */,
+				C79C99411EC58A1F00258CF1 /* DisplayHelper.m */,
 				C7E0DBF41EC1A1C9008ED063 /* Controllers */,
 			);
 			path = Tools;
@@ -555,6 +560,7 @@
 				CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
+				C79C99421EC58A1F00258CF1 /* DisplayHelper.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,

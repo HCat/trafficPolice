@@ -4,7 +4,7 @@
 //
 //  Created by Hcat on 15/9/13.
 //  Copyright (c) 2015年 nd. All rights reserved.
-//
+//  头部TabBar滑动视图
 
 // 根据 https://github.com/uacaps/PageMenu 的主要想法进行修改
 

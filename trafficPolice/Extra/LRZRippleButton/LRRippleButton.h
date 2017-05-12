@@ -2,9 +2,9 @@
 //  LRRippleButton.h
 //  trafficPolice
 //
-//  Created by Binrong Liu on 2017/5/10.
+//  Created by HCat on 2017/5/10.
 //  Copyright © 2017年 Degal. All rights reserved.
-//
+//  点击按钮产生涟漪效果视图
 
 #import <UIKit/UIKit.h>
 

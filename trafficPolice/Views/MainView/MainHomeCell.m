@@ -40,10 +40,10 @@
             if (!t_dic) {
                 _btn_first.img_content = [t_dic objectForKey:@"image"];
                 _btn_first.str_title = [t_dic objectForKey:@"title"];
-                WS(weakSelf)
+                WS(weakSelf);
                 _btn_first.rippleBlock = ^(){
                     
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    SW(strongSelf,weakSelf);
                     
                     if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:withIndex:)]) {
                         [strongSelf.delegate itemClickInCell:strongSelf withIndex:0];
@@ -59,10 +59,10 @@
             if (t_dic) {
                 _btn_first.img_content = [t_dic objectForKey:@"image"];
                 _btn_first.str_title = [t_dic objectForKey:@"title"];
-                WS(weakSelf)
+                WS(weakSelf);
                 _btn_first.rippleBlock = ^(){
                     
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    SW(strongSelf,weakSelf);
                     
                     if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:withIndex:)]) {
                         [strongSelf.delegate itemClickInCell:strongSelf withIndex:0];
@@ -76,10 +76,10 @@
             if (t_dic) {
                 _btn_second.img_content = [t_dic objectForKey:@"image"];
                 _btn_second.str_title = [t_dic objectForKey:@"title"];
-                WS(weakSelf)
+                WS(weakSelf);
                 _btn_second.rippleBlock = ^(){
                     
-                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    SW(strongSelf,weakSelf);
                     
                     if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:withIndex:)]) {
                         [strongSelf.delegate itemClickInCell:strongSelf withIndex:1];

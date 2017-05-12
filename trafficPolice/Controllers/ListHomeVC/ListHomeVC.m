@@ -65,8 +65,6 @@
 }
 
 
-
-
 #pragma mark - AKTabBar Method
 
 - (NSString *)tabImageName{

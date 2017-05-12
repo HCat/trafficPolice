@@ -8,6 +8,7 @@
 
 #import "ListBaseVC.h"
 #import "ListTableCell.h"
+#import <MJRefresh.h>
 
 
 @interface ListBaseVC ()
@@ -18,10 +19,66 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self initRefresh];
+    
+    [self.tb_content.mj_header beginRefreshing];
+   
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    
+   
 
+}
+
+#pragma mark - 创建下拉刷新，以及上拉加载更多
+
+- (void)initRefresh{
+
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    [header setTitle:@"下拉查询" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手开始查询" forState:MJRefreshStatePulling];
+    [header setTitle:@"查询中..." forState:MJRefreshStateRefreshing];
+    header.stateLabel.font = [UIFont systemFontOfSize:15];
+    
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    self.tb_content.mj_header = header;
+    
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    [footer setTitle:@"加载更多..." forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"— 没有更多内容了 —" forState:MJRefreshStateNoMoreData];
+    
+    footer.stateLabel.font = [UIFont systemFontOfSize:15];
+    self.tb_content.mj_footer = footer;
+    self.tb_content.mj_footer.automaticallyHidden = YES;
+
+}
+
+#pragma mark - 加载新数据
+
+- (void)loadNewData{
+
+    [self.tb_content.mj_header endRefreshing];
+
+
+}
+
+#pragma mark - 加载更多数据
+
+- (void)loadMoreData{
+    
+    [self.tb_content.mj_footer endRefreshing];
+    // [self.tb_content.mj_footer endRefreshingWithNoMoreData];
+    
+
+}
 
 #pragma mark - UITableViewDelegate
 
@@ -30,7 +87,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 40;
+    return 3;
     
 }
 
@@ -57,7 +114,7 @@
 }
 
 
-#pragma mark -
+#pragma mark - dealloc
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

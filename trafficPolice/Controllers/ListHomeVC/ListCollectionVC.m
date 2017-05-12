@@ -8,6 +8,7 @@
 
 #import "ListCollectionVC.h"
 #import "ListCollectionCell.h"
+#import <MJRefresh.h>
 
 @interface ListCollectionVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -21,9 +22,59 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_collectionView registerNib:[UINib nibWithNibName:@"ListCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"ListCollectionCellID"];
+    [self initRefresh];
+    [self.collectionView.mj_header beginRefreshing];
     
     // Do any additional setup after loading the view from its nib.
 }
+
+#pragma mark - 创建下拉刷新，以及上拉加载更多
+
+- (void)initRefresh{
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    [header setTitle:@"下拉查询" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手开始查询" forState:MJRefreshStatePulling];
+    [header setTitle:@"查询中..." forState:MJRefreshStateRefreshing];
+    header.stateLabel.font = [UIFont systemFontOfSize:15];
+    
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    self.collectionView.mj_header = header;
+    
+    
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    [footer setTitle:@"加载更多..." forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"— 没有更多内容了 —" forState:MJRefreshStateNoMoreData];
+    
+    footer.stateLabel.font = [UIFont systemFontOfSize:15];
+    self.collectionView.mj_footer = footer;
+    self.collectionView.mj_footer.automaticallyHidden = YES;
+
+}
+
+#pragma mark - 加载新数据
+
+- (void)loadNewData{
+    
+    [self.collectionView.mj_header endRefreshing];
+    
+    
+}
+
+#pragma mark - 加载更多数据
+
+- (void)loadMoreData{
+    
+    [self.collectionView.mj_footer endRefreshing];
+    // [self.tb_content.mj_footer endRefreshingWithNoMoreData];
+    
+    
+}
+
+
 
 #pragma mark - UICollectionView Data Source
 
@@ -75,7 +126,7 @@
 // 装载内容 cell 的内边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(13, 8, 8, 10);
+    return UIEdgeInsetsMake(10, 8, 8, 10);
 }
 
 //最小行间距
