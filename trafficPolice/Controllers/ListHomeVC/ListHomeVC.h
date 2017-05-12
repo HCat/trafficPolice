@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "LRPageMenu.h"
 
 @interface ListHomeVC : BaseViewController
+
+@property (nonatomic,strong) LRPageMenu *pageMenu;
 
 @end

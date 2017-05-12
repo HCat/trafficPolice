@@ -7,7 +7,6 @@
 //
 
 #import "ListHomeVC.h"
-#import "LRPageMenu.h"
 #import "ListBaseVC.h"
 #import "ListCollectionVC.h"
 
@@ -15,18 +14,26 @@
 
 @interface ListHomeVC ()
 
-@property (nonatomic,strong) LRPageMenu *pageMenu;
-
-
 @end
 
 @implementation ListHomeVC
+
+- (instancetype)init{
+    
+    if (self = [super init]) {
+        [self initPageMenu];
+    }
+    
+    return self;
+
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"列表", nil);
-    [self initPageMenu];
+    
     
 }
 
@@ -60,8 +67,7 @@
     _pageMenu = [[LRPageMenu alloc] initWithViewControllers:arr_controllers frame:CGRectMake(0.0, 44.0, ScreenWidth, self.view.frame.size.height-44) options:dic_options];
     
     [self.view addSubview:_pageMenu.view];
-
-
+    
 }
 
 

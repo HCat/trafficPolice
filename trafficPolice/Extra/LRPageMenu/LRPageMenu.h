@@ -79,7 +79,8 @@
 
 
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers frame:(CGRect)frame options:(NSDictionary *)options;
-- (void)moveToPage:(NSInteger)index;
+- (void)moveToPage:(NSInteger)index withAnimation:(BOOL)animation;
+
 
 
 extern NSString * const LRPageMenuOptionSelectionIndicatorHeight;               //选中指示器高度

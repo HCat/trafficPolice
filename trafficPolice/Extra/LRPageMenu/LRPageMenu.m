@@ -168,7 +168,7 @@ NSString * const LRPageMenuOptionScrollAnimationDurationOnMenuItemTap      = @"s
 
 //遇到到指定页面
 
-- (void)moveToPage:(NSInteger)index{
+- (void)moveToPage:(NSInteger)index withAnimation:(BOOL)animation{
 
     if (index >= 0 && index < _arr_controllers.count) {
         
@@ -198,13 +198,21 @@ NSString * const LRPageMenuOptionScrollAnimationDurationOnMenuItemTap      = @"s
             [_pagesAddedSet addObject:@(_lastPageIndex)];
         }
         
-        // Move controller scroll view when tapping menu item
-        double duration = (double)(_scrollAnimationDurationOnMenuItemTap) / (double)(1000);
-        
-        [UIView animateWithDuration:duration animations:^{
+        if (animation) {
+             // Move controller scroll view when tapping menu item
+            double duration = (double)(_scrollAnimationDurationOnMenuItemTap) / (double)(1000);
+            
+            [UIView animateWithDuration:duration animations:^{
+                CGFloat xOffset = (CGFloat)index * _scro_controller.frame.size.width;
+                [_scro_controller setContentOffset:CGPointMake(xOffset, _scro_controller.contentOffset.y) animated:NO];
+            }];
+        }else{
             CGFloat xOffset = (CGFloat)index * _scro_controller.frame.size.width;
             [_scro_controller setContentOffset:CGPointMake(xOffset, _scro_controller.contentOffset.y) animated:NO];
-        }];
+        }
+        
+       
+       
     }
 
 }

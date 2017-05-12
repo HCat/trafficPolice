@@ -105,6 +105,11 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"选中 : %ld--%ld",indexPath.section,indexPath.item);
+    
+    
+    
+    
+    
 }
 
 //取消某个 item 触发
@@ -126,7 +131,7 @@
 // 装载内容 cell 的内边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 8, 8, 10);
+    return UIEdgeInsetsMake(10, 8, 10, 8);
 }
 
 //最小行间距
