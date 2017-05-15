@@ -11,6 +11,7 @@
 #import "UserReusableView.h"
 #import "AppDelegate.h"
 #import "ListHomeVC.h"
+#import "UserSetVC.h"
 
 @interface UserHomeVC ()
 
@@ -24,7 +25,6 @@
 
 static NSString *const cellId = @"UserHomeCellID";
 static NSString *const headerId = @"UserReusableViewID";
-
 
 
 - (void)viewDidLoad {
@@ -115,8 +115,9 @@ static NSString *const headerId = @"UserReusableViewID";
 {
     
     if (indexPath.item == 5) {
-    
-        
+
+        UserSetVC *t_vc = [[UserSetVC alloc] init];
+        [self.navigationController pushViewController:t_vc animated:YES];
         
         return;
     }

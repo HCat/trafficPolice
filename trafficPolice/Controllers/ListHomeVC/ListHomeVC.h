@@ -6,10 +6,10 @@
 //  Copyright © 2017年 Degal. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "ShowTabSuperVC.h"
 #import "LRPageMenu.h"
 
-@interface ListHomeVC : BaseViewController
+@interface ListHomeVC : ShowTabSuperVC
 
 @property (nonatomic,strong) LRPageMenu *pageMenu;
 

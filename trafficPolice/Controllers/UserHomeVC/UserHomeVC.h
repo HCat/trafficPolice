@@ -6,8 +6,8 @@
 //  Copyright © 2017年 Degal. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "ShowTabSuperVC.h"
 
-@interface UserHomeVC : BaseViewController
+@interface UserHomeVC : ShowTabSuperVC
 
 @end

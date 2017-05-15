@@ -27,15 +27,15 @@
 {
     MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:aView];
     [aView addSubview:HUD];
-    [HUD show:NO];
+    [HUD showAnimated:NO];
 }
 
 - (void)showLoading:(UIView *)aView noteText:(NSString *)noteText
 {
     MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:aView];
-    HUD.labelText = noteText;
+    HUD.label.text = noteText;
     [aView addSubview:HUD];
-    [HUD show:NO];
+    [HUD showAnimated:NO];
 }
 
 - (void)hideLoading:(UIView *)aView
@@ -53,10 +53,10 @@
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = title;
-    HUD.detailsLabelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = title;
+    HUD.detailsLabel.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
 }
 
 
@@ -67,9 +67,9 @@
     [window addSubview:HUD];
     
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:interval];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:interval];
     //[HUD release];
 }
 
@@ -83,10 +83,10 @@
     
 //    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = title;
-    HUD.detailsLabelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = title;
+    HUD.detailsLabel.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
     //[HUD release];
 }
 
@@ -98,9 +98,9 @@
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
     //[HUD release];
 }
 //用于显示提示信息的浮动框
@@ -119,9 +119,9 @@
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
     //[HUD release];
 }
 
@@ -134,10 +134,10 @@
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = title;
-    HUD.detailsLabelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = title;
+    HUD.detailsLabel.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
     //[HUD release];
 }
 
@@ -151,10 +151,10 @@
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = title;
-    HUD.detailsLabelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = title;
+    HUD.detailsLabel.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
     //[HUD release];
 }
 
@@ -166,9 +166,9 @@
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
     //[HUD release];
 }
 
@@ -182,9 +182,10 @@
     
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
+
     //[HUD release];
 }
 
@@ -196,9 +197,9 @@
     [window addSubview:HUD];
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1.5f];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
 }
 
 
@@ -210,9 +211,10 @@
     [window addSubview:HUD];
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:interval];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:interval];
+
 }
 
 
@@ -225,9 +227,9 @@
     [window addSubview:HUD];
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2.0f];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:1.5];
 }
 
 
@@ -239,9 +241,9 @@
     [window addSubview:HUD];
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error"]];
     HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = message;
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:interval];
+    HUD.label.text = message;
+    [HUD showAnimated:YES];
+    [HUD hideAnimated:YES afterDelay:interval];
 }
 
 
