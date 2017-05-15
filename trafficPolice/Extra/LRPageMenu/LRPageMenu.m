@@ -351,7 +351,6 @@ NSString * const LRPageMenuOptionScrollAnimationDurationOnMenuItemTap      = @"s
     _scro_controller.bounces                                    = _enableHorizontalBounce;
     
     _scro_controller.frame = CGRectMake(0.0f, _menuHeight, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - _menuHeight);
-    NSLog(@"%f",CGRectGetWidth(self.view.frame));
     
     [self.view addSubview:_scro_controller];
 

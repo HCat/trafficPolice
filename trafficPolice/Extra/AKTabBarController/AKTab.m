@@ -134,7 +134,20 @@ static const float kTopMargin = 2.0;
     UILabel *tabTitleLabel = [[UILabel alloc] init];
     tabTitleLabel.text = _tabTitle;
     tabTitleLabel.font = self.tabTitleFont ?: [UIFont fontWithName:@"Helvetica-Bold" size:11.0];
-    CGSize labelSize = [tabTitleLabel.text sizeWithFont:tabTitleLabel.font forWidth:CGRectGetWidth(rect) lineBreakMode:NSLineBreakByTruncatingMiddle ];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    /// Set text alignment
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{ NSFontAttributeName: tabTitleLabel.font,
+                                  //NSForegroundColorAttributeName:_textColor ? _textColor : textColor,
+                                  NSParagraphStyleAttributeName: paragraphStyle };
+    
+    CGSize labelSize = [tabTitleLabel.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect)) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    //CGSize labelSize = [tabTitleLabel.text sizeWithFont:tabTitleLabel.font forWidth:CGRectGetWidth(rect) lineBreakMode:NSLineBreakByTruncatingMiddle ];
     
     CGRect labelRect = CGRectZero;
     
@@ -254,7 +267,24 @@ static const float kTopMargin = 2.0;
             {
                 UIColor *textColor = [UIColor colorWithRed:0.461 green:0.461 blue:0.461 alpha:1.0];
                 CGContextSetFillColorWithColor(ctx, _textColor ? _textColor.CGColor : textColor.CGColor);
-                [tabTitleLabel.text drawInRect:labelRect withFont:tabTitleLabel.font lineBreakMode:NSLineBreakByTruncatingMiddle  alignment:NSTextAlignmentCenter];
+                
+                UIFont *font = tabTitleLabel.font;
+                
+                /// Make a copy of the default paragraph style
+                NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+                /// Set line break mode
+                paragraphStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+                /// Set text alignment
+                paragraphStyle.alignment = NSTextAlignmentCenter;
+                
+                NSDictionary *attributes = @{ NSFontAttributeName: font,
+                                              NSForegroundColorAttributeName:_textColor ? _textColor : textColor,
+                                              NSParagraphStyleAttributeName: paragraphStyle };
+                
+                [tabTitleLabel.text drawInRect:labelRect withAttributes:attributes];
+                
+                
+                //[tabTitleLabel.text drawInRect:labelRect withFont:tabTitleLabel.font lineBreakMode:NSLineBreakByTruncatingMiddle  alignment:NSTextAlignmentCenter];
             }
             CGContextRestoreGState(ctx);
         }
@@ -398,7 +428,23 @@ static const float kTopMargin = 2.0;
             {
                 UIColor *textColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1.0];
                 CGContextSetFillColorWithColor(ctx, _selectedTextColor ? _selectedTextColor.CGColor : textColor.CGColor);
-                [tabTitleLabel.text drawInRect:labelRect withFont:tabTitleLabel.font lineBreakMode:NSLineBreakByTruncatingMiddle  alignment:NSTextAlignmentCenter];
+                
+                UIFont *font = tabTitleLabel.font;
+                
+                /// Make a copy of the default paragraph style
+                NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+                /// Set line break mode
+                paragraphStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+                /// Set text alignment
+                paragraphStyle.alignment = NSTextAlignmentCenter;
+                
+                NSDictionary *attributes = @{ NSFontAttributeName: font,
+                                              NSForegroundColorAttributeName: _selectedTextColor ? _selectedTextColor : textColor,
+                                              NSParagraphStyleAttributeName: paragraphStyle };
+                
+                [tabTitleLabel.text drawInRect:labelRect withAttributes:attributes];
+                
+                //[tabTitleLabel.text drawInRect:labelRect withFont:tabTitleLabel.font lineBreakMode:NSLineBreakByTruncatingMiddle  alignment:NSTextAlignmentCenter];
             }
             CGContextRestoreGState(ctx);
         }

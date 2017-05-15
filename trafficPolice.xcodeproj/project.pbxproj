@@ -155,6 +155,7 @@
 		CE3A6CA51EC9A97300D7D9D5 /* UserSetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetVC.h; sourceTree = "<group>"; };
 		CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetVC.m; sourceTree = "<group>"; };
 		CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSetVC.xib; sourceTree = "<group>"; };
+		CE5071571EC9DCFB00BC5609 /* LRSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRSingleton.h; sourceTree = "<group>"; };
 		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
 		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
 		CE9C51561EC49C48004A7611 /* ListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableCell.xib; sourceTree = "<group>"; };
@@ -339,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				C7E0DC261EC1B9E7008ED063 /* UtilsMacro.h */,
+				CE5071571EC9DCFB00BC5609 /* LRSingleton.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";

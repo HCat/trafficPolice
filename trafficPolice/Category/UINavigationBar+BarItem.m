@@ -37,7 +37,20 @@
 }
 
 - (void)showLeftBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action {
-    CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 44)];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    /// Set text alignment
+    //paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:12],
+                                  //NSForegroundColorAttributeName:_textColor ? _textColor : textColor,
+                                  NSParagraphStyleAttributeName: paragraphStyle };
+    
+    CGSize size = [title boundingRectWithSize:CGSizeMake(100, 44) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    //CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 44)];
     CGRect buttonFrame = CGRectMake(0, 0, size.width + 20.0f, self.navigationController.navigationBar.frame.size.height);
     UIButton *button= [UIButton buttonWithType:UIButtonTypeCustom];
     button.contentMode = UIViewContentModeScaleAspectFit;
@@ -51,7 +64,20 @@
 }
 
 - (void)showRightBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action {
-    CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 44)];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    /// Set text alignment
+    //paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:12],
+                                  //NSForegroundColorAttributeName:_textColor ? _textColor : textColor,
+                                  NSParagraphStyleAttributeName: paragraphStyle };
+    
+    CGSize size = [title boundingRectWithSize:CGSizeMake(100, 44) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    //CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 44)];
     CGRect buttonFrame = CGRectMake(0, 0, size.width + 20.0f, self.navigationController.navigationBar.frame.size.height);
     UIButton *button= [UIButton buttonWithType:UIButtonTypeCustom];
     button.contentMode = UIViewContentModeScaleAspectFit;
@@ -75,7 +101,21 @@
 }
 
 - (void)showLeftBarButtonItemWithTitle:(NSString *)title BgImageName:(NSString *)imageName target:(id)target action:(SEL)action {
-    CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 28)];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    /// Set text alignment
+    //paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:12],
+                                  //NSForegroundColorAttributeName:_textColor ? _textColor : textColor,
+                                  NSParagraphStyleAttributeName: paragraphStyle };
+    
+    CGSize size = [title boundingRectWithSize:CGSizeMake(100, 28) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    
+    //CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 28)];
     CGRect buttonFrame = CGRectMake(0, 0, size.width + 20.0f, 28);
     UIButton *button= [UIButton buttonWithType:UIButtonTypeCustom];
     button.contentMode = UIViewContentModeScaleToFill;
@@ -94,7 +134,20 @@
 }
 
 - (void)showRightBarButtonItemWithTitle:(NSString *)title BgImageName:(NSString *)imageName target:(id)target action:(SEL)action {
-    CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 28)];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    /// Set text alignment
+    //paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:12],
+                                  //NSForegroundColorAttributeName:_textColor ? _textColor : textColor,
+                                  NSParagraphStyleAttributeName: paragraphStyle };
+    
+    CGSize size = [title boundingRectWithSize:CGSizeMake(100, 28) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    //CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(100, 28)];
     CGRect buttonFrame = CGRectMake(0, 0, size.width + 20.0f, 28);
     UIButton *button= [UIButton buttonWithType:UIButtonTypeCustom];
     button.contentMode = UIViewContentModeScaleToFill;
