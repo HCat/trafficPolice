@@ -19,20 +19,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rAb-k9-kQW">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rAb-k9-kQW">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="IyY-nw-GNx"/>
                         <outlet property="delegate" destination="-1" id="kVT-mP-u8o"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOs-F0-2Ab">
+                    <rect key="frame" x="16" y="611" width="343" height="34"/>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.2196078431372549" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="注销"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="UserLoginOutAction:" destination="-1" eventType="touchUpInside" id="uK9-oM-Afp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="rAb-k9-kQW" secondAttribute="bottom" id="0AK-hb-fF2"/>
+                <constraint firstAttribute="bottom" secondItem="rAb-k9-kQW" secondAttribute="bottom" constant="74" id="0AK-hb-fF2"/>
+                <constraint firstItem="eOs-F0-2Ab" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="8pY-7F-YFo"/>
+                <constraint firstItem="eOs-F0-2Ab" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="G3t-H4-L3c"/>
                 <constraint firstItem="rAb-k9-kQW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GOz-2A-FLB"/>
+                <constraint firstItem="eOs-F0-2Ab" firstAttribute="top" secondItem="rAb-k9-kQW" secondAttribute="bottom" constant="18" id="I4H-HG-Ho4"/>
                 <constraint firstItem="rAb-k9-kQW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L5A-BB-qtk"/>
+                <constraint firstAttribute="trailing" secondItem="eOs-F0-2Ab" secondAttribute="trailing" constant="16" id="QoY-gj-74o"/>
                 <constraint firstAttribute="trailing" secondItem="rAb-k9-kQW" secondAttribute="trailing" id="uDT-G6-A7f"/>
             </constraints>
             <point key="canvasLocation" x="24.5" y="52.5"/>

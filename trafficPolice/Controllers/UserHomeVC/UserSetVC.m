@@ -70,7 +70,9 @@
     
     XBSettingSectionModel *section1 = [[XBSettingSectionModel alloc]init];
     section1.sectionHeaderHeight = 18;
+    section1.sectionHeaderBgColor = [UIColor clearColor];
     section1.itemArray = @[item1,item2,item3,item4,item5];
+
     self.sectionArray = @[section1];
 }
 
@@ -88,7 +90,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+
     static NSString *identifier = @"setting";
+
     XBSettingSectionModel *sectionModel = self.sectionArray[indexPath.section];
     XBSettingItemModel *itemModel = sectionModel.itemArray[indexPath.row];
     
@@ -96,8 +101,10 @@
     if (!cell) {
         cell = [[XBSettingCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.item = itemModel;
     return cell;
+    
 }
 
 #pragma - mark UITableViewDelegate
@@ -116,6 +123,14 @@
         itemModel.executeCode();
     }
 }
+
+- (IBAction)UserLoginOutAction:(id)sender {
+    
+    
+    
+}
+
+
 
 #pragma mark - dealloc
 
