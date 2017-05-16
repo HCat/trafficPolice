@@ -9,6 +9,7 @@
 #import "ListBaseVC.h"
 #import "ListTableCell.h"
 #import <MJRefresh.h>
+#import "UITableView+Lr_Placeholder.h"
 
 
 @interface ListBaseVC ()
@@ -21,8 +22,12 @@
     [super viewDidLoad];
     
     [self initRefresh];
+    _tb_content.isNetAvailable = YES;
+//    [self.tb_content reloadData];
+    [_tb_content setReloadBlock:^{
+        [_tb_content.mj_header beginRefreshing];
+    }];
     
-    [self.tb_content.mj_header beginRefreshing];
    
     
 }
@@ -87,7 +92,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 0;
     
 }
 

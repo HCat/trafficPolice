@@ -45,6 +45,9 @@
 		C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC1E1EC1AF2D008ED063 /* ListHomeVC.xib */; };
 		C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */; };
 		C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */; };
+		CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */; };
+		CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */; };
+		CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ED41ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m */; };
 		CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6C851EC9822A00D7D9D5 /* UIView+XBExtension.m */; };
 		CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6C8A1EC9822A00D7D9D5 /* XBSettingItemModel.m */; };
 		CE3A6C951EC9822A00D7D9D5 /* XBSettingSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6C8C1EC9822A00D7D9D5 /* XBSettingSectionModel.m */; };
@@ -134,6 +137,12 @@
 		C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHomeVC.m; sourceTree = "<group>"; };
 		C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHomeVC.xib; sourceTree = "<group>"; };
 		C7E0DC261EC1B9E7008ED063 /* UtilsMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
+		CE343EC91ECA8DC100C8E31B /* UITableView+Lr_Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Lr_Placeholder.h"; sourceTree = "<group>"; };
+		CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Lr_Placeholder.m"; sourceTree = "<group>"; };
+		CE343ED01ECA9DB900C8E31B /* LRPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRPlaceholderView.h; sourceTree = "<group>"; };
+		CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRPlaceholderView.m; sourceTree = "<group>"; };
+		CE343ED31ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Lr_Placeholder.h"; sourceTree = "<group>"; };
+		CE343ED41ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Lr_Placeholder.m"; sourceTree = "<group>"; };
 		CE3A6C841EC9822A00D7D9D5 /* UIView+XBExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XBExtension.h"; sourceTree = "<group>"; };
 		CE3A6C851EC9822A00D7D9D5 /* UIView+XBExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XBExtension.m"; sourceTree = "<group>"; };
 		CE3A6C871EC9822A00D7D9D5 /* XBConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBConst.h; sourceTree = "<group>"; };
@@ -289,6 +298,10 @@
 				C7621D1A1EC44D2800980058 /* UINavigationBar+Awesome.m */,
 				CE3A6C9C1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.h */,
 				CE3A6C9D1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m */,
+				CE343EC91ECA8DC100C8E31B /* UITableView+Lr_Placeholder.h */,
+				CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */,
+				CE343ED31ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.h */,
+				CE343ED41ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -364,6 +377,7 @@
 			children = (
 				C79C99401EC58A1F00258CF1 /* DisplayHelper.h */,
 				C79C99411EC58A1F00258CF1 /* DisplayHelper.m */,
+				CE343ECF1ECA9DAC00C8E31B /* Views */,
 				C7E0DBF41EC1A1C9008ED063 /* Controllers */,
 			);
 			path = Tools;
@@ -450,6 +464,15 @@
 				5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE343ECF1ECA9DAC00C8E31B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE343ED01ECA9DB900C8E31B /* LRPlaceholderView.h */,
+				CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CE3A6C821EC9822A00D7D9D5 /* XBSettingController */ = {
@@ -674,6 +697,7 @@
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
 				CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */,
+				CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */,
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
@@ -692,11 +716,13 @@
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
 				C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */,
 				CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */,
+				CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
 				C79C99421EC58A1F00258CF1 /* DisplayHelper.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
+				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 			);

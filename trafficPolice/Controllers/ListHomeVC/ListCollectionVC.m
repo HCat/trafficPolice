@@ -97,8 +97,6 @@
     return cell;
 }
 
-
-
 #pragma mark - UICollectionView Delegate method
 
 //选中某个 item 触发
