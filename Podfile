@@ -13,6 +13,7 @@ pod 'LxDBAnything'
 pod 'PureLayout'
 pod 'MJRefresh'
 pod 'AMScrollingNavbar', '~> 1.5.1’
+pod 'WechatOpenSDK'
  
 
 

@@ -59,6 +59,10 @@
 		CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA21EC9A87400D7D9D5 /* ShowTabSuperVC.m */; };
 		CE3A6CA81EC9A97300D7D9D5 /* UserSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */; };
 		CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */; };
+		CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFC1ECB47EA00E59524 /* ShareFun.m */; };
+		CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */; };
+		CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */; };
+		CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE061ECB599C00E59524 /* LRCountDownButton.m */; };
 		CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51551EC49C48004A7611 /* ListTableCell.m */; };
 		CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51561EC49C48004A7611 /* ListTableCell.xib */; };
 		CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */; };
@@ -164,6 +168,16 @@
 		CE3A6CA51EC9A97300D7D9D5 /* UserSetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetVC.h; sourceTree = "<group>"; };
 		CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetVC.m; sourceTree = "<group>"; };
 		CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSetVC.xib; sourceTree = "<group>"; };
+		CE4CFDF91ECB380B00E59524 /* SDKMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDKMacro.h; sourceTree = "<group>"; };
+		CE4CFDFA1ECB3BEE00E59524 /* NoticeMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeMacro.h; sourceTree = "<group>"; };
+		CE4CFDFB1ECB47EA00E59524 /* ShareFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareFun.h; sourceTree = "<group>"; };
+		CE4CFDFC1ECB47EA00E59524 /* ShareFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareFun.m; sourceTree = "<group>"; };
+		CE4CFDFE1ECB4D2700E59524 /* ShareValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareValue.h; sourceTree = "<group>"; };
+		CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareValue.m; sourceTree = "<group>"; };
+		CE4CFE011ECB57B900E59524 /* NSTimer+UnRetain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+UnRetain.h"; sourceTree = "<group>"; };
+		CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+UnRetain.m"; sourceTree = "<group>"; };
+		CE4CFE051ECB599C00E59524 /* LRCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCountDownButton.h; sourceTree = "<group>"; };
+		CE4CFE061ECB599C00E59524 /* LRCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCountDownButton.m; sourceTree = "<group>"; };
 		CE5071571EC9DCFB00BC5609 /* LRSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRSingleton.h; sourceTree = "<group>"; };
 		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
 		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
@@ -302,6 +316,8 @@
 				CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */,
 				CE343ED31ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.h */,
 				CE343ED41ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m */,
+				CE4CFE011ECB57B900E59524 /* NSTimer+UnRetain.h */,
+				CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -320,6 +336,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE4CFE041ECB597400E59524 /* LRCountDownButton */,
 				CE3A6C821EC9822A00D7D9D5 /* XBSettingController */,
 				C7621D101EC43CD400980058 /* LRPageMenu */,
 				C7D690951EC3036500E9A6B3 /* LRZRippleButton */,
@@ -354,6 +371,8 @@
 			children = (
 				C7E0DC261EC1B9E7008ED063 /* UtilsMacro.h */,
 				CE5071571EC9DCFB00BC5609 /* LRSingleton.h */,
+				CE4CFDF91ECB380B00E59524 /* SDKMacro.h */,
+				CE4CFDFA1ECB3BEE00E59524 /* NoticeMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -377,6 +396,10 @@
 			children = (
 				C79C99401EC58A1F00258CF1 /* DisplayHelper.h */,
 				C79C99411EC58A1F00258CF1 /* DisplayHelper.m */,
+				CE4CFDFB1ECB47EA00E59524 /* ShareFun.h */,
+				CE4CFDFC1ECB47EA00E59524 /* ShareFun.m */,
+				CE4CFDFE1ECB4D2700E59524 /* ShareValue.h */,
+				CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */,
 				CE343ECF1ECA9DAC00C8E31B /* Views */,
 				C7E0DBF41EC1A1C9008ED063 /* Controllers */,
 			);
@@ -524,6 +547,15 @@
 				CE3A6C921EC9822A00D7D9D5 /* XBSettingCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CE4CFE041ECB597400E59524 /* LRCountDownButton */ = {
+			isa = PBXGroup;
+			children = (
+				CE4CFE051ECB599C00E59524 /* LRCountDownButton.h */,
+				CE4CFE061ECB599C00E59524 /* LRCountDownButton.m */,
+			);
+			path = LRCountDownButton;
 			sourceTree = "<group>";
 		};
 		CE9C51531EC49C2C004A7611 /* ListView */ = {
@@ -689,6 +721,7 @@
 				CE3A6C951EC9822A00D7D9D5 /* XBSettingSectionModel.m in Sources */,
 				C7E0DC1F1EC1AF2D008ED063 /* ListHomeVC.m in Sources */,
 				CE3A6CA81EC9A97300D7D9D5 /* UserSetVC.m in Sources */,
+				CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */,
 				CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */,
 				CE3A6CA31EC9A87400D7D9D5 /* HideTabSuperVC.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
@@ -701,6 +734,8 @@
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
+				CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */,
+				CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */,
 				CE3A6C961EC9822A00D7D9D5 /* XBMeHeaderView.m in Sources */,
 				C7621D0C1EC413A300980058 /* NSObject+Swizzling.m in Sources */,
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
@@ -723,6 +758,7 @@
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
+				CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 			);

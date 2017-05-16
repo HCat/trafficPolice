@@ -12,9 +12,11 @@
 #import "MainHomeVC.h"
 #import "ListHomeVC.h"
 #import "UserHomeVC.h"
+#import "ShareValue.h"
+#import <WXApi.h>
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @property(nonatomic,strong) LoginHomeVC *vc_login;
 
@@ -26,7 +28,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
     //******** 导航栏的设置 ********//
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4281e8)];
@@ -34,7 +35,9 @@
     if([[UIDevice currentDevice].systemVersion floatValue] >= 8 && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
         [UINavigationBar appearance].translucent = NO;
     }
-
+    //******** 注册第三方：微信，百度地图等 ********//
+    [self addThirthPart:launchOptions];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
@@ -87,6 +90,15 @@
 
 }
 
+-(void)addThirthPart:(NSDictionary *)launchOptions{
+
+
+    [WXApi registerApp:WEIXIN_APP_ID];
+
+}
+
+#pragma mark - public Methods
+
 -(void)showTabView;{
     [_vc_tabBar showTabBarAnimated:NO];
 }
@@ -96,8 +108,74 @@
 }
 
 
+#pragma mark - 微信相关
+
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    
+    /*! @brief 处理微信通过URL启动App时传递的数据
+     *
+     * 需要在 application:openURL:sourceApplication:annotation:或者application:handleOpenURL中调用。
+     * @param url 微信启动第三方应用时传递过来的URL
+     * @param delegate  WXApiDelegate对象，用来接收微信触发的消息。
+     * @return 成功返回YES，失败返回NO。
+     */
+    
+    return [WXApi handleOpenURL:url delegate:self];
+}
 
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WXApi handleOpenURL:url delegate:self];
+    
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+/*! 微信回调，不管是登录还是分享成功与否，都是走这个方法 @brief 发送一个sendReq后，收到微信的回应
+ *
+ * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
+ * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
+ * param resp具体的回应内容，是自动释放的
+ */
+-(void) onResp:(BaseResp*)resp{
+    
+    /*
+     enum  WXErrCode {
+     WXSuccess           = 0,    成功
+     WXErrCodeCommon     = -1,  普通错误类型
+     WXErrCodeUserCancel = -2,    用户点击取消并返回
+     WXErrCodeSentFail   = -3,   发送失败
+     WXErrCodeAuthDeny   = -4,    授权失败
+     WXErrCodeUnsupport  = -5,   微信不支持
+     };
+     */
+    if ([resp isKindOfClass:[SendAuthResp class]]) {   //授权登录的类。
+        
+        SendAuthResp* SendRsp = (SendAuthResp*)resp;
+        int nErrCode = SendRsp.errCode;
+        NSString* strState = SendRsp.state;
+        LxDBAnyVar(nErrCode);
+
+        if (0 == nErrCode) {  //成功。
+            if ([@"wxlogin" isEqualToString:strState]) {
+                NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:SendRsp.code, @"code", nil];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WX_LOGIN_SUCCESS object:nil userInfo:dict];
+            }
+        }else{ //失败
+            NSLog(@"error %@",resp.errStr);
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:[NSString stringWithFormat:@"reason : %@",resp.errStr] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    }
+    
+
+}
+
+
+#pragma mark -
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

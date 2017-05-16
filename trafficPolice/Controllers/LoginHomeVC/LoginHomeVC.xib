@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,7 +18,77 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login" translatesAutoresizingMaskIntoConstraints="NO" id="gis-AN-I7e">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6x8-GV-kNK">
+                    <rect key="frame" x="152" y="220" width="70" height="70"/>
+                    <rect key="contentStretch" x="0.34999999999999998" y="0.0" width="1" height="1"/>
+                    <state key="normal" image="icon_weixinLogin"/>
+                    <connections>
+                        <action selector="weixinLoginAction:" destination="-1" eventType="touchUpInside" id="Csm-1X-YE4"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDQ-89-f5N">
+                    <rect key="frame" x="155" y="305" width="65.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录后该应用将获得以下权限" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4em-zZ-IIp">
+                    <rect key="frame" x="108" y="359" width="159.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTw-IO-0y4">
+                    <rect key="frame" x="97" y="339.5" width="180" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="3qO-rC-a2O"/>
+                        <constraint firstAttribute="height" constant="1" id="IEn-2p-bdF"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YA5-37-PIy">
+                    <rect key="frame" x="344" y="30" width="12" height="22"/>
+                    <state key="normal" image="icon_login_out"/>
+                    <connections>
+                        <action selector="quitAppAction:" destination="-1" eventType="touchUpInside" id="3gP-C5-gf3"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获得您的公开信息(头像，昵称等)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnK-vc-bdm">
+                    <rect key="frame" x="120" y="376" width="136" height="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hTw-IO-0y4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="263-E8-hU3"/>
+                <constraint firstItem="hTw-IO-0y4" firstAttribute="top" secondItem="XDQ-89-f5N" secondAttribute="bottom" constant="15" id="2dr-6h-3XJ"/>
+                <constraint firstItem="gis-AN-I7e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8X6-1z-bvP"/>
+                <constraint firstItem="XDQ-89-f5N" firstAttribute="centerX" secondItem="6x8-GV-kNK" secondAttribute="centerX" id="AOx-T4-idX"/>
+                <constraint firstItem="4em-zZ-IIp" firstAttribute="top" secondItem="hTw-IO-0y4" secondAttribute="bottom" constant="18.5" id="Bl7-sL-b3J"/>
+                <constraint firstItem="YA5-37-PIy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="QOH-cb-kbr"/>
+                <constraint firstAttribute="bottom" secondItem="gis-AN-I7e" secondAttribute="bottom" id="RBq-eC-3KG"/>
+                <constraint firstItem="6x8-GV-kNK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-78.5" id="TfS-QW-Dfl"/>
+                <constraint firstItem="6x8-GV-kNK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="adC-sp-bSS"/>
+                <constraint firstAttribute="trailing" secondItem="gis-AN-I7e" secondAttribute="trailing" id="bG2-Eq-BDA"/>
+                <constraint firstItem="4em-zZ-IIp" firstAttribute="centerX" secondItem="XDQ-89-f5N" secondAttribute="centerX" id="bbB-gl-Bj7"/>
+                <constraint firstItem="gis-AN-I7e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cjk-L5-A4H"/>
+                <constraint firstAttribute="trailing" secondItem="YA5-37-PIy" secondAttribute="trailing" constant="19" id="erc-Z9-fk6"/>
+                <constraint firstItem="XDQ-89-f5N" firstAttribute="top" secondItem="6x8-GV-kNK" secondAttribute="bottom" constant="15" id="gwG-Ad-dTs"/>
+                <constraint firstItem="dnK-vc-bdm" firstAttribute="top" secondItem="4em-zZ-IIp" secondAttribute="bottom" constant="2.5" id="iaY-Z3-7Q4"/>
+                <constraint firstItem="dnK-vc-bdm" firstAttribute="centerX" secondItem="4em-zZ-IIp" secondAttribute="centerX" id="mF5-a3-L3F"/>
+            </constraints>
+            <point key="canvasLocation" x="230" y="55"/>
         </view>
     </objects>
+    <resources>
+        <image name="bg_login" width="360" height="640"/>
+        <image name="icon_login_out" width="12" height="12"/>
+        <image name="icon_weixinLogin" width="70" height="70"/>
+    </resources>
 </document>

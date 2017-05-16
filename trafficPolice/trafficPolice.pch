@@ -40,6 +40,9 @@
 #import "UtilsMacro.h"
 #import <LxDBAnything.h>
 
+#import "SDKMacro.h"
+#import "NoticeMacro.h"
+
 
 #endif
 
