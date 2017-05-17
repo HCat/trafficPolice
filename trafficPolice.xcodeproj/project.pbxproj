@@ -66,13 +66,13 @@
 		CE542ED41ECC93D900971B23 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED31ECC93D900971B23 /* BottomView.m */; };
 		CE542ED71ECC942900971B23 /* CertificateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED61ECC942900971B23 /* CertificateView.m */; };
 		CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE542ED81ECC943C00971B23 /* CertificateView.xib */; };
+		CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542EDC1ECC9F2400971B23 /* AlertView.m */; };
 		CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51551EC49C48004A7611 /* ListTableCell.m */; };
 		CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51561EC49C48004A7611 /* ListTableCell.xib */; };
 		CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */; };
 		CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */; };
 		CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */; };
 		CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */; };
-		CECE29471ECC1EA700075BA2 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE29461ECC1EA700075BA2 /* AlertView.m */; };
 		CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE29491ECC3F3300075BA2 /* NSString+Range.m */; };
 /* End PBXBuildFile section */
 
@@ -189,6 +189,8 @@
 		CE542ED51ECC942900971B23 /* CertificateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateView.h; sourceTree = "<group>"; };
 		CE542ED61ECC942900971B23 /* CertificateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateView.m; sourceTree = "<group>"; };
 		CE542ED81ECC943C00971B23 /* CertificateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificateView.xib; sourceTree = "<group>"; };
+		CE542EDB1ECC9F2400971B23 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		CE542EDC1ECC9F2400971B23 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
 		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
 		CE9C51561EC49C48004A7611 /* ListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableCell.xib; sourceTree = "<group>"; };
@@ -198,8 +200,6 @@
 		CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionCell.h; sourceTree = "<group>"; };
 		CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionCell.m; sourceTree = "<group>"; };
 		CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionCell.xib; sourceTree = "<group>"; };
-		CECE29451ECC1EA700075BA2 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
-		CECE29461ECC1EA700075BA2 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		CECE29481ECC3F3300075BA2 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
 		CECE29491ECC3F3300075BA2 /* NSString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Range.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -438,12 +438,11 @@
 		C7E0DBF51EC1A1C9008ED063 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE542EDA1ECC9F1200971B23 /* AlertView */,
 				CE542ED11ECC93BA00971B23 /* BottomView */,
 				C79C99441EC5952300258CF1 /* UserView */,
 				CE9C51531EC49C2C004A7611 /* ListView */,
 				C78138AC1EC2E77000A124B7 /* MainView */,
-				CECE29451ECC1EA700075BA2 /* AlertView.h */,
-				CECE29461ECC1EA700075BA2 /* AlertView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -587,6 +586,15 @@
 				CE542ED81ECC943C00971B23 /* CertificateView.xib */,
 			);
 			path = BottomView;
+			sourceTree = "<group>";
+		};
+		CE542EDA1ECC9F1200971B23 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CE542EDB1ECC9F2400971B23 /* AlertView.h */,
+				CE542EDC1ECC9F2400971B23 /* AlertView.m */,
+			);
+			path = AlertView;
 			sourceTree = "<group>";
 		};
 		CE9C51531EC49C2C004A7611 /* ListView */ = {
@@ -749,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7E0DBF61EC1A1C9008ED063 /* AKTab.m in Sources */,
+				CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */,
 				C7E0DC021EC1A5F8008ED063 /* BaseViewController.m in Sources */,
 				CE3A6C951EC9822A00D7D9D5 /* XBSettingSectionModel.m in Sources */,
 				C7E0DC1F1EC1AF2D008ED063 /* ListHomeVC.m in Sources */,
@@ -759,7 +768,6 @@
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
-				CECE29471ECC1EA700075BA2 /* AlertView.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
 				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,

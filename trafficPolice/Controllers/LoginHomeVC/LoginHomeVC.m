@@ -70,8 +70,6 @@
 //    };
 //    [BottomView showWindowWithBottomView:t_view];
     
-   
-    
 }
 
 - (IBAction)quitAppAction:(id)sender {
