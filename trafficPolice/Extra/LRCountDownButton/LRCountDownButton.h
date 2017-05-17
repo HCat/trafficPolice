@@ -34,5 +34,8 @@ typedef void(^BeginBlock)();
 
 //开始倒计时
 - (void)startCountDown;
+//停止倒计时
+- (void)endCountDown;
+
 
 @end

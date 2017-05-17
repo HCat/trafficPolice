@@ -10,4 +10,10 @@
 
 @interface AlertView : UIView
 
++ (void)showWindowWithTitle:(NSString*)title
+         contents:(NSString *)content;
+
++ (void)showWindowWithContentView:(UIView*)contentView;
+
+
 @end

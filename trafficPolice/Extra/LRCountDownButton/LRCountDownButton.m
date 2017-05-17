@@ -36,13 +36,11 @@
 
 @implementation LRCountDownButton
 
-
-
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {
     [super setTitle:title forState:state];
     // 倒计时过程中title的改变不更新originalTitle
     
-   
+    [self setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     if (self.tempDurationOfCountDown == self.durationOfCountDown) {
         self.originalTitle = title;
         
@@ -155,6 +153,7 @@
             // 恢复LRCountDownButton开始倒计时
             strongSelf.tempDurationOfCountDown = self.durationOfCountDown;
             [strongSelf.timer_countDown invalidate];
+            strongSelf.timer_countDown = nil;
             strongSelf.count = 0;
             strongSelf.enabled = YES;
         } else {
@@ -173,6 +172,29 @@
     // 将定时器添加到通用的NSRunLoopCommonModes中
     [[NSRunLoop currentRunLoop] addTimer:self.timer_countDown forMode:NSRunLoopCommonModes];
     
+}
+
+- (void)endCountDown{
+
+    [self setTitle:self.originalTitle forState:UIControlStateNormal];
+    if (self.originalColor) {
+        [self setTitleColor:self.originalColor forState:UIControlStateNormal];
+    } else {
+        //默认颜色 白色
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    [self setBackgroundColor:self.originalBGColor];
+    // 恢复LRCountDownButton开始倒计时
+    self.tempDurationOfCountDown = self.durationOfCountDown;
+    if (self.timer_countDown) {
+        [self.timer_countDown invalidate];
+        self.timer_countDown = nil;
+    }
+    
+    self.count = 0;
+    self.enabled = YES;
+
+
 }
 
 

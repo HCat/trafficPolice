@@ -69,6 +69,8 @@
 		CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */; };
 		CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */; };
 		CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */; };
+		CECE29471ECC1EA700075BA2 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE29461ECC1EA700075BA2 /* AlertView.m */; };
+		CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE29491ECC3F3300075BA2 /* NSString+Range.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +190,10 @@
 		CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionCell.h; sourceTree = "<group>"; };
 		CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionCell.m; sourceTree = "<group>"; };
 		CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionCell.xib; sourceTree = "<group>"; };
+		CECE29451ECC1EA700075BA2 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		CECE29461ECC1EA700075BA2 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		CECE29481ECC3F3300075BA2 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
+		CECE29491ECC3F3300075BA2 /* NSString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Range.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +322,8 @@
 				CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */,
 				CE343ED31ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.h */,
 				CE343ED41ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m */,
+				CECE29481ECC3F3300075BA2 /* NSString+Range.h */,
+				CECE29491ECC3F3300075BA2 /* NSString+Range.m */,
 				CE4CFE011ECB57B900E59524 /* NSTimer+UnRetain.h */,
 				CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */,
 			);
@@ -425,6 +433,8 @@
 				C79C99441EC5952300258CF1 /* UserView */,
 				CE9C51531EC49C2C004A7611 /* ListView */,
 				C78138AC1EC2E77000A124B7 /* MainView */,
+				CECE29451ECC1EA700075BA2 /* AlertView.h */,
+				CECE29461ECC1EA700075BA2 /* AlertView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -727,6 +737,7 @@
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
+				CECE29471ECC1EA700075BA2 /* AlertView.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
 				CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */,
@@ -741,6 +752,7 @@
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
 				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,
+				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
 				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,

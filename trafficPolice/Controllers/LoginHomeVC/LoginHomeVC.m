@@ -11,6 +11,7 @@
 #import <AFNetworking.h>
 #import <WXApi.h>
 #import "ShareFun.h"
+#import "AlertView.h"
 
 
 @interface LoginHomeVC ()
@@ -55,9 +56,11 @@
 //        
 //    }
     
+    [AlertView showWindowWithTitle:@"提 示" contents:@"该人造成很严重的交通事故，10000起交通事故,2起摩托车事故!"];
     
-    PhoneLoginVC *t_vc = [PhoneLoginVC new];
-    [self.navigationController pushViewController:t_vc animated:YES];
+    
+//    PhoneLoginVC *t_vc = [PhoneLoginVC new];
+//    [self.navigationController pushViewController:t_vc animated:YES];
     
 }
 

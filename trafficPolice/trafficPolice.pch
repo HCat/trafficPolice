@@ -42,6 +42,8 @@
 
 #import "SDKMacro.h"
 #import "NoticeMacro.h"
+#import "DisplayHelper.h"
+
 
 
 #endif

@@ -63,14 +63,15 @@
 +(void)displaySuccessAlert:(NSString*)message interval:(float)interval{
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:window];
-    // Add HUD to screen
     [window addSubview:HUD];
     
-    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.mode = MBProgressHUDModeText;
     HUD.label.text = message;
+    HUD.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f]; //蒙版层
+    HUD.margin = 10.f; //设置字和边框之间的距离
     [HUD showAnimated:YES];
     [HUD hideAnimated:YES afterDelay:interval];
-    //[HUD release];
+    
 }
 
 //用于显示提示信息的浮动框

@@ -13,4 +13,11 @@
 //退出程序
 + (void)exitApplication;
 
+//验证手机验证码格式
++ (BOOL)validatePhoneNumber:(NSString *)phoneNumber;
+
+//高亮一段NSSting中的数字部分
+
++ (NSMutableAttributedString *)highlightNummerInString:(NSString *)originString;
+
 @end
