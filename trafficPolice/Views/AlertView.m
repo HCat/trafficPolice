@@ -97,6 +97,8 @@
     if (!_maskView) {
         _maskView = [[UIView alloc]initWithFrame:self.bounds];
         _maskView.backgroundColor = [UIColor blackColor];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapBackViewAction)];
+        [_maskView addGestureRecognizer:tap];
         _maskView.alpha = .5;
     }
     return _maskView;
@@ -112,9 +114,10 @@
         
         [_contentView addSubview:self.lb_title];
         [_contentView addSubview:self.lb_content];
+        [_contentView addSubview:self.btn_quit];
         
         CGRect frame = _contentView.frame;
-        frame.size.height = CGRectGetMinY(_lb_content.frame) + CGRectGetHeight(_lb_content.frame) +10;
+        frame.size.height = CGRectGetMinY(_lb_content.frame) + CGRectGetHeight(_lb_content.frame) +30;
         _contentView.frame = frame;
     }
     return _contentView;
@@ -126,7 +129,7 @@
         self.lb_title = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, _contentView.frame.size.width - 40, 20)];
         _lb_title.backgroundColor = [UIColor clearColor];
         _lb_title.textColor = UIColorFromRGB(0x444444);
-        _lb_title.font = [UIFont systemFontOfSize:17.f];
+        _lb_title.font = [UIFont systemFontOfSize:15.f];
         _lb_title.textAlignment = NSTextAlignmentCenter;
         _lb_title.text = _title;
     }
@@ -136,32 +139,55 @@
 - (UILabel *)lb_content{
     
     if (!_lb_content) {
-        _lb_content = [[UILabel alloc] initWithFrame:CGRectMake(24, CGRectGetMaxY(_lb_title.frame)+10, CGRectGetWidth(_contentView.frame) - 48, 150)];
+        _lb_content = [[UILabel alloc] initWithFrame:CGRectMake(24, CGRectGetMaxY(_lb_title.frame), CGRectGetWidth(_contentView.frame) - 48, 150)];
         _lb_content.backgroundColor = [UIColor clearColor];
         _lb_content.textColor = UIColorFromRGB(0x444444);
         _lb_content.font = [UIFont systemFontOfSize:14.f];
         _lb_content.textAlignment = NSTextAlignmentLeft;
         _lb_content.numberOfLines = 0;
-        _lb_content.lineBreakMode = NSLineBreakByWordWrapping;
+        _lb_content.lineBreakMode = NSLineBreakByCharWrapping;
         _lb_content.attributedText = [ShareFun highlightNummerInString:_content];
         
+        
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
         [paragraphStyle setLineSpacing:5];
+        
         NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:14],NSParagraphStyleAttributeName: paragraphStyle };
         
         CGSize size = [_content boundingRectWithSize:CGSizeMake(CGRectGetWidth(_lb_content.frame), WINDOW_HEIGHT-20) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
         CGRect frame =_lb_content.frame;
-        frame.size.height = size.height+10;
+        frame.size.height = size.height+30;
         _lb_content.frame = frame;
         
     }
     return _lb_content;
 }
 
+- (UIButton *)btn_quit{
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if(!_btn_quit){
+        _btn_quit = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_contentView.frame)-12-20, 10, 20, 20)];
+        //[_btn_quit setTitle:@"x" forState:UIControlStateNormal];
+        [_btn_quit setImage:[UIImage imageNamed:@"icon_dacha"] forState:UIControlStateNormal];
+        [_btn_quit addTarget:self action:@selector(handleBtnDismissClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_btn_quit setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateNormal];
+        
+    
+    }
+
+    return _btn_quit;
+}
+
+- (void)handleBtnDismissClick:(id)sender{
+
+    [self removeFromSuperview];
+
+}
+
+- (void)tapBackViewAction{
     [self removeFromSuperview];
 }
+
 
 @end

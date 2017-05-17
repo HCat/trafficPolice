@@ -63,6 +63,9 @@
 		CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */; };
 		CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */; };
 		CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE061ECB599C00E59524 /* LRCountDownButton.m */; };
+		CE542ED41ECC93D900971B23 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED31ECC93D900971B23 /* BottomView.m */; };
+		CE542ED71ECC942900971B23 /* CertificateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED61ECC942900971B23 /* CertificateView.m */; };
+		CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE542ED81ECC943C00971B23 /* CertificateView.xib */; };
 		CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51551EC49C48004A7611 /* ListTableCell.m */; };
 		CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51561EC49C48004A7611 /* ListTableCell.xib */; };
 		CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */; };
@@ -181,6 +184,11 @@
 		CE4CFE051ECB599C00E59524 /* LRCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCountDownButton.h; sourceTree = "<group>"; };
 		CE4CFE061ECB599C00E59524 /* LRCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCountDownButton.m; sourceTree = "<group>"; };
 		CE5071571EC9DCFB00BC5609 /* LRSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRSingleton.h; sourceTree = "<group>"; };
+		CE542ED21ECC93D900971B23 /* BottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
+		CE542ED31ECC93D900971B23 /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
+		CE542ED51ECC942900971B23 /* CertificateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateView.h; sourceTree = "<group>"; };
+		CE542ED61ECC942900971B23 /* CertificateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateView.m; sourceTree = "<group>"; };
+		CE542ED81ECC943C00971B23 /* CertificateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificateView.xib; sourceTree = "<group>"; };
 		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
 		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
 		CE9C51561EC49C48004A7611 /* ListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableCell.xib; sourceTree = "<group>"; };
@@ -430,6 +438,7 @@
 		C7E0DBF51EC1A1C9008ED063 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE542ED11ECC93BA00971B23 /* BottomView */,
 				C79C99441EC5952300258CF1 /* UserView */,
 				CE9C51531EC49C2C004A7611 /* ListView */,
 				C78138AC1EC2E77000A124B7 /* MainView */,
@@ -568,6 +577,18 @@
 			path = LRCountDownButton;
 			sourceTree = "<group>";
 		};
+		CE542ED11ECC93BA00971B23 /* BottomView */ = {
+			isa = PBXGroup;
+			children = (
+				CE542ED21ECC93D900971B23 /* BottomView.h */,
+				CE542ED31ECC93D900971B23 /* BottomView.m */,
+				CE542ED51ECC942900971B23 /* CertificateView.h */,
+				CE542ED61ECC942900971B23 /* CertificateView.m */,
+				CE542ED81ECC943C00971B23 /* CertificateView.xib */,
+			);
+			path = BottomView;
+			sourceTree = "<group>";
+		};
 		CE9C51531EC49C2C004A7611 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +675,7 @@
 			files = (
 				C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */,
 				C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */,
+				CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */,
 				CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */,
 				C7E0DC121EC1AD55008ED063 /* PhoneLoginVC.xib in Resources */,
 				CE3A6C971EC9822A00D7D9D5 /* XBMeHeaderView.xib in Resources */,
@@ -739,6 +761,7 @@
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
 				CECE29471ECC1EA700075BA2 /* AlertView.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
+				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
 				CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */,
 				CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */,
@@ -749,6 +772,7 @@
 				CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */,
 				CE3A6C961EC9822A00D7D9D5 /* XBMeHeaderView.m in Sources */,
 				C7621D0C1EC413A300980058 /* NSObject+Swizzling.m in Sources */,
+				CE542ED41ECC93D900971B23 /* BottomView.m in Sources */,
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
 				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,

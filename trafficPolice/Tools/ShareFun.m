@@ -38,8 +38,13 @@
 
     //生成 NSAttributedString 子类 NSMutableAttributedString 的对象，这个NSMutableAttributedString才是可变的
     NSMutableAttributedString *attribut = [[NSMutableAttributedString alloc]initWithString:originString];
+    
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
     [paragraphStyle setLineSpacing:5];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[NSParagraphStyleAttributeName] = paragraphStyle;
+    [attribut addAttributes:dic range:NSMakeRange(0, attribut.length)];
     
     NSCharacterSet *numbers=[[NSCharacterSet decimalDigitCharacterSet] invertedSet];
     NSArray *setArr = [originString componentsSeparatedByCharactersInSet:numbers];
@@ -59,10 +64,10 @@
             //改变显示的颜色，还有很多属性，大家可以自行看文档
             dic[NSForegroundColorAttributeName] = UIColorFromRGB(0xf14827);
             //改变字体的大小
-            dic[NSFontAttributeName] = [UIFont systemFontOfSize:18];
+            dic[NSFontAttributeName] = [UIFont systemFontOfSize:16];
             //改变背景颜色
-            //dic[NSBackgroundColorAttributeName] = [UIColor grayColor];
-            dic[NSParagraphStyleAttributeName] = paragraphStyle;
+//            dic[NSBackgroundColorAttributeName] = [UIColor grayColor];
+//            dic[NSParagraphStyleAttributeName] = paragraphStyle;
             //赋值
             NSRange numRange2 = NSMakeRange(location, numRange.length);
             [attribut addAttributes:dic range:numRange2];
@@ -72,6 +77,9 @@
         }
         
     }
+    
+   
+    
     
     return attribut;
 

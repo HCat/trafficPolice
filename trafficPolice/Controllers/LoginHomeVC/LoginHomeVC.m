@@ -11,7 +11,8 @@
 #import <AFNetworking.h>
 #import <WXApi.h>
 #import "ShareFun.h"
-#import "AlertView.h"
+#import "CertificateView.h"
+#import "BottomView.h"
 
 
 @interface LoginHomeVC ()
@@ -39,28 +40,37 @@
 
 - (IBAction)weixinLoginAction:(id)sender {
     
-//    if (![WXApi isWXAppInstalled]) {
-//        
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"请先安装微信" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-//        [alert show];
-//        
-//    }else{
-//        
-//        SendAuthReq *req =[[SendAuthReq alloc]init];
-//        
-//        req.scope = @"snsapi_userinfo" ;
-//        req.state = @"wxlogin" ;
-//        req.openID = WEIXIN_APP_ID;
-//        //第三方向微信终端发送一个SendAuthReq消息结构
-//        [WXApi sendReq:req];
-//        
-//    }
+    if (![WXApi isWXAppInstalled]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"请先安装微信" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        
+    }else{
+        
+        SendAuthReq *req =[[SendAuthReq alloc]init];
+        
+        req.scope = @"snsapi_userinfo" ;
+        req.state = @"wxlogin" ;
+        req.openID = WEIXIN_APP_ID;
+        //第三方向微信终端发送一个SendAuthReq消息结构
+        [WXApi sendReq:req];
+        
+    }
     
-    [AlertView showWindowWithTitle:@"提 示" contents:@"该人造成很严重的交通事故，10000起交通事故,2起摩托车事故!"];
+//    CertificateView *t_view = [CertificateView initCustomView];
+//    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 103)];
+//    t_view.identityCardBlock = ^(){
+//        
+//        LxPrintf(@"身份证点击");
+//        [BottomView dismissWindow];
+//    };
+//    t_view.drivingLicenceBlock = ^(){
+//        LxPrintf(@"驾驶证点击");
+//        [BottomView dismissWindow];
+//    };
+//    [BottomView showWindowWithBottomView:t_view];
     
-    
-//    PhoneLoginVC *t_vc = [PhoneLoginVC new];
-//    [self.navigationController pushViewController:t_vc animated:YES];
+   
     
 }
 
@@ -114,7 +124,7 @@
 }
 
 -(void)requestUserInfoByToken:(NSString *)token andOpenid:(NSString *)openID{
-    
+    WS(weakSelf);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -124,6 +134,9 @@
         NSDictionary *dic = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         //开发人员拿到相关微信用户信息后， 需要与后台对接，进行登录
         LxPrintf(@"login success dic  ==== %@",dic);
+        
+        PhoneLoginVC *t_vc = [PhoneLoginVC new];
+        [weakSelf.navigationController pushViewController:t_vc animated:YES];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         LxPrintf(@"error %ld",(long)error.code);
