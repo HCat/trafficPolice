@@ -69,5 +69,11 @@
     
 }
 
++ (void)setupRequestFilters:(NSDictionary *)arguments{
+    //@{@"token": [ShareValue sharedDefault].token}
+    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+    YTKUrlArgumentsFilter *urlFilter = [YTKUrlArgumentsFilter filterWithArguments:arguments];
+    [config addUrlFilter:urlFilter];
+}
 
 @end

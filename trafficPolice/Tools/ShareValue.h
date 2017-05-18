@@ -15,6 +15,7 @@ LRSingletonH(Default)
 
 @property (nonatomic, copy) NSString *openid;   //微信openid
 @property (nonatomic, copy) NSString *unionid;  //微信unionid
+@property (nonatomic, copy) NSString *token;    //token值
 
 
 @end

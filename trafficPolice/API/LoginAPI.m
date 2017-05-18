@@ -15,7 +15,7 @@
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_USER_LOGIN;
+    return URL_LOGIN_LOGIN;
 }
 
 //请求参数
@@ -43,7 +43,7 @@
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_USER_LOGINTAKECODE;
+    return URL_LOGIN_LOGINTAKECODE;
 }
 
 //请求参数
@@ -65,27 +65,34 @@
 
 #pragma mark - 验证码登录API
 
+@implementation LoginCheckParam
+
+@end
+
 @implementation LoginCheckManger
 
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_USER_LOGINTAKECODE;
+    return URL_LOGIN_LOGINCHECK;
 }
 
 //请求参数
 - (nullable id)requestArgument
 {
-    return @{@"openId":_openId};
+    return self.param.modelToJSONObject;
 }
 
 //返回参数
-- (NSString *)phone{
+- (UserModel *)userModel{
     
     if (self.responseModel.data) {
-        return self.responseModel.data[@"acId"];
+        //这里存储token值用于接下来的URL通用参数
+        [ShareValue sharedDefault].token = self.responseModel.data[@"token"];
+        return [UserModel modelWithDictionary:self.responseModel.data];
     }
+    
     return nil;
 }
 

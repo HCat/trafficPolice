@@ -12,7 +12,6 @@
 #import "SAMKeychain.h"
 #import "SAMKeychainQuery.h"
 
-
 @implementation ShareFun
 
 + (void)exitApplication{
@@ -107,6 +106,7 @@
     
     return strApplicationUUID;
 }
+
 
 
 

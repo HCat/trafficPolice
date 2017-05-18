@@ -67,6 +67,9 @@
 		CE435EFC1ECDA5AA00F85B38 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE435EFB1ECDA5AA00F85B38 /* Security.framework */; };
 		CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435F031ECDA73B00F85B38 /* SAMKeychain.m */; };
 		CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435F051ECDA73B00F85B38 /* SAMKeychainQuery.m */; };
+		CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43C1591ECDDAB400309507 /* UserModel.m */; };
+		CE43C15D1ECDE84700309507 /* YTKUrlArgumentsFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43C15C1ECDE84700309507 /* YTKUrlArgumentsFilter.m */; };
+		CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43C15F1ECDF13F00309507 /* CommonAPI.m */; };
 		CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFC1ECB47EA00E59524 /* ShareFun.m */; };
 		CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */; };
 		CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */; };
@@ -196,6 +199,12 @@
 		CE435F031ECDA73B00F85B38 /* SAMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMKeychain.m; sourceTree = "<group>"; };
 		CE435F041ECDA73B00F85B38 /* SAMKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMKeychainQuery.h; sourceTree = "<group>"; };
 		CE435F051ECDA73B00F85B38 /* SAMKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMKeychainQuery.m; sourceTree = "<group>"; };
+		CE43C1581ECDDAB400309507 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		CE43C1591ECDDAB400309507 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		CE43C15B1ECDE84700309507 /* YTKUrlArgumentsFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKUrlArgumentsFilter.h; sourceTree = "<group>"; };
+		CE43C15C1ECDE84700309507 /* YTKUrlArgumentsFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKUrlArgumentsFilter.m; sourceTree = "<group>"; };
+		CE43C15E1ECDF13F00309507 /* CommonAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAPI.h; sourceTree = "<group>"; };
+		CE43C15F1ECDF13F00309507 /* CommonAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAPI.m; sourceTree = "<group>"; };
 		CE4CFDF91ECB380B00E59524 /* SDKMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDKMacro.h; sourceTree = "<group>"; };
 		CE4CFDFA1ECB3BEE00E59524 /* NoticeMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeMacro.h; sourceTree = "<group>"; };
 		CE4CFDFB1ECB47EA00E59524 /* ShareFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareFun.h; sourceTree = "<group>"; };
@@ -313,11 +322,11 @@
 		C7E0DB861EC15DBA008ED063 /* trafficPolice */ = {
 			isa = PBXGroup;
 			children = (
-				CE435EF31ECD83FF00F85B38 /* API */,
 				C7E0DB8A1EC15DBA008ED063 /* AppDelegate.h */,
 				C7E0DB8B1EC15DBA008ED063 /* AppDelegate.m */,
+				CE435EF31ECD83FF00F85B38 /* API */,
+				CE43C1571ECDDA9200309507 /* Models */,
 				C7E0DBF51EC1A1C9008ED063 /* Views */,
-				C7E0DBF11EC1A1C9008ED063 /* Models */,
 				C7E0DBE01EC1A1C8008ED063 /* Controllers */,
 				C7E0DBF31EC1A1C9008ED063 /* Tools */,
 				C7E0DBF01EC1A1C9008ED063 /* Macro */,
@@ -419,13 +428,6 @@
 				CE435EF71ECD86F800F85B38 /* URLMacro.h */,
 			);
 			path = Macro;
-			sourceTree = "<group>";
-		};
-		C7E0DBF11EC1A1C9008ED063 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		C7E0DBF21EC1A1C9008ED063 /* SDK */ = {
@@ -618,6 +620,8 @@
 		CE435EEF1ECD7DA800F85B38 /* BaseNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				CE43C15B1ECDE84700309507 /* YTKUrlArgumentsFilter.h */,
+				CE43C15C1ECDE84700309507 /* YTKUrlArgumentsFilter.m */,
 				CE435EF01ECD7DFE00F85B38 /* LRBaseRequest.h */,
 				CE435EF11ECD7DFE00F85B38 /* LRBaseRequest.m */,
 				CE435EF81ECD996800F85B38 /* LRBaseResponse.h */,
@@ -631,6 +635,8 @@
 			children = (
 				CE435EF41ECD848E00F85B38 /* LoginAPI.h */,
 				CE435EF51ECD848E00F85B38 /* LoginAPI.m */,
+				CE43C15E1ECDF13F00309507 /* CommonAPI.h */,
+				CE43C15F1ECDF13F00309507 /* CommonAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -644,6 +650,15 @@
 				CE435F051ECDA73B00F85B38 /* SAMKeychainQuery.m */,
 			);
 			path = SAMKeychain;
+			sourceTree = "<group>";
+		};
+		CE43C1571ECDDA9200309507 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE43C1581ECDDAB400309507 /* UserModel.h */,
+				CE43C1591ECDDAB400309507 /* UserModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CE4CFE041ECB597400E59524 /* LRCountDownButton */ = {
@@ -845,6 +860,7 @@
 				CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */,
 				CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */,
 				CE3A6CA31EC9A87400D7D9D5 /* HideTabSuperVC.m in Sources */,
+				CE43C15D1ECDE84700309507 /* YTKUrlArgumentsFilter.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
 				CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */,
@@ -866,6 +882,7 @@
 				CE542ED41ECC93D900971B23 /* BottomView.m in Sources */,
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
 				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
+				CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,
 				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
@@ -877,6 +894,7 @@
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
 				CE435EED1ECD744E00F85B38 /* WMHUDUntil.m in Sources */,
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
+				CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
 				C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */,
 				CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */,

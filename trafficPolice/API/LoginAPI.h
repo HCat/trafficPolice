@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LRBaseRequest.h"
+#import "UserModel.h"
 
 #pragma mark - 登录API
 /****************** 登录 *****************/
@@ -49,15 +50,13 @@
 
 @end
 
-
 @interface LoginCheckManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, copy) LoginCheckParam *loginCheckParam;
+@property (nonatomic, copy) LoginCheckParam *param;
 
 /****** 返回数据 ******/
-@property (nonatomic, copy) NSString *acId; //短信ID
-
+@property (nonatomic, strong) UserModel *userModel; //用户
 
 @end
 
