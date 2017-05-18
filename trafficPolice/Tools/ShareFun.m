@@ -9,6 +9,9 @@
 #import "ShareFun.h"
 #import "AppDelegate.h"
 
+#import "SAMKeychain.h"
+#import "SAMKeychainQuery.h"
+
 
 @implementation ShareFun
 
@@ -78,11 +81,31 @@
         
     }
     
-   
-    
-    
     return attribut;
 
+}
+
++ (NSString *)getUniqueDeviceIdentifierAsString
+{
+    NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
+    
+    NSString *strApplicationUUID =  [SAMKeychain passwordForService:appName account:@"incoding"];
+    
+    if (strApplicationUUID == nil)
+    {
+        strApplicationUUID  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        
+        NSError *error = nil;
+        SAMKeychainQuery *query = [[SAMKeychainQuery alloc] init];
+        query.service = appName;
+        query.account = @"incoding";
+        query.password = strApplicationUUID;
+        query.synchronizationMode = SAMKeychainQuerySynchronizationModeNo;
+        [query save:&error];
+        
+    }
+    
+    return strApplicationUUID;
 }
 
 

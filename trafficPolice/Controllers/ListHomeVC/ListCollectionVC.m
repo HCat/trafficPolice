@@ -102,7 +102,7 @@
 //选中某个 item 触发
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"选中 : %ld--%ld",indexPath.section,indexPath.item);
+    NSLog(@"选中 : %d--%d",indexPath.section,indexPath.item);
     
     
     
@@ -113,7 +113,7 @@
 //取消某个 item 触发
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"取消选中 : %ld--%ld",indexPath.section,indexPath.item);
+    NSLog(@"取消选中 : %d--%d",indexPath.section,indexPath.item);
 }
 
 

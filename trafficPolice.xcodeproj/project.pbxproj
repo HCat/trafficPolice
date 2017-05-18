@@ -59,6 +59,14 @@
 		CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA21EC9A87400D7D9D5 /* ShowTabSuperVC.m */; };
 		CE3A6CA81EC9A97300D7D9D5 /* UserSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */; };
 		CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */; };
+		CE435EED1ECD744E00F85B38 /* WMHUDUntil.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EE91ECD744E00F85B38 /* WMHUDUntil.m */; };
+		CE435EEE1ECD744E00F85B38 /* WMHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE435EEA1ECD744E00F85B38 /* WMHUDUntil.bundle */; };
+		CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EF11ECD7DFE00F85B38 /* LRBaseRequest.m */; };
+		CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EF51ECD848E00F85B38 /* LoginAPI.m */; };
+		CE435EFA1ECD996800F85B38 /* LRBaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EF91ECD996800F85B38 /* LRBaseResponse.m */; };
+		CE435EFC1ECDA5AA00F85B38 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE435EFB1ECDA5AA00F85B38 /* Security.framework */; };
+		CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435F031ECDA73B00F85B38 /* SAMKeychain.m */; };
+		CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435F051ECDA73B00F85B38 /* SAMKeychainQuery.m */; };
 		CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFC1ECB47EA00E59524 /* ShareFun.m */; };
 		CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */; };
 		CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */; };
@@ -173,6 +181,21 @@
 		CE3A6CA51EC9A97300D7D9D5 /* UserSetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetVC.h; sourceTree = "<group>"; };
 		CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetVC.m; sourceTree = "<group>"; };
 		CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSetVC.xib; sourceTree = "<group>"; };
+		CE435EE81ECD744E00F85B38 /* WMHUDUntil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHUDUntil.h; sourceTree = "<group>"; };
+		CE435EE91ECD744E00F85B38 /* WMHUDUntil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMHUDUntil.m; sourceTree = "<group>"; };
+		CE435EEA1ECD744E00F85B38 /* WMHUDUntil.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WMHUDUntil.bundle; sourceTree = "<group>"; };
+		CE435EF01ECD7DFE00F85B38 /* LRBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRBaseRequest.h; sourceTree = "<group>"; };
+		CE435EF11ECD7DFE00F85B38 /* LRBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRBaseRequest.m; sourceTree = "<group>"; };
+		CE435EF41ECD848E00F85B38 /* LoginAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAPI.h; sourceTree = "<group>"; };
+		CE435EF51ECD848E00F85B38 /* LoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAPI.m; sourceTree = "<group>"; };
+		CE435EF71ECD86F800F85B38 /* URLMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLMacro.h; sourceTree = "<group>"; };
+		CE435EF81ECD996800F85B38 /* LRBaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRBaseResponse.h; sourceTree = "<group>"; };
+		CE435EF91ECD996800F85B38 /* LRBaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRBaseResponse.m; sourceTree = "<group>"; };
+		CE435EFB1ECDA5AA00F85B38 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CE435F021ECDA73B00F85B38 /* SAMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMKeychain.h; sourceTree = "<group>"; };
+		CE435F031ECDA73B00F85B38 /* SAMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMKeychain.m; sourceTree = "<group>"; };
+		CE435F041ECDA73B00F85B38 /* SAMKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMKeychainQuery.h; sourceTree = "<group>"; };
+		CE435F051ECDA73B00F85B38 /* SAMKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMKeychainQuery.m; sourceTree = "<group>"; };
 		CE4CFDF91ECB380B00E59524 /* SDKMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDKMacro.h; sourceTree = "<group>"; };
 		CE4CFDFA1ECB3BEE00E59524 /* NoticeMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeMacro.h; sourceTree = "<group>"; };
 		CE4CFDFB1ECB47EA00E59524 /* ShareFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareFun.h; sourceTree = "<group>"; };
@@ -209,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE435EFC1ECDA5AA00F85B38 /* Security.framework in Frameworks */,
 				08BAB73D640A9733CA3C7E0D /* libPods-trafficPolice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +313,7 @@
 		C7E0DB861EC15DBA008ED063 /* trafficPolice */ = {
 			isa = PBXGroup;
 			children = (
+				CE435EF31ECD83FF00F85B38 /* API */,
 				C7E0DB8A1EC15DBA008ED063 /* AppDelegate.h */,
 				C7E0DB8B1EC15DBA008ED063 /* AppDelegate.m */,
 				C7E0DBF51EC1A1C9008ED063 /* Views */,
@@ -352,6 +377,8 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE435F011ECDA73400F85B38 /* SAMKeychain */,
+				CE435EE41ECD744E00F85B38 /* WMHUDUntil */,
 				CE4CFE041ECB597400E59524 /* LRCountDownButton */,
 				CE3A6C821EC9822A00D7D9D5 /* XBSettingController */,
 				C7621D101EC43CD400980058 /* LRPageMenu */,
@@ -389,6 +416,7 @@
 				CE5071571EC9DCFB00BC5609 /* LRSingleton.h */,
 				CE4CFDF91ECB380B00E59524 /* SDKMacro.h */,
 				CE4CFDFA1ECB3BEE00E59524 /* NoticeMacro.h */,
+				CE435EF71ECD86F800F85B38 /* URLMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -410,6 +438,7 @@
 		C7E0DBF31EC1A1C9008ED063 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				CE435EEF1ECD7DA800F85B38 /* BaseNetwork */,
 				C79C99401EC58A1F00258CF1 /* DisplayHelper.h */,
 				C79C99411EC58A1F00258CF1 /* DisplayHelper.m */,
 				CE4CFDFB1ECB47EA00E59524 /* ShareFun.h */,
@@ -502,6 +531,7 @@
 		CA950E019092A6EE264A0A75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE435EFB1ECDA5AA00F85B38 /* Security.framework */,
 				5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */,
 			);
 			name = Frameworks;
@@ -565,6 +595,55 @@
 				CE3A6C921EC9822A00D7D9D5 /* XBSettingCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CE435EE41ECD744E00F85B38 /* WMHUDUntil */ = {
+			isa = PBXGroup;
+			children = (
+				CE435EE71ECD744E00F85B38 /* WMHUDUntil */,
+				CE435EEA1ECD744E00F85B38 /* WMHUDUntil.bundle */,
+			);
+			path = WMHUDUntil;
+			sourceTree = "<group>";
+		};
+		CE435EE71ECD744E00F85B38 /* WMHUDUntil */ = {
+			isa = PBXGroup;
+			children = (
+				CE435EE81ECD744E00F85B38 /* WMHUDUntil.h */,
+				CE435EE91ECD744E00F85B38 /* WMHUDUntil.m */,
+			);
+			path = WMHUDUntil;
+			sourceTree = "<group>";
+		};
+		CE435EEF1ECD7DA800F85B38 /* BaseNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				CE435EF01ECD7DFE00F85B38 /* LRBaseRequest.h */,
+				CE435EF11ECD7DFE00F85B38 /* LRBaseRequest.m */,
+				CE435EF81ECD996800F85B38 /* LRBaseResponse.h */,
+				CE435EF91ECD996800F85B38 /* LRBaseResponse.m */,
+			);
+			path = BaseNetwork;
+			sourceTree = "<group>";
+		};
+		CE435EF31ECD83FF00F85B38 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				CE435EF41ECD848E00F85B38 /* LoginAPI.h */,
+				CE435EF51ECD848E00F85B38 /* LoginAPI.m */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		CE435F011ECDA73400F85B38 /* SAMKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				CE435F021ECDA73B00F85B38 /* SAMKeychain.h */,
+				CE435F031ECDA73B00F85B38 /* SAMKeychain.m */,
+				CE435F041ECDA73B00F85B38 /* SAMKeychainQuery.h */,
+				CE435F051ECDA73B00F85B38 /* SAMKeychainQuery.m */,
+			);
+			path = SAMKeychain;
 			sourceTree = "<group>";
 		};
 		CE4CFE041ECB597400E59524 /* LRCountDownButton */ = {
@@ -698,6 +777,7 @@
 				C7E0DBF81EC1A1C9008ED063 /* AKTabBarController.bundle in Resources */,
 				C7E0DC1B1EC1AF18008ED063 /* MainHomeVC.xib in Resources */,
 				C78138B11EC2E79E00A124B7 /* MainHomeCell.xib in Resources */,
+				CE435EEE1ECD744E00F85B38 /* WMHUDUntil.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,7 +847,10 @@
 				CE3A6CA31EC9A87400D7D9D5 /* HideTabSuperVC.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
+				CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */,
+				CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
+				CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
 				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
@@ -787,10 +870,12 @@
 				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
+				CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */,
 				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,
 				C7E0DC1A1EC1AF18008ED063 /* MainHomeVC.m in Sources */,
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
+				CE435EED1ECD744E00F85B38 /* WMHUDUntil.m in Sources */,
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
 				C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */,
@@ -798,6 +883,7 @@
 				CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
+				CE435EFA1ECD996800F85B38 /* LRBaseResponse.m in Sources */,
 				C79C99421EC58A1F00258CF1 /* DisplayHelper.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,

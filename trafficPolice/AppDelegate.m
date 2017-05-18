@@ -7,13 +7,18 @@
 //
 
 #import "AppDelegate.h"
+
 #import "LoginHomeVC.h"
 
 #import "MainHomeVC.h"
 #import "ListHomeVC.h"
 #import "UserHomeVC.h"
+
 #import "ShareValue.h"
+
 #import <WXApi.h>
+#import <YTKNetwork.h>
+
 
 
 @interface AppDelegate ()<WXApiDelegate>
@@ -37,6 +42,10 @@
     }
     //******** 注册第三方：微信，百度地图等 ********//
     [self addThirthPart:launchOptions];
+    
+    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+    config.baseUrl = Base_URL;
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);

@@ -20,4 +20,8 @@
 
 + (NSMutableAttributedString *)highlightNummerInString:(NSString *)originString;
 
+//获取唯一标识符
+
++ (NSString *)getUniqueDeviceIdentifierAsString;
+
 @end

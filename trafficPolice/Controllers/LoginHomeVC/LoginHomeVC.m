@@ -14,6 +14,8 @@
 #import "CertificateView.h"
 #import "BottomView.h"
 
+#import "LoginAPI.h"
+
 
 @interface LoginHomeVC ()
 
@@ -57,6 +59,10 @@
         
     }
     
+//    PhoneLoginVC *t_vc = [PhoneLoginVC new];
+//    [self.navigationController pushViewController:t_vc animated:YES];
+    
+    
 //    CertificateView *t_view = [CertificateView initCustomView];
 //    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 103)];
 //    t_view.identityCardBlock = ^(){
@@ -98,7 +104,7 @@
     [manager GET:[NSString stringWithFormat:WEIXIN_BASE_URL,WEIXIN_APP_ID,WEIXIN_APP_SECRET,code] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {  //获得access_token，然后根据access_token获取用户信息请求。
-        SW(strongSelf, weakSelf);
+        
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         LxDBAnyVar(dic);
         
@@ -110,10 +116,29 @@
          scope	用户授权的作用域，使用逗号（,）分隔
          unionid	 当且仅当该移动应用已获得该用户的userinfo授权时，才会出现该字段
          */
-        NSString* accessToken=[dic valueForKey:@"access_token"];
-        NSString* openID=[dic valueForKey:@"openid"];
         
-        [strongSelf requestUserInfoByToken:accessToken andOpenid:openID];
+        [ShareValue sharedDefault].openid   = [dic valueForKey:@"openid"];
+        [ShareValue sharedDefault].unionid  = [dic valueForKey:@"unionid"];
+        
+        NSString* unionid=[dic valueForKey:@"unionid"];
+        
+        LoginManger *t_loginManger = [[LoginManger alloc] init];
+        t_loginManger.openId = unionid;
+        
+        [t_loginManger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            
+            
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            
+            
+        }];
+        
+        
+        
+        
+        //[strongSelf requestUserInfoByToken:accessToken andOpenid:openID];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error %@",error.localizedFailureReason);
