@@ -40,7 +40,7 @@
     [super setTitle:title forState:state];
     // 倒计时过程中title的改变不更新originalTitle
     
-    [self setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    [self setContentEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 5)];
     if (self.tempDurationOfCountDown == self.durationOfCountDown) {
         self.originalTitle = title;
         
@@ -149,6 +149,7 @@
                 //默认颜色 白色
                 [strongSelf setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }
+            
             [strongSelf setBackgroundColor:strongSelf.originalBGColor];
             // 恢复LRCountDownButton开始倒计时
             strongSelf.tempDurationOfCountDown = self.durationOfCountDown;
@@ -165,6 +166,12 @@
             } else {
                 //默认颜色 白色
                 [strongSelf setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            }
+            
+            if (strongSelf.processFont) {
+                [self.titleLabel setFont:self.processFont];
+            }else{
+                [self.titleLabel setFont:[UIFont systemFontOfSize:15]];
             }
         }
     }];
@@ -183,6 +190,12 @@
         //默认颜色 白色
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
+    if (self.originalFont) {
+         [self.titleLabel setFont:self.originalFont];
+    }else{
+        [self.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    }
+    
     [self setBackgroundColor:self.originalBGColor];
     // 恢复LRCountDownButton开始倒计时
     self.tempDurationOfCountDown = self.durationOfCountDown;

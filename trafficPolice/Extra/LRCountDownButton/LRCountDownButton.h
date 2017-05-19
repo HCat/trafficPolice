@@ -26,6 +26,12 @@ typedef void(^BeginBlock)();
 //倒计时 字体颜色
 @property (nonatomic,strong) UIColor *processColor;
 
+//原始 字体font
+@property (nonatomic,strong) UIFont *originalFont;
+
+//倒计时 字体font
+@property (nonatomic,strong) UIFont *processFont;
+
 //原始 按钮背景
 @property (nonatomic,strong) UIColor *originalBGColor;
 

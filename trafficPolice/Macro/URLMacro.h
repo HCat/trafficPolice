@@ -27,6 +27,12 @@
 #define URL_ACCIDENT_GETCODES @"app/accident/getCodes.json"         //获取事故通用值
 #define URL_ACCIDENT_SAVE @"app/accident/save.json"                //事故增加
 #define URL_ACCIDENT_LISTPAGING @"app/accident/listPaging.json"    //事故列表
+#define URL_ACCIDENT_DETAIL @"app/accident/detail.json"            //事故详情
+
+#define URL_FASTACCIDENT_GETCODES @"app/fastAccident/getCodes.json"         //获取快处事故通用值
+#define URL_FASTACCIDENT_SAVE @"app/fastAccident/save.json"                //快处事故增加
+#define URL_FASTACCIDENT_LISTPAGING @"app/fastAccident/listPaging.json"    //快处事故列表
+#define URL_FASTACCIDENT_DETAIL @"app/fastAccident/detail.json"            //快处事故详情
 
 
 #endif /* URLMacro_h */

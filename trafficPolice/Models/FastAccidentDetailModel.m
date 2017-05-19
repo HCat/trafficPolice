@@ -1,20 +1,14 @@
 //
-//  AccidentDetailModel.m
+//  FastAccidentDetailModel.m
 //  trafficPolice
 //
-//  Created by hcat on 2017/5/19.
+//  Created by hcat-89 on 2017/5/19.
 //  Copyright © 2017年 Degal. All rights reserved.
 //
 
-#import "AccidentDetailModel.h"
+#import "FastAccidentDetailModel.h"
 
-
-
-@implementation AccidentVoModel
-
-@end
-
-@implementation AccidentDetailModel
+@implementation FastAccidentDetailModel
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"picList" : [AccidentPicListModel class]

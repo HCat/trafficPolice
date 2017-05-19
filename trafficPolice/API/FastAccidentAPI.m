@@ -1,17 +1,17 @@
 //
-//  AccidentAPI.m
+//  FastAccident.m
 //  trafficPolice
 //
-//  Created by hcat on 2017/5/19.
+//  Created by hcat-89 on 2017/5/19.
 //  Copyright © 2017年 Degal. All rights reserved.
 //
 
-#import "AccidentAPI.h"
+#import "FastAccidentAPI.h"
 
 
 #pragma mark - 获取交通事故通用值API
 
-@implementation AccidentGetCodesModel
+@implementation FastAccidentGetCodesModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"modelId" : @"id",
@@ -21,16 +21,16 @@
 
 @end
 
-@implementation AccidentGetCodesResponse
+@implementation FastAccidentGetCodesResponse
 
 @end
 
-@implementation AccidentGetCodesManger
+@implementation FastAccidentGetCodesManger
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_ACCIDENT_GETCODES;
+    return URL_FASTACCIDENT_GETCODES;
 }
 
 //请求参数
@@ -40,10 +40,10 @@
 }
 
 //返回参数
-- (AccidentGetCodesResponse *)accidentGetCodesResponse{
+- (FastAccidentGetCodesResponse *)fastAccidentGetCodesResponse{
     
     if (self.responseModel.data) {
-        return [AccidentGetCodesResponse modelWithDictionary:self.responseModel.data];
+        return [FastAccidentGetCodesResponse modelWithDictionary:self.responseModel.data];
     }
     
     return nil;
@@ -51,18 +51,18 @@
 
 @end
 
-#pragma mark - 事故增加API
+#pragma mark - 快处事故增加API
 
-@implementation AccidentSaveParam
+@implementation FastAccidentSaveParam
 
 @end
 
-@implementation AccidentSaveManger
+@implementation FastAccidentSaveManger
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_ACCIDENT_SAVE;
+    return URL_FASTACCIDENT_SAVE;
 }
 
 //请求参数
@@ -76,27 +76,27 @@
 
 @end
 
-#pragma mark - 事件列表API
+#pragma mark - 快处事件列表API
 
-@implementation AccidentListPagingParam
+@implementation FastAccidentListPagingParam
 
 @end
 
-@implementation AccidentListPagingReponse
+@implementation FastAccidentListPagingReponse
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"list" : [AccidentListModel class]
-            };
+             };
 }
 
 @end
 
-@implementation AccidentListPagingManger
+@implementation FastAccidentListPagingManger
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_ACCIDENT_LISTPAGING;
+    return URL_FASTACCIDENT_LISTPAGING;
 }
 
 //请求参数
@@ -106,10 +106,10 @@
 }
 
 //返回参数
-- (AccidentListPagingReponse *)accidentListPagingReponse{
+- (FastAccidentListPagingReponse *)fastAccidentListPagingReponse{
     
     if (self.responseModel.data) {
-        return [AccidentListPagingReponse modelWithDictionary:self.responseModel.data];
+        return [FastAccidentListPagingReponse modelWithDictionary:self.responseModel.data];
     }
     
     return nil;
@@ -117,15 +117,16 @@
 
 @end
 
-#pragma mark - 事件详情API
+
+#pragma mark - 快处事件详情API
 
 
-@implementation AccidentDetailManger
+@implementation FastAccidentDetailManger
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_ACCIDENT_DETAIL;
+    return URL_FASTACCIDENT_DETAIL;
 }
 
 //请求参数
@@ -135,10 +136,10 @@
 }
 
 //返回参数
-- (AccidentDetailModel *)accidentDetailModel{
+- (FastAccidentDetailModel *)fastAccidentDetailModel{
     
     if (self.responseModel.data) {
-        return [AccidentDetailModel modelWithDictionary:self.responseModel.data];
+        return [FastAccidentDetailModel modelWithDictionary:self.responseModel.data];
     }
     
     return nil;
@@ -146,6 +147,7 @@
 
 
 @end
+
 
 
 

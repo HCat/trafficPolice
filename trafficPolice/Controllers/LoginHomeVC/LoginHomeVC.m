@@ -104,6 +104,7 @@
     [manager GET:[NSString stringWithFormat:WEIXIN_BASE_URL,WEIXIN_APP_ID,WEIXIN_APP_SECRET,code] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {  //获得access_token，然后根据access_token获取用户信息请求。
+        SW(strongSelf, weakSelf);
         
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         LxDBAnyVar(dic);
@@ -122,23 +123,24 @@
         
         NSString* unionid=[dic valueForKey:@"unionid"];
         
-        LoginManger *t_loginManger = [[LoginManger alloc] init];
-        t_loginManger.openId = unionid;
-        
-        [t_loginManger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-            
-            
-            
-        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-            
-            
-            
-        }];
-        
-        
+//        LoginManger *t_loginManger = [[LoginManger alloc] init];
+//        t_loginManger.openId = unionid;
+//        
+//        [t_loginManger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+//            
+//            
+//            
+//        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+//            
+//            
+//            
+//        }];
         
         
-        //[strongSelf requestUserInfoByToken:accessToken andOpenid:openID];
+        
+        NSString* accessToken = [dic valueForKey:@"access_token"];
+        NSString* openID = [dic valueForKey:@"openid"];
+        [strongSelf requestUserInfoByToken:accessToken andOpenid:openID];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error %@",error.localizedFailureReason);

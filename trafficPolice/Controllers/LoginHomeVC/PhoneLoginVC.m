@@ -30,7 +30,8 @@
     _btn_countDown.durationOfCountDown = 10;
     _btn_countDown.originalBGColor = UIColorFromRGB(0x467AE3);
     _btn_countDown.processBGColor = UIColorFromRGB(0xe2e2e2);
-    
+    _btn_countDown.processFont = [UIFont systemFontOfSize:12.f];
+    _btn_countDown.originalFont = [UIFont systemFontOfSize:15.f];
     WS(weakSelf);
 
     _btn_countDown.beginBlock = ^{

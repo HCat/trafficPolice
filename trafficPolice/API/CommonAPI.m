@@ -11,7 +11,7 @@
 
 #pragma mark - 获取当前天气API
 
-@implementation GetWeatherManger
+@implementation CommonGetWeatherManger
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
@@ -39,11 +39,11 @@
 
 #pragma mark - 证件识别API
 
-@implementation IdentifyResponse
+@implementation CommonIdentifyResponse
 
 @end
 
-@implementation IdentifyManger
+@implementation CommonIdentifyManger
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
@@ -59,14 +59,55 @@
 }
 
 //返回参数
-- (IdentifyResponse *)identifyResponse{
+- (CommonIdentifyResponse *)commonIdentifyResponse{
     
     if (self.responseModel.data) {
-        return [IdentifyResponse modelWithDictionary:self.responseModel.data];
+        return [CommonIdentifyResponse modelWithDictionary:self.responseModel.data];
     }
     
     return nil;
 }
+
+@end
+
+#pragma mark - 获取路名API
+
+@implementation CommonGetRoadModel
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"getRoadId" : @"id",
+             @"getRoadName" : @"name",
+             };
+}
+
+@end
+
+
+@implementation CommonGetRoadManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_COMMON_IDENTIFY;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return nil;
+}
+
+//返回参数
+- (NSArray *)commonGetRoadResponse{
+    
+    if (self.responseModel.data) {
+        return [NSArray modelArrayWithClass:[CommonGetRoadModel class] json:self.responseJSONObject[@"data"]];
+    }
+    
+    return nil;
+}
+
+
 
 @end
 
