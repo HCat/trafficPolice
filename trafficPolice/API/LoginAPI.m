@@ -53,7 +53,7 @@
 }
 
 //返回参数
-- (NSString *)phone{
+- (NSString *)acId{
     
     if (self.responseModel.data) {
         return self.responseModel.data[@"acId"];

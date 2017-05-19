@@ -9,38 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "LRBaseRequest.h"
 
-#pragma mark - 获取交通事故通用值API
-
-@interface GetCodesResponseModel:NSObject
-
-@property (nonatomic,copy) NSString * modelId;
-@property (nonatomic,copy) NSString * modelName;
-
-
-@end
-
-@interface GetCodesResponse : NSObject
-
-@property (nonatomic,strong) GetCodesResponseModel *road;               //道路
-@property (nonatomic,strong) GetCodesResponseModel *behaviour;          //事故成因
-@property (nonatomic,strong) GetCodesResponseModel *vehicle;            //车辆类型
-@property (nonatomic,strong) GetCodesResponseModel *insuranceCompany;   //保险公司
-@property (nonatomic,strong) GetCodesResponseModel *responsibility;     //事故责任
-@property (nonatomic,strong) GetCodesResponseModel *roadType;           //事故地点类型
-@property (nonatomic,strong) GetCodesResponseModel *driverDirect;       //行驶状态
-
-@end
-
-@interface GetCodesManger:LRBaseRequest
-
-/****** 请求数据 ******/
-/***请求参数中有token值，运用统一添加参数的办法添加到后面所有需要token参数的请求中,具体调用LRBaseRequest中的+ (void)setupRequestFilters:(NSDictionary *)arguments 方法***/
-
-/****** 返回数据 ******/
-@property (nonatomic, strong) GetCodesResponse *getCodes;
-
-@end
-
 #pragma mark - 获取当前天气API
 
 @interface GetWeatherManger:LRBaseRequest
@@ -53,6 +21,32 @@
 @property (nonatomic, copy) NSString *weather; //天气
 
 @end
+
+
+#pragma mark - 证件识别API
+
+@interface IdentifyResponse : NSObject
+
+@property (nonatomic, copy) NSString *carNo;        //车牌号
+@property (nonatomic, copy) NSString *vehicleType;  //车辆类型
+@property (nonatomic, copy) NSString *name;         //姓名，或者车辆所有人
+@property (nonatomic, copy) NSString *idNo;         //证件号码
+
+@end
+
+@interface IdentifyManger:LRBaseRequest
+
+/****** 请求数据 ******/
+@property (nonatomic, copy) NSString *file; //文件
+@property (nonatomic, copy) NSString *type; //文件类型1：车牌号 2：身份证 3：驾驶证 4：行驶证
+
+/****** 返回数据 ******/
+@property (nonatomic, copy) IdentifyResponse *identifyResponse; //证件信息
+
+@end
+
+
+
 
 
 
