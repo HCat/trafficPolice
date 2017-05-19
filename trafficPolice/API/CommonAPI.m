@@ -48,7 +48,7 @@
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_COMMON_IDENTIFY;
+    return URL_COMMON_GETROAD;
 }
 
 //请求参数
@@ -88,7 +88,7 @@
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_COMMON_IDENTIFY;
+    return URL_COMMON_GETROAD;
 }
 
 //请求参数

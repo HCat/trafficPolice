@@ -10,6 +10,7 @@
 #import "LRBaseRequest.h"
 #import "AccidentListModel.h"
 #import "AccidentDetailModel.h"
+#import "AccidentCountModel.h"
 
 #pragma mark - 获取交通事故通用值API
 
@@ -146,26 +147,59 @@
 /****** 返回数据 ******/
 @property (nonatomic, strong) AccidentListPagingReponse *accidentListPagingReponse;
 
-
-
 @end
 
 
 #pragma mark - 事件详情API
 
-
 @interface AccidentDetailManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, strong) NSString *accidentId;
+@property (nonatomic, strong) NSString *accidentId; //事故ID
 
 /****** 返回数据 ******/
 @property (nonatomic, strong) AccidentDetailModel *accidentDetailModel;
 
+@end
+
+#pragma mark - 通过车牌号统计事故数量API
+
+
+@interface AccidentCountByCarNoManger:LRBaseRequest
+
+/****** 请求数据 ******/
+@property (nonatomic, strong) NSString *carNo;  //车牌号
+
+/****** 返回数据 ******/
+@property (nonatomic, strong) AccidentCountModel *accidentCountModel;
 
 @end
 
 
+#pragma mark - 通过手机号统计事故数量API
+
+
+@interface AccidentCountByTelNumManger:LRBaseRequest
+
+/****** 请求数据 ******/
+@property (nonatomic, strong) NSString *telNum;  //车牌号
+
+/****** 返回数据 ******/
+@property (nonatomic, strong) AccidentCountModel *accidentCountModel;
+
+@end
+
+#pragma mark - 通过身份证号统计事故数量API
+
+@interface AccidentCountByidNoManger:LRBaseRequest
+
+/****** 请求数据 ******/
+@property (nonatomic, strong) NSString *idNo;  //车牌号
+
+/****** 返回数据 ******/
+@property (nonatomic, strong) AccidentCountModel *accidentCountModel;
+
+@end
 
 
 

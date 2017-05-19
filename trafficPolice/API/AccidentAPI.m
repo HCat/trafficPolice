@@ -144,6 +144,93 @@
     return nil;
 }
 
+@end
+
+
+#pragma mark - 通过车牌号统计事故数量API
+
+
+@implementation AccidentCountByCarNoManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_ACCIDENT_COUNTBYCARNO;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return @{@"carNo":_carNo};
+}
+
+//返回参数
+- (AccidentCountModel *)accidentCountModel{
+    
+    if (self.responseModel.data) {
+        return [AccidentCountModel modelWithDictionary:self.responseModel.data];
+    }
+    
+    return nil;
+}
+
+@end
+
+#pragma mark - 通过手机号统计事故数量API
+
+
+@implementation AccidentCountByTelNumManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_ACCIDENT_COUNTBYTELNUM;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return @{@"telNum":_telNum};
+}
+
+//返回参数
+- (AccidentCountModel *)accidentCountModel{
+    
+    if (self.responseModel.data) {
+        return [AccidentCountModel modelWithDictionary:self.responseModel.data];
+    }
+    
+    return nil;
+}
+
+@end
+
+#pragma mark - 通过身份证号统计事故数量API
+
+
+@implementation AccidentCountByidNoManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_ACCIDENT_COUNTBYIDNO;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return @{@"idNo":_idNo};
+}
+
+//返回参数
+- (AccidentCountModel *)accidentCountModel{
+    
+    if (self.responseModel.data) {
+        return [AccidentCountModel modelWithDictionary:self.responseModel.data];
+    }
+    
+    return nil;
+}
 
 @end
 

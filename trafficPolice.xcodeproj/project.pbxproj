@@ -51,6 +51,7 @@
 		CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E0091ECF154400F284C1 /* FastAccidentAPI.m */; };
 		CE39E00D1ECF2B0200F284C1 /* FastAccidentDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E00C1ECF2B0200F284C1 /* FastAccidentDetailModel.m */; };
 		CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E00F1ECF2B8000F284C1 /* AccidentPicListModel.m */; };
+		CE39E0131ECF355200F284C1 /* AccidentCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E0121ECF355200F284C1 /* AccidentCountModel.m */; };
 		CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6C851EC9822A00D7D9D5 /* UIView+XBExtension.m */; };
 		CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6C8A1EC9822A00D7D9D5 /* XBSettingItemModel.m */; };
 		CE3A6C951EC9822A00D7D9D5 /* XBSettingSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6C8C1EC9822A00D7D9D5 /* XBSettingSectionModel.m */; };
@@ -176,6 +177,8 @@
 		CE39E00C1ECF2B0200F284C1 /* FastAccidentDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccidentDetailModel.m; sourceTree = "<group>"; };
 		CE39E00E1ECF2B8000F284C1 /* AccidentPicListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentPicListModel.h; sourceTree = "<group>"; };
 		CE39E00F1ECF2B8000F284C1 /* AccidentPicListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentPicListModel.m; sourceTree = "<group>"; };
+		CE39E0111ECF355200F284C1 /* AccidentCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentCountModel.h; sourceTree = "<group>"; };
+		CE39E0121ECF355200F284C1 /* AccidentCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentCountModel.m; sourceTree = "<group>"; };
 		CE3A6C841EC9822A00D7D9D5 /* UIView+XBExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XBExtension.h"; sourceTree = "<group>"; };
 		CE3A6C851EC9822A00D7D9D5 /* UIView+XBExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XBExtension.m"; sourceTree = "<group>"; };
 		CE3A6C871EC9822A00D7D9D5 /* XBConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBConst.h; sourceTree = "<group>"; };
@@ -692,6 +695,8 @@
 				CE39E00C1ECF2B0200F284C1 /* FastAccidentDetailModel.m */,
 				CE39E00E1ECF2B8000F284C1 /* AccidentPicListModel.h */,
 				CE39E00F1ECF2B8000F284C1 /* AccidentPicListModel.m */,
+				CE39E0111ECF355200F284C1 /* AccidentCountModel.h */,
+				CE39E0121ECF355200F284C1 /* AccidentCountModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
 				CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */,
+				CE39E0131ECF355200F284C1 /* AccidentCountModel.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
 				CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
