@@ -63,6 +63,7 @@
 		CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA21EC9A87400D7D9D5 /* ShowTabSuperVC.m */; };
 		CE3A6CA81EC9A97300D7D9D5 /* UserSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */; };
 		CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */; };
+		CE3E7E861ED1E7E800BBB5C0 /* VideoColectListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */; };
 		CE435EED1ECD744E00F85B38 /* WMHUDUntil.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EE91ECD744E00F85B38 /* WMHUDUntil.m */; };
 		CE435EEE1ECD744E00F85B38 /* WMHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE435EEA1ECD744E00F85B38 /* WMHUDUntil.bundle */; };
 		CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EF11ECD7DFE00F85B38 /* LRBaseRequest.m */; };
@@ -86,6 +87,13 @@
 		CE542ED71ECC942900971B23 /* CertificateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED61ECC942900971B23 /* CertificateView.m */; };
 		CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE542ED81ECC943C00971B23 /* CertificateView.xib */; };
 		CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542EDC1ECC9F2400971B23 /* AlertView.m */; };
+		CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */; };
+		CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834C41ED1D38F00666CEE /* IllegalParkListModel.m */; };
+		CE8834C81ED1D5BA00666CEE /* IllegalParkDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834C71ED1D5BA00666CEE /* IllegalParkDetailModel.m */; };
+		CE8834CB1ED1D67700666CEE /* IllegalCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834CA1ED1D67700666CEE /* IllegalCollectModel.m */; };
+		CE8834CE1ED1DBA600666CEE /* IllegalThroughAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834CD1ED1DBA600666CEE /* IllegalThroughAPI.m */; };
+		CE8834D11ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834D01ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m */; };
+		CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834D31ED1E62800666CEE /* VideoColectAPI.m */; };
 		CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51551EC49C48004A7611 /* ListTableCell.m */; };
 		CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51561EC49C48004A7611 /* ListTableCell.xib */; };
 		CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */; };
@@ -200,6 +208,8 @@
 		CE3A6CA51EC9A97300D7D9D5 /* UserSetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetVC.h; sourceTree = "<group>"; };
 		CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetVC.m; sourceTree = "<group>"; };
 		CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSetVC.xib; sourceTree = "<group>"; };
+		CE3E7E841ED1E7E800BBB5C0 /* VideoColectListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoColectListModel.h; sourceTree = "<group>"; };
+		CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoColectListModel.m; sourceTree = "<group>"; };
 		CE435EE81ECD744E00F85B38 /* WMHUDUntil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHUDUntil.h; sourceTree = "<group>"; };
 		CE435EE91ECD744E00F85B38 /* WMHUDUntil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMHUDUntil.m; sourceTree = "<group>"; };
 		CE435EEA1ECD744E00F85B38 /* WMHUDUntil.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WMHUDUntil.bundle; sourceTree = "<group>"; };
@@ -247,6 +257,20 @@
 		CE542ED81ECC943C00971B23 /* CertificateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificateView.xib; sourceTree = "<group>"; };
 		CE542EDB1ECC9F2400971B23 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		CE542EDC1ECC9F2400971B23 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		CE7EED811ED1C42A00478777 /* IllegalParkAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkAPI.h; sourceTree = "<group>"; };
+		CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalParkAPI.m; sourceTree = "<group>"; };
+		CE8834C31ED1D38F00666CEE /* IllegalParkListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkListModel.h; sourceTree = "<group>"; };
+		CE8834C41ED1D38F00666CEE /* IllegalParkListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalParkListModel.m; sourceTree = "<group>"; };
+		CE8834C61ED1D5BA00666CEE /* IllegalParkDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkDetailModel.h; sourceTree = "<group>"; };
+		CE8834C71ED1D5BA00666CEE /* IllegalParkDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalParkDetailModel.m; sourceTree = "<group>"; };
+		CE8834C91ED1D67700666CEE /* IllegalCollectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalCollectModel.h; sourceTree = "<group>"; };
+		CE8834CA1ED1D67700666CEE /* IllegalCollectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalCollectModel.m; sourceTree = "<group>"; };
+		CE8834CC1ED1DBA600666CEE /* IllegalThroughAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalThroughAPI.h; sourceTree = "<group>"; };
+		CE8834CD1ED1DBA600666CEE /* IllegalThroughAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalThroughAPI.m; sourceTree = "<group>"; };
+		CE8834CF1ED1E0EA00666CEE /* IllegalThroughSecDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalThroughSecDetailModel.h; sourceTree = "<group>"; };
+		CE8834D01ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalThroughSecDetailModel.m; sourceTree = "<group>"; };
+		CE8834D21ED1E62800666CEE /* VideoColectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoColectAPI.h; sourceTree = "<group>"; };
+		CE8834D31ED1E62800666CEE /* VideoColectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoColectAPI.m; sourceTree = "<group>"; };
 		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
 		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
 		CE9C51561EC49C48004A7611 /* ListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableCell.xib; sourceTree = "<group>"; };
@@ -665,6 +689,12 @@
 				CE4C93E81ECE7F1B00BE06F0 /* AccidentAPI.m */,
 				CE39E0081ECF154300F284C1 /* FastAccidentAPI.h */,
 				CE39E0091ECF154400F284C1 /* FastAccidentAPI.m */,
+				CE7EED811ED1C42A00478777 /* IllegalParkAPI.h */,
+				CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */,
+				CE8834CC1ED1DBA600666CEE /* IllegalThroughAPI.h */,
+				CE8834CD1ED1DBA600666CEE /* IllegalThroughAPI.m */,
+				CE8834D21ED1E62800666CEE /* VideoColectAPI.h */,
+				CE8834D31ED1E62800666CEE /* VideoColectAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -691,12 +721,22 @@
 				CE4C93EB1ECE986F00BE06F0 /* AccidentListModel.m */,
 				CE4C93ED1ECE98E100BE06F0 /* AccidentDetailModel.h */,
 				CE4C93EE1ECE98E100BE06F0 /* AccidentDetailModel.m */,
-				CE39E00B1ECF2B0200F284C1 /* FastAccidentDetailModel.h */,
-				CE39E00C1ECF2B0200F284C1 /* FastAccidentDetailModel.m */,
 				CE39E00E1ECF2B8000F284C1 /* AccidentPicListModel.h */,
 				CE39E00F1ECF2B8000F284C1 /* AccidentPicListModel.m */,
 				CE39E0111ECF355200F284C1 /* AccidentCountModel.h */,
 				CE39E0121ECF355200F284C1 /* AccidentCountModel.m */,
+				CE39E00B1ECF2B0200F284C1 /* FastAccidentDetailModel.h */,
+				CE39E00C1ECF2B0200F284C1 /* FastAccidentDetailModel.m */,
+				CE8834C91ED1D67700666CEE /* IllegalCollectModel.h */,
+				CE8834CA1ED1D67700666CEE /* IllegalCollectModel.m */,
+				CE8834C31ED1D38F00666CEE /* IllegalParkListModel.h */,
+				CE8834C41ED1D38F00666CEE /* IllegalParkListModel.m */,
+				CE8834C61ED1D5BA00666CEE /* IllegalParkDetailModel.h */,
+				CE8834C71ED1D5BA00666CEE /* IllegalParkDetailModel.m */,
+				CE8834CF1ED1E0EA00666CEE /* IllegalThroughSecDetailModel.h */,
+				CE8834D01ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m */,
+				CE3E7E841ED1E7E800BBB5C0 /* VideoColectListModel.h */,
+				CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -894,8 +934,10 @@
 				C7E0DBF61EC1A1C9008ED063 /* AKTab.m in Sources */,
 				CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */,
 				C7E0DC021EC1A5F8008ED063 /* BaseViewController.m in Sources */,
+				CE8834D11ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m in Sources */,
 				CE3A6C951EC9822A00D7D9D5 /* XBSettingSectionModel.m in Sources */,
 				C7E0DC1F1EC1AF2D008ED063 /* ListHomeVC.m in Sources */,
+				CE8834CB1ED1D67700666CEE /* IllegalCollectModel.m in Sources */,
 				CE3A6CA81EC9A97300D7D9D5 /* UserSetVC.m in Sources */,
 				CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */,
 				CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */,
@@ -907,8 +949,10 @@
 				CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
 				CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */,
+				CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */,
 				CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
+				CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */,
 				CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
 				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
@@ -928,6 +972,7 @@
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
 				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
 				CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */,
+				CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,
 				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
@@ -953,8 +998,11 @@
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
 				CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */,
+				CE3E7E861ED1E7E800BBB5C0 /* VideoColectListModel.m in Sources */,
 				CE39E0131ECF355200F284C1 /* AccidentCountModel.m in Sources */,
+				CE8834CE1ED1DBA600666CEE /* IllegalThroughAPI.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
+				CE8834C81ED1D5BA00666CEE /* IllegalParkDetailModel.m in Sources */,
 				CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 			);

@@ -129,13 +129,13 @@
 @end
 
 
-#pragma mark - 事件详情API
+#pragma mark - 快处事件详情API
 
 
 @interface FastAccidentDetailManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, strong) NSString *accidentId;
+@property (nonatomic, strong) NSString *fastaccidentId;
 
 /****** 返回数据 ******/
 @property (nonatomic, strong) FastAccidentDetailModel *accidentDetailModel;

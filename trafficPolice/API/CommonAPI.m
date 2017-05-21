@@ -82,7 +82,6 @@
 
 @end
 
-
 @implementation CommonGetRoadManger
 
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
@@ -107,7 +106,95 @@
     return nil;
 }
 
+@end
 
+#pragma mark - 获取图片轮播API
+
+@implementation CommonGetImgPlayModel
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"getImgPlayTitle" : @"title"
+             };
+}
+
+@end
+
+@implementation CommonGetImgPlayManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_COMMON_GETIMGPLAY;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return nil;
+}
+
+//返回参数
+- (NSArray *)commonGetImgPlayModel{
+    
+    if (self.responseModel.data) {
+        return [NSArray modelArrayWithClass:[CommonGetImgPlayModel class] json:self.responseJSONObject[@"data"]];
+    }
+    
+    return nil;
+}
+
+@end
+
+#pragma mark - 版本更新API
+
+@implementation CommonVersionUpdateModel
+
+@end
+
+@implementation CommonVersionUpdateManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_COMMON_VERSIONUPDATE;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return nil;
+}
+
+//返回参数
+- (CommonVersionUpdateModel *)commonVersionUpdateModel{
+    
+    if (self.responseModel.data) {
+         return [CommonVersionUpdateModel modelWithDictionary:self.responseModel.data];
+    }
+    
+    return nil;
+}
+
+@end
+
+#pragma mark - 投诉建议API
+
+@implementation CommonAdviceManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_COMMON_ADVICE;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return @{@"msg":_msg};
+}
+
+//返回参数
+//无返回参数
 
 @end
 

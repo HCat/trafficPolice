@@ -132,7 +132,7 @@
 //请求参数
 - (nullable id)requestArgument
 {
-    return @{@"id":_accidentId};
+    return @{@"id":_fastaccidentId};
 }
 
 //返回参数

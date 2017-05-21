@@ -24,6 +24,9 @@
 #define URL_COMMON_GETWEATHER @"app/common/getWeather.json"         //获取当前天气
 #define URL_COMMON_IDENTIFY @"app/common/identify.json"             //证件识别
 #define URL_COMMON_GETROAD @"app/common/getRoad.json"    //获取路名
+#define URL_COMMON_GETIMGPLAY @"app/common/getImgPlay.json"    //获取图片轮播图片
+#define URL_COMMON_VERSIONUPDATE @"app/common/versionUpdate.json"    //版本更新
+#define URL_COMMON_ADVICE @"app/common/advice.json"    //投诉建议
 
 
 #define URL_ACCIDENT_GETCODES @"app/accident/getCodes.json"         //获取事故通用值
@@ -41,6 +44,26 @@
 #define URL_FASTACCIDENT_SAVE @"app/fastAccident/save.json"                //快处事故增加
 #define URL_FASTACCIDENT_LISTPAGING @"app/fastAccident/listPaging.json"    //快处事故列表
 #define URL_FASTACCIDENT_DETAIL @"app/fastAccident/detail.json"            //快处事故详情
+
+
+
+#define URL_ILLEGALPARK_SAVE @"app/illegalPark/save.json"            //违停采集增加
+#define URL_ILLEGALPARK_LISTPAGING @"app/illegalPark/listPaging.json"            //违停采集列表
+#define URL_ILLEGALPARK_DETAIL @"app/illegalPark/detail.json"            //违停采集详情
+#define URL_ILLEGALPARK_REPORTABNORMAL @"app/illegalPark/reportAbnormal.json"            //违停、违法禁令上报异常
+
+
+#define URL_ILLEGALTHROUGH_QUERYSEC @"app/illegalThrough/querySec.json"            //违反禁令查询是否需要二次采集
+#define URL_ILLEGALTHROUGH_SAVE @"app/illegalThrough/save.json"            //违反禁令采集增加
+#define URL_ILLEGALTHROUGH_SECADD @"app/illegalThrough/secAdd.json"            //违反禁令采集增加违反禁令二次采集加载数据
+#define URL_ILLEGALTHROUGH_SECSAVE @"app/illegalThrough/secSave.json"            //违反禁令二次采集保存
+#define URL_ILLEGALTHROUGH_LISTPAGING @"app/illegalThrough/listPaging.json"            //违反禁令采集列表
+#define URL_ILLEGALTHROUGH_DETAIL @"app/illegalThrough/detail.json"            //违反禁令采集详情
+
+
+#define URL_VIDEOCOLECT_SAVE @"app/videoColect/save.json"            //警情反馈采集增加
+#define URL_VIDEOCOLECT_LISTPAGING @"app/videoColect/listPaging.json"            //警情反馈采集列表
+#define URL_VIDEOCOLECT_DETAIL @"app/videoColect/detail.json"            //	警情反馈详情
 
 
 #endif /* URLMacro_h */
