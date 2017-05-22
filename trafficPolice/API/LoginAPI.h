@@ -44,7 +44,7 @@
 
 @property (nonatomic,copy) NSString *openId;        //实际是微信的unionid
 @property (nonatomic,copy) NSString *acId;          //短信ID
-@property (nonatomic,copy) NSString *autoCode;      //验证码
+@property (nonatomic,copy) NSString *authCode;      //验证码
 @property (nonatomic,copy) NSString *equipmentId;   //设备ID
 
 
@@ -53,7 +53,7 @@
 @interface LoginCheckManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, copy) LoginCheckParam *param;
+@property (nonatomic, strong) LoginCheckParam *param;
 
 /****** 返回数据 ******/
 @property (nonatomic, strong) UserModel *userModel; //用户

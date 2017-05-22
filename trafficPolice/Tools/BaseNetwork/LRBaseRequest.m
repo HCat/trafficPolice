@@ -52,21 +52,41 @@
 - (void)requestCompleteFilter{
     [super requestCompleteFilter];
     
+    
+    
     self.responseModel = [LRBaseResponse modelWithDictionary:self.responseJSONObject];
+    
     if (_isLog) {
+        LxDBAnyVar(self.description);
         LxDBObjectAsJson(self.responseJSONObject);
-        LxPrintf(@"----------self.responseModel----------");
         LxDBObjectAsJson(self.responseModel);
     }
     
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    
     if (self.responseModel.code == CODE_TOKENTIMEOUT ) {
         //处理token失效情况
-        
+        [ShowHUD showError:@"token过期,重新登录" duration:1.2f inView:window config:nil];
         
     }else if (self.responseModel.code == CODE_FAILED){
         //处理网络请求失败情况
+        if (_failMessage) {
+            [ShowHUD showSuccess:_failMessage duration:1.2f inView:window config:nil];
+        }else{
+            [ShowHUD showError:self.responseModel.msg duration:1.2f inView:window config:nil];
+        }
+    
+    }else if (self.responseModel.code == CODE_SUCCESS){
+        //处理网络请求成功情况
+        if (_successMessage) {
+            [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
+        }else{
+            [ShowHUD showSuccess:@"请求成功!" duration:1.2f inView:window config:nil];
+        }
+    
+    }else{
         
-        
+    
     }
     
 }
@@ -79,6 +99,9 @@
         LxDBAnyVar(self.error.localizedDescription);
     }
     
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%d",self.responseStatusCode] duration:1.2f inView:window config:nil];
+    
 }
 
 + (void)setupRequestFilters:(NSDictionary *)arguments{
@@ -86,6 +109,12 @@
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
     YTKUrlArgumentsFilter *urlFilter = [YTKUrlArgumentsFilter filterWithArguments:arguments];
     [config addUrlFilter:urlFilter];
+}
+
++ (void)clearRequestFilters{
+    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+    [config clearUrlFilter];
+
 }
 
 @end

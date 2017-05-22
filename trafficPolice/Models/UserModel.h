@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseModel.h"
 
-@interface UserModel : NSObject
+#define kPersonInfoPath [KDocumentPath stringByAppendingPathComponent:@"userModel.archiver"]
+
+
+@interface UserModel : BaseModel
 
 @property (nonatomic,copy) NSString *token;         //token
 @property (nonatomic,copy) NSString * userId;       //用户Id
@@ -29,5 +33,13 @@
  ILLEGAL_THROUGH 闯禁令采集
  ILLEGAL_LIST 违法行为采集列表
 */
+
+
+//归档
++ (void)setUserModel:(UserModel *)model;
+
+
+//解档
++ (UserModel *)getUserModel;
  
 @end

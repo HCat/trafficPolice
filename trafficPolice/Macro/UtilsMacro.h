@@ -13,6 +13,9 @@
 #define WS(__KEY)  __weak typeof(self)__KEY = self
 #define SW(__SW,__WS)  __strong typeof(__WS)__SW = __WS
 
+
+
+
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 
@@ -27,7 +30,7 @@
 #define UserDefaults                        [NSUserDefaults standardUserDefaults]
 #define SharedApplication                   [UIApplication sharedApplication]
 #define Bundle                              [NSBundle mainBundle]
-
+#define KDocumentPath                       [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject]
 
 #define MainScreen                          [UIScreen mainScreen]
 #define ScreenRect                          [[UIScreen mainScreen] bounds]

@@ -15,4 +15,26 @@
              };
 }
 
+
++ (void)setUserModel:(UserModel *)model{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
+    [userDefaults setObject:data forKey:USERDEFAULT_KEY_USERMODEL];
+    [userDefaults synchronize];
+    
+}
+
++ (UserModel *)getUserModel{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [userDefaults objectForKey:USERDEFAULT_KEY_USERMODEL];
+    UserModel *userModel = nil;
+    if (data) {
+        userModel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+    
+    return userModel;
+}
+
+
+
 @end

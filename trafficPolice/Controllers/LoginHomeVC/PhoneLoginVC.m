@@ -10,6 +10,9 @@
 #import "UINavigationBar+BarItem.h"
 #import "ShareFun.h"
 #import "LRCountDownButton.h"
+#import "LoginAPI.h"
+#import "AppDelegate.h"
+
 
 
 @interface PhoneLoginVC ()
@@ -17,6 +20,11 @@
 @property (weak, nonatomic) IBOutlet LRCountDownButton *btn_countDown;
 @property (weak, nonatomic) IBOutlet UITextField *tf_phone;
 @property (weak, nonatomic) IBOutlet UITextField *tf_code;
+
+
+@property (nonatomic,copy) NSString *acId; //获取验证码得到的短信ID
+
+
 
 @end
 
@@ -55,7 +63,24 @@
             return ;
         }
         
-        [strongSelf.btn_countDown startCountDown];
+        LoginTakeCodeManger *manger = [LoginTakeCodeManger new];
+        manger.openId = [ShareValue sharedDefault].unionid;
+        manger.isLog = YES;
+        
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:strongSelf.view config:nil];
+        
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
+            
+            if (manger.responseModel.code == CODE_SUCCESS) {
+                [strongSelf.btn_countDown startCountDown];
+                strongSelf.acId = manger.acId;
+                
+            }
+            
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
+        }];
     
     };
     
@@ -90,6 +115,51 @@
         [ShowHUD showError:@"请输入验证码!" duration:1.0f inView:self.view config:nil];
         return ;
     }
+    
+    if (self.acId.length == 0 || self.acId == nil) {
+        [ShowHUD showError:@"没有获取验证码!" duration:1.0f inView:self.view config:nil];
+        return ;
+    }
+    
+
+    LoginCheckParam *param = [[LoginCheckParam alloc] init];
+    param.openId = [ShareValue sharedDefault].unionid;
+    param.acId = self.acId;
+    param.authCode = _tf_code.text;
+    param.equipmentId = [ShareFun getUniqueDeviceIdentifierAsString];
+    
+    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"登录中..." inView:self.view config:nil];
+    
+    LoginCheckManger *manger = [LoginCheckManger new];
+    manger.param = param;
+    manger.isLog = YES;
+    manger.successMessage = @"登录成功!";
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+    
+        [hud hide];
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            //归档用户
+            [UserModel setUserModel:manger.userModel];
+            /*********** 存储token值用于后面的请求 ************/
+            [ShareValue sharedDefault].token = manger.userModel.token;
+            /*********** 全局为统一的Url添加token ************/
+            [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
+            
+            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1.5f *NSEC_PER_SEC);
+            dispatch_after(time, dispatch_get_main_queue(), ^{
+                /*********** 切换到首页界面 ************/
+                [ApplicationDelegate initAKTabBarController];
+                ApplicationDelegate.window.rootViewController = ApplicationDelegate.vc_tabBar;
+            });
+        
+        }
+    
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+        
+        
+    }];
+    
 
     
     

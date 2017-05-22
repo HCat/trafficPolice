@@ -12,4 +12,20 @@
 
 LRSingletonM(Default)
 
+
+- (void)setToken:(NSString *)token{
+
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:USERDEFAULT_KEY_TOKEN];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+- (NSString *)token{
+
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USERDEFAULT_KEY_TOKEN];
+
+}
+
+
+
 @end

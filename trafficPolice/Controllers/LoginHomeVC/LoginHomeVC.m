@@ -11,6 +11,7 @@
 #import <AFNetworking.h>
 #import <WXApi.h>
 #import "ShareFun.h"
+#import "AppDelegate.h"
 #import "CertificateView.h"
 #import "BottomView.h"
 
@@ -25,12 +26,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [ApplicationDelegate initAKTabBarController];
-//    ApplicationDelegate.window.rootViewController = ApplicationDelegate.vc_tabBar;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinLoginSuccess:) name:NOTIFICATION_WX_LOGIN_SUCCESS object:nil];
     
+
+    if ([ShareValue sharedDefault].token) {
+        
+        /*********** 切换到首页界面 ************/
+        [ApplicationDelegate initAKTabBarController];
+        ApplicationDelegate.window.rootViewController = ApplicationDelegate.vc_tabBar;
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -42,6 +48,7 @@
 
 - (IBAction)weixinLoginAction:(id)sender {
     
+
     if (![WXApi isWXAppInstalled]) {
         
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"请先安装微信" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
@@ -123,30 +130,28 @@
         
         NSString* unionid=[dic valueForKey:@"unionid"];
         
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"登录中.." inView:self.view config:nil];
+    
         LoginManger *t_loginManger = [[LoginManger alloc] init];
         t_loginManger.openId = unionid;
-        t_loginManger.isLog = YES;
-        
         [t_loginManger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            [hud hide];
             
             if(t_loginManger.responseModel.code == CODE_SUCCESS){
                 [ShareValue sharedDefault].phone = t_loginManger.phone;
                 
                 PhoneLoginVC *t_vc = [PhoneLoginVC new];
                 t_vc.phone = [ShareValue sharedDefault].phone;
-                [weakSelf.navigationController pushViewController:t_vc animated:YES];
-            
-            
+                [strongSelf.navigationController pushViewController:t_vc animated:YES];
             }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-            
-            
+            [hud hide];
             
         }];
         
-        
-        
+
 //        NSString* accessToken = [dic valueForKey:@"access_token"];
 //        NSString* openID = [dic valueForKey:@"openid"];
 //        [ShareValue sharedDefault].openid   = [dic valueForKey:@"openid"];
