@@ -10,6 +10,7 @@
 #import "LRBaseResponse.h"
 #import "YTKUrlArgumentsFilter.h"
 
+
 @interface LRBaseRequest : YTKRequest
 
 @property (nonatomic,strong) LRBaseResponse *responseModel;

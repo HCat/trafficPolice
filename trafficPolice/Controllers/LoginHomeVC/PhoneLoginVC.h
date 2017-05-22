@@ -10,4 +10,6 @@
 
 @interface PhoneLoginVC : BaseViewController
 
+@property (nonatomic,copy) NSString *phone;
+
 @end

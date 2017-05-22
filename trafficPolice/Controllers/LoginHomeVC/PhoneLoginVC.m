@@ -10,7 +10,7 @@
 #import "UINavigationBar+BarItem.h"
 #import "ShareFun.h"
 #import "LRCountDownButton.h"
-#import "WMHUDUntil.h"
+
 
 @interface PhoneLoginVC ()
 
@@ -27,6 +27,8 @@
     self.title = @"短信验证";
     [self showLeftBarButtonItemWithImage:@"icon_back" target:self action:@selector(handleBtnBackClicked)];
     
+    _tf_phone.text = _phone;
+    
     _btn_countDown.durationOfCountDown = 10;
     _btn_countDown.originalBGColor = UIColorFromRGB(0x467AE3);
     _btn_countDown.processBGColor = UIColorFromRGB(0xe2e2e2);
@@ -39,7 +41,7 @@
         SW(strongSelf, weakSelf);
         if (strongSelf.tf_phone.text.length == 0) {
             
-            [DisplayHelper displaySuccessAlert:@"请输入手机号" interval:1.0f];
+            [ShowHUD showError:@"请输入手机号" duration:1.0f inView:strongSelf.view config:nil];
             [strongSelf.btn_countDown endCountDown];
             
             return ;
@@ -47,7 +49,7 @@
         
         if (![ShareFun validatePhoneNumber:strongSelf.tf_phone.text]) {
             
-            [DisplayHelper displaySuccessAlert:@"手机号码格式错误!" interval:1.0f];
+            [ShowHUD showError:@"手机号码格式错误!" duration:1.0f inView:strongSelf.view config:nil];
             [strongSelf.btn_countDown endCountDown];
             
             return ;
@@ -64,6 +66,7 @@
     
 }
 
+
 #pragma mark - ButtonAction
 
 -(void)handleBtnBackClicked{
@@ -74,17 +77,17 @@
 - (IBAction)handleBtnLoginClicked:(id)sender {
     
     if (self.tf_phone.text.length == 0) {
-        [DisplayHelper displaySuccessAlert:@"请输入手机号!" interval:1.0f];
+        [ShowHUD showError:@"请输入手机号" duration:1.0f inView:self.view config:nil];
         return ;
     }
     
     if (![ShareFun validatePhoneNumber:self.tf_phone.text]) {
-        [DisplayHelper displaySuccessAlert:@"手机号码格式错误!" interval:1.0f];
+        [ShowHUD showError:@"手机号码格式错误!" duration:1.0f inView:self.view config:nil];
         return ;
     }
     
     if (self.tf_code.text.length == 0) {
-        [DisplayHelper displaySuccessAlert:@"请输入验证码!" interval:1.0f];
+        [ShowHUD showError:@"请输入验证码!" duration:1.0f inView:self.view config:nil];
         return ;
     }
 

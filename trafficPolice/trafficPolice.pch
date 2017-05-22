@@ -42,12 +42,13 @@
 
 #import "SDKMacro.h"
 #import "URLMacro.h"
+#import "URLErrorMacro.h"
 #import "NoticeMacro.h"
 
 #import "ShareValue.h"
 
 
-#import "DisplayHelper.h"
+#import "ShowHUD.h"
 #import <NSObject+YYModel.h>
 
 

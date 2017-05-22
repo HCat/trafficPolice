@@ -54,7 +54,19 @@
     
     self.responseModel = [LRBaseResponse modelWithDictionary:self.responseJSONObject];
     if (_isLog) {
-        LxDBAnyVar(self.responseJSONObject);
+        LxDBObjectAsJson(self.responseJSONObject);
+        LxPrintf(@"----------self.responseModel----------");
+        LxDBObjectAsJson(self.responseModel);
+    }
+    
+    if (self.responseModel.code == CODE_TOKENTIMEOUT ) {
+        //处理token失效情况
+        
+        
+    }else if (self.responseModel.code == CODE_FAILED){
+        //处理网络请求失败情况
+        
+        
     }
     
 }
