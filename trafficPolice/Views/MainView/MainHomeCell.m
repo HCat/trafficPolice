@@ -45,8 +45,9 @@
                     
                     SW(strongSelf,weakSelf);
                     
-                    if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:withIndex:)]) {
-                        [strongSelf.delegate itemClickInCell:strongSelf withIndex:0];
+                    if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:)]) {
+                        strongSelf.str_title = strongSelf.btn_first.str_title;
+                        [strongSelf.delegate itemClickInCell:strongSelf];
                     }
                 
                 };
@@ -64,8 +65,9 @@
                     
                     SW(strongSelf,weakSelf);
                     
-                    if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:withIndex:)]) {
-                        [strongSelf.delegate itemClickInCell:strongSelf withIndex:0];
+                    if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:)]) {
+                        strongSelf.str_title = strongSelf.btn_first.str_title;
+                        [strongSelf.delegate itemClickInCell:strongSelf];
                     }
                     
                 };
@@ -81,8 +83,9 @@
                     
                     SW(strongSelf,weakSelf);
                     
-                    if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:withIndex:)]) {
-                        [strongSelf.delegate itemClickInCell:strongSelf withIndex:1];
+                    if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(itemClickInCell:)]) {
+                        strongSelf.str_title = strongSelf.btn_second.str_title;
+                        [strongSelf.delegate itemClickInCell:strongSelf];
                     }
                     
                 };

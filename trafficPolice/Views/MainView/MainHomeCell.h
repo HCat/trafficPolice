@@ -12,7 +12,7 @@
 
 @interface MainHomeCell : UITableViewCell
 @property (nonatomic,weak) id<MainHomeCellDelegate> delegate;
-
+@property (nonatomic,copy) NSString *str_title;
 
 - (void)createCell:(NSString *)title withItems:(NSArray *)arr_item;
 
@@ -20,7 +20,7 @@
 
 @protocol MainHomeCellDelegate <NSObject>
 
-- (void)itemClickInCell:(MainHomeCell *)cell withIndex:(NSInteger)index;
+- (void)itemClickInCell:(MainHomeCell *)cell;
 
 
 @end

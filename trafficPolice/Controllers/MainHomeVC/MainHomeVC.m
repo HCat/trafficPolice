@@ -19,8 +19,7 @@
 
 @property(nonatomic,strong) ImagePlayerView *cycleView;
 @property (weak, nonatomic) IBOutlet UITableView *tb_content;
-@property (nonatomic,copy) NSArray *arr_data;
-@property (nonatomic,copy) NSArray *arr_title;
+@property (nonatomic,copy) NSMutableArray *arr_data;
 @property (nonatomic,copy) NSArray *arr_imageSource;
 
 @end
@@ -67,9 +66,13 @@
 
 #pragma mark - set
 
--(NSArray *)arr_data{
+-(NSMutableArray *)arr_data{
 
     if (!_arr_data) {
+        
+        NSMutableDictionary *t_dic_first =  [NSMutableDictionary dictionary];
+        NSMutableDictionary *t_dic_second = [NSMutableDictionary dictionary];
+        NSMutableDictionary *t_dic_third =  [NSMutableDictionary dictionary];
         
         NSMutableArray *t_arr_first = [NSMutableArray array];
         NSMutableArray *t_arr_second = [NSMutableArray array];
@@ -104,24 +107,30 @@
   
         }
         
-        self.arr_data = [[NSArray alloc] initWithObjects:t_arr_first,t_arr_second,t_arr_third, nil];
+        self.arr_data = [NSMutableArray array];
+        
+        if (t_arr_first && t_arr_first.count > 0) {
+            [t_dic_first setObject:t_arr_first forKey:@"items"];
+            [t_dic_first setObject:@"事故管理" forKey:@"title"];
+            [_arr_data addObject:t_dic_first];
+        }
+        
+        if (t_arr_second && t_arr_first.count > 0) {
+            [t_dic_second setObject:t_arr_second forKey:@"items"];
+            [t_dic_second setObject:@"违法管理" forKey:@"title"];
+            [_arr_data addObject:t_dic_second];
+        }
+
+        if (t_arr_third && t_arr_first.count > 0) {
+            [t_dic_third setObject:t_arr_third forKey:@"items"];
+            [t_dic_third setObject:@"警情采集" forKey:@"title"];
+            [_arr_data addObject:t_dic_third];
+        }
 
     }
     
     return _arr_data;
 }
-
--(NSArray *)arr_title{
-    
-    if (!_arr_title) {
-        
-        self.arr_title = @[@"事故管理",@"违法管理",@"警情采集"];
-        
-    }
-    
-    return _arr_title;
-}
-
 
 #pragma mark - initCycleView
 
@@ -169,7 +178,11 @@
 
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index
 {
-    NSLog(@"did tap index = %d", (int)index);
+    
+    if (self.arr_imageSource) {
+        CommonGetImgPlayModel *model = self.arr_imageSource[index];
+        NSLog(@"did tap index = %d url:%@", (int)index, model.getImgPlayUrl);
+    }
 }
 
 
@@ -200,10 +213,12 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    NSString *title = self.arr_title[indexPath.row];
-    NSArray *t_arr = self.arr_data[indexPath.row];
-    if (t_arr) {
-        [cell createCell:title withItems:t_arr];
+    
+    NSMutableDictionary *t_dic = self.arr_data[indexPath.row];
+    if (t_dic) {
+        NSMutableArray *t_arr = t_dic[@"items"];
+        NSString *t_title = t_dic[@"title"];
+        [cell createCell:t_title withItems:t_arr];
     }
     [cell setDelegate:(id<MainHomeCellDelegate>)self];
     
@@ -232,18 +247,22 @@
 
 #pragma mark - MainHomeCellDelegate
 
-- (void)itemClickInCell:(MainHomeCell *)cell withIndex:(NSInteger)index{
+- (void)itemClickInCell:(MainHomeCell *)cell{
     
-    switch (index) {
-        case 0:
-            LxDBAnyVar(index);
-            break;
-        case 1:
-            LxDBAnyVar(index);
-            break;
-            
-        default:
-            break;
+    if (cell.str_title) {
+        if ([cell.str_title isEqualToString:@"事故快处"]) {
+            LxPrintf(@"点击事故快处");
+        }else if ([cell.str_title isEqualToString:@"事故"]) {
+            LxPrintf(@"点击事故");
+        }else if ([cell.str_title isEqualToString:@"违停采集"]) {
+            LxPrintf(@"点击违停采集");
+        }else if ([cell.str_title isEqualToString:@"闯禁令采集"]) {
+            LxPrintf(@"点击闯禁令采集");
+        }else if ([cell.str_title isEqualToString:@"视频录入"]) {
+            LxPrintf(@"点击视频录入");
+        }else{
+            LxPrintf(@"其他");
+        }
     }
     
 }
@@ -269,7 +288,6 @@
     [super didReceiveMemoryWarning];
     
     _arr_data = nil;
-    _arr_title = nil;
     // Dispose of any resources that can be recreated.
 }
 
