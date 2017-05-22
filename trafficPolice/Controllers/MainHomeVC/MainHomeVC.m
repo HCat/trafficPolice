@@ -9,6 +9,10 @@
 #import "MainHomeVC.h"
 #import "ImagePlayerView.h"
 #import "MainHomeCell.h"
+#import "CommonAPI.h"
+#import "UserModel.h"
+#import <UIImageView+WebCache.h>
+
 
 
 @interface MainHomeVC ()<ImagePlayerViewDelegate,MainHomeCellDelegate>
@@ -17,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tb_content;
 @property (nonatomic,copy) NSArray *arr_data;
 @property (nonatomic,copy) NSArray *arr_title;
+@property (nonatomic,copy) NSArray *arr_imageSource;
 
 @end
 
@@ -26,12 +31,10 @@
     [super viewDidLoad];
     self.title = NSLocalizedString(@"首页", nil);
     
-    
-    
-    
-    
+    LxDBAnyVar([UserModel getUserModel].menus);
     [self initCycleView];
-   
+    [self getImgPlay];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -44,14 +47,63 @@
     
 }
 
+#pragma mark - 轮播请求数据
+
+- (void)getImgPlay{
+
+    
+    WS(weakSelf);
+    CommonGetImgPlayManger *manger = [CommonGetImgPlayManger new];
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        strongSelf.arr_imageSource = manger.commonGetImgPlayModel;
+        [strongSelf.cycleView reloadData];
+    
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+    }];
+
+}
+
 #pragma mark - set
 
 -(NSArray *)arr_data{
 
     if (!_arr_data) {
-        NSArray *t_arr_first = @[@{@"image":@"事故快处.png",@"title":@"事故快处"},@{@"image":@"事故.png",@"title":@"事故"}];
-        NSArray *t_arr_second = @[@{@"image":@"违停采集.png",@"title":@"违停采集"},@{@"image":@"闯禁令采集.png",@"title":@"闯禁令采集"}];
-        NSArray *t_arr_third = @[@{@"image":@"视频录入.png",@"title":@"视频录入"},@{@"image":@"",@"title":@""}];
+        
+        NSMutableArray *t_arr_first = [NSMutableArray array];
+        NSMutableArray *t_arr_second = [NSMutableArray array];
+        NSMutableArray *t_arr_third = [NSMutableArray array];
+        
+        
+        if ([UserModel getUserModel]) {
+            
+            [[UserModel getUserModel].menus enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                if ([obj isEqualToString:@"FAST_ACCIDENT_ADD"]) {
+                    //拥有快处事故添加权限
+                    [t_arr_first addObject:@{@"image":@"事故快处.png",@"title":@"事故快处"}];
+                    
+                }else if([obj isEqualToString:@"NORMAL_ACCIDENT_ADD"]){
+                    //拥有事故添加权限
+                    [t_arr_first addObject:@{@"image":@"事故.png",@"title":@"事故"}];
+                    
+                }else if([obj isEqualToString:@"ILLEGAL_PARKING"]){
+                    //拥有违停采集权限
+                    [t_arr_second addObject:@{@"image":@"违停采集.png",@"title":@"违停采集"}];
+                    
+                }else if([obj isEqualToString:@"ILLEGAL_THROUGH"]){
+                    //拥有闯禁令采集权限
+                    [t_arr_second addObject:@{@"image":@"闯禁令采集.png",@"title":@"闯禁令采集"}];
+                    
+                }else if([obj isEqualToString:@"VIDEO_COLLECT"]){
+                    //警情采集权限
+                    [t_arr_third addObject:@{@"image":@"视频录入.png",@"title":@"视频录入"}];
+                    
+                }
+            }];
+  
+        }
+        
         self.arr_data = [[NSArray alloc] initWithObjects:t_arr_first,t_arr_second,t_arr_third, nil];
 
     }
@@ -101,31 +153,18 @@
 
 - (NSInteger)numberOfItems
 {
-    return 2;
+    return self.arr_imageSource.count;
 }
 
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
 {
     // recommend to use SDWebImage lib to load web image
-    //    [imageView setImageWithURL:[self.imageURLs objectAtIndex:index] placeholderImage:nil];
+    if (self.arr_imageSource) {
+        CommonGetImgPlayModel *model = self.arr_imageSource[index];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.getImgPlayImgUrl]];
     
-//    NSURL *imageURL = [self.imageURLs objectAtIndex:index];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-//        UIImage *image = [self.imageCache objectForKey:imageURL.absoluteString];
-//        if (!image) {
-//            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-//            image = [UIImage imageWithData:imageData];
-//            [self.imageCache setObject:image forKey:imageURL.absoluteString];
-//        }
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            // Update the UI
-//            imageView.image = image;
-//        });
-//    });
-    
-    //imageView.image = [UIImage imageNamed:@"icon_tab_main"];
-    //imageView.backgroundColor = [UIColor clearColor];
-    
+    }
+
 }
 
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index
@@ -141,7 +180,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.arr_data.count;
     
 }
 

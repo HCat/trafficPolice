@@ -113,7 +113,9 @@
 @implementation CommonGetImgPlayModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"getImgPlayTitle" : @"title"
+    return @{@"getImgPlayTitle" : @"title",
+             @"getImgPlayImgUrl" : @"imgUrl",
+             @"getImgPlayUrl" : @"url",
              };
 }
 
@@ -136,7 +138,8 @@
 //返回参数
 - (NSArray *)commonGetImgPlayModel{
     
-    if (self.responseModel.data) {
+    if (self.responseModel) {
+        
         return [NSArray modelArrayWithClass:[CommonGetImgPlayModel class] json:self.responseJSONObject[@"data"]];
     }
     

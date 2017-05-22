@@ -18,13 +18,13 @@
 
 #import <WXApi.h>
 #import <YTKNetwork.h>
+#import "LRBaseRequest.h"
 
 
 
 @interface AppDelegate ()<WXApiDelegate>
 
 @property(nonatomic,strong) LoginHomeVC *vc_login;
-
 
 @end
 
@@ -50,10 +50,19 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
-    self.vc_login = [LoginHomeVC new];
+    if ([ShareValue sharedDefault].token) {
+        /*********** 切换到首页界面 ************/
+        [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
+        
+        [self initAKTabBarController];
+        self.window.rootViewController = self.vc_tabBar;
+        
+    }else{
+        self.vc_login = [LoginHomeVC new];
+        UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:_vc_login];
+        self.window.rootViewController = t_nav;
+    }
     
-    UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:_vc_login];
-    self.window.rootViewController = t_nav;
     [self.window makeKeyAndVisible];
     
     return YES;

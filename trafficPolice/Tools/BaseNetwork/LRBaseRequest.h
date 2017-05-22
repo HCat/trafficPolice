@@ -16,6 +16,7 @@
 @property (nonatomic,strong) LRBaseResponse *responseModel;
 
 @property (nonatomic,assign) BOOL isLog; //用来打印具体返回的数据
+@property (nonatomic,assign) BOOL isNeedShowHud;//是否需要提示信息
 
 @property (nonatomic,copy) NSString *successMessage; //成功的提示信息
 @property (nonatomic,copy) NSString *failMessage;    //失败的提示信息

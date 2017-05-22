@@ -37,7 +37,7 @@
     
         if (arr_item.count == 1) {
             NSDictionary *t_dic = arr_item.lastObject;
-            if (!t_dic) {
+            if (t_dic) {
                 _btn_first.img_content = [t_dic objectForKey:@"image"];
                 _btn_first.str_title = [t_dic objectForKey:@"title"];
                 WS(weakSelf);

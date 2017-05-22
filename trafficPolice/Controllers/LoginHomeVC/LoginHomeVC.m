@@ -11,7 +11,6 @@
 #import <AFNetworking.h>
 #import <WXApi.h>
 #import "ShareFun.h"
-#import "AppDelegate.h"
 #import "CertificateView.h"
 #import "BottomView.h"
 
@@ -29,14 +28,6 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinLoginSuccess:) name:NOTIFICATION_WX_LOGIN_SUCCESS object:nil];
     
-
-    if ([ShareValue sharedDefault].token) {
-        
-        /*********** 切换到首页界面 ************/
-        [ApplicationDelegate initAKTabBarController];
-        ApplicationDelegate.window.rootViewController = ApplicationDelegate.vc_tabBar;
-    }
-
 }
 
 - (void)viewWillAppear:(BOOL)animated{

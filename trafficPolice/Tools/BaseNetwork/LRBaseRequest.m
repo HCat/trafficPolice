@@ -10,6 +10,18 @@
 
 @implementation LRBaseRequest
 
+
+-(id)init{
+
+    if(self = [super init]){
+    
+        _isNeedShowHud = YES;
+    
+    };
+
+    return self;
+}
+
 //可选，当使用缓存的时候，根据argument来过滤想要的缓存数据
 - (id)cacheFileNameFilterForRequestArgument:(id)argument
 {
@@ -70,19 +82,24 @@
         
     }else if (self.responseModel.code == CODE_FAILED){
         //处理网络请求失败情况
-        if (_failMessage) {
-            [ShowHUD showSuccess:_failMessage duration:1.2f inView:window config:nil];
-        }else{
-            [ShowHUD showError:self.responseModel.msg duration:1.2f inView:window config:nil];
+        if (_isNeedShowHud) {
+            if (_failMessage) {
+                [ShowHUD showSuccess:_failMessage duration:1.2f inView:window config:nil];
+            }else{
+                [ShowHUD showError:self.responseModel.msg duration:1.2f inView:window config:nil];
+            }
         }
-    
     }else if (self.responseModel.code == CODE_SUCCESS){
         //处理网络请求成功情况
-        if (_successMessage) {
-            [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
-        }else{
-            [ShowHUD showSuccess:@"请求成功!" duration:1.2f inView:window config:nil];
+        if (_isNeedShowHud) {
+            if (_successMessage) {
+                [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
+            }else{
+                [ShowHUD showSuccess:@"请求成功!" duration:1.2f inView:window config:nil];
+            }
         }
+        
+       
     
     }else{
         
