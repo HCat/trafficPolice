@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSMutableArray<PHAsset *> *lastSelectAssets;
 @property (nonatomic, strong) AccidentAddFootView *footView;
 @property (nonatomic,assign) BOOL isFirstLoad; //判断collectionView是不是第一次load
-
+@property (nonatomic,assign) BOOL isObserver; //判断是否添加了监听
 @end
 
 @implementation AccidentVC
@@ -37,6 +37,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     [_collectionView registerNib:[UINib nibWithNibName:@"AccidentAddFootView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footId];
     [_collectionView registerNib:[UINib nibWithNibName:@"AccidentAddHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headId];
     self.isFirstLoad = YES;
+    self.isObserver = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -147,9 +148,11 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
         
         self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
-        [_footView addObserver:self forKeyPath:@"isShowMoreAccidentInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-        [_footView addObserver:self forKeyPath:@"isShowMoreInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-        LxDBAnyVar(_footView.test);
+        if (!self.isObserver) {
+            [_footView addObserver:self forKeyPath:@"isShowMoreAccidentInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+            [_footView addObserver:self forKeyPath:@"isShowMoreInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+            self.isObserver = YES;
+        }
         
         return _footView;
         
