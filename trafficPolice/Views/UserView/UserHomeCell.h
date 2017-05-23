@@ -10,6 +10,8 @@
 
 @interface UserHomeCell : UICollectionViewCell
 
+@property (nonatomic,strong) NSDictionary *dic_source;
+
 - (void)setUpCellInsideView:(NSDictionary *)dic_source;
 
 @end

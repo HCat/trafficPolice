@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserModel.h"
 
 @interface ShareFun : NSObject
 
@@ -24,6 +25,10 @@
 
 + (NSString *)getUniqueDeviceIdentifierAsString;
 
+//获取列表权限
 
++ (BOOL)isPermissionForAccidentList;        //事故和快处权限
++ (BOOL)isPermissionForIllegalList;         //违章和违停权限
++ (BOOL)isPermissionForVideoCollectList;    //视频录入权限
 
 @end

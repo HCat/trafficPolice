@@ -12,11 +12,12 @@
 #import "AppDelegate.h"
 #import "ListHomeVC.h"
 #import "UserSetVC.h"
+#import "ShareFun.h"
 
 @interface UserHomeVC ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic,copy) NSArray *arr_data;
+@property (nonatomic,strong) NSMutableArray *arr_data;
 
 
 @end
@@ -39,7 +40,27 @@ static NSString *const headerId = @"UserReusableViewID";
 
     if (!_arr_data) {
         
-        self.arr_data = @[@{@"image":@"事故列表.png",@"title":@"事故列表"},@{@"image":@"快处列表",@"title":@"快处列表"},@{@"image":@"违停列表",@"title":@"违停列表"},@{@"image":@"闯禁令列表",@"title":@"闯禁令列表"},@{@"image":@"视频列表",@"title":@"视频列表"},@{@"image":@"设置",@"title":@"设置"}];
+        self.arr_data = [NSMutableArray array];
+        
+        if ([ShareFun isPermissionForAccidentList]) {
+           
+            [_arr_data addObject:@{@"image":@"事故列表.png",@"title":@"事故列表",@"associated":@"事故"}];
+            [_arr_data addObject:@{@"image":@"快处列表",@"title":@"快处列表",@"associated":@"快处"}];
+        }
+        
+        if ([ShareFun isPermissionForIllegalList]) {
+            
+            [_arr_data addObject:@{@"image":@"违停列表",@"title":@"违停列表",@"associated":@"违停"}];
+            [_arr_data addObject:@{@"image":@"闯禁令列表",@"title":@"闯禁令列表",@"associated":@"闯禁令"}];
+        }
+        
+        if ([ShareFun isPermissionForVideoCollectList]) {
+            
+            [_arr_data addObject:@{@"image":@"视频列表",@"title":@"视频列表",@"associated":@"视频"}];
+        }
+        
+        [_arr_data addObject:@{@"image":@"设置",@"title":@"设置",@"associated":@"设置"}];
+    
     }
     
     return _arr_data;
@@ -58,7 +79,6 @@ static NSString *const headerId = @"UserReusableViewID";
 //返回每组多少个视图
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    
     return [self.arr_data count];
 }
 //返回视图的具体事例，我们的数据关联就是放在这里
@@ -114,36 +134,34 @@ static NSString *const headerId = @"UserReusableViewID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.item == 5) {
+    UserHomeCell *cell = (UserHomeCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    if (cell.dic_source) {
 
-        UserSetVC *t_vc = [[UserSetVC alloc] init];
-        [self.navigationController pushViewController:t_vc animated:YES];
+        NSString *title = cell.dic_source[@"associated"];
         
-        return;
+        if ([title isEqualToString:@"设置"]) {
+            UserSetVC *t_vc = [[UserSetVC alloc] init];
+            [self.navigationController pushViewController:t_vc animated:YES];
+            return;
+        }
+        
+        ApplicationDelegate.vc_tabBar.selectedIndex = 1;
+        UINavigationController *t_nav = ApplicationDelegate.vc_tabBar.viewControllers[1];
+        ListHomeVC *t_vc = (ListHomeVC *)t_nav.topViewController;
+        
+        for (UIViewController * t_item in t_vc.pageMenu.arr_controllers) {
+           
+            if ([t_item.title isEqualToString:title]) {
+                 NSInteger index = [t_vc.pageMenu.arr_controllers indexOfObject:t_item];
+                [t_vc.pageMenu moveToPage:index withAnimation:NO];
+                return;
+            }
+        }
+        
+       
+       
     }
-    
-    ApplicationDelegate.vc_tabBar.selectedIndex = 1;
-    UINavigationController *t_nav = ApplicationDelegate.vc_tabBar.viewControllers[1];
-    ListHomeVC *t_vc = (ListHomeVC *)t_nav.topViewController;
-    switch (indexPath.item) {
-        case 0:
-            [t_vc.pageMenu moveToPage:2 withAnimation:NO];
-            break;
-        case 1:
-            [t_vc.pageMenu moveToPage:3 withAnimation:NO];
-            break;
-        case 2:
-            [t_vc.pageMenu moveToPage:0 withAnimation:NO];
-            break;
-        case 3:
-            [t_vc.pageMenu moveToPage:1 withAnimation:NO];
-            break;
-        case 4:
-            [t_vc.pageMenu moveToPage:4 withAnimation:NO];
-            break;
-        default:
-            break;
-    }
+        
    
 }
 

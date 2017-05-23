@@ -52,7 +52,6 @@
 - (void)setImg_content:(NSString *)img_content{
     
     _img_content = img_content;
-    NSLog(@"%@",_img_content);
     _imgV_content.image = [UIImage imageNamed:_img_content];
     
 }

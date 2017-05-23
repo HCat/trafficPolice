@@ -9,6 +9,8 @@
 #import "ListHomeVC.h"
 #import "ListBaseVC.h"
 #import "ListCollectionVC.h"
+#import "ShareFun.h"
+
 
 
 
@@ -41,19 +43,36 @@
 
 
 - (void)initPageMenu{
-
-    ListBaseVC *vc_first = [ListBaseVC new];
-    vc_first.title = @"违停";
-    ListBaseVC *vc_second = [ListBaseVC new];
-    vc_second.title = @"闯禁令";
-    ListBaseVC *vc_third = [ListBaseVC new];
-    vc_third.title = @"事故";
-    ListCollectionVC *vc_foured = [ListCollectionVC new];
-    vc_foured.title = @"快处";
-    ListCollectionVC *vc_firved = [ListCollectionVC new];
-    vc_firved.title = @"视频";
     
-    NSArray *arr_controllers = @[vc_first,vc_second,vc_third,vc_foured,vc_firved];
+    NSMutableArray *t_arr = [NSMutableArray array];
+    
+    if ([ShareFun isPermissionForAccidentList]) {
+        ListBaseVC *vc_first = [ListBaseVC new];
+        vc_first.title = @"事故";
+        ListBaseVC *vc_second = [ListBaseVC new];
+        vc_second.title = @"快处";
+        [t_arr addObject:vc_first];
+        [t_arr addObject:vc_second];
+    }
+    
+    if ([ShareFun isPermissionForIllegalList]) {
+        
+        ListBaseVC *vc_third = [ListBaseVC new];
+        vc_third.title = @"违停";
+        ListBaseVC *vc_foured = [ListBaseVC new];
+        vc_foured.title = @"闯禁令";
+        [t_arr addObject:vc_third];
+        [t_arr addObject:vc_foured];
+    }
+
+    if ([ShareFun isPermissionForVideoCollectList]) {
+        
+        ListCollectionVC *vc_firved = [ListCollectionVC new];
+        vc_firved.title = @"视频";
+        [t_arr addObject:vc_firved];
+    }
+   
+    NSArray *arr_controllers = [NSArray arrayWithArray:t_arr];
     NSDictionary *dic_options = @{LRPageMenuOptionUseMenuLikeSegmentedControl:@(YES),
                                   LRPageMenuOptionSelectedTitleColor:UIColorFromRGB(0x4281e8),
                                   LRPageMenuOptionUnselectedTitleColor:UIColorFromRGB(0x444444),

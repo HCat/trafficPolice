@@ -107,6 +107,50 @@
     return strApplicationUUID;
 }
 
+//获取列表权限
+
++ (BOOL)isPermissionForAccidentList{
+    
+    
+    NSString *match = @"ACCIDENT_LIST";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@", match];
+    NSArray *results = [[UserModel getUserModel].menus filteredArrayUsingPredicate:predicate];
+    
+    if (results && results.count > 0) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
++ (BOOL)isPermissionForIllegalList{
+
+    NSString *match = @"ILLEGAL_LIST";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@", match];
+    NSArray *results = [[UserModel getUserModel].menus filteredArrayUsingPredicate:predicate];
+    
+    if (results && results.count > 0) {
+        return YES;
+    }
+    
+    return NO;
+
+}
+
++ (BOOL)isPermissionForVideoCollectList{
+
+    NSString *match = @"VIDEO_COLLECT_LIST";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@", match];
+    NSArray *results = [[UserModel getUserModel].menus filteredArrayUsingPredicate:predicate];
+    
+    if (results && results.count > 0) {
+        return YES;
+    }
+    
+    return NO;
+
+}
 
 
 

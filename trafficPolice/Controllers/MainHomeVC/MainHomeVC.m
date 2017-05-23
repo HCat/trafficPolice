@@ -19,7 +19,7 @@
 
 @property(nonatomic,strong) ImagePlayerView *cycleView;
 @property (weak, nonatomic) IBOutlet UITableView *tb_content;
-@property (nonatomic,copy) NSMutableArray *arr_data;
+@property (nonatomic,strong) NSMutableArray *arr_data;
 @property (nonatomic,copy) NSArray *arr_imageSource;
 
 @end
@@ -115,13 +115,13 @@
             [_arr_data addObject:t_dic_first];
         }
         
-        if (t_arr_second && t_arr_first.count > 0) {
+        if (t_arr_second && t_arr_second.count > 0) {
             [t_dic_second setObject:t_arr_second forKey:@"items"];
             [t_dic_second setObject:@"违法管理" forKey:@"title"];
             [_arr_data addObject:t_dic_second];
         }
 
-        if (t_arr_third && t_arr_first.count > 0) {
+        if (t_arr_third && t_arr_third.count > 0) {
             [t_dic_third setObject:t_arr_third forKey:@"items"];
             [t_dic_third setObject:@"警情采集" forKey:@"title"];
             [_arr_data addObject:t_dic_third];

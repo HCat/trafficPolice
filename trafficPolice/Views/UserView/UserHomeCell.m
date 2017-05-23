@@ -18,7 +18,6 @@
 
 @end
 
-
 @implementation UserHomeCell
 
 - (void)awakeFromNib {
@@ -29,6 +28,7 @@
 - (void)setUpCellInsideView:(NSDictionary *)dic_source{
 
     if (dic_source) {
+        self.dic_source = dic_source;
         self.imgV_content.image = [UIImage imageNamed:[dic_source objectForKey:@"image"]];
         self.lb_content.text  = [dic_source objectForKey:@"title"];
     }
