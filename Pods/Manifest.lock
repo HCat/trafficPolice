@@ -32,6 +32,7 @@ PODS:
   - WechatOpenSDK (1.7.7)
   - YTKNetwork (2.0.3):
     - AFNetworking (~> 3.0)
+  - YUSegment (1.0.1)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - SDWebImage
   - WechatOpenSDK
   - YTKNetwork
+  - YUSegment
   - YYKit
 
 SPEC CHECKSUMS:
@@ -64,8 +66,9 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   WechatOpenSDK: cbd332148eb792d444ed4eec94f421d98f2046ee
   YTKNetwork: c4b0c29c9d639dc050d475de69ee626d53eac598
+  YUSegment: 6e527a2e4ad60404ef67bd766b4dcf6d59419c9c
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: d2e5091a67e81b0a18ed422b4ba51e51451785c8
+PODFILE CHECKSUM: c810c3477de650473a436e4daa5f6b3f31a86b98
 
 COCOAPODS: 1.2.1

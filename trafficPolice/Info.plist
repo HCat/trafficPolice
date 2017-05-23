@@ -55,5 +55,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>CFBundleAllowMixedLocalizations</key>
+    <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>是否允许访问你的相机？</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>是否允许访问你的相册？</string>
 </dict>
 </plist>

@@ -66,7 +66,7 @@ static NSString *const headerId = @"UserReusableViewID";
     return _arr_data;
 }
 
-
+ 
 
 
 #pragma mark - UICollectionView Data Source
@@ -157,14 +157,10 @@ static NSString *const headerId = @"UserReusableViewID";
                 return;
             }
         }
-        
-       
-       
+    
     }
-        
-   
+    
 }
-
 
 #pragma mark - UICollectionView Delegate FlowLayout
 

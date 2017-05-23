@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LRSingleton.h"
 
+#define kmaxPreviewCount 30
+#define kmaxSelectCount 30
+
 @interface ShareValue : NSObject
 
 LRSingletonH(Default)

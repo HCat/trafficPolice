@@ -84,6 +84,50 @@
 		CE542ED71ECC942900971B23 /* CertificateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED61ECC942900971B23 /* CertificateView.m */; };
 		CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE542ED81ECC943C00971B23 /* CertificateView.xib */; };
 		CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542EDC1ECC9F2400971B23 /* AlertView.m */; };
+		CE57863D1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57860A1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m */; };
+		CE57863E1ED4088700B4CC9F /* btn_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57860C1ED4088700B4CC9F /* btn_circle@2x.png */; };
+		CE57863F1ED4088700B4CC9F /* btn_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57860D1ED4088700B4CC9F /* btn_circle@3x.png */; };
+		CE5786401ED4088700B4CC9F /* btn_original_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57860E1ED4088700B4CC9F /* btn_original_circle.png */; };
+		CE5786411ED4088700B4CC9F /* btn_original_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57860F1ED4088700B4CC9F /* btn_original_circle@2x.png */; };
+		CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786101ED4088700B4CC9F /* btn_original_circle@3x.png */; };
+		CE5786431ED4088700B4CC9F /* btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786111ED4088700B4CC9F /* btn_selected.png */; };
+		CE5786441ED4088700B4CC9F /* btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786121ED4088700B4CC9F /* btn_selected@2x.png */; };
+		CE5786451ED4088700B4CC9F /* btn_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786131ED4088700B4CC9F /* btn_selected@3x.png */; };
+		CE5786461ED4088700B4CC9F /* btn_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786141ED4088700B4CC9F /* btn_unselected.png */; };
+		CE5786471ED4088700B4CC9F /* btn_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786151ED4088700B4CC9F /* btn_unselected@2x.png */; };
+		CE5786481ED4088700B4CC9F /* btn_unselected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786161ED4088700B4CC9F /* btn_unselected@3x.png */; };
+		CE5786491ED4088700B4CC9F /* defaultphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786171ED4088700B4CC9F /* defaultphoto.png */; };
+		CE57864A1ED4088700B4CC9F /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786181ED4088700B4CC9F /* lock.png */; };
+		CE57864B1ED4088700B4CC9F /* navBackBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5786191ED4088700B4CC9F /* navBackBtn@2x.png */; };
+		CE57864C1ED4088700B4CC9F /* ZLCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57861A1ED4088700B4CC9F /* ZLCollectionCell.xib */; };
+		CE57864D1ED4088700B4CC9F /* ZLNoAuthorityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57861B1ED4088700B4CC9F /* ZLNoAuthorityViewController.xib */; };
+		CE57864E1ED4088700B4CC9F /* ZLPhotoActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57861C1ED4088700B4CC9F /* ZLPhotoActionSheet.xib */; };
+		CE57864F1ED4088700B4CC9F /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE57861D1ED4088700B4CC9F /* ZLPhotoBrowser.bundle */; };
+		CE5786501ED4088700B4CC9F /* ZLPhotoBrowserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57861E1ED4088700B4CC9F /* ZLPhotoBrowserCell.xib */; };
+		CE5786511ED4088700B4CC9F /* ZLThumbnailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57861F1ED4088700B4CC9F /* ZLThumbnailViewController.xib */; };
+		CE5786521ED4088700B4CC9F /* ToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786211ED4088700B4CC9F /* ToastUtils.m */; };
+		CE5786531ED4088700B4CC9F /* ZLBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786231ED4088700B4CC9F /* ZLBigImageCell.m */; };
+		CE5786541ED4088700B4CC9F /* ZLCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786251ED4088700B4CC9F /* ZLCollectionCell.m */; };
+		CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786281ED4088700B4CC9F /* ZLNoAuthorityViewController.m */; };
+		CE5786561ED4088700B4CC9F /* ZLPhotoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57862A1ED4088700B4CC9F /* ZLPhotoActionSheet.m */; };
+		CE5786571ED4088700B4CC9F /* ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57862C1ED4088700B4CC9F /* ZLPhotoBrowser.m */; };
+		CE5786581ED4088700B4CC9F /* ZLPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57862E1ED4088700B4CC9F /* ZLPhotoBrowserCell.m */; };
+		CE5786591ED4088700B4CC9F /* ZLPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786301ED4088700B4CC9F /* ZLPhotoManager.m */; };
+		CE57865A1ED4088700B4CC9F /* ZLPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786321ED4088700B4CC9F /* ZLPhotoModel.m */; };
+		CE57865B1ED4088700B4CC9F /* ZLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786341ED4088700B4CC9F /* ZLProgressHUD.m */; };
+		CE57865C1ED4088700B4CC9F /* ZLShowBigImgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786361ED4088700B4CC9F /* ZLShowBigImgViewController.m */; };
+		CE57865D1ED4088700B4CC9F /* ZLShowGifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786381ED4088700B4CC9F /* ZLShowGifViewController.m */; };
+		CE57865E1ED4088700B4CC9F /* ZLShowVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57863A1ED4088700B4CC9F /* ZLShowVideoViewController.m */; };
+		CE57865F1ED4088700B4CC9F /* ZLThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57863C1ED4088700B4CC9F /* ZLThumbnailViewController.m */; };
+		CE5786641ED40EBA00B4CC9F /* AccidentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786621ED40EBA00B4CC9F /* AccidentVC.m */; };
+		CE5786651ED40EBA00B4CC9F /* AccidentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5786631ED40EBA00B4CC9F /* AccidentVC.xib */; };
+		CE5786671ED41AF500B4CC9F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5786661ED41AF500B4CC9F /* Photos.framework */; };
+		CE57866B1ED4229E00B4CC9F /* AccidentAddFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786691ED4229E00B4CC9F /* AccidentAddFootView.m */; };
+		CE57866C1ED4229E00B4CC9F /* AccidentAddFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE57866A1ED4229E00B4CC9F /* AccidentAddFootView.xib */; };
+		CE57866F1ED42E7B00B4CC9F /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57866E1ED42E7B00B4CC9F /* UIButton+Block.m */; };
+		CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786741ED436C200B4CC9F /* AccidentAddHeadView.m */; };
+		CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */; };
+		CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786791ED441E600B4CC9F /* CALayer+Additions.m */; };
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
 		CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E52D41ED2B59A002C4603 /* ShowHUD.m */; };
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
@@ -252,6 +296,71 @@
 		CE542ED81ECC943C00971B23 /* CertificateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CertificateView.xib; sourceTree = "<group>"; };
 		CE542EDB1ECC9F2400971B23 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		CE542EDC1ECC9F2400971B23 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		CE5786091ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ZLPhotoBrowser.h"; sourceTree = "<group>"; };
+		CE57860A1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ZLPhotoBrowser.m"; sourceTree = "<group>"; };
+		CE57860C1ED4088700B4CC9F /* btn_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_circle@2x.png"; sourceTree = "<group>"; };
+		CE57860D1ED4088700B4CC9F /* btn_circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_circle@3x.png"; sourceTree = "<group>"; };
+		CE57860E1ED4088700B4CC9F /* btn_original_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_original_circle.png; sourceTree = "<group>"; };
+		CE57860F1ED4088700B4CC9F /* btn_original_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_original_circle@2x.png"; sourceTree = "<group>"; };
+		CE5786101ED4088700B4CC9F /* btn_original_circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_original_circle@3x.png"; sourceTree = "<group>"; };
+		CE5786111ED4088700B4CC9F /* btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_selected.png; sourceTree = "<group>"; };
+		CE5786121ED4088700B4CC9F /* btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_selected@2x.png"; sourceTree = "<group>"; };
+		CE5786131ED4088700B4CC9F /* btn_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_selected@3x.png"; sourceTree = "<group>"; };
+		CE5786141ED4088700B4CC9F /* btn_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_unselected.png; sourceTree = "<group>"; };
+		CE5786151ED4088700B4CC9F /* btn_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_unselected@2x.png"; sourceTree = "<group>"; };
+		CE5786161ED4088700B4CC9F /* btn_unselected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_unselected@3x.png"; sourceTree = "<group>"; };
+		CE5786171ED4088700B4CC9F /* defaultphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultphoto.png; sourceTree = "<group>"; };
+		CE5786181ED4088700B4CC9F /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		CE5786191ED4088700B4CC9F /* navBackBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navBackBtn@2x.png"; sourceTree = "<group>"; };
+		CE57861A1ED4088700B4CC9F /* ZLCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCollectionCell.xib; sourceTree = "<group>"; };
+		CE57861B1ED4088700B4CC9F /* ZLNoAuthorityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLNoAuthorityViewController.xib; sourceTree = "<group>"; };
+		CE57861C1ED4088700B4CC9F /* ZLPhotoActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPhotoActionSheet.xib; sourceTree = "<group>"; };
+		CE57861D1ED4088700B4CC9F /* ZLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoBrowser.bundle; sourceTree = "<group>"; };
+		CE57861E1ED4088700B4CC9F /* ZLPhotoBrowserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPhotoBrowserCell.xib; sourceTree = "<group>"; };
+		CE57861F1ED4088700B4CC9F /* ZLThumbnailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLThumbnailViewController.xib; sourceTree = "<group>"; };
+		CE5786201ED4088700B4CC9F /* ToastUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastUtils.h; sourceTree = "<group>"; };
+		CE5786211ED4088700B4CC9F /* ToastUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastUtils.m; sourceTree = "<group>"; };
+		CE5786221ED4088700B4CC9F /* ZLBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLBigImageCell.h; sourceTree = "<group>"; };
+		CE5786231ED4088700B4CC9F /* ZLBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBigImageCell.m; sourceTree = "<group>"; };
+		CE5786241ED4088700B4CC9F /* ZLCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCollectionCell.h; sourceTree = "<group>"; };
+		CE5786251ED4088700B4CC9F /* ZLCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCollectionCell.m; sourceTree = "<group>"; };
+		CE5786261ED4088700B4CC9F /* ZLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLDefine.h; sourceTree = "<group>"; };
+		CE5786271ED4088700B4CC9F /* ZLNoAuthorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNoAuthorityViewController.h; sourceTree = "<group>"; };
+		CE5786281ED4088700B4CC9F /* ZLNoAuthorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNoAuthorityViewController.m; sourceTree = "<group>"; };
+		CE5786291ED4088700B4CC9F /* ZLPhotoActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoActionSheet.h; sourceTree = "<group>"; };
+		CE57862A1ED4088700B4CC9F /* ZLPhotoActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoActionSheet.m; sourceTree = "<group>"; };
+		CE57862B1ED4088700B4CC9F /* ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowser.h; sourceTree = "<group>"; };
+		CE57862C1ED4088700B4CC9F /* ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoBrowser.m; sourceTree = "<group>"; };
+		CE57862D1ED4088700B4CC9F /* ZLPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowserCell.h; sourceTree = "<group>"; };
+		CE57862E1ED4088700B4CC9F /* ZLPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoBrowserCell.m; sourceTree = "<group>"; };
+		CE57862F1ED4088700B4CC9F /* ZLPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoManager.h; sourceTree = "<group>"; };
+		CE5786301ED4088700B4CC9F /* ZLPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoManager.m; sourceTree = "<group>"; };
+		CE5786311ED4088700B4CC9F /* ZLPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoModel.h; sourceTree = "<group>"; };
+		CE5786321ED4088700B4CC9F /* ZLPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoModel.m; sourceTree = "<group>"; };
+		CE5786331ED4088700B4CC9F /* ZLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLProgressHUD.h; sourceTree = "<group>"; };
+		CE5786341ED4088700B4CC9F /* ZLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLProgressHUD.m; sourceTree = "<group>"; };
+		CE5786351ED4088700B4CC9F /* ZLShowBigImgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShowBigImgViewController.h; sourceTree = "<group>"; };
+		CE5786361ED4088700B4CC9F /* ZLShowBigImgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShowBigImgViewController.m; sourceTree = "<group>"; };
+		CE5786371ED4088700B4CC9F /* ZLShowGifViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShowGifViewController.h; sourceTree = "<group>"; };
+		CE5786381ED4088700B4CC9F /* ZLShowGifViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShowGifViewController.m; sourceTree = "<group>"; };
+		CE5786391ED4088700B4CC9F /* ZLShowVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShowVideoViewController.h; sourceTree = "<group>"; };
+		CE57863A1ED4088700B4CC9F /* ZLShowVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShowVideoViewController.m; sourceTree = "<group>"; };
+		CE57863B1ED4088700B4CC9F /* ZLThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLThumbnailViewController.h; sourceTree = "<group>"; };
+		CE57863C1ED4088700B4CC9F /* ZLThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLThumbnailViewController.m; sourceTree = "<group>"; };
+		CE5786611ED40EBA00B4CC9F /* AccidentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentVC.h; sourceTree = "<group>"; };
+		CE5786621ED40EBA00B4CC9F /* AccidentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentVC.m; sourceTree = "<group>"; };
+		CE5786631ED40EBA00B4CC9F /* AccidentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentVC.xib; sourceTree = "<group>"; };
+		CE5786661ED41AF500B4CC9F /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		CE5786681ED4229E00B4CC9F /* AccidentAddFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentAddFootView.h; sourceTree = "<group>"; };
+		CE5786691ED4229E00B4CC9F /* AccidentAddFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentAddFootView.m; sourceTree = "<group>"; };
+		CE57866A1ED4229E00B4CC9F /* AccidentAddFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentAddFootView.xib; sourceTree = "<group>"; };
+		CE57866D1ED42E7B00B4CC9F /* UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Block.h"; sourceTree = "<group>"; };
+		CE57866E1ED42E7B00B4CC9F /* UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Block.m"; sourceTree = "<group>"; };
+		CE5786731ED436C200B4CC9F /* AccidentAddHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentAddHeadView.h; sourceTree = "<group>"; };
+		CE5786741ED436C200B4CC9F /* AccidentAddHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentAddHeadView.m; sourceTree = "<group>"; };
+		CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentAddHeadView.xib; sourceTree = "<group>"; };
+		CE5786781ED441E600B4CC9F /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
+		CE5786791ED441E600B4CC9F /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
 		CE67EFCC1ED2C868000CB8F4 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		CE67EFCF1ED2E324000CB8F4 /* UserDefaultMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultMacro.h; sourceTree = "<group>"; };
@@ -291,6 +400,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5786671ED41AF500B4CC9F /* Photos.framework in Frameworks */,
 				CE435EFC1ECDA5AA00F85B38 /* Security.framework in Frameworks */,
 				08BAB73D640A9733CA3C7E0D /* libPods-trafficPolice.a in Frameworks */,
 			);
@@ -325,6 +435,12 @@
 				C78138AF1EC2E79E00A124B7 /* MainHomeCell.xib */,
 				C72B56C71EC30BD6002523DE /* MainCellButton.h */,
 				C72B56C81EC30BD6002523DE /* MainCellButton.m */,
+				CE5786681ED4229E00B4CC9F /* AccidentAddFootView.h */,
+				CE5786691ED4229E00B4CC9F /* AccidentAddFootView.m */,
+				CE57866A1ED4229E00B4CC9F /* AccidentAddFootView.xib */,
+				CE5786731ED436C200B4CC9F /* AccidentAddHeadView.h */,
+				CE5786741ED436C200B4CC9F /* AccidentAddHeadView.m */,
+				CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -418,6 +534,10 @@
 				CECE29491ECC3F3300075BA2 /* NSString+Range.m */,
 				CE4CFE011ECB57B900E59524 /* NSTimer+UnRetain.h */,
 				CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */,
+				CE57866D1ED42E7B00B4CC9F /* UIButton+Block.h */,
+				CE57866E1ED42E7B00B4CC9F /* UIButton+Block.m */,
+				CE5786781ED441E600B4CC9F /* CALayer+Additions.h */,
+				CE5786791ED441E600B4CC9F /* CALayer+Additions.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -436,6 +556,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE5786081ED4088700B4CC9F /* PhotoBrowser */,
 				CE435F011ECDA73400F85B38 /* SAMKeychain */,
 				CE4CFE041ECB597400E59524 /* LRCountDownButton */,
 				CE3A6C821EC9822A00D7D9D5 /* XBSettingController */,
@@ -544,6 +665,7 @@
 		C7E0DC131EC1AEAE008ED063 /* MainHomeVC */ = {
 			isa = PBXGroup;
 			children = (
+				CE5786601ED40E7A00B4CC9F /* AccidentVC */,
 				C7E0DC171EC1AF18008ED063 /* MainHomeVC.h */,
 				C7E0DC181EC1AF18008ED063 /* MainHomeVC.m */,
 				C7E0DC191EC1AF18008ED063 /* MainHomeVC.xib */,
@@ -583,6 +705,7 @@
 		CA950E019092A6EE264A0A75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE5786661ED41AF500B4CC9F /* Photos.framework */,
 				CE435EFB1ECDA5AA00F85B38 /* Security.framework */,
 				5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */,
 			);
@@ -757,6 +880,82 @@
 			path = AlertView;
 			sourceTree = "<group>";
 		};
+		CE5786081ED4088700B4CC9F /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				CE5786091ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.h */,
+				CE57860A1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m */,
+				CE57860B1ED4088700B4CC9F /* resource */,
+				CE5786201ED4088700B4CC9F /* ToastUtils.h */,
+				CE5786211ED4088700B4CC9F /* ToastUtils.m */,
+				CE5786221ED4088700B4CC9F /* ZLBigImageCell.h */,
+				CE5786231ED4088700B4CC9F /* ZLBigImageCell.m */,
+				CE5786241ED4088700B4CC9F /* ZLCollectionCell.h */,
+				CE5786251ED4088700B4CC9F /* ZLCollectionCell.m */,
+				CE5786261ED4088700B4CC9F /* ZLDefine.h */,
+				CE5786271ED4088700B4CC9F /* ZLNoAuthorityViewController.h */,
+				CE5786281ED4088700B4CC9F /* ZLNoAuthorityViewController.m */,
+				CE5786291ED4088700B4CC9F /* ZLPhotoActionSheet.h */,
+				CE57862A1ED4088700B4CC9F /* ZLPhotoActionSheet.m */,
+				CE57862B1ED4088700B4CC9F /* ZLPhotoBrowser.h */,
+				CE57862C1ED4088700B4CC9F /* ZLPhotoBrowser.m */,
+				CE57862D1ED4088700B4CC9F /* ZLPhotoBrowserCell.h */,
+				CE57862E1ED4088700B4CC9F /* ZLPhotoBrowserCell.m */,
+				CE57862F1ED4088700B4CC9F /* ZLPhotoManager.h */,
+				CE5786301ED4088700B4CC9F /* ZLPhotoManager.m */,
+				CE5786311ED4088700B4CC9F /* ZLPhotoModel.h */,
+				CE5786321ED4088700B4CC9F /* ZLPhotoModel.m */,
+				CE5786331ED4088700B4CC9F /* ZLProgressHUD.h */,
+				CE5786341ED4088700B4CC9F /* ZLProgressHUD.m */,
+				CE5786351ED4088700B4CC9F /* ZLShowBigImgViewController.h */,
+				CE5786361ED4088700B4CC9F /* ZLShowBigImgViewController.m */,
+				CE5786371ED4088700B4CC9F /* ZLShowGifViewController.h */,
+				CE5786381ED4088700B4CC9F /* ZLShowGifViewController.m */,
+				CE5786391ED4088700B4CC9F /* ZLShowVideoViewController.h */,
+				CE57863A1ED4088700B4CC9F /* ZLShowVideoViewController.m */,
+				CE57863B1ED4088700B4CC9F /* ZLThumbnailViewController.h */,
+				CE57863C1ED4088700B4CC9F /* ZLThumbnailViewController.m */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
+		CE57860B1ED4088700B4CC9F /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				CE57860C1ED4088700B4CC9F /* btn_circle@2x.png */,
+				CE57860D1ED4088700B4CC9F /* btn_circle@3x.png */,
+				CE57860E1ED4088700B4CC9F /* btn_original_circle.png */,
+				CE57860F1ED4088700B4CC9F /* btn_original_circle@2x.png */,
+				CE5786101ED4088700B4CC9F /* btn_original_circle@3x.png */,
+				CE5786111ED4088700B4CC9F /* btn_selected.png */,
+				CE5786121ED4088700B4CC9F /* btn_selected@2x.png */,
+				CE5786131ED4088700B4CC9F /* btn_selected@3x.png */,
+				CE5786141ED4088700B4CC9F /* btn_unselected.png */,
+				CE5786151ED4088700B4CC9F /* btn_unselected@2x.png */,
+				CE5786161ED4088700B4CC9F /* btn_unselected@3x.png */,
+				CE5786171ED4088700B4CC9F /* defaultphoto.png */,
+				CE5786181ED4088700B4CC9F /* lock.png */,
+				CE5786191ED4088700B4CC9F /* navBackBtn@2x.png */,
+				CE57861A1ED4088700B4CC9F /* ZLCollectionCell.xib */,
+				CE57861B1ED4088700B4CC9F /* ZLNoAuthorityViewController.xib */,
+				CE57861C1ED4088700B4CC9F /* ZLPhotoActionSheet.xib */,
+				CE57861D1ED4088700B4CC9F /* ZLPhotoBrowser.bundle */,
+				CE57861E1ED4088700B4CC9F /* ZLPhotoBrowserCell.xib */,
+				CE57861F1ED4088700B4CC9F /* ZLThumbnailViewController.xib */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
+		CE5786601ED40E7A00B4CC9F /* AccidentVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE5786611ED40EBA00B4CC9F /* AccidentVC.h */,
+				CE5786621ED40EBA00B4CC9F /* AccidentVC.m */,
+				CE5786631ED40EBA00B4CC9F /* AccidentVC.xib */,
+			);
+			path = AccidentVC;
+			sourceTree = "<group>";
+		};
 		CE6E52D21ED2B59A002C4603 /* ShowHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,24 +1050,47 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE57864C1ED4088700B4CC9F /* ZLCollectionCell.xib in Resources */,
+				CE5786651ED40EBA00B4CC9F /* AccidentVC.xib in Resources */,
+				CE57864F1ED4088700B4CC9F /* ZLPhotoBrowser.bundle in Resources */,
+				CE5786501ED4088700B4CC9F /* ZLPhotoBrowserCell.xib in Resources */,
 				C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */,
 				CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */,
+				CE5786511ED4088700B4CC9F /* ZLThumbnailViewController.xib in Resources */,
+				CE57864E1ED4088700B4CC9F /* ZLPhotoActionSheet.xib in Resources */,
+				CE5786491ED4088700B4CC9F /* defaultphoto.png in Resources */,
 				C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */,
+				CE5786401ED4088700B4CC9F /* btn_original_circle.png in Resources */,
 				CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */,
 				CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */,
 				C7E0DC121EC1AD55008ED063 /* PhoneLoginVC.xib in Resources */,
+				CE57864B1ED4088700B4CC9F /* navBackBtn@2x.png in Resources */,
 				CE3A6C971EC9822A00D7D9D5 /* XBMeHeaderView.xib in Resources */,
 				C7621D181EC43F0C00980058 /* ListBaseVC.xib in Resources */,
 				C79C99491EC5959000258CF1 /* UserReusableView.xib in Resources */,
+				CE5786411ED4088700B4CC9F /* btn_original_circle@2x.png in Resources */,
+				CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */,
 				CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
+				CE57863E1ED4088700B4CC9F /* btn_circle@2x.png in Resources */,
+				CE5786461ED4088700B4CC9F /* btn_unselected.png in Resources */,
+				CE5786431ED4088700B4CC9F /* btn_selected.png in Resources */,
+				CE5786471ED4088700B4CC9F /* btn_unselected@2x.png in Resources */,
 				CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */,
 				CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */,
 				C79C994E1EC595AE00258CF1 /* UserHomeCell.xib in Resources */,
+				CE57864A1ED4088700B4CC9F /* lock.png in Resources */,
+				CE5786441ED4088700B4CC9F /* btn_selected@2x.png in Resources */,
 				C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */,
+				CE5786481ED4088700B4CC9F /* btn_unselected@3x.png in Resources */,
+				CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */,
+				CE57863F1ED4088700B4CC9F /* btn_circle@3x.png in Resources */,
 				C7E0DBF81EC1A1C9008ED063 /* AKTabBarController.bundle in Resources */,
+				CE5786451ED4088700B4CC9F /* btn_selected@3x.png in Resources */,
+				CE57864D1ED4088700B4CC9F /* ZLNoAuthorityViewController.xib in Resources */,
 				C7E0DC1B1EC1AF18008ED063 /* MainHomeVC.xib in Resources */,
 				C78138B11EC2E79E00A124B7 /* MainHomeCell.xib in Resources */,
+				CE57866C1ED4229E00B4CC9F /* AccidentAddFootView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,6 +1152,7 @@
 				C7E0DBF61EC1A1C9008ED063 /* AKTab.m in Sources */,
 				CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */,
 				C7E0DC021EC1A5F8008ED063 /* BaseViewController.m in Sources */,
+				CE57866F1ED42E7B00B4CC9F /* UIButton+Block.m in Sources */,
 				CE8834D11ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m in Sources */,
 				CE3A6C951EC9822A00D7D9D5 /* XBSettingSectionModel.m in Sources */,
 				C7E0DC1F1EC1AF2D008ED063 /* ListHomeVC.m in Sources */,
@@ -945,7 +1168,11 @@
 				CE4C93EF1ECE98E100BE06F0 /* AccidentDetailModel.m in Sources */,
 				CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
+				CE57865F1ED4088700B4CC9F /* ZLThumbnailViewController.m in Sources */,
+				CE57863D1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m in Sources */,
+				CE57865E1ED4088700B4CC9F /* ZLShowVideoViewController.m in Sources */,
 				CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */,
+				CE57865C1ED4088700B4CC9F /* ZLShowBigImgViewController.m in Sources */,
 				CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */,
 				CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
@@ -961,19 +1188,28 @@
 				CE4C93E91ECE7F1B00BE06F0 /* AccidentAPI.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
 				CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */,
+				CE5786581ED4088700B4CC9F /* ZLPhotoBrowserCell.m in Sources */,
 				CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */,
 				CE3A6C961EC9822A00D7D9D5 /* XBMeHeaderView.m in Sources */,
 				C7621D0C1EC413A300980058 /* NSObject+Swizzling.m in Sources */,
+				CE5786561ED4088700B4CC9F /* ZLPhotoActionSheet.m in Sources */,
 				CE542ED41ECC93D900971B23 /* BottomView.m in Sources */,
 				CE39E00D1ECF2B0200F284C1 /* FastAccidentDetailModel.m in Sources */,
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
 				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
 				CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */,
+				CE57865D1ED4088700B4CC9F /* ZLShowGifViewController.m in Sources */,
 				CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */,
+				CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */,
+				CE57866B1ED4229E00B4CC9F /* AccidentAddFootView.m in Sources */,
+				CE57865A1ED4088700B4CC9F /* ZLPhotoModel.m in Sources */,
+				CE5786571ED4088700B4CC9F /* ZLPhotoBrowser.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,
 				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
+				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
+				CE5786591ED4088700B4CC9F /* ZLPhotoManager.m in Sources */,
 				CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */,
 				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,
@@ -983,6 +1219,7 @@
 				CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
 				C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */,
+				CE5786641ED40EBA00B4CC9F /* AccidentVC.m in Sources */,
 				CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */,
 				CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
@@ -990,6 +1227,7 @@
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
 				CE435EFA1ECD996800F85B38 /* LRBaseResponse.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
+				CE5786531ED4088700B4CC9F /* ZLBigImageCell.m in Sources */,
 				CE4C93F21ECEA00300BE06F0 /* AccidentModel.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
@@ -1000,7 +1238,11 @@
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
 				CE8834C81ED1D5BA00666CEE /* IllegalParkDetailModel.m in Sources */,
 				CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */,
+				CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
+				CE5786521ED4088700B4CC9F /* ToastUtils.m in Sources */,
+				CE57865B1ED4088700B4CC9F /* ZLProgressHUD.m in Sources */,
+				CE5786541ED4088700B4CC9F /* ZLCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

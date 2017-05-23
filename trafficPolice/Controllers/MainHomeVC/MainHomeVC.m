@@ -13,6 +13,8 @@
 #import "UserModel.h"
 #import <UIImageView+WebCache.h>
 
+#import "AccidentVC.h"
+
 
 
 @interface MainHomeVC ()<ImagePlayerViewDelegate,MainHomeCellDelegate>
@@ -77,7 +79,6 @@
         NSMutableArray *t_arr_first = [NSMutableArray array];
         NSMutableArray *t_arr_second = [NSMutableArray array];
         NSMutableArray *t_arr_third = [NSMutableArray array];
-        
         
         if ([UserModel getUserModel]) {
             
@@ -202,8 +203,6 @@
     
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MainHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainHomeCellID"];
@@ -252,8 +251,14 @@
     if (cell.str_title) {
         if ([cell.str_title isEqualToString:@"事故快处"]) {
             LxPrintf(@"点击事故快处");
+            AccidentVC *t_vc = [[AccidentVC alloc] init];
+            [self.navigationController pushViewController:t_vc animated:YES];
+            
         }else if ([cell.str_title isEqualToString:@"事故"]) {
             LxPrintf(@"点击事故");
+            AccidentVC *t_vc = [[AccidentVC alloc] init];
+            [self.navigationController pushViewController:t_vc animated:YES];
+            
         }else if ([cell.str_title isEqualToString:@"违停采集"]) {
             LxPrintf(@"点击违停采集");
         }else if ([cell.str_title isEqualToString:@"闯禁令采集"]) {
