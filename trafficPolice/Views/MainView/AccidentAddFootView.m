@@ -40,6 +40,7 @@
     self.btn_moreAccidentInformation.isIgnore = YES;
     self.isShowMoreInfo = YES;
     self.isShowMoreAccidentInfo = YES;
+    
 }
 
 

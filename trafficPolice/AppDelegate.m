@@ -50,21 +50,21 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
-//    if ([ShareValue sharedDefault].token) {
-//        /*********** 切换到首页界面 ************/
-//        [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
-//        
-//        [self initAKTabBarController];
-//        self.window.rootViewController = self.vc_tabBar;
-//        
-//    }else{
-//        self.vc_login = [LoginHomeVC new];
-//        UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:_vc_login];
-//        self.window.rootViewController = t_nav;
-//    }
+    if ([ShareValue sharedDefault].token) {
+        /*********** 切换到首页界面 ************/
+        [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
+        
+        [self initAKTabBarController];
+        self.window.rootViewController = self.vc_tabBar;
+        
+    }else{
+        self.vc_login = [LoginHomeVC new];
+        UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:_vc_login];
+        self.window.rootViewController = t_nav;
+    }
     
-    [self initAKTabBarController];
-    self.window.rootViewController = self.vc_tabBar;
+//    [self initAKTabBarController];
+//    self.window.rootViewController = self.vc_tabBar;
 
     
     [self.window makeKeyAndVisible];

@@ -146,13 +146,10 @@ static NSString *const headId = @"AccidentAddHeadViewID";
         
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
         
-        if (!_footView) {
-            self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
-            [_footView addObserver:self forKeyPath:@"isShowMoreAccidentInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-            [_footView addObserver:self forKeyPath:@"isShowMoreInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-            
-        }
-       
+        self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
+        [_footView addObserver:self forKeyPath:@"isShowMoreAccidentInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+        [_footView addObserver:self forKeyPath:@"isShowMoreInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+        LxDBAnyVar(_footView.test);
         
         return _footView;
         
