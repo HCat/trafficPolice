@@ -34,7 +34,7 @@
     
     LxDBAnyVar([UserModel getUserModel].menus);
     [self initCycleView];
-    [self getImgPlay];
+    //[self getImgPlay];
 
 }
 
@@ -80,33 +80,39 @@
         NSMutableArray *t_arr_second = [NSMutableArray array];
         NSMutableArray *t_arr_third = [NSMutableArray array];
         
-        if ([UserModel getUserModel]) {
-            
-            [[UserModel getUserModel].menus enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                if ([obj isEqualToString:@"FAST_ACCIDENT_ADD"]) {
-                    //拥有快处事故添加权限
-                    [t_arr_first addObject:@{@"image":@"事故快处.png",@"title":@"事故快处"}];
-                    
-                }else if([obj isEqualToString:@"NORMAL_ACCIDENT_ADD"]){
-                    //拥有事故添加权限
-                    [t_arr_first addObject:@{@"image":@"事故.png",@"title":@"事故"}];
-                    
-                }else if([obj isEqualToString:@"ILLEGAL_PARKING"]){
-                    //拥有违停采集权限
-                    [t_arr_second addObject:@{@"image":@"违停采集.png",@"title":@"违停采集"}];
-                    
-                }else if([obj isEqualToString:@"ILLEGAL_THROUGH"]){
-                    //拥有闯禁令采集权限
-                    [t_arr_second addObject:@{@"image":@"闯禁令采集.png",@"title":@"闯禁令采集"}];
-                    
-                }else if([obj isEqualToString:@"VIDEO_COLLECT"]){
-                    //警情采集权限
-                    [t_arr_third addObject:@{@"image":@"视频录入.png",@"title":@"视频录入"}];
-                    
-                }
-            }];
-  
-        }
+        [t_arr_first addObject:@{@"image":@"事故快处.png",@"title":@"事故快处"}];
+        [t_arr_first addObject:@{@"image":@"事故.png",@"title":@"事故"}];
+        [t_arr_second addObject:@{@"image":@"违停采集.png",@"title":@"违停采集"}];
+        [t_arr_second addObject:@{@"image":@"闯禁令采集.png",@"title":@"闯禁令采集"}];
+        [t_arr_third addObject:@{@"image":@"视频录入.png",@"title":@"视频录入"}];
+        
+//        if ([UserModel getUserModel]) {
+//            
+//            [[UserModel getUserModel].menus enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                if ([obj isEqualToString:@"FAST_ACCIDENT_ADD"]) {
+//                    //拥有快处事故添加权限
+//                    [t_arr_first addObject:@{@"image":@"事故快处.png",@"title":@"事故快处"}];
+//                    
+//                }else if([obj isEqualToString:@"NORMAL_ACCIDENT_ADD"]){
+//                    //拥有事故添加权限
+//                    [t_arr_first addObject:@{@"image":@"事故.png",@"title":@"事故"}];
+//                    
+//                }else if([obj isEqualToString:@"ILLEGAL_PARKING"]){
+//                    //拥有违停采集权限
+//                    [t_arr_second addObject:@{@"image":@"违停采集.png",@"title":@"违停采集"}];
+//                    
+//                }else if([obj isEqualToString:@"ILLEGAL_THROUGH"]){
+//                    //拥有闯禁令采集权限
+//                    [t_arr_second addObject:@{@"image":@"闯禁令采集.png",@"title":@"闯禁令采集"}];
+//                    
+//                }else if([obj isEqualToString:@"VIDEO_COLLECT"]){
+//                    //警情采集权限
+//                    [t_arr_third addObject:@{@"image":@"视频录入.png",@"title":@"视频录入"}];
+//                    
+//                }
+//            }];
+//  
+//        }
         
         self.arr_data = [NSMutableArray array];
         

@@ -214,7 +214,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 
 //footer底部大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    return (CGSize){ScreenWidth,993};
+    return (CGSize){ScreenWidth,1214};
 }
 
 #pragma mark -

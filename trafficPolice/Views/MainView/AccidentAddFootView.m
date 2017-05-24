@@ -7,6 +7,15 @@
 //
 
 #import "AccidentAddFootView.h"
+#import "YUSegment.h"
+
+@interface AccidentAddFootView()
+
+@property (weak, nonatomic) IBOutlet YUSegmentedControl *segmentedControl;
+
+
+
+@end
 
 @implementation AccidentAddFootView
 

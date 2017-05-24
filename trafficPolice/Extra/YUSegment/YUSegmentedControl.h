@@ -57,6 +57,15 @@ NS_ASSUME_NONNULL_BEGIN
                 selectedImages:(nullable NSArray <UIImage *> *)selectedImages;
 
 /**
+ Initializes and returns a segmented control with segments having the given images.
+ 
+ @param titles An array of `UIImage` objects. The value must not be nil or empty array. Shows for normal state.
+ 
+ */
+
+- (void)setUpWithTitles:(NSArray <NSString *> *)titles;
+
+/**
  Returns the title for a specific segment.
  
  @param index An index number identifying a segment in the control. It must be a number between 0 and the number of segments (numberOfSegments) minus 1.

@@ -76,6 +76,19 @@ static const CGFloat        kIndicatorDefaultHeight = 3.0;
     return self;
 }
 
+- (void)setUpWithTitles:(NSArray <NSString *> *)titles {
+    
+    [self copyTitles:titles];
+    _contentType = YUSegmentedControlContentTypeText;
+    _attributesNormal = @{NSFontAttributeName: [UIFont systemFontOfSize:20.0 weight:UIFontWeightLight],
+                          NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+    _attributesSelected = @{NSFontAttributeName: [UIFont systemFontOfSize:20.0 weight:UIFontWeightLight],
+                            NSForegroundColorAttributeName: [UIColor blackColor]};
+    
+    [self commonInit];
+    
+}
+
 - (void)commonInit {
     
     self.backgroundColor = [UIColor whiteColor];
@@ -151,11 +164,18 @@ static const CGFloat        kIndicatorDefaultHeight = 3.0;
     
     // update UI
     if (_contentType == YUSegmentedControlContentTypeText) {
+        
+        for (Item *item in _items) {
+            NSInteger index = [_items indexOfObject:item];
+            UILabel *deselectedLabel = (UILabel *)(item.view);
+            deselectedLabel.attributedText = [[NSAttributedString alloc] initWithString:_contents[index] attributes:_attributesNormal];
+        }
+        
         UILabel *selectedLabel = (UILabel *)(_items[newIndex].view);
         selectedLabel.attributedText = [[NSAttributedString alloc] initWithString:_contents[newIndex] attributes:_attributesSelected];
         
-        UILabel *deselectedLabel = (UILabel *)(_items[oldIndex].view);
-        deselectedLabel.attributedText = [[NSAttributedString alloc] initWithString:_contents[oldIndex] attributes:_attributesNormal];
+//        UILabel *deselectedLabel = (UILabel *)(_items[oldIndex].view);
+//        deselectedLabel.attributedText = [[NSAttributedString alloc] initWithString:_contents[oldIndex] attributes:_attributesNormal];
     }
     else {
         if (_selectedImages) {
@@ -186,7 +206,7 @@ static const CGFloat        kIndicatorDefaultHeight = 3.0;
     
     // indicator animate
     CGRect frame = _indicator.frame;
-    frame.origin.x += CGRectGetWidth(_indicator.bounds) * (toIndex - fromIndex);
+    frame.origin.x += CGRectGetWidth(_indicator.bounds) * toIndex;
     
     [UIView animateWithDuration:kAnimationDuration
                           delay:0.0

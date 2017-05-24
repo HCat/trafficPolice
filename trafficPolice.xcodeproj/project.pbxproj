@@ -128,6 +128,8 @@
 		CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786741ED436C200B4CC9F /* AccidentAddHeadView.m */; };
 		CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */; };
 		CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786791ED441E600B4CC9F /* CALayer+Additions.m */; };
+		CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */; };
+		CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */; };
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
 		CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E52D41ED2B59A002C4603 /* ShowHUD.m */; };
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
@@ -361,6 +363,11 @@
 		CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentAddHeadView.xib; sourceTree = "<group>"; };
 		CE5786781ED441E600B4CC9F /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		CE5786791ED441E600B4CC9F /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		CE6314D11ED4FCCA00A885A7 /* YUSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegment.h; sourceTree = "<group>"; };
+		CE6314D21ED4FCCA00A885A7 /* YUSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegmentedControl.h; sourceTree = "<group>"; };
+		CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUSegmentedControl.m; sourceTree = "<group>"; };
+		CE6314D41ED4FCCA00A885A7 /* YUSegmentedControlItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegmentedControlItem.h; sourceTree = "<group>"; };
+		CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUSegmentedControlItem.m; sourceTree = "<group>"; };
 		CE67EFCC1ED2C868000CB8F4 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		CE67EFCF1ED2E324000CB8F4 /* UserDefaultMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultMacro.h; sourceTree = "<group>"; };
@@ -556,6 +563,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE6314D01ED4FCBE00A885A7 /* YUSegment */,
 				CE5786081ED4088700B4CC9F /* PhotoBrowser */,
 				CE435F011ECDA73400F85B38 /* SAMKeychain */,
 				CE4CFE041ECB597400E59524 /* LRCountDownButton */,
@@ -956,6 +964,18 @@
 			path = AccidentVC;
 			sourceTree = "<group>";
 		};
+		CE6314D01ED4FCBE00A885A7 /* YUSegment */ = {
+			isa = PBXGroup;
+			children = (
+				CE6314D11ED4FCCA00A885A7 /* YUSegment.h */,
+				CE6314D21ED4FCCA00A885A7 /* YUSegmentedControl.h */,
+				CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */,
+				CE6314D41ED4FCCA00A885A7 /* YUSegmentedControlItem.h */,
+				CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */,
+			);
+			path = YUSegment;
+			sourceTree = "<group>";
+		};
 		CE6E52D21ED2B59A002C4603 /* ShowHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1162,6 +1182,7 @@
 				CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */,
 				CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */,
 				CE3A6CA31EC9A87400D7D9D5 /* HideTabSuperVC.m in Sources */,
+				CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */,
 				CE43C15D1ECDE84700309507 /* YTKUrlArgumentsFilter.m in Sources */,
 				CE4C93EC1ECE986F00BE06F0 /* AccidentListModel.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
@@ -1185,6 +1206,7 @@
 				CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */,
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.m in Sources */,
+				CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */,
 				CE4C93E91ECE7F1B00BE06F0 /* AccidentAPI.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
 				CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */,
