@@ -206,7 +206,7 @@ static const CGFloat        kIndicatorDefaultHeight = 3.0;
     
     // indicator animate
     CGRect frame = _indicator.frame;
-    frame.origin.x += CGRectGetWidth(_indicator.bounds) * toIndex;
+    frame.origin.x = CGRectGetWidth(_indicator.bounds) * toIndex;
     
     [UIView animateWithDuration:kAnimationDuration
                           delay:0.0
@@ -300,7 +300,7 @@ static const CGFloat        kIndicatorDefaultHeight = 3.0;
     }
 }
 
-- (void)setTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state {
+- (void)setTextAttributes:(NSDictionary *)attributes forState:(YUSegmentedControlState)state {
     if (state == UIControlStateNormal) {
         self.attributesNormal = attributes;
     } else {

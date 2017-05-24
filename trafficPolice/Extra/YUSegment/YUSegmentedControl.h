@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param attributes The text attributes of the title.
  @param state A control state.
  */
-- (void)setTextAttributes:(nullable NSDictionary *)attributes forState:(UIControlState)state;
+- (void)setTextAttributes:(nullable NSDictionary *)attributes forState:(YUSegmentedControlState)state;
 
 ///------------------------
 /// @name Managing Segments

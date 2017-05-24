@@ -10,4 +10,8 @@
 
 @interface AccidentAddFootView : UICollectionReusableView
 
+@property (nonatomic,assign) BOOL isShowMoreAccidentInfo;
+@property (nonatomic,assign) BOOL isShowMoreInfo;
+
+
 @end

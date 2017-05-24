@@ -7,6 +7,7 @@
 //
 
 #import "AccidentVC.h"
+#import "AccidentAddFootView.h"
 #import "ZLPhotoActionSheet.h"
 #import "ZLCollectionCell.h"
 #import "ZLPhotoModel.h"
@@ -17,6 +18,8 @@
 @property (nonatomic,strong)  NSArray *arr_photos;
 @property (nonatomic, strong) NSMutableArray<UIImage *> *lastSelectPhotos;
 @property (nonatomic, strong) NSMutableArray<PHAsset *> *lastSelectAssets;
+@property (nonatomic, strong) AccidentAddFootView *footView;
+@property (nonatomic,assign) BOOL isFirstLoad; //判断collectionView是不是第一次load
 
 @end
 
@@ -32,8 +35,13 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     
     [_collectionView registerNib:[UINib nibWithNibName:@"ZLCollectionCell" bundle:nil] forCellWithReuseIdentifier:cellId];
     [_collectionView registerNib:[UINib nibWithNibName:@"AccidentAddFootView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footId];
-     [_collectionView registerNib:[UINib nibWithNibName:@"AccidentAddHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headId];
+    [_collectionView registerNib:[UINib nibWithNibName:@"AccidentAddHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headId];
+    self.isFirstLoad = YES;
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - initActionSheet
@@ -138,13 +146,15 @@ static NSString *const headId = @"AccidentAddHeadViewID";
         
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
         
-        UICollectionReusableView *footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
-        if(footView == nil)
-        {
-            footView = [[UICollectionReusableView alloc] init];
+        if (!_footView) {
+            self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
+            [_footView addObserver:self forKeyPath:@"isShowMoreAccidentInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+            [_footView addObserver:self forKeyPath:@"isShowMoreInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+            
         }
-
-        return footView;
+       
+        
+        return _footView;
         
     }
     
@@ -214,7 +224,37 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 
 //footer底部大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    return (CGSize){ScreenWidth,1214};
+    if (self.footView.isShowMoreAccidentInfo && self.footView.isShowMoreInfo) {
+        return (CGSize){ScreenWidth,1214-88-124};
+    }else{
+        if (self.footView.isShowMoreAccidentInfo) {
+            return (CGSize){ScreenWidth,1214-88};
+        }else if(self.footView.isShowMoreInfo){
+            return (CGSize){ScreenWidth,1214-124};
+        }
+    
+    }
+    if (self.isFirstLoad) {
+        self.isFirstLoad = NO;
+        return (CGSize){ScreenWidth,1214-88-124};
+    }else{
+        return (CGSize){ScreenWidth,1214};
+    }
+    
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    
+    if ([keyPath isEqualToString:@"isShowMoreAccidentInfo"] && object == self.footView) {
+        [self.collectionView reloadData];
+    }
+    
+    if ([keyPath isEqualToString:@"isShowMoreInfo"] && object == self.footView) {
+        [self.collectionView reloadData];
+    }
+
 }
 
 #pragma mark -
@@ -225,7 +265,14 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 }
 
 - (void)dealloc{
-
+    
+    @try {
+        [_footView removeObserver:self forKeyPath:@"isShowMoreAccidentInfo"];
+        [_footView removeObserver:self forKeyPath:@"isShowMoreInfo"];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"多次删除了");
+    }
 
 }
 

@@ -362,7 +362,7 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dg-Vg-Oef" customClass="YUSegmentedControl">
                     <rect key="frame" x="0.0" y="404" width="320" height="40"/>
-                    <color key="backgroundColor" red="1" green="0.41400614870000002" blue="0.36157253309999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="jSs-4X-6lT"/>
                     </constraints>
@@ -759,6 +759,9 @@
                     <state key="normal" title="更多信息">
                         <color key="titleColor" red="1" green="0.5450980392" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="handleBtnAccidentInformation:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ENR-Jo-pLx"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qH-os-jSe">
                     <rect key="frame" x="258" y="858" width="50" height="27"/>
@@ -766,6 +769,9 @@
                     <state key="normal" title="更多信息">
                         <color key="titleColor" red="1" green="0.5450980392" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="handleBtnInformationClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Vtv-bg-T49"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否暂扣车辆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZN-OK-YUv">
                     <rect key="frame" x="13" y="892" width="86" height="17"/>
@@ -855,6 +861,7 @@
                 <constraint firstItem="Noh-aL-PhX" firstAttribute="leading" secondItem="t2R-V9-2Vf" secondAttribute="leading" id="50m-Et-jD2"/>
                 <constraint firstItem="0Sa-yQ-NW3" firstAttribute="leading" secondItem="aTd-g4-gZY" secondAttribute="leading" id="5VB-he-NGo"/>
                 <constraint firstItem="ptL-Qg-0cD" firstAttribute="leading" secondItem="LXM-x3-Ga8" secondAttribute="leading" id="5fB-Gv-GUT"/>
+                <constraint firstItem="mpb-KR-HXo" firstAttribute="top" secondItem="zLp-Yg-giU" secondAttribute="bottom" constant="158" id="6Xu-7D-pmM"/>
                 <constraint firstItem="eZN-OK-YUv" firstAttribute="top" secondItem="zLp-Yg-giU" secondAttribute="bottom" constant="34" id="7Fp-2J-fMk"/>
                 <constraint firstItem="tIW-dc-jge" firstAttribute="leading" secondItem="Awm-om-15f" secondAttribute="leading" id="A7N-ct-lrV"/>
                 <constraint firstItem="vpZ-t7-bOL" firstAttribute="top" secondItem="6dg-Vg-Oef" secondAttribute="bottom" constant="21" id="AEN-Pw-JAf"/>
@@ -917,7 +924,6 @@
                 <constraint firstItem="HbR-jQ-OmF" firstAttribute="leading" secondItem="KrA-EX-jYH" secondAttribute="leading" id="WbD-K3-Zoh"/>
                 <constraint firstItem="ihx-Ri-UW0" firstAttribute="centerY" secondItem="vpZ-t7-bOL" secondAttribute="centerY" id="XjN-7g-E6C"/>
                 <constraint firstItem="I7t-5r-TV7" firstAttribute="centerY" secondItem="y8u-4H-0dK" secondAttribute="centerY" id="YJr-pK-zUZ"/>
-                <constraint firstItem="mpb-KR-HXo" firstAttribute="top" secondItem="Etd-72-s0e" secondAttribute="bottom" constant="14" id="ZkC-WO-TcQ"/>
                 <constraint firstItem="I7t-5r-TV7" firstAttribute="top" secondItem="M9d-iH-SPp" secondAttribute="bottom" constant="14" id="a7B-yc-k3X"/>
                 <constraint firstItem="7fN-L0-XOT" firstAttribute="leading" secondItem="Ek5-Dg-XBn" secondAttribute="leading" id="ac0-Fz-e71"/>
                 <constraint firstItem="i4A-2k-F5C" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="aiC-TZ-2Xg"/>
@@ -985,7 +991,23 @@
                 <constraint firstItem="BgO-Mv-r9C" firstAttribute="top" secondItem="LRL-Rw-w14" secondAttribute="bottom" constant="14" id="ylJ-46-B5M"/>
             </constraints>
             <connections>
+                <outlet property="btn_information" destination="9qH-os-jSe" id="Cbf-Sm-Osi"/>
+                <outlet property="btn_moreAccidentInformation" destination="YWR-nQ-QZD" id="oqP-Xs-Tjf"/>
+                <outlet property="layout_accidentInfo" destination="H77-fd-j63" id="3kc-Vg-Fo6"/>
+                <outlet property="layout_moreinfo" destination="6Xu-7D-pmM" id="f6r-49-CNA"/>
                 <outlet property="segmentedControl" destination="6dg-Vg-Oef" id="AK6-j0-cU3"/>
+                <outletCollection property="btn_moreInfo" destination="aTd-g4-gZY" id="Iog-eJ-pRB"/>
+                <outletCollection property="lb_moreInfo" destination="JlF-Hz-DuQ" id="Y6v-sy-fi0"/>
+                <outletCollection property="lb_moreInfo" destination="eZN-OK-YUv" id="Ftc-td-qfG"/>
+                <outletCollection property="lb_moreInfo" destination="HHm-7K-8eO" id="vhO-3B-GRZ"/>
+                <outletCollection property="lb_moreInfo" destination="Etd-72-s0e" id="VSv-81-YkW"/>
+                <outletCollection property="btn_moreInfo" destination="0Sa-yQ-NW3" id="q9g-HY-v5E"/>
+                <outletCollection property="btn_moreInfo" destination="9uV-Ei-TMB" id="wt8-VG-bb9"/>
+                <outletCollection property="btn_moreInfo" destination="esv-Qi-xWU" id="dqs-0a-H5f"/>
+                <outletCollection property="lb_moreAccidentInfos" destination="pLe-wI-eFp" id="e89-uM-gEA"/>
+                <outletCollection property="lb_moreAccidentInfos" destination="lKw-je-xyE" id="iBv-KT-0ti"/>
+                <outletCollection property="v_moreAccidentInfos" destination="QTl-pv-Ghc" id="5wj-cA-ksa"/>
+                <outletCollection property="v_moreAccidentInfos" destination="oq4-EW-9C9" id="VNg-xh-QG5"/>
             </connections>
             <point key="canvasLocation" x="25" y="249"/>
         </collectionReusableView>
