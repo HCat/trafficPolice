@@ -69,23 +69,33 @@
 
 #pragma mark UIPickerView Delegate Method 代理方法
 
-//指定每行如何展示数据（此处和tableview类似）
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    NSString * title = nil;
+    //设置分割线的颜色
+    for(UIView *singleLine in pickerView.subviews)
+    {
+        if (singleLine.frame.size.height < 1)
+        {
+            singleLine.backgroundColor = UIColorFromRGB(0x4281E8);
+        }
+    }
+    
+    //设置文字的属性
+    UILabel *genderLabel = [UILabel new];
+    genderLabel.textAlignment = NSTextAlignmentCenter;
+   
     switch (component) {
         case 0:{
             if (self.items && self.items.count > 0) {
                 NSObject *obj = self.items[row];
                 if ([obj isMemberOfClass:[AccidentGetCodesModel class]]) {
                     AccidentGetCodesModel *t_model =( AccidentGetCodesModel *)obj;
-                    title = t_model.modelName;
+                    genderLabel.text = t_model.modelName;
                 }else{
-                    title = self.items[row];
+                    genderLabel.text = self.items[row];
                     
                 }
             }
-            
             
             break;
         }
@@ -93,7 +103,16 @@
             break;
     }
     
-    return title;
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[NSForegroundColorAttributeName] = UIColorFromRGB(0x444444);
+    dic[NSFontAttributeName] = [UIFont systemFontOfSize:17];
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:genderLabel.text];
+    NSRange range = [genderLabel.text rangeOfString:genderLabel.text];
+    [attributedString addAttributes:dic range:range];
+    genderLabel.attributedText = attributedString;
+    
+    return genderLabel;
 }
 
 

@@ -117,7 +117,7 @@
     }
     
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%d",self.responseStatusCode] duration:1.2f inView:window config:nil];
+    [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%ld",self.responseStatusCode] duration:1.2f inView:window config:nil];
     
 }
 

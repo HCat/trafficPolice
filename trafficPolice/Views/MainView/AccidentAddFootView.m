@@ -11,8 +11,9 @@
 #import "UIButton+NoRepeatClick.h"
 #import "BottomView.h"
 #import "BottomPickerView.h"
+#import "FSTextView.h"
 
-@interface AccidentAddFootView()
+@interface AccidentAddFootView()<UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet YUSegmentedControl *segmentedControl;
 
@@ -27,26 +28,35 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *lb_moreInfos;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btn_moreInfos;
 
+//事故信息里面用到的textField
+@property (weak, nonatomic) IBOutlet UITextField *tf_accidentCauses;    //事故成因
+@property (weak, nonatomic) IBOutlet UITextField *tf_accidentTime;      //事故时间(必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_location;          //所在位置(必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_accidentAddress;   //事故地址(必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_weather;           //天气情况
+@property (weak, nonatomic) IBOutlet UITextField *tf_injuriesNumber;    //受伤人数
+@property (weak, nonatomic) IBOutlet UITextField *tf_roadType;          //道路类型
+
 
 
 //当事人信息里面用到的textField
-@property (weak, nonatomic) IBOutlet UITextField *tf_name;
-@property (weak, nonatomic) IBOutlet UITextField *tf_identityCard;
-@property (weak, nonatomic) IBOutlet UITextField *tf_carType;
-@property (weak, nonatomic) IBOutlet UITextField *tf_carNumber;
-@property (weak, nonatomic) IBOutlet UITextField *tf_phone;
-@property (weak, nonatomic) IBOutlet UITextField *tf_drivingState;
-@property (weak, nonatomic) IBOutlet UITextField *tf_illegalBehavior;
-@property (weak, nonatomic) IBOutlet UITextField *tf_insuranceCompany;
-@property (weak, nonatomic) IBOutlet UITextField *tf_responsibility;
+@property (weak, nonatomic) IBOutlet UITextField *tf_name;              //姓名(甲方必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_identityCard;      //身份证号(甲方必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_carType;           //汽车类型(甲方必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_carNumber;         //车牌号码(甲方必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_phone;             //电话号码(甲方必填)
+@property (weak, nonatomic) IBOutlet UITextField *tf_drivingState;      //行驶状态
+@property (weak, nonatomic) IBOutlet UITextField *tf_illegalBehavior;   //违法行为
+@property (weak, nonatomic) IBOutlet UITextField *tf_insuranceCompany;  //保险公司
+@property (weak, nonatomic) IBOutlet UITextField *tf_responsibility;    //责任
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_temporaryCar;
 @property (weak, nonatomic) IBOutlet UIButton *btn_temporaryDrivelib;
 @property (weak, nonatomic) IBOutlet UIButton *btn_temporarylib;
 @property (weak, nonatomic) IBOutlet UIButton *btn_temporaryIdentityCard;
 
-@property (weak, nonatomic) IBOutlet UITextView *tv_describe;
-
+@property (weak, nonatomic) IBOutlet FSTextView *tv_describe;
+@property (weak, nonatomic) IBOutlet UILabel *lb_textCount;
 
 
 @end
@@ -66,17 +76,52 @@
 
 - (void)setUp{
     
+    //设置btn可以连续点击，这里这样写是因为有method+swizzing的分类中定义了不可重复点击btn,设置isIgnore忽略点击
+    //详情请查看UIButton+NoRepeatClick
+    
     self.btn_moreInfo.isIgnore = YES;
     self.btn_moreAccidentInfo.isIgnore = YES;
-
+    
+    //设置更多设置下划线，直接设置不想用别人的子类，可以说我懒，觉得没有必要
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"更多信息"];
     NSRange strRange = {0,[str length]};
     [str addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xFF8B33) range:strRange];  //设置颜色
     [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
     [self.btn_moreAccidentInfo setAttributedTitle:str forState:UIControlStateNormal];
     [self.btn_moreInfo setAttributedTitle:str forState:UIControlStateNormal];
-
+    
+    //配置SegmentedControl分段
     [self setUpSegmentedControl];
+    
+    //事故信息里面用到的textField
+    [self addChangeForEventEditingChanged:self.tf_accidentTime];
+    [self addChangeForEventEditingChanged:self.tf_accidentAddress];
+    [self addChangeForEventEditingChanged:self.tf_weather];
+    
+    //当事人信息里面用到的textField
+    [self addChangeForEventEditingChanged:self.tf_name];
+    [self addChangeForEventEditingChanged:self.tf_identityCard];
+    [self addChangeForEventEditingChanged:self.tf_carNumber];
+    [self addChangeForEventEditingChanged:self.tf_phone];
+    
+    [self.tv_describe setDelegate:(id<UITextViewDelegate> _Nullable)self];
+    self.tv_describe.placeholder = @"请输入简述";
+    // 限制输入最大字符数.
+    self.tv_describe.maxLength = 150;
+    // 添加输入改变Block回调.
+    WS(weakSelf);
+    
+    [self.tv_describe addTextDidChangeHandler:^(FSTextView *textView) {
+        // 文本改变后的相应操作.
+        weakSelf.lb_textCount.text =
+        [NSString stringWithFormat:@"%ld/%ld",textView.text.length,textView.maxLength];
+        
+    }];
+    // 添加到达最大限制Block回调.
+    [self.tv_describe addTextLengthDidMaxHandler:^(FSTextView *textView) {
+        // 达到最大限制数后的相应操作.
+    }];
+    
 }
 
 
@@ -176,7 +221,17 @@
 /*************** 事故成因按钮点击 ***************/
 
 - (IBAction)handleBtnAccidentCausesClicked:(id)sender {
+    WS(weakSelf);
     
+    [self showBottomPickViewWithTitle:@"事故成因" items:[ShareValue sharedDefault].accidentCodes.behaviour block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+        
+        SW(strongSelf, weakSelf);
+        strongSelf.tf_accidentCauses.text = title;
+        strongSelf.param.causesType  = itemId;
+        
+        [BottomView dismissWindow];
+        
+    }];
     
 }
 
@@ -190,7 +245,23 @@
 /*************** 受伤人数按钮点击 ***************/
 
 - (IBAction)handleBtnInjuryNumberClicked:(id)sender {
+    WS(weakSelf);
     
+    NSArray *items = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
+    BottomPickerView *t_view = [BottomPickerView initCustomView];
+    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 207)];
+    t_view.pickerTitle = @"受伤人数";
+    t_view.items = items;
+    t_view.selectedBtnBlock = ^(NSArray *items, NSInteger index) {
+        SW(strongSelf, weakSelf);
+        NSString * number = items[index];
+        strongSelf.tf_injuriesNumber.text = number;
+        strongSelf.param.injuredNum  = number;
+        
+        [BottomView dismissWindow];
+    };
+    
+    [BottomView showWindowWithBottomView:t_view];
     
 }
 
@@ -198,31 +269,41 @@
 
 - (IBAction)handleBtnRoadTypeClicked:(id)sender {
     
+    WS(weakSelf);
+    
+    [self showBottomPickViewWithTitle:@"道路类型" items:[ShareValue sharedDefault].accidentCodes.roadType block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+        
+        SW(strongSelf, weakSelf);
+        strongSelf.tf_roadType.text = title;
+        strongSelf.param.roadType  = itemId;
+    
+        [BottomView dismissWindow];
+        
+    }];
+    
     
 }
 
 /*************** 车辆类型按钮点击 ***************/
 
 - (IBAction)handleBtnCarTypeClicked:(id)sender {
-    BottomPickerView *t_view = [BottomPickerView initCustomView];
-    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 207)];
-    t_view.pickerTitle = @"车辆类型";
     
     WS(weakSelf);
-    t_view.items = [ShareValue sharedDefault].accidentCodes.vehicle;
-    t_view.selectedAccidentBtnBlock = ^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    
+    [self showBottomPickViewWithTitle:@"车辆类型" items:[ShareValue sharedDefault].accidentCodes.vehicle block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+        
         SW(strongSelf, weakSelf);
         strongSelf.tf_carType.text = title;
         NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
         switch (selectedIndex) {
             case 0:
-                strongSelf.param.ptaVehicleId = itemId;
+                strongSelf.param.ptaVehicleId  = itemId;
                 break;
             case 1:
-                strongSelf.param.ptbVehicleId = itemId;
+                strongSelf.param.ptbVehicleId  = itemId;
                 break;
             case 2:
-                strongSelf.param.ptbVehicleId = itemId;
+                strongSelf.param.ptbVehicleId  = itemId;
                 break;
                 
             default:
@@ -231,9 +312,39 @@
         
         
         [BottomView dismissWindow];
-    };
+
+    }];
     
-    [BottomView showWindowWithBottomView:t_view];
+//    BottomPickerView *t_view = [BottomPickerView initCustomView];
+//    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 207)];
+//    t_view.pickerTitle = @"车辆类型";
+//    
+//    WS(weakSelf);
+//    t_view.items = [ShareValue sharedDefault].accidentCodes.vehicle;
+//    t_view.selectedAccidentBtnBlock = ^(NSString *title, NSInteger itemId, NSInteger itemType) {
+//        SW(strongSelf, weakSelf);
+//        strongSelf.tf_carType.text = title;
+//        NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
+//        switch (selectedIndex) {
+//            case 0:
+//                strongSelf.param.ptaVehicleId = itemId;
+//                break;
+//            case 1:
+//                strongSelf.param.ptbVehicleId = itemId;
+//                break;
+//            case 2:
+//                strongSelf.param.ptbVehicleId = itemId;
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//        
+//        
+//        [BottomView dismissWindow];
+//    };
+//    
+//    [BottomView showWindowWithBottomView:t_view];
 
 }
 
@@ -241,28 +352,129 @@
 
 - (IBAction)handleBtnTrafficStateClicked:(id)sender {
     
+    WS(weakSelf);
     
+    [self showBottomPickViewWithTitle:@"行驶状态" items:[ShareValue sharedDefault].accidentCodes.driverDirect block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+        
+        SW(strongSelf, weakSelf);
+        strongSelf.tf_drivingState.text = title;
+        NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                strongSelf.param.ptaDirect  = itemId;
+                break;
+            case 1:
+                strongSelf.param.ptbDirect  = itemId;
+                break;
+            case 2:
+                strongSelf.param.ptcDirect  = itemId;
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        [BottomView dismissWindow];
+        
+    }];
+
 }
 
 /*************** 违法行为按钮点击 ***************/
 
 - (IBAction)handleBtnIllegalBehaviorClicked:(id)sender {
+    WS(weakSelf);
     
+    [self showBottomPickViewWithTitle:@"违法行为" items:[ShareValue sharedDefault].accidentCodes.behaviour block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+        
+        SW(strongSelf, weakSelf);
+        strongSelf.tf_illegalBehavior.text = title;
+        NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                strongSelf.param.ptaBehaviourId  = itemId;
+                break;
+            case 1:
+                strongSelf.param.ptbBehaviourId  = itemId;
+                break;
+            case 2:
+                strongSelf.param.ptcBehaviourId  = itemId;
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        [BottomView dismissWindow];
+        
+    }];
     
 }
 
 /*************** 保险公司按钮点击 ***************/
 
 - (IBAction)handleBtnInsuranceCompanyClicked:(id)sender {
+    WS(weakSelf);
     
-    
+    [self showBottomPickViewWithTitle:@"保险公司" items:[ShareValue sharedDefault].accidentCodes.insuranceCompany block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+        
+        SW(strongSelf, weakSelf);
+        strongSelf.tf_insuranceCompany.text = title;
+        NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                strongSelf.param.ptaInsuranceCompanyId  = itemId;
+                break;
+            case 1:
+                strongSelf.param.ptbInsuranceCompanyId  = itemId;
+                break;
+            case 2:
+                strongSelf.param.ptcInsuranceCompanyId  = itemId;
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        [BottomView dismissWindow];
+        
+    }];
 }
 
 
 /*************** 责任按钮点击 ***************/
 
 - (IBAction)handleBtnResponsibilityClicked:(id)sender {
+    WS(weakSelf);
     
+    [self showBottomPickViewWithTitle:@"事故责任" items:[ShareValue sharedDefault].accidentCodes.responsibility block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+        
+        SW(strongSelf, weakSelf);
+        strongSelf.tf_responsibility.text = title;
+        NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                strongSelf.param.ptaResponsibilityId  = itemId;
+                break;
+            case 1:
+                strongSelf.param.ptbResponsibilityId  = itemId;
+                break;
+            case 2:
+                strongSelf.param.ptcResponsibilityId  = itemId;
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        [BottomView dismissWindow];
+        
+    }];
+
     
 }
 
@@ -270,7 +482,21 @@
 - (IBAction)handleBtnTemporaryCarClicked:(id)sender {
     _btn_temporaryCar.selected = !_btn_temporaryCar.selected;
     
-    
+    NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    switch (selectedIndex) {
+        case 0:
+            self.param.ptaIsZkCl  = _btn_temporaryCar.selected;
+            break;
+        case 1:
+            self.param.ptbIsZkCl  = _btn_temporaryCar.selected;
+            break;
+        case 2:
+            self.param.ptcIsZkCl  = _btn_temporaryCar.selected;
+            break;
+            
+        default:
+            break;
+    }
     
 }
 
@@ -280,7 +506,21 @@
 - (IBAction)handleBtnTemporaryDrivingLicenseClicked:(id)sender {
     _btn_temporaryDrivelib.selected = !_btn_temporaryDrivelib.selected;
     
-    
+    NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    switch (selectedIndex) {
+        case 0:
+            self.param.ptaIsZkXsz  = _btn_temporaryDrivelib.selected;
+            break;
+        case 1:
+            self.param.ptbIsZkXsz  = _btn_temporaryDrivelib.selected;
+            break;
+        case 2:
+            self.param.ptcIsZkXsz  = _btn_temporaryDrivelib.selected;
+            break;
+            
+        default:
+            break;
+    }
     
 }
 
@@ -289,7 +529,21 @@
 - (IBAction)handleBtnTemporaryLicenseClicked:(id)sender {
     _btn_temporarylib.selected = !_btn_temporarylib.selected;
     
-    
+    NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    switch (selectedIndex) {
+        case 0:
+            self.param.ptaIsZkJsz  = _btn_temporarylib.selected;
+            break;
+        case 1:
+            self.param.ptbIsZkJsz  = _btn_temporarylib.selected;
+            break;
+        case 2:
+            self.param.ptcIsZkJsz  = _btn_temporarylib.selected;
+            break;
+            
+        default:
+            break;
+    }
     
 }
 
@@ -298,7 +552,42 @@
 - (IBAction)handleBtnIdentityCardClicked:(id)sender {
     _btn_temporaryIdentityCard.selected = !_btn_temporaryIdentityCard.selected;
     
+    NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    switch (selectedIndex) {
+        case 0:
+            self.param.ptaIsZkSfz  = _btn_temporaryIdentityCard.selected;
+            break;
+        case 1:
+            self.param.ptbIsZkSfz  = _btn_temporaryIdentityCard.selected;
+            break;
+        case 2:
+            self.param.ptcIsZkSfz  = _btn_temporaryIdentityCard.selected;
+            break;
+            
+        default:
+            break;
+    }
+
     
+}
+
+#pragma mark - 添加监听Textfield的变化，用于给参数实时赋值
+
+- (void)addChangeForEventEditingChanged:(UITextField *)textField{
+    [textField addTarget:self action:@selector(passConTextChange:) forControlEvents:UIControlEventEditingChanged];
+}
+
+#pragma mark - showBottomPickView
+
+- (void)showBottomPickViewWithTitle:(NSString *)title items:(NSArray *)items block:(void(^)(NSString *title, NSInteger itemId, NSInteger itemType))block{
+
+    BottomPickerView *t_view = [BottomPickerView initCustomView];
+    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 207)];
+    t_view.pickerTitle = title;
+    t_view.items = items;
+    t_view.selectedAccidentBtnBlock = block;
+    
+    [BottomView showWindowWithBottomView:t_view];
     
 }
 
@@ -325,6 +614,114 @@
 
 }
 
+#pragma mark - 实时监听UITextField内容的变化
+
+-(void)passConTextChange:(id)sender{
+    UITextField* textField = (UITextField*)sender;
+    LxDBAnyVar(textField.text);
+    if (textField == self.tf_accidentTime) {
+        self.param.happenTimeStr = self.tf_accidentTime.text;
+    }
+    
+    if (textField == self.tf_accidentAddress) {
+        self.param.address = self.tf_accidentAddress.text;
+    }
+    
+    if (textField == self.tf_weather) {
+        self.param.weather = self.tf_weather.text;
+    }
+    
+    if (textField == self.tf_name) {
+        NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                self.param.ptaName  = self.tf_name.text;
+                break;
+            case 1:
+                self.param.ptbName  = self.tf_name.text;
+                break;
+            case 2:
+                self.param.ptcName  = self.tf_name.text;
+                break;
+            default:
+                break;
+        }
+        
+    }
+    if (textField == self.tf_identityCard) {
+        
+        NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                self.param.ptaIdNo  = self.tf_identityCard.text;
+                break;
+            case 1:
+                self.param.ptbIdNo  = self.tf_identityCard.text;
+                break;
+            case 2:
+                self.param.ptcIdNo  = self.tf_identityCard.text;
+                break;
+            default:
+                break;
+        }
+    }
+    if (textField == self.tf_carNumber) {
+        NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                self.param.ptaCarNo  = self.tf_carNumber.text;
+                break;
+            case 1:
+                self.param.ptbCarNo  = self.tf_carNumber.text;
+                break;
+            case 2:
+                self.param.ptcCarNo  = self.tf_carNumber.text;
+                break;
+            default:
+                break;
+        }
+    }
+    if (textField == self.tf_phone) {
+        NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+        switch (selectedIndex) {
+            case 0:
+                self.param.ptaPhone  = self.tf_phone.text;
+                break;
+            case 1:
+                self.param.ptbPhone  = self.tf_phone.text;
+                break;
+            case 2:
+                self.param.ptcPhone  = self.tf_phone.text;
+                break;
+            default:
+                break;
+        }
+    }
+    
+}
+
+#pragma mark - 实时监听UITextView内容的变化
+//只能监听键盘输入时的变化(setText: 方式无法监听),如果想修复可以参考http://www.jianshu.com/p/75355acdd058
+- (void)textViewDidChange:(FSTextView *)textView{
+    
+    NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    switch (selectedIndex) {
+        case 0:
+            self.param.ptaDescribe  = textView.formatText;
+            
+            break;
+        case 1:
+            self.param.ptaDescribe  = textView.formatText;
+            break;
+        case 2:
+            self.param.ptaDescribe  = textView.formatText;
+            break;
+        default:
+            break;
+    }
+
+
+}
 
 #pragma mark - segmentedControlTapped
 
@@ -345,7 +742,7 @@
         }
        
         self.tf_carNumber.text = self.param.ptaCarNo;
-        self.tf_phone.text = self.param.ptaIdNo;
+        self.tf_phone.text = self.param.ptaPhone;
         
         if (self.param.ptaDirect) {
             NSString*t_str = [[ShareValue sharedDefault].accidentCodes searchNameWithModelType:self.param.ptaDirect WithArray:[ShareValue sharedDefault].accidentCodes.driverDirect];
@@ -380,7 +777,7 @@
         
     }else if (selectedIndex == 1){
         
-        self.tf_name.text = self.param.ptcName;
+        self.tf_name.text = self.param.ptbName;
         self.tf_identityCard.text = self.param.ptbIdNo;
         
         if (self.param.ptbVehicleId) {
@@ -391,7 +788,7 @@
         }
         
         self.tf_carNumber.text = self.param.ptbCarNo;
-        self.tf_phone.text = self.param.ptbIdNo;
+        self.tf_phone.text = self.param.ptbPhone;
         
         if (self.param.ptbDirect) {
             NSString*t_str = [[ShareValue sharedDefault].accidentCodes searchNameWithModelType:self.param.ptbDirect WithArray:[ShareValue sharedDefault].accidentCodes.driverDirect];
@@ -422,6 +819,7 @@
         self.btn_temporaryDrivelib.selected = self.param.ptbIsZkXsz;
         self.btn_temporarylib.selected = self.param.ptbIsZkJsz;
         self.btn_temporarylib.selected = self.param.ptbIsZkSfz;
+        
         self.tv_describe.text = self.param.ptbDescribe;
         
     }else if (selectedIndex == 2){
@@ -437,7 +835,7 @@
         }
         
         self.tf_carNumber.text = self.param.ptcCarNo;
-        self.tf_phone.text = self.param.ptcIdNo;
+        self.tf_phone.text = self.param.ptcPhone;
         
         if (self.param.ptcDirect) {
             NSString*t_str = [[ShareValue sharedDefault].accidentCodes searchNameWithModelType:self.param.ptcDirect WithArray:[ShareValue sharedDefault].accidentCodes.driverDirect];

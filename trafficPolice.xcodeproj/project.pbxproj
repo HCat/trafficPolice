@@ -72,6 +72,7 @@
 		CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43C1591ECDDAB400309507 /* UserModel.m */; };
 		CE43C15D1ECDE84700309507 /* YTKUrlArgumentsFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43C15C1ECDE84700309507 /* YTKUrlArgumentsFilter.m */; };
 		CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE43C15F1ECDF13F00309507 /* CommonAPI.m */; };
+		CE47633A1ED5D52500F29968 /* FSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4763391ED5D52500F29968 /* FSTextView.m */; };
 		CE4C93E91ECE7F1B00BE06F0 /* AccidentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C93E81ECE7F1B00BE06F0 /* AccidentAPI.m */; };
 		CE4C93EC1ECE986F00BE06F0 /* AccidentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C93EB1ECE986F00BE06F0 /* AccidentListModel.m */; };
 		CE4C93EF1ECE98E100BE06F0 /* AccidentDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C93EE1ECE98E100BE06F0 /* AccidentDetailModel.m */; };
@@ -274,6 +275,8 @@
 		CE43C15C1ECDE84700309507 /* YTKUrlArgumentsFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKUrlArgumentsFilter.m; sourceTree = "<group>"; };
 		CE43C15E1ECDF13F00309507 /* CommonAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAPI.h; sourceTree = "<group>"; };
 		CE43C15F1ECDF13F00309507 /* CommonAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAPI.m; sourceTree = "<group>"; };
+		CE4763381ED5D52500F29968 /* FSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTextView.h; sourceTree = "<group>"; };
+		CE4763391ED5D52500F29968 /* FSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTextView.m; sourceTree = "<group>"; };
 		CE4C93E71ECE7F1B00BE06F0 /* AccidentAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentAPI.h; sourceTree = "<group>"; };
 		CE4C93E81ECE7F1B00BE06F0 /* AccidentAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentAPI.m; sourceTree = "<group>"; };
 		CE4C93EA1ECE986F00BE06F0 /* AccidentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentListModel.h; sourceTree = "<group>"; };
@@ -568,6 +571,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE4763371ED5D52500F29968 /* FSTextView */,
 				CE6314D01ED4FCBE00A885A7 /* YUSegment */,
 				CE5786081ED4088700B4CC9F /* PhotoBrowser */,
 				CE435F011ECDA73400F85B38 /* SAMKeychain */,
@@ -861,6 +865,15 @@
 				CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CE4763371ED5D52500F29968 /* FSTextView */ = {
+			isa = PBXGroup;
+			children = (
+				CE4763381ED5D52500F29968 /* FSTextView.h */,
+				CE4763391ED5D52500F29968 /* FSTextView.m */,
+			);
+			path = FSTextView;
 			sourceTree = "<group>";
 		};
 		CE4CFE041ECB597400E59524 /* LRCountDownButton */ = {
@@ -1238,6 +1251,7 @@
 				CE5786571ED4088700B4CC9F /* ZLPhotoBrowser.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,
 				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
+				CE47633A1ED5D52500F29968 /* FSTextView.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
 				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,

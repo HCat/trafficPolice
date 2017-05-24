@@ -19,7 +19,6 @@ typedef void(^SelectedAccidentBtnBlock)(NSString *title,NSInteger itemId,NSInteg
 @property (nonatomic,copy) SelectedBtnBlock selectedBtnBlock; //通用方法
 @property (nonatomic,copy) SelectedAccidentBtnBlock selectedAccidentBtnBlock; //特定block
 
-- (void)setUpPicker;
 + (BottomPickerView *)initCustomView;
 
 @end
