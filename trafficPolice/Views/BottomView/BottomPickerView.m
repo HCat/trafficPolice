@@ -26,17 +26,17 @@
     return [nibView objectAtIndex:0];
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.pickView.delegate = self;
+    self.pickView.dataSource = self;
+    // Initialization code
+}
+
 - (void)setPickerTitle:(NSString *)pickerTitle{
 
     _pickerTitle = pickerTitle;
     _lb_PickTitle.text = _pickerTitle;
-
-}
-
-- (void)setUpPicker{
-
-    self.pickView.delegate = self;
-    self.pickView.dataSource = self;
 
 }
 

@@ -207,7 +207,7 @@
     BottomPickerView *t_view = [BottomPickerView initCustomView];
     [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 207)];
     t_view.pickerTitle = @"车辆类型";
-    [t_view setUpPicker];
+    
     WS(weakSelf);
     t_view.items = [ShareValue sharedDefault].accidentCodes.vehicle;
     t_view.selectedAccidentBtnBlock = ^(NSString *title, NSInteger itemId, NSInteger itemType) {
