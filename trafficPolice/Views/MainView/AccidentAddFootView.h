@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccidentAPI.h"
 
 @interface AccidentAddFootView : UICollectionReusableView
 
 @property (nonatomic,assign) BOOL isShowMoreAccidentInfo;
 @property (nonatomic,assign) BOOL isShowMoreInfo;
+@property (nonatomic,strong) AccidentSaveParam *param;
 
 @end

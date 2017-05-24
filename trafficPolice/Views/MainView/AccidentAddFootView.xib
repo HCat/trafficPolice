@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -61,6 +61,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDr-FH-uNq">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnAccidentCausesClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="eET-kr-d98"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,7 +90,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDs-Zp-hwh">
-                    <rect key="frame" x="255" y="47" width="60" height="27"/>
+                    <rect key="frame" x="255" y="134.5" width="60" height="27"/>
                     <color key="backgroundColor" red="0.25882352941176467" green="0.50588235294117645" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="FOQ-HD-J3M"/>
@@ -99,6 +102,9 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="handleBtnLocationClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="00X-9k-Dx6"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="事故时间:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noh-aL-PhX">
                     <rect key="frame" x="13" y="95" width="62" height="17"/>
@@ -153,6 +159,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KD1-qY-qWt">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnChoiceLocationClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="bJT-ag-P3L"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -264,6 +273,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhn-ia-WAL">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnInjuryNumberClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="6rS-Rq-Kjx"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -309,6 +321,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIm-VG-Ur7">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnRoadTypeClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="pmF-Fk-SWn"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -410,6 +425,9 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="handleBtnNameIdentifyClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="4WE-aA-T9B"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opr-mP-NeE">
                     <rect key="frame" x="13" y="509" width="62" height="17"/>
@@ -420,7 +438,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLS-Qh-D5N">
                     <rect key="frame" x="82" y="503" width="165" height="30"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入事故时间" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-Cs-T5E">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入身份证号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-Cs-T5E">
                             <rect key="frame" x="8" y="0.0" width="157" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -464,6 +482,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwq-wn-9ey">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnCarTypeClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="iMH-s3-FMU"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -498,7 +519,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptL-Qg-0cD">
                     <rect key="frame" x="82" y="591" width="165" height="30"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入事故地点" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcZ-c1-orb">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入车牌号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcZ-c1-orb">
                             <rect key="frame" x="8" y="0.0" width="157" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -532,6 +553,9 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="handleBtnPlateNumberClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="A2q-zb-SdF"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjR-EY-qre">
                     <rect key="frame" x="13" y="641" width="62" height="17"/>
@@ -542,7 +566,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdv-3f-hUw">
                     <rect key="frame" x="82" y="635" width="165" height="30"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入天气" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n7b-dp-Khg">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n7b-dp-Khg">
                             <rect key="frame" x="8" y="0.0" width="157" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -586,6 +610,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cH0-EK-ap3">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnTrafficStateClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="G9n-Jt-Tg0"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -631,6 +658,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dR-n4-Z6u">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnIllegalBehaviorClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ysl-Ad-WaR"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -676,6 +706,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbV-o1-cgV">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnInsuranceCompanyClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="jQP-ru-Q9D"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -721,6 +754,9 @@
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6B-jc-Ms4">
                             <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
+                            <connections>
+                                <action selector="handleBtnResponsibilityClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="sZL-oM-tdc"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -760,7 +796,7 @@
                         <color key="titleColor" red="1" green="0.5450980392" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="handleBtnAccidentInformation:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ENR-Jo-pLx"/>
+                        <action selector="handleBtnMoreAccidentInfoClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="iig-x4-eFM"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qH-os-jSe">
@@ -770,7 +806,7 @@
                         <color key="titleColor" red="1" green="0.5450980392" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="handleBtnInformationClick:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Vtv-bg-T49"/>
+                        <action selector="handleBtnMoreInfoClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="2F4-30-yL3"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否暂扣车辆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZN-OK-YUv">
@@ -801,21 +837,33 @@
                     <rect key="frame" x="255" y="889" width="15" height="22"/>
                     <state key="normal" image="icon_yuan_unSelected"/>
                     <state key="selected" image="icon_yuan_selected"/>
+                    <connections>
+                        <action selector="handleBtnTemporaryCarClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="KeD-gX-uhp"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sa-yQ-NW3">
                     <rect key="frame" x="255" y="920" width="15" height="22"/>
                     <state key="normal" image="icon_yuan_unSelected"/>
                     <state key="selected" image="icon_yuan_selected"/>
+                    <connections>
+                        <action selector="handleBtnTemporaryDrivingLicenseClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="IUg-aj-GXF"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-Ei-TMB">
                     <rect key="frame" x="255" y="951" width="15" height="22"/>
                     <state key="normal" image="icon_yuan_unSelected"/>
                     <state key="selected" image="icon_yuan_selected"/>
+                    <connections>
+                        <action selector="handleBtnTemporaryLicenseClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="i1n-Gw-TmZ"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esv-Qi-xWU">
                     <rect key="frame" x="255" y="982" width="15" height="22"/>
                     <state key="normal" image="icon_yuan_unSelected"/>
                     <state key="selected" image="icon_yuan_selected"/>
+                    <connections>
+                        <action selector="handleBtnIdentityCardClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="zmI-QX-reT"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简  述：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpb-KR-HXo">
                     <rect key="frame" x="13" y="1016" width="50.5" height="17"/>
@@ -842,8 +890,8 @@
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fN-L0-XOT">
                     <rect key="frame" x="13" y="1162" width="294" height="34"/>
-                    <color key="backgroundColor" red="0.27450980390000002" green="0.47843137250000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="登录"/>
+                    <color key="backgroundColor" red="0.25882352939999997" green="0.50588235290000005" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="提交"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="5"/>
@@ -901,6 +949,7 @@
                 <constraint firstItem="P2d-Ma-sAT" firstAttribute="leading" secondItem="gOF-eR-5DK" secondAttribute="leading" id="NN0-Fb-Vh1"/>
                 <constraint firstAttribute="trailing" secondItem="zLp-Yg-giU" secondAttribute="trailing" id="Nj2-5T-Y82"/>
                 <constraint firstItem="eZN-OK-YUv" firstAttribute="leading" secondItem="khV-nX-G0L" secondAttribute="leading" id="NrJ-VG-LdF"/>
+                <constraint firstItem="CDs-Zp-hwh" firstAttribute="centerY" secondItem="NS9-vZ-lht" secondAttribute="centerY" id="OWI-zV-rEG"/>
                 <constraint firstItem="F7N-hm-jyN" firstAttribute="trailing" secondItem="NS9-vZ-lht" secondAttribute="trailing" id="Oqk-Nh-6AS"/>
                 <constraint firstItem="mpb-KR-HXo" firstAttribute="leading" secondItem="Etd-72-s0e" secondAttribute="leading" id="PPY-5g-ppa"/>
                 <constraint firstItem="Etd-72-s0e" firstAttribute="leading" secondItem="HHm-7K-8eO" secondAttribute="leading" id="Put-vd-gNZ"/>
@@ -976,7 +1025,6 @@
                 <constraint firstItem="9uV-Ei-TMB" firstAttribute="leading" secondItem="0Sa-yQ-NW3" secondAttribute="leading" id="tWP-Wd-LnF"/>
                 <constraint firstItem="I7t-5r-TV7" firstAttribute="leading" secondItem="M9d-iH-SPp" secondAttribute="leading" id="uMb-w0-By2"/>
                 <constraint firstItem="9uV-Ei-TMB" firstAttribute="centerY" secondItem="HHm-7K-8eO" secondAttribute="centerY" id="uPp-lE-agz"/>
-                <constraint firstItem="CDs-Zp-hwh" firstAttribute="centerY" secondItem="LRL-Rw-w14" secondAttribute="centerY" id="uYi-Tn-ldz"/>
                 <constraint firstItem="QTl-pv-Ghc" firstAttribute="leading" secondItem="YKv-Wb-kNs" secondAttribute="leading" id="ujT-6j-AxI"/>
                 <constraint firstItem="Awm-om-15f" firstAttribute="width" secondItem="CDs-Zp-hwh" secondAttribute="width" id="urs-JF-4bw"/>
                 <constraint firstItem="8bd-EQ-AXH" firstAttribute="leading" secondItem="Opr-mP-NeE" secondAttribute="leading" id="v15-3P-HxK"/>
@@ -991,23 +1039,37 @@
                 <constraint firstItem="BgO-Mv-r9C" firstAttribute="top" secondItem="LRL-Rw-w14" secondAttribute="bottom" constant="14" id="ylJ-46-B5M"/>
             </constraints>
             <connections>
-                <outlet property="btn_information" destination="9qH-os-jSe" id="Cbf-Sm-Osi"/>
-                <outlet property="btn_moreAccidentInformation" destination="YWR-nQ-QZD" id="oqP-Xs-Tjf"/>
+                <outlet property="btn_moreAccidentInfo" destination="YWR-nQ-QZD" id="JoY-D7-3wu"/>
+                <outlet property="btn_moreInfo" destination="9qH-os-jSe" id="efp-kj-wDC"/>
+                <outlet property="btn_temporaryCar" destination="aTd-g4-gZY" id="0tD-cV-SGu"/>
+                <outlet property="btn_temporaryDrivelib" destination="0Sa-yQ-NW3" id="Wyy-cD-Ucl"/>
+                <outlet property="btn_temporaryIdentityCard" destination="esv-Qi-xWU" id="Iqd-6c-btY"/>
+                <outlet property="btn_temporarylib" destination="9uV-Ei-TMB" id="scf-7U-I45"/>
                 <outlet property="layout_accidentInfo" destination="H77-fd-j63" id="3kc-Vg-Fo6"/>
                 <outlet property="layout_moreinfo" destination="6Xu-7D-pmM" id="f6r-49-CNA"/>
                 <outlet property="segmentedControl" destination="6dg-Vg-Oef" id="AK6-j0-cU3"/>
-                <outletCollection property="btn_moreInfo" destination="aTd-g4-gZY" id="Iog-eJ-pRB"/>
-                <outletCollection property="lb_moreInfo" destination="JlF-Hz-DuQ" id="Y6v-sy-fi0"/>
-                <outletCollection property="lb_moreInfo" destination="eZN-OK-YUv" id="Ftc-td-qfG"/>
-                <outletCollection property="lb_moreInfo" destination="HHm-7K-8eO" id="vhO-3B-GRZ"/>
-                <outletCollection property="lb_moreInfo" destination="Etd-72-s0e" id="VSv-81-YkW"/>
-                <outletCollection property="btn_moreInfo" destination="0Sa-yQ-NW3" id="q9g-HY-v5E"/>
-                <outletCollection property="btn_moreInfo" destination="9uV-Ei-TMB" id="wt8-VG-bb9"/>
-                <outletCollection property="btn_moreInfo" destination="esv-Qi-xWU" id="dqs-0a-H5f"/>
+                <outlet property="tf_carNumber" destination="bcZ-c1-orb" id="xdy-Te-1pl"/>
+                <outlet property="tf_carType" destination="xe4-M5-Fow" id="aC9-8j-LMB"/>
+                <outlet property="tf_drivingState" destination="qy7-GX-Cxp" id="VIY-IB-6EN"/>
+                <outlet property="tf_identityCard" destination="8Wn-Cs-T5E" id="cdx-Tx-Ehe"/>
+                <outlet property="tf_illegalBehavior" destination="NgA-NE-W2q" id="8t6-eo-QQu"/>
+                <outlet property="tf_insuranceCompany" destination="mgq-9g-3gH" id="wOJ-Sy-fAw"/>
+                <outlet property="tf_name" destination="GmA-XO-24e" id="ssq-RZ-HtJ"/>
+                <outlet property="tf_phone" destination="n7b-dp-Khg" id="pXA-rR-Jyn"/>
+                <outlet property="tf_responsibility" destination="Kt6-VJ-E1I" id="S8C-qY-fVs"/>
+                <outlet property="tv_describe" destination="Ek5-Dg-XBn" id="jzx-be-wiG"/>
                 <outletCollection property="lb_moreAccidentInfos" destination="pLe-wI-eFp" id="e89-uM-gEA"/>
                 <outletCollection property="lb_moreAccidentInfos" destination="lKw-je-xyE" id="iBv-KT-0ti"/>
                 <outletCollection property="v_moreAccidentInfos" destination="QTl-pv-Ghc" id="5wj-cA-ksa"/>
                 <outletCollection property="v_moreAccidentInfos" destination="oq4-EW-9C9" id="VNg-xh-QG5"/>
+                <outletCollection property="lb_moreInfos" destination="eZN-OK-YUv" id="WCr-yI-g7U"/>
+                <outletCollection property="lb_moreInfos" destination="JlF-Hz-DuQ" id="DXz-oM-WeT"/>
+                <outletCollection property="lb_moreInfos" destination="HHm-7K-8eO" id="aJb-Js-urn"/>
+                <outletCollection property="lb_moreInfos" destination="Etd-72-s0e" id="Ydg-JW-xiR"/>
+                <outletCollection property="btn_moreInfos" destination="aTd-g4-gZY" id="t3f-0Y-8YJ"/>
+                <outletCollection property="btn_moreInfos" destination="0Sa-yQ-NW3" id="QSS-Ob-MZ4"/>
+                <outletCollection property="btn_moreInfos" destination="9uV-Ei-TMB" id="L98-Ih-1re"/>
+                <outletCollection property="btn_moreInfos" destination="esv-Qi-xWU" id="Fds-4J-vjv"/>
             </connections>
             <point key="canvasLocation" x="25" y="249"/>
         </collectionReusableView>

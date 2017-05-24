@@ -35,7 +35,7 @@
     
     //******** 导航栏的设置 ********//
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4281e8)];
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4281E8)];
     [UINavigationBar appearance].titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     if([[UIDevice currentDevice].systemVersion floatValue] >= 8 && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
         [UINavigationBar appearance].translucent = NO;

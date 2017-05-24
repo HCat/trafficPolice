@@ -20,13 +20,14 @@
 @property (nonatomic,strong) NSMutableArray *arr_data;
 
 
+
+
 @end
 
 @implementation UserHomeVC
 
 static NSString *const cellId = @"UserHomeCellID";
 static NSString *const headerId = @"UserReusableViewID";
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,7 +61,6 @@ static NSString *const headerId = @"UserReusableViewID";
         }
         
         [_arr_data addObject:@{@"image":@"设置",@"title":@"设置",@"associated":@"设置"}];
-    
     }
     
     return _arr_data;

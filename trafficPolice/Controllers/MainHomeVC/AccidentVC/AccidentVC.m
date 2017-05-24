@@ -42,7 +42,6 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.collectionView reloadData];
 }
 
 #pragma mark - initActionSheet

@@ -140,6 +140,8 @@
 		CE8834CE1ED1DBA600666CEE /* IllegalThroughAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834CD1ED1DBA600666CEE /* IllegalThroughAPI.m */; };
 		CE8834D11ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834D01ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m */; };
 		CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834D31ED1E62800666CEE /* VideoColectAPI.m */; };
+		CE92B2961ED577F600563749 /* BottomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE92B2951ED577F600563749 /* BottomPickerView.m */; };
+		CE92B2981ED5780400563749 /* BottomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE92B2971ED5780400563749 /* BottomPickerView.xib */; };
 		CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51551EC49C48004A7611 /* ListTableCell.m */; };
 		CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51561EC49C48004A7611 /* ListTableCell.xib */; };
 		CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */; };
@@ -389,6 +391,9 @@
 		CE8834D01ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalThroughSecDetailModel.m; sourceTree = "<group>"; };
 		CE8834D21ED1E62800666CEE /* VideoColectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoColectAPI.h; sourceTree = "<group>"; };
 		CE8834D31ED1E62800666CEE /* VideoColectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoColectAPI.m; sourceTree = "<group>"; };
+		CE92B2941ED577F600563749 /* BottomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomPickerView.h; sourceTree = "<group>"; };
+		CE92B2951ED577F600563749 /* BottomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomPickerView.m; sourceTree = "<group>"; };
+		CE92B2971ED5780400563749 /* BottomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomPickerView.xib; sourceTree = "<group>"; };
 		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
 		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
 		CE9C51561EC49C48004A7611 /* ListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableCell.xib; sourceTree = "<group>"; };
@@ -875,6 +880,9 @@
 				CE542ED51ECC942900971B23 /* CertificateView.h */,
 				CE542ED61ECC942900971B23 /* CertificateView.m */,
 				CE542ED81ECC943C00971B23 /* CertificateView.xib */,
+				CE92B2941ED577F600563749 /* BottomPickerView.h */,
+				CE92B2951ED577F600563749 /* BottomPickerView.m */,
+				CE92B2971ED5780400563749 /* BottomPickerView.xib */,
 			);
 			path = BottomView;
 			sourceTree = "<group>";
@@ -1097,6 +1105,7 @@
 				CE5786431ED4088700B4CC9F /* btn_selected.png in Resources */,
 				CE5786471ED4088700B4CC9F /* btn_unselected@2x.png in Resources */,
 				CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */,
+				CE92B2981ED5780400563749 /* BottomPickerView.xib in Resources */,
 				CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */,
 				C79C994E1EC595AE00258CF1 /* UserHomeCell.xib in Resources */,
 				CE57864A1ED4088700B4CC9F /* lock.png in Resources */,
@@ -1197,6 +1206,7 @@
 				CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */,
 				CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
+				CE92B2961ED577F600563749 /* BottomPickerView.m in Sources */,
 				CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */,
 				CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,

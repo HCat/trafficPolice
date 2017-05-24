@@ -16,20 +16,23 @@
 
 @interface AccidentGetCodesModel:NSObject
 
-@property (nonatomic,copy) NSString * modelId;
+@property (nonatomic,assign) NSInteger modelId;
 @property (nonatomic,copy) NSString * modelName;
-@property (nonatomic,copy) NSString * modelType;
+@property (nonatomic,assign) NSInteger   modelType;
 @end
 
 @interface AccidentGetCodesResponse : NSObject
 
-@property (nonatomic,strong) AccidentGetCodesModel *road;               //道路
-@property (nonatomic,strong) AccidentGetCodesModel *behaviour;          //事故成因
-@property (nonatomic,strong) AccidentGetCodesModel *vehicle;            //车辆类型
-@property (nonatomic,strong) AccidentGetCodesModel *insuranceCompany;   //保险公司
-@property (nonatomic,strong) AccidentGetCodesModel *responsibility;     //事故责任
-@property (nonatomic,strong) AccidentGetCodesModel *roadType;           //事故地点类型
-@property (nonatomic,strong) AccidentGetCodesModel *driverDirect;       //行驶状态
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *road;               //道路
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *behaviour;          //事故成因
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *vehicle;            //车辆类型
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *insuranceCompany;   //保险公司
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *responsibility;     //事故责任
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *roadType;           //事故地点类型
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *driverDirect;       //行驶状态
+
+- (NSString *)searchNameWithModelId:(NSInteger)modelId WithArray:(NSArray <AccidentGetCodesModel *>*)items;
+- (NSString *)searchNameWithModelType:(NSInteger)modelType WithArray:(NSArray <AccidentGetCodesModel *>*)items;
 
 @end
 
@@ -56,46 +59,49 @@
 @property (nonatomic,copy) NSString * roadType;         //事故地点类型 从通用值【事故地点类型】获取ID
 @property (nonatomic,copy) NSString * ptaName;          //甲方姓名 必填，可用身份证、驾驶证识别
 @property (nonatomic,copy) NSString * ptaIdNo;          //甲方身份证号码 必填，可用身份证、驾驶证识别
-@property (nonatomic,copy) NSString * ptaVehicleId;     //甲方车辆类型 必填，从通用值【车辆类型】获取ID，可用行驶证识别
+@property (nonatomic,assign) NSInteger ptaVehicleId;     //甲方车辆类型 必填，从通用值【车辆类型】获取ID，可用行驶证识别
 @property (nonatomic,copy) NSString * ptaCarNo;         //甲方车牌号 必填，可用行驶证识别
 @property (nonatomic,copy) NSString * ptaPhone;         //甲方联系电话
-@property (nonatomic,copy) NSString * ptaInsuranceCompanyId;        //甲方保险公司 从通用值【保险公司】获取ID
-@property (nonatomic,copy) NSString * ptaResponsibilityId;          //甲方责任 从通用值【责任】获取ID
-@property (nonatomic,copy) NSString * ptaDirect;                    //甲方行驶状态 从通用值【行驶状态】获取ID
-@property (nonatomic,copy) NSString * ptaBehaviourId;               //甲方违法行为 从通用值【事故成因】获取ID
-@property (nonatomic,copy) NSString * ptaIsZkCl;        //甲方是否暂扣车辆 0否1是
-@property (nonatomic,copy) NSString * ptaIsZkXsz;       //甲方是否暂扣行驶证 0否1是
-@property (nonatomic,copy) NSString * ptaIsZkJsz;       //甲方是否暂扣驾驶证 0否1是
-@property (nonatomic,copy) NSString * ptaIsZkSfz;       //甲方是否暂扣身份证 0否1是
+@property (nonatomic,assign) NSInteger ptaInsuranceCompanyId;        //甲方保险公司 从通用值【保险公司】获取ID
+@property (nonatomic,assign) NSInteger ptaResponsibilityId;          //甲方责任 从通用值【责任】获取ID
+@property (nonatomic,assign) NSInteger ptaDirect;                    //甲方行驶状态 从通用值【行驶状态】获取ID
+@property (nonatomic,assign) NSInteger ptaBehaviourId;               //甲方违法行为 从通用值【事故成因】获取ID
+@property (nonatomic,assign) BOOL ptaIsZkCl;        //甲方是否暂扣车辆 0否1是
+@property (nonatomic,assign) BOOL ptaIsZkXsz;       //甲方是否暂扣行驶证 0否1是
+@property (nonatomic,assign) BOOL ptaIsZkJsz;       //甲方是否暂扣驾驶证 0否1是
+@property (nonatomic,assign) BOOL ptaIsZkSfz;       //甲方是否暂扣身份证 0否1是
 @property (nonatomic,copy) NSString * ptaDescribe;      //甲方简述
+
 @property (nonatomic,copy) NSString * ptbName;          //乙方姓名 可用身份证、驾驶证识别
 @property (nonatomic,copy) NSString * ptbIdNo;          //乙方身份证号码 可用身份证、驾驶证识别
-@property (nonatomic,copy) NSString * ptbVehicleId;     //乙方车辆类型 从通用值【车辆类型】获取ID，可用行驶证识别
+@property (nonatomic,assign) NSInteger ptbVehicleId;     //乙方车辆类型 从通用值【车辆类型】获取ID，可用行驶证识别
 @property (nonatomic,copy) NSString * ptbCarNo;         //乙方车牌号 可用驾驶证识别
 @property (nonatomic,copy) NSString * ptbPhone;         //乙方联系电话
-@property (nonatomic,copy) NSString * ptbInsuranceCompanyId;    //乙方保险公司 从通用值【保险公司】获取ID
-@property (nonatomic,copy) NSString * ptbResponsibilityId;      //乙方责任 从通用值【责任】获取ID
-@property (nonatomic,copy) NSString * ptbDirect;                //乙方行驶状态 从通用值【行驶状态】获取ID
-@property (nonatomic,copy) NSString * ptbBehaviourId;           //乙方违法行为 从通用值【事故成因】获取ID
-@property (nonatomic,copy) NSString * ptbIsZkCl;                //乙方是否暂扣车辆 0否1是
-@property (nonatomic,copy) NSString * ptbIsZkXsz;               //乙方是否暂扣行驶证 0否1是
-@property (nonatomic,copy) NSString * ptbIsZkJsz;               //乙方是否暂扣驾驶证 0否1是
-@property (nonatomic,copy) NSString * ptbIsZkSfz;               //乙方是否暂扣身份证 0否1是
+@property (nonatomic,assign) NSInteger ptbInsuranceCompanyId;    //乙方保险公司 从通用值【保险公司】获取ID
+@property (nonatomic,assign) NSInteger ptbResponsibilityId;      //乙方责任 从通用值【责任】获取ID
+@property (nonatomic,assign) NSInteger ptbDirect;                //乙方行驶状态 从通用值【行驶状态】获取ID
+@property (nonatomic,assign) NSInteger ptbBehaviourId;           //乙方违法行为 从通用值【事故成因】获取ID
+@property (nonatomic,assign) BOOL ptbIsZkCl;                //乙方是否暂扣车辆 0否1是
+@property (nonatomic,assign) BOOL ptbIsZkXsz;               //乙方是否暂扣行驶证 0否1是
+@property (nonatomic,assign) BOOL ptbIsZkJsz;               //乙方是否暂扣驾驶证 0否1是
+@property (nonatomic,assign) BOOL ptbIsZkSfz;               //乙方是否暂扣身份证 0否1是
 @property (nonatomic,copy) NSString * ptbDescribe;              //乙方简述
+
 @property (nonatomic,copy) NSString * ptcName;                  //丙方姓名 可用身份证、驾驶证识别
 @property (nonatomic,copy) NSString * ptcIdNo;                  //丙方身份证号码 可用身份证、驾驶证识别
-@property (nonatomic,copy) NSString * ptcVehicleId;             //丙方车辆类型 从通用值【车辆类型】获取ID，可用行驶证识别
+@property (nonatomic,assign) NSInteger ptcVehicleId;             //丙方车辆类型 从通用值【车辆类型】获取ID，可用行驶证识别
 @property (nonatomic,copy) NSString * ptcCarNo;                 //丙方车牌号 可用驾驶证识别
 @property (nonatomic,copy) NSString * ptcPhone;                 //丙方联系电话
-@property (nonatomic,copy) NSString * ptcInsuranceCompanyId;    //丙方保险公司 从通用值【保险公司】获取ID
-@property (nonatomic,copy) NSString * ptcResponsibilityId;      //丙方责任 从通用值【责任】获取ID
-@property (nonatomic,copy) NSString * ptcDirect;                //丙方行驶状态 从通用值【行驶状态】获取ID
-@property (nonatomic,copy) NSString * ptcBehaviourId;           //丙方违法行为 从通用值【事故成因】获取ID
-@property (nonatomic,copy) NSString * ptcIsZkCl;                //丙方是否暂扣车辆 0否1是
-@property (nonatomic,copy) NSString * ptcIsZkXsz;               //丙方是否暂扣行驶证 0否1是
-@property (nonatomic,copy) NSString * ptcIsZkJsz;               //丙方是否暂扣驾驶证 0否1是
-@property (nonatomic,copy) NSString * ptcIsZkSfz;               //丙方是否暂扣身份证 0否1是
+@property (nonatomic,assign) NSInteger ptcInsuranceCompanyId;    //丙方保险公司 从通用值【保险公司】获取ID
+@property (nonatomic,assign) NSInteger ptcResponsibilityId;      //丙方责任 从通用值【责任】获取ID
+@property (nonatomic,assign) NSInteger ptcDirect;                //丙方行驶状态 从通用值【行驶状态】获取ID
+@property (nonatomic,assign) NSInteger ptcBehaviourId;           //丙方违法行为 从通用值【事故成因】获取ID
+@property (nonatomic,assign) BOOL ptcIsZkCl;                //丙方是否暂扣车辆 0否1是
+@property (nonatomic,assign) BOOL ptcIsZkXsz;               //丙方是否暂扣行驶证 0否1是
+@property (nonatomic,assign) BOOL ptcIsZkJsz;               //丙方是否暂扣驾驶证 0否1是
+@property (nonatomic,assign) BOOL ptcIsZkSfz;               //丙方是否暂扣身份证 0否1是
 @property (nonatomic,copy) NSString * ptcDescribe;              //丙方简述
+
 @property (nonatomic,copy) NSArray  * files;                    //事故图片 列表，最多可上传30张
 @property (nonatomic,copy) NSArray  * certFiles;                //证件图片 识别的图片，文件格式列表。识别后图片不需要显示出来
 @property (nonatomic,copy) NSArray * certRemarks;              //证件图片名称 识别的图片名称，字符串列表。和证件图片一对一，名称统一命名，命名规则如下

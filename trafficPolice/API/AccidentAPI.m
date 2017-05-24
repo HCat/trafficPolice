@@ -23,6 +23,43 @@
 
 @implementation AccidentGetCodesResponse
 
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"road" : [AccidentGetCodesModel class],
+             @"behaviour" : [AccidentGetCodesModel class],
+             @"vehicle" : [AccidentGetCodesModel class],
+             @"insuranceCompany" : [AccidentGetCodesModel class],
+             @"responsibility" : [AccidentGetCodesModel class],
+             @"roadType" : [AccidentGetCodesModel class],
+             @"driverDirect" : [AccidentGetCodesModel class],
+             };
+}
+
+- (NSString *)searchNameWithModelId:(NSInteger)modelId WithArray:(NSArray <AccidentGetCodesModel *>*)items{
+
+    if (items && items.count > 0) {
+        for(AccidentGetCodesModel *model in items){
+            if (model.modelId == modelId) {
+                return model.modelName;
+            }
+        }
+    }
+    
+    return nil;
+    
+}
+
+- (NSString *)searchNameWithModelType:(NSInteger)modelType WithArray:(NSArray <AccidentGetCodesModel *>*)items{
+
+    if (items && items.count > 0) {
+        for(AccidentGetCodesModel *model in items){
+            if (model.modelId == modelType) {
+                return model.modelName;
+            }
+        }
+    }
+    return nil;
+}
+
 @end
 
 @implementation AccidentGetCodesManger

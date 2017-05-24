@@ -35,6 +35,9 @@
     LxDBAnyVar([UserModel getUserModel].menus);
     [self initCycleView];
     [self getImgPlay];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self getAccidentCodes];
+    });
 
 }
 
@@ -57,12 +60,34 @@
     CommonGetImgPlayManger *manger = [CommonGetImgPlayManger new];
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         SW(strongSelf, weakSelf);
-        strongSelf.arr_imageSource = manger.commonGetImgPlayModel;
-        [strongSelf.cycleView reloadData];
-    
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            strongSelf.arr_imageSource = manger.commonGetImgPlayModel;
+            [strongSelf.cycleView reloadData];
+        }
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         
     }];
+
+}
+
+- (void)getAccidentCodes{
+    WS(weakSelf);
+    AccidentGetCodesManger *manger = [AccidentGetCodesManger new];
+    manger.isLog = YES;
+    manger.isNeedShowHud = NO;
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            [ShareValue sharedDefault].accidentCodes = manger.accidentGetCodesResponse;
+        }else{
+            [strongSelf getAccidentCodes];
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        [strongSelf getAccidentCodes];
+    }];
+
 
 }
 
@@ -248,7 +273,6 @@
         }
     }
 }
-
 
 #pragma mark - MainHomeCellDelegate
 
