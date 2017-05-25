@@ -14,6 +14,8 @@ pod 'PureLayout'
 pod 'MJRefresh'
 pod 'AMScrollingNavbar', '~> 1.5.1’
 pod 'WechatOpenSDK' 
+pod 'TOCropViewController'
+pod 'LLSimpleCamera'
 
 
 end

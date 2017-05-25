@@ -132,6 +132,8 @@
 		CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786741ED436C200B4CC9F /* AccidentAddHeadView.m */; };
 		CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */; };
 		CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786791ED441E600B4CC9F /* CALayer+Additions.m */; };
+		CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */; };
+		CE60BE121ED71EF400C328A1 /* LRCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */; };
 		CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */; };
 		CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */; };
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
@@ -375,6 +377,9 @@
 		CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentAddHeadView.xib; sourceTree = "<group>"; };
 		CE5786781ED441E600B4CC9F /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		CE5786791ED441E600B4CC9F /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		CE60BE0E1ED71EF400C328A1 /* LRCameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCameraVC.h; sourceTree = "<group>"; };
+		CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCameraVC.m; sourceTree = "<group>"; };
+		CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRCameraVC.xib; sourceTree = "<group>"; };
 		CE6314D11ED4FCCA00A885A7 /* YUSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegment.h; sourceTree = "<group>"; };
 		CE6314D21ED4FCCA00A885A7 /* YUSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegmentedControl.h; sourceTree = "<group>"; };
 		CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUSegmentedControl.m; sourceTree = "<group>"; };
@@ -693,6 +698,7 @@
 		C7E0DC131EC1AEAE008ED063 /* MainHomeVC */ = {
 			isa = PBXGroup;
 			children = (
+				CE60BE0D1ED71ECD00C328A1 /* LRCameraVC */,
 				CE5786601ED40E7A00B4CC9F /* AccidentVC */,
 				C7E0DC171EC1AF18008ED063 /* MainHomeVC.h */,
 				C7E0DC181EC1AF18008ED063 /* MainHomeVC.m */,
@@ -998,6 +1004,16 @@
 			path = AccidentVC;
 			sourceTree = "<group>";
 		};
+		CE60BE0D1ED71ECD00C328A1 /* LRCameraVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE60BE0E1ED71EF400C328A1 /* LRCameraVC.h */,
+				CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */,
+				CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */,
+			);
+			path = LRCameraVC;
+			sourceTree = "<group>";
+		};
 		CE6314D01ED4FCBE00A885A7 /* YUSegment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,6 +1121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE57864C1ED4088700B4CC9F /* ZLCollectionCell.xib in Resources */,
+				CE60BE121ED71EF400C328A1 /* LRCameraVC.xib in Resources */,
 				CE5786651ED40EBA00B4CC9F /* AccidentVC.xib in Resources */,
 				CE57864F1ED4088700B4CC9F /* ZLPhotoBrowser.bundle in Resources */,
 				CE5786501ED4088700B4CC9F /* ZLPhotoBrowserCell.xib in Resources */,
@@ -1225,6 +1242,7 @@
 				CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
 				CE57865F1ED4088700B4CC9F /* ZLThumbnailViewController.m in Sources */,
+				CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */,
 				CE57863D1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				CE57865E1ED4088700B4CC9F /* ZLShowVideoViewController.m in Sources */,
 				CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */,

@@ -15,6 +15,8 @@
 
 @implementation ShareFun
 
+#pragma mark - 退出程序
+
 + (void)exitApplication{
     
     UIWindow *window = ApplicationDelegate.window;
@@ -28,6 +30,7 @@
     
 }
 
+#pragma mark - 验证手机号格式是否正确
 
 + (BOOL)validatePhoneNumber:(NSString *)phoneNumber{
     
@@ -36,6 +39,8 @@
     return [numberPre evaluateWithObject:phoneNumber substitutionVariables:nil];
     
 }
+
+#pragma mark - 高亮文字中部分文字
 
 + (NSMutableAttributedString *)highlightNummerInString:(NSString *)originString{
 
@@ -85,6 +90,8 @@
 
 }
 
+#pragma mark - 获取机器唯一标识符
+
 + (NSString *)getUniqueDeviceIdentifierAsString
 {
     NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
@@ -108,11 +115,70 @@
     return strApplicationUUID;
 }
 
-//获取列表权限
+#pragma mark - 获取当前时间：格式为yyyy-MM-dd HH:mm:ss
+
++ (NSString *)getCurrentTime{
+    
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *current = [formatter stringFromDate:now];
+    return current;
+}
+
+#pragma mark - 通过UIView获取UIViewController
+
++ (UIViewController *)findViewController:(UIView *)sourceView
+{
+    id target=sourceView;
+    while (target) {
+        target = ((UIResponder *)target).nextResponder;
+        if ([target isKindOfClass:[UIViewController class]]) {
+            break;
+        }
+    }
+    return target;
+}
+
+#pragma mark - 根据UIImageData获取UIImage是什么格式的
+
++ (NSString *)typeForImageData:(NSData *)data {
+
+    uint8_t c;
+    
+    [data getBytes:&c length:1];
+
+    switch (c) {
+            
+        case 0xFF:
+            
+            return @"image/jpeg";
+            
+        case 0x89:
+            
+            return @"image/png";
+            
+        case 0x47:
+            
+            return @"image/gif";
+            
+        case 0x49:
+            
+        case 0x4D:
+            
+            return @"image/tiff";
+    }
+    
+    return nil;
+    
+}
+
+
+
+#pragma mark - 获取事故权限
 
 + (BOOL)isPermissionForAccidentList{
-    
-    
+
     NSString *match = @"ACCIDENT_LIST";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@", match];
     NSArray *results = [[UserModel getUserModel].menus filteredArrayUsingPredicate:predicate];
@@ -124,6 +190,7 @@
     return NO;
 }
 
+#pragma mark - 获取违停权限
 
 + (BOOL)isPermissionForIllegalList{
 
@@ -139,6 +206,8 @@
 
 }
 
+#pragma mark - 获取警情权限
+
 + (BOOL)isPermissionForVideoCollectList{
 
     NSString *match = @"VIDEO_COLLECT_LIST";
@@ -152,6 +221,8 @@
     return NO;
 
 }
+
+#pragma mark - 获取事故通用值
 
 + (void)getAccidentCodes{
 
@@ -171,13 +242,5 @@
 }
 
 
-+ (NSString *)getCurrentTime{
-
-    NSDate *now = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *current = [formatter stringFromDate:now];
-    return current;
-}
 
 @end

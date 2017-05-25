@@ -14,6 +14,8 @@
 #import "FSTextView.h"
 #import "ShareFun.h"
 #import "CommonAPI.h"
+#import "LRCameraVC.h"
+#import "AccidentVC.h"
 
 
 @interface AccidentAddFootView()<UITextViewDelegate>
@@ -74,7 +76,11 @@
     self.isShowMoreAccidentInfo = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChange) name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
     
-    [self getServerData];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [self getServerData];
+    });
+    
+    
     [[LocationHelper sharedDefault] startLocation];
     _tf_accidentTime.text = [ShareFun getCurrentTime];
 }
@@ -140,7 +146,6 @@
     WS(weakSelf);
     CommonGetWeatherManger *manger = [CommonGetWeatherManger new];
     manger.location = [[NSString stringWithFormat:@"%f,%f",[LocationHelper sharedDefault].longitude,[LocationHelper sharedDefault].latitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    manger.isLog =YES;
     manger.isNeedShowHud = NO;
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         SW(strongSelf, weakSelf);
@@ -232,6 +237,21 @@
 
 - (IBAction)handleBtnNameIdentifyClicked:(id)sender {
     
+    AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:self];
+    LRCameraVC *homec = [[LRCameraVC alloc] init];
+    homec.fininshcapture = ^(UIImage *image) {
+        if (image) {
+            NSData * imageData = UIImageJPEGRepresentation(image,1);
+            NSInteger length = [imageData length]/1000;
+            LxPrintf(@"%dKB",length);
+            NSLog(@"照片存在");
+            
+        }
+    };
+    [t_vc presentViewController:homec
+                         animated:NO
+                       completion:^{
+                       }];
     
 }
 

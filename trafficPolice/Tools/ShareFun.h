@@ -25,12 +25,20 @@
 
 + (NSString *)getUniqueDeviceIdentifierAsString;
 
-
-//获取事故通用值
-+ (void)getAccidentCodes;
+//通过UIView获取UIViewController
++ (UIViewController *)findViewController:(UIView *)sourceView;
 
 //获取当前时间，格式是
 + (NSString *)getCurrentTime;
+
+
+//根据UIImageData获取UIImage是什么格式的
++ (NSString *)typeForImageData:(NSData *)data;
+
+#pragma mark - 业务相关，待删除
+
+//获取事故通用值
++ (void)getAccidentCodes;
 
 //获取列表权限
 
