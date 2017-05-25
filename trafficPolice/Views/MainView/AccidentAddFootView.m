@@ -12,6 +12,9 @@
 #import "BottomView.h"
 #import "BottomPickerView.h"
 #import "FSTextView.h"
+#import "ShareFun.h"
+#import "CommonAPI.h"
+
 
 @interface AccidentAddFootView()<UITextViewDelegate>
 
@@ -69,7 +72,11 @@
     self.param = [[AccidentSaveParam alloc] init];
     self.isShowMoreInfo = YES;
     self.isShowMoreAccidentInfo = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChange) name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
     
+    [self getServerData];
+    [[LocationHelper sharedDefault] startLocation];
+    _tf_accidentTime.text = [ShareFun getCurrentTime];
 }
 
 #pragma mark - setUp
@@ -114,7 +121,7 @@
     [self.tv_describe addTextDidChangeHandler:^(FSTextView *textView) {
         // 文本改变后的相应操作.
         weakSelf.lb_textCount.text =
-        [NSString stringWithFormat:@"%ld/%ld",textView.text.length,textView.maxLength];
+        [NSString stringWithFormat:@"%d/%d",textView.text.length,textView.maxLength];
         
     }];
     // 添加到达最大限制Block回调.
@@ -124,8 +131,32 @@
     
 }
 
+#pragma mark - 数据请求部分
 
-#pragma mark - set && get 
+- (void) getServerData{
+    
+    [ShareFun getAccidentCodes];
+    
+    WS(weakSelf);
+    CommonGetWeatherManger *manger = [CommonGetWeatherManger new];
+    manger.location = [[NSString stringWithFormat:@"%f,%f",[LocationHelper sharedDefault].longitude,[LocationHelper sharedDefault].latitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    manger.isLog =YES;
+    manger.isNeedShowHud = NO;
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            strongSelf.tf_weather.text = manger.weather;
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+    }];
+
+}
+
+
+
+#pragma mark - set && get
 
 - (void)setIsShowMoreInfo:(BOOL)isShowMoreInfo{
 
@@ -215,6 +246,7 @@
 
 - (IBAction)handleBtnLocationClicked:(id)sender {
     
+    [[LocationHelper sharedDefault] startLocation];
     
 }
 
@@ -314,37 +346,6 @@
         [BottomView dismissWindow];
 
     }];
-    
-//    BottomPickerView *t_view = [BottomPickerView initCustomView];
-//    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 207)];
-//    t_view.pickerTitle = @"车辆类型";
-//    
-//    WS(weakSelf);
-//    t_view.items = [ShareValue sharedDefault].accidentCodes.vehicle;
-//    t_view.selectedAccidentBtnBlock = ^(NSString *title, NSInteger itemId, NSInteger itemType) {
-//        SW(strongSelf, weakSelf);
-//        strongSelf.tf_carType.text = title;
-//        NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
-//        switch (selectedIndex) {
-//            case 0:
-//                strongSelf.param.ptaVehicleId = itemId;
-//                break;
-//            case 1:
-//                strongSelf.param.ptbVehicleId = itemId;
-//                break;
-//            case 2:
-//                strongSelf.param.ptbVehicleId = itemId;
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//        
-//        
-//        [BottomView dismissWindow];
-//    };
-//    
-//    [BottomView showWindowWithBottomView:t_view];
 
 }
 
@@ -723,6 +724,14 @@
 
 }
 
+#pragma mark - 重新定位之后的通知
+
+-(void)locationChange{
+    
+    self.tf_location.text = [LocationHelper sharedDefault].streetName;
+    
+}
+
 #pragma mark - segmentedControlTapped
 
 - (void)segmentedControlTapped:(YUSegmentedControl *)sender {
@@ -772,7 +781,7 @@
         self.btn_temporaryCar.selected = self.param.ptaIsZkCl;
         self.btn_temporaryDrivelib.selected = self.param.ptaIsZkXsz;
         self.btn_temporarylib.selected = self.param.ptaIsZkJsz;
-        self.btn_temporarylib.selected = self.param.ptaIsZkSfz;
+        self.btn_temporaryIdentityCard.selected = self.param.ptaIsZkSfz;
         self.tv_describe.text = self.param.ptaDescribe;
         
     }else if (selectedIndex == 1){
@@ -818,7 +827,7 @@
         self.btn_temporaryCar.selected = self.param.ptbIsZkCl;
         self.btn_temporaryDrivelib.selected = self.param.ptbIsZkXsz;
         self.btn_temporarylib.selected = self.param.ptbIsZkJsz;
-        self.btn_temporarylib.selected = self.param.ptbIsZkSfz;
+        self.btn_temporaryIdentityCard.selected = self.param.ptbIsZkSfz;
         
         self.tv_describe.text = self.param.ptbDescribe;
         
@@ -865,7 +874,8 @@
         self.btn_temporaryCar.selected = self.param.ptcIsZkCl;
         self.btn_temporaryDrivelib.selected = self.param.ptcIsZkXsz;
         self.btn_temporarylib.selected = self.param.ptcIsZkJsz;
-        self.btn_temporarylib.selected = self.param.ptcIsZkSfz;
+        self.btn_temporaryIdentityCard.selected = self.param.ptcIsZkSfz;
+        
         self.tv_describe.text = self.param.ptcDescribe;
 
     }

@@ -12,6 +12,7 @@
 #import "SAMKeychain.h"
 #import "SAMKeychainQuery.h"
 
+
 @implementation ShareFun
 
 + (void)exitApplication{
@@ -152,6 +153,31 @@
 
 }
 
++ (void)getAccidentCodes{
 
+    AccidentGetCodesManger *manger = [AccidentGetCodesManger new];
+    manger.isLog = NO;
+    manger.isNeedShowHud = NO;
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+       
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            [ShareValue sharedDefault].accidentCodes = manger.accidentGetCodesResponse;
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+    }];
+
+}
+
+
++ (NSString *)getCurrentTime{
+
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *current = [formatter stringFromDate:now];
+    return current;
+}
 
 @end

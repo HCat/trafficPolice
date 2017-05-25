@@ -33,7 +33,7 @@
 
 - (NSString *)searchNameWithModelId:(NSInteger)modelId WithArray:(NSArray <AccidentGetCodesModel *>*)items;
 - (NSString *)searchNameWithModelType:(NSInteger)modelType WithArray:(NSArray <AccidentGetCodesModel *>*)items;
-
+- (NSInteger)searchNameWithModelName:(NSString *)modelName WithArray:(NSArray <AccidentGetCodesModel *>*)items;//根据
 @end
 
 @interface AccidentGetCodesManger:LRBaseRequest
@@ -51,7 +51,8 @@
 @interface AccidentSaveParam : NSObject
 
 @property (nonatomic,copy) NSString * happenTimeStr;    //事故时间 必填，格式：yyyy-MM-dd HH:mm:ss
-@property (nonatomic,copy) NSString * roadId;           //道路ID 必填，从通用值【道路】获取ID
+@property (nonatomic,assign) NSInteger roadId;          //道路ID 必填，从通用值【道路】获取ID
+@property (nonatomic,strong) NSString *roadName;        //道路名称
 @property (nonatomic,copy) NSString * address;          //事故地点
 @property (nonatomic,assign) NSInteger causesType;       //事故成因ID 从通用值【事故成因】获取ID
 @property (nonatomic,copy) NSString * weather;          //天气 默认值从天气接口获取，可编辑

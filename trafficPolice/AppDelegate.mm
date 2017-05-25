@@ -19,6 +19,8 @@
 #import <WXApi.h>
 #import <YTKNetwork.h>
 #import "LRBaseRequest.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+
 
 
 
@@ -28,6 +30,7 @@
 
 @end
 
+BMKMapManager* _mapManager;
 @implementation AppDelegate
 
 
@@ -42,6 +45,8 @@
     }
     //******** 注册第三方：微信，百度地图等 ********//
     [self addThirthPart:launchOptions];
+    //******** 开启定位等 ********//
+    [[LocationHelper sharedDefault] startLocation];
     
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
     config.baseUrl = Base_URL;
@@ -116,8 +121,29 @@
 
 
     [WXApi registerApp:WEIXIN_APP_ID];
+    
+    // 要使用百度地图，请先启动BaiduMapManager
+    _mapManager = [[BMKMapManager alloc]init];
+    
+    /**
+     *百度地图SDK所有接口均支持百度坐标（BD09）和国测局坐标（GCJ02），用此方法设置您使用的坐标类型.
+     *默认是BD09（BMK_COORDTYPE_BD09LL）坐标.
+     *如果需要使用GCJ02坐标，需要设置CoordinateType为：BMK_COORDTYPE_COMMON.
+     */
+    if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK:BMK_COORDTYPE_BD09LL]) {
+        NSLog(@"经纬度类型设置成功");
+    } else {
+        NSLog(@"经纬度类型设置失败");
+    }
+    
+    BOOL ret = [_mapManager start:BAIDUMAP_APP_KEY generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
 
 }
+
+
 
 #pragma mark - public Methods
 
@@ -128,6 +154,7 @@
 -(void)hideTabView;{
     [_vc_tabBar hideTabBarAnimated:NO];
 }
+
 
 
 #pragma mark - 微信相关
@@ -222,6 +249,8 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+     [[LocationHelper sharedDefault] stopLocation];
+    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

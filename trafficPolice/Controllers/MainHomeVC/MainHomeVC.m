@@ -14,6 +14,7 @@
 #import <UIImageView+WebCache.h>
 
 #import "AccidentVC.h"
+#import "ShareFun.h"
 
 
 
@@ -36,7 +37,7 @@
     [self initCycleView];
     [self getImgPlay];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self getAccidentCodes];
+        [ShareFun getAccidentCodes];
     });
 
 }
@@ -70,26 +71,6 @@
 
 }
 
-- (void)getAccidentCodes{
-    WS(weakSelf);
-    AccidentGetCodesManger *manger = [AccidentGetCodesManger new];
-    manger.isLog = YES;
-    manger.isNeedShowHud = NO;
-    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        SW(strongSelf, weakSelf);
-        if (manger.responseModel.code == CODE_SUCCESS) {
-            [ShareValue sharedDefault].accidentCodes = manger.accidentGetCodesResponse;
-        }else{
-            [strongSelf getAccidentCodes];
-        }
-        
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        SW(strongSelf, weakSelf);
-        [strongSelf getAccidentCodes];
-    }];
-
-
-}
 
 #pragma mark - set
 

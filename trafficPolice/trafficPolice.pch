@@ -47,6 +47,7 @@
 #import "UserDefaultMacro.h"
 
 #import "ShareValue.h"
+#import "LocationHelper.h"
 
 
 #import "ShowHUD.h"

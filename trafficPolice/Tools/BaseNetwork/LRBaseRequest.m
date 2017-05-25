@@ -112,6 +112,7 @@
     [super requestFailedFilter];
     
     if (_isLog) {
+        LxDBAnyVar(self.description);
         LxDBAnyVar(self.responseStatusCode);
         LxDBAnyVar(self.error.localizedDescription);
     }

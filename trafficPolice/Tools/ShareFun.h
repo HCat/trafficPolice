@@ -25,6 +25,13 @@
 
 + (NSString *)getUniqueDeviceIdentifierAsString;
 
+
+//获取事故通用值
++ (void)getAccidentCodes;
+
+//获取当前时间，格式是
++ (NSString *)getCurrentTime;
+
 //获取列表权限
 
 + (BOOL)isPermissionForAccidentList;        //事故和快处权限

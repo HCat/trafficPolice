@@ -60,6 +60,19 @@
     return nil;
 }
 
+- (NSInteger)searchNameWithModelName:(NSString *)modelName WithArray:(NSArray <AccidentGetCodesModel *>*)items{
+    
+    if (items && items.count > 0) {
+        for(AccidentGetCodesModel *model in items){
+            if (model.modelName == modelName) {
+                return model.modelId;
+            }
+        }
+    }
+    return 0;
+}
+
+
 @end
 
 @implementation AccidentGetCodesManger

@@ -13,5 +13,7 @@
 #define WEIXIN_APP_ID @"wxcba311187acbfe2c"
 #define WEIXIN_APP_SECRET @"4e4444373f4e38f7fc5de55e01f5d5e4"
 
+#define BAIDUMAP_APP_KEY @"y2e0Bip7eIAuOmgCYoGfghqUnXgKdj6k"
+
 
 #endif /* SDKMacro_h */
