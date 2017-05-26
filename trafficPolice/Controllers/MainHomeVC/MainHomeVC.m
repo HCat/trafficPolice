@@ -56,7 +56,6 @@
 
 - (void)getImgPlay{
 
-    
     WS(weakSelf);
     CommonGetImgPlayManger *manger = [CommonGetImgPlayManger new];
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
