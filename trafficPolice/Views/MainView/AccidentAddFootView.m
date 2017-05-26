@@ -9,6 +9,7 @@
 #import "AccidentAddFootView.h"
 #import "YUSegment.h"
 #import "UIButton+NoRepeatClick.h"
+#import "CertificateView.h"
 #import "BottomView.h"
 #import "BottomPickerView.h"
 #import "FSTextView.h"
@@ -79,7 +80,6 @@
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self getServerData];
     });
-    
     
     [[LocationHelper sharedDefault] startLocation];
     _tf_accidentTime.text = [ShareFun getCurrentTime];
@@ -237,21 +237,95 @@
 
 - (IBAction)handleBtnNameIdentifyClicked:(id)sender {
     
-    AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:self];
-    LRCameraVC *homec = [[LRCameraVC alloc] init];
-    homec.fininshcapture = ^(UIImage *image) {
-        if (image) {
-            NSData * imageData = UIImageJPEGRepresentation(image,1);
-            NSInteger length = [imageData length]/1000;
-            LxPrintf(@"%dKB",length);
-            NSLog(@"照片存在");
-            
-        }
+    
+    WS(weakSelf);
+    CertificateView *t_view = [CertificateView initCustomView];
+    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 103)];
+    t_view.identityCardBlock = ^(){
+        LxPrintf(@"身份证点击");
+        
+        SW(strongSelf, weakSelf);
+        AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:self];
+        LRCameraVC *home = [[LRCameraVC alloc] init];
+        home.type = 2;
+        home.fininshcapture = ^(LRCameraVC *camera) {
+            if (camera) {
+                if (camera.type == 2) {
+                    strongSelf.tf_name.text = camera.commonIdentifyResponse.name;
+                    strongSelf.tf_identityCard.text = camera.commonIdentifyResponse.idNo;
+                    NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
+                    switch (selectedIndex) {
+                        case 0:
+                            strongSelf.param.ptaName  = camera.commonIdentifyResponse.name;
+                            strongSelf.param.ptaIdNo  = camera.commonIdentifyResponse.idNo;
+                            break;
+                        case 1:
+                            strongSelf.param.ptbName  = camera.commonIdentifyResponse.name;
+                            strongSelf.param.ptbIdNo  = camera.commonIdentifyResponse.idNo;
+                            break;
+                        case 2:
+                            strongSelf.param.ptcName  = camera.commonIdentifyResponse.name;
+                            strongSelf.param.ptcIdNo  = camera.commonIdentifyResponse.idNo;
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                }
+            }
+        };
+        [t_vc presentViewController:home
+                           animated:NO
+                         completion:^{
+                         }];
+        
+        [BottomView dismissWindow];
+        
     };
-    [t_vc presentViewController:homec
-                         animated:NO
-                       completion:^{
-                       }];
+    t_view.drivingLicenceBlock = ^(){
+        
+        LxPrintf(@"驾驶证点击");
+        SW(strongSelf, weakSelf);
+        
+        AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:self];
+        LRCameraVC *home = [[LRCameraVC alloc] init];
+        home.type = 3;
+        home.fininshcapture = ^(LRCameraVC *camera) {
+            if (camera) {
+                if (camera.type == 3) {
+                    strongSelf.tf_name.text = camera.commonIdentifyResponse.name;
+                    strongSelf.tf_identityCard.text = camera.commonIdentifyResponse.idNo;
+                    NSUInteger selectedIndex = strongSelf.segmentedControl.selectedSegmentIndex;
+                    switch (selectedIndex) {
+                        case 0:
+                            strongSelf.param.ptaName  = camera.commonIdentifyResponse.name;
+                            strongSelf.param.ptaIdNo  = camera.commonIdentifyResponse.idNo;
+                            break;
+                        case 1:
+                            strongSelf.param.ptbName  = camera.commonIdentifyResponse.name;
+                            strongSelf.param.ptbIdNo  = camera.commonIdentifyResponse.idNo;
+                            break;
+                        case 2:
+                            strongSelf.param.ptcName  = camera.commonIdentifyResponse.name;
+                            strongSelf.param.ptcIdNo  = camera.commonIdentifyResponse.idNo;
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                }
+            
+            }
+        };
+        [t_vc presentViewController:home
+                           animated:NO
+                         completion:^{
+                         }];
+        
+        [BottomView dismissWindow];
+        
+    };
+    [BottomView showWindowWithBottomView:t_view];
     
 }
 
@@ -490,7 +564,6 @@
             default:
                 break;
         }
-        
         
         [BottomView dismissWindow];
         

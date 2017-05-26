@@ -7,6 +7,7 @@
 //
 
 #import "CommonAPI.h"
+#import <AFNetworking.h>
 
 
 #pragma mark - 获取当前天气API
@@ -48,14 +49,24 @@
 //请求的url，不包括域名`域名通过YTKNetworkConfig配置`
 - (NSString *)requestUrl
 {
-    return URL_COMMON_GETROAD;
+    return URL_COMMON_IDENTIFY;
+}
+
+- (YTKRequestMethod)requestMethod
+{
+    return YTKRequestMethodPOST;
 }
 
 //请求参数
 - (nullable id)requestArgument
 {
-    return @{@"file":_file,
-             @"type":_type};
+    return @{@"type":@(_type)};
+}
+
+- (AFConstructingBlock)constructingBodyBlock {
+    return ^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:self.imageInfo.fileData name:self.imageInfo.name fileName:self.imageInfo.fileName mimeType:self.imageInfo.mimeType];
+    };
 }
 
 //返回参数

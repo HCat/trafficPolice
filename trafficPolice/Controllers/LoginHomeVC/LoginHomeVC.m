@@ -11,9 +11,6 @@
 #import <AFNetworking.h>
 #import <WXApi.h>
 #import "ShareFun.h"
-#import "CertificateView.h"
-#import "BottomView.h"
-
 #import "LoginAPI.h"
 
 
@@ -59,20 +56,6 @@
     
 //    PhoneLoginVC *t_vc = [PhoneLoginVC new];
 //    [self.navigationController pushViewController:t_vc animated:YES];
-    
-    
-//    CertificateView *t_view = [CertificateView initCustomView];
-//    [t_view setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 103)];
-//    t_view.identityCardBlock = ^(){
-//        
-//        LxPrintf(@"身份证点击");
-//        [BottomView dismissWindow];
-//    };
-//    t_view.drivingLicenceBlock = ^(){
-//        LxPrintf(@"驾驶证点击");
-//        [BottomView dismissWindow];
-//    };
-//    [BottomView showWindowWithBottomView:t_view];
     
 }
 

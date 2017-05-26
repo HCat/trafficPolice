@@ -42,19 +42,22 @@ static UILabel *toastView = nil;
         return;
     }
     @synchronized(self){
-        if (toastView == nil) {
-            toastView = [[UILabel alloc] init];
-            toastView.backgroundColor = [UIColor darkGrayColor];
-            toastView.textColor = [UIColor whiteColor];
-            toastView.font = [UIFont systemFontOfSize:17];
-            toastView.layer.masksToBounds = YES;
-            toastView.layer.cornerRadius = 3.0f;
-            toastView.textAlignment = NSTextAlignmentCenter;
-            toastView.alpha = 0;
-            toastView.numberOfLines = 0;
-            toastView.lineBreakMode = NSLineBreakByCharWrapping;
-            [[UIApplication sharedApplication].keyWindow addSubview:toastView];
+        if (toastView) {
+            [toastView removeFromSuperview];
+            toastView = nil;
         }
+        
+        toastView = [[UILabel alloc] init];
+        toastView.backgroundColor = [UIColor darkGrayColor];
+        toastView.textColor = [UIColor whiteColor];
+        toastView.font = [UIFont systemFontOfSize:17];
+        toastView.layer.masksToBounds = YES;
+        toastView.layer.cornerRadius = 3.0f;
+        toastView.textAlignment = NSTextAlignmentCenter;
+        toastView.alpha = 0;
+        toastView.numberOfLines = 0;
+        toastView.lineBreakMode = NSLineBreakByCharWrapping;
+        [[UIApplication sharedApplication].keyWindow addSubview:toastView];
     }
     if (toastView.superview != [UIApplication sharedApplication].keyWindow) {
         [toastView removeFromSuperview];

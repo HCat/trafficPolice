@@ -84,7 +84,9 @@
         //处理网络请求失败情况
         if (_isNeedShowHud) {
             if (_failMessage) {
-                [ShowHUD showSuccess:_failMessage duration:1.2f inView:window config:nil];
+                if (_failMessage.length != 0) {
+                    [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
+                }
             }else{
                 [ShowHUD showError:self.responseModel.msg duration:1.2f inView:window config:nil];
             }
@@ -93,7 +95,10 @@
         //处理网络请求成功情况
         if (_isNeedShowHud) {
             if (_successMessage) {
-                [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
+                if (_successMessage.length != 0) {
+                    [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
+                }
+                
             }else{
                 [ShowHUD showSuccess:@"请求成功!" duration:1.2f inView:window config:nil];
             }

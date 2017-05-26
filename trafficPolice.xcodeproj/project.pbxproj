@@ -44,6 +44,10 @@
 		C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC1E1EC1AF2D008ED063 /* ListHomeVC.xib */; };
 		C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */; };
 		C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */; };
+		CE08F71E1ED7BFE200D481DF /* UIImage+JKR_MessageImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F7191ED7BFE200D481DF /* UIImage+JKR_MessageImage.m */; };
+		CE08F71F1ED7BFE200D481DF /* UIImage+JKRImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F71B1ED7BFE200D481DF /* UIImage+JKRImage.m */; };
+		CE08F7201ED7BFE200D481DF /* UIImage+JKRRender.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F71D1ED7BFE200D481DF /* UIImage+JKRRender.m */; };
+		CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */; };
 		CE321A911ED6804B00F842E4 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE321A901ED6804A00F842E4 /* LocationHelper.m */; };
 		CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */; };
 		CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */; };
@@ -225,6 +229,14 @@
 		C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHomeVC.m; sourceTree = "<group>"; };
 		C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHomeVC.xib; sourceTree = "<group>"; };
 		C7E0DC261EC1B9E7008ED063 /* UtilsMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
+		CE08F7181ED7BFE200D481DF /* UIImage+JKR_MessageImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JKR_MessageImage.h"; sourceTree = "<group>"; };
+		CE08F7191ED7BFE200D481DF /* UIImage+JKR_MessageImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JKR_MessageImage.m"; sourceTree = "<group>"; };
+		CE08F71A1ED7BFE200D481DF /* UIImage+JKRImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JKRImage.h"; sourceTree = "<group>"; };
+		CE08F71B1ED7BFE200D481DF /* UIImage+JKRImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JKRImage.m"; sourceTree = "<group>"; };
+		CE08F71C1ED7BFE200D481DF /* UIImage+JKRRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JKRRender.h"; sourceTree = "<group>"; };
+		CE08F71D1ED7BFE200D481DF /* UIImage+JKRRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JKRRender.m"; sourceTree = "<group>"; };
+		CE08F7211ED7FAAF00D481DF /* ImageFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFileInfo.h; sourceTree = "<group>"; };
+		CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFileInfo.m; sourceTree = "<group>"; };
 		CE321A8F1ED6804A00F842E4 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
 		CE321A901ED6804A00F842E4 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
 		CE343EC91ECA8DC100C8E31B /* UITableView+Lr_Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Lr_Placeholder.h"; sourceTree = "<group>"; };
@@ -547,6 +559,7 @@
 		C7E0DBDF1EC1A1C8008ED063 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				CE08F7171ED7BFE200D481DF /* UIImage */,
 				C7621D0A1EC413A300980058 /* NSObject+Swizzling.h */,
 				C7621D0B1EC413A300980058 /* NSObject+Swizzling.m */,
 				C7621D0D1EC4192C00980058 /* UIButton+NoRepeatClick.h */,
@@ -748,6 +761,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE08F7171ED7BFE200D481DF /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				CE08F7181ED7BFE200D481DF /* UIImage+JKR_MessageImage.h */,
+				CE08F7191ED7BFE200D481DF /* UIImage+JKR_MessageImage.m */,
+				CE08F71A1ED7BFE200D481DF /* UIImage+JKRImage.h */,
+				CE08F71B1ED7BFE200D481DF /* UIImage+JKRImage.m */,
+				CE08F71C1ED7BFE200D481DF /* UIImage+JKRRender.h */,
+				CE08F71D1ED7BFE200D481DF /* UIImage+JKRRender.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
 		CE343ECF1ECA9DAC00C8E31B /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -882,6 +908,8 @@
 				CE8834D01ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m */,
 				CE3E7E841ED1E7E800BBB5C0 /* VideoColectListModel.h */,
 				CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */,
+				CE08F7211ED7FAAF00D481DF /* ImageFileInfo.h */,
+				CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1254,6 +1282,7 @@
 				CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */,
 				CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
+				CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */,
 				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
 				CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */,
@@ -1292,6 +1321,7 @@
 				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,
 				C7E0DC1A1EC1AF18008ED063 /* MainHomeVC.m in Sources */,
+				CE08F7201ED7BFE200D481DF /* UIImage+JKRRender.m in Sources */,
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */,
@@ -1306,6 +1336,7 @@
 				CE435EFA1ECD996800F85B38 /* LRBaseResponse.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				CE5786531ED4088700B4CC9F /* ZLBigImageCell.m in Sources */,
+				CE08F71F1ED7BFE200D481DF /* UIImage+JKRImage.m in Sources */,
 				CE4C93F21ECEA00300BE06F0 /* AccidentModel.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
@@ -1319,6 +1350,7 @@
 				CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 				CE5786521ED4088700B4CC9F /* ToastUtils.m in Sources */,
+				CE08F71E1ED7BFE200D481DF /* UIImage+JKR_MessageImage.m in Sources */,
 				CE57865B1ED4088700B4CC9F /* ZLProgressHUD.m in Sources */,
 				CE5786541ED4088700B4CC9F /* ZLCollectionCell.m in Sources */,
 			);

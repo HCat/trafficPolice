@@ -9,6 +9,11 @@
 #import "LRCameraVC.h"
 #import <TOCropViewController.h>
 #import <LLSimpleCamera.h>
+#import "ZLPhotoActionSheet.h"
+#import "UIImage+JKRImage.h"
+#import "ShareFun.h"
+
+#import "ImageFileInfo.h"
 
 @interface LRCameraVC ()<TOCropViewControllerDelegate>
 
@@ -17,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_photoAlbum;
 @property (weak, nonatomic) IBOutlet UIButton *btn_close;
 @property (weak, nonatomic) IBOutlet UIButton *btn_snap;
+@property (nonatomic,strong) ImageFileInfo *imageInfo;
 
 
 @end
@@ -38,6 +44,52 @@
     [self.camera start];
 
 }
+
+#pragma mark - 请求数据
+
+//获取证件号码
+- (void)getIdentifyRequest{
+
+    WS(weakSelf);
+    CommonIdentifyManger *manger = [[CommonIdentifyManger alloc] init];
+    manger.isLog = YES;
+    manger.isNeedShowHud = YES;
+    manger.successMessage = @"";
+    manger.failMessage = @"识别失败";
+    
+    manger.imageInfo = self.imageInfo;
+    manger.type = self.type;
+    
+    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"识别中.." inView:self.view config:nil];
+    
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        [hud hide];
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            if (manger.commonIdentifyResponse) {
+                [ShowHUD showSuccess:@"识别成功！" duration:1.5f inView:weakSelf.view config:nil];
+                strongSelf.commonIdentifyResponse = manger.commonIdentifyResponse;
+                if (strongSelf.fininshcapture) {
+                    strongSelf.fininshcapture(strongSelf);
+                }
+                [strongSelf dismissViewControllerAnimated:NO completion:^{
+                }];
+            }
+        }else{
+            [ShowHUD showError:@"识别失败,请重试!" duration:1.5f inView:weakSelf.view config:nil];
+        }
+        
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+
+    }];
+    
+
+}
+
+
+
 
 #pragma mark - initializeCamera(初始化相机)
 
@@ -65,11 +117,14 @@
             
             if(camera.flash == LLCameraFlashOff) {
                 [weakSelf.btn_flash setTitle:@"关闭" forState:UIControlStateNormal];
+                [weakSelf.btn_flash setImage:[UIImage imageNamed:@"camera_flash_close"] forState:UIControlStateNormal];
                 
             }else if(camera.flash == LLCameraFlashOn){
                 [weakSelf.btn_flash setTitle:@"开启" forState:UIControlStateNormal];
+                [weakSelf.btn_flash setImage:[UIImage imageNamed:@"camera_flash_open"] forState:UIControlStateNormal];
             }else{
                 [weakSelf.btn_flash setTitle:@"自动" forState:UIControlStateNormal];
+                 [weakSelf.btn_flash setImage:[UIImage imageNamed:@"camera_flash_open"] forState:UIControlStateNormal];
             }
         }
         else {
@@ -93,7 +148,7 @@
 }
 
 
-#pragma mark -button Methods
+#pragma mark - button Methods
 
 //拍照按钮点击
 - (IBAction)handlebtnSnapClicked:(id)sender {
@@ -125,16 +180,19 @@
         BOOL done = [self.camera updateFlashMode:LLCameraFlashOn];
         if(done) {
             [self.btn_flash setTitle:@"开启" forState:UIControlStateNormal];
+            [self.btn_flash setImage:[UIImage imageNamed:@"camera_flash_open"] forState:UIControlStateNormal];
         }
     }else if(self.camera.flash == LLCameraFlashOn){
         BOOL done = [self.camera updateFlashMode:LLCameraFlashAuto];
         if(done) {
             [self.btn_flash setTitle:@"自动" forState:UIControlStateNormal];
+            [self.btn_flash setImage:[UIImage imageNamed:@"camera_flash_open"] forState:UIControlStateNormal];
         }
     }else{
         BOOL done = [self.camera updateFlashMode:LLCameraFlashOff];
         if(done) {
             [self.btn_flash setTitle:@"关闭" forState:UIControlStateNormal];
+            [self.btn_flash setImage:[UIImage imageNamed:@"camera_flash_close"] forState:UIControlStateNormal];
         }
     
     }
@@ -143,7 +201,26 @@
 
 //相册按钮点击
 - (IBAction)handlebtnPhotoAlbumClicked:(id)sender {
-    
+    ZLPhotoActionSheet *actionSheet = [[ZLPhotoActionSheet alloc] init];
+    actionSheet.sortAscending = NO;
+    actionSheet.allowSelectImage = YES;
+    actionSheet.allowSelectGif = NO;
+    actionSheet.allowSelectVideo = NO;
+    actionSheet.allowTakePhotoInLibrary = NO;
+    //设置照片最大预览数
+    actionSheet.maxPreviewCount = 1;
+    //设置照片最大选择数
+    actionSheet.maxSelectCount = 1;
+    actionSheet.sender = self;
+    WS(weakSelf);
+    [actionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
+        SW(strongSelf,weakSelf);
+        strongSelf.imageInfo = [[ImageFileInfo alloc] initWithImage:images[0] withName:@"file"];
+        strongSelf.image = strongSelf.imageInfo.image;
+        [strongSelf getIdentifyRequest];
+        
+    }];
+    [actionSheet showPhotoLibrary];
     
 }
 
@@ -151,10 +228,10 @@
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle{
     
-
-    if (self.fininshcapture) {
-        self.fininshcapture(image);
-    }
+    self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:@"file"];
+    self.image = self.imageInfo.image;
+    
+    [self getIdentifyRequest];
     
     if (cropViewController.navigationController) {
         [cropViewController.navigationController popViewControllerAnimated:YES];

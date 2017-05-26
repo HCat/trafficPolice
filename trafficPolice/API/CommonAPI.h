@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LRBaseRequest.h"
+#import "ImageFileInfo.h"
 
 #pragma mark - 获取当前天气API
 
@@ -37,8 +38,9 @@
 @interface CommonIdentifyManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, copy) NSString *file; //文件
-@property (nonatomic, copy) NSString *type; //文件类型1：车牌号 2：身份证 3：驾驶证 4：行驶证
+
+@property (nonatomic, strong) ImageFileInfo *imageInfo; //文件
+@property (nonatomic, assign) NSInteger type; //文件类型1：车牌号 2：身份证 3：驾驶证 4：行驶证
 
 /****** 返回数据 ******/
 @property (nonatomic, copy) CommonIdentifyResponse *commonIdentifyResponse; //证件信息

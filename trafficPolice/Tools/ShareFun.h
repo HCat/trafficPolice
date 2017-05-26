@@ -35,6 +35,9 @@
 //根据UIImageData获取UIImage是什么格式的
 + (NSString *)typeForImageData:(NSData *)data;
 
+#pragma mark - 压缩图片
++ (UIImage *)scaleFromImage:(UIImage *)image;
+
 #pragma mark - 业务相关，待删除
 
 //获取事故通用值

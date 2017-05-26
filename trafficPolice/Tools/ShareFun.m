@@ -173,6 +173,58 @@
     
 }
 
+#pragma mark - 压缩图片
++ (UIImage *)scaleFromImage:(UIImage *)image{
+    
+    if (!image){
+        return nil;
+    }
+    NSData *data =UIImagePNGRepresentation(image);
+    CGFloat dataSize = data.length/1024;
+    CGFloat width  = image.size.width;
+    CGFloat height = image.size.height;
+    CGSize size;
+    
+    if (dataSize<=50)//小于50k
+    {
+        return image;
+    }else if (dataSize<=100)//小于100k
+    {
+        size = CGSizeMake(width/1.f, height/1.f);
+    }
+    else if (dataSize<=200)//小于200k
+    {
+        size = CGSizeMake(width/2.f, height/2.f);
+    }
+    else if (dataSize<=500)//小于500k
+    {
+        size = CGSizeMake(width/2.f, height/2.f);
+    }
+    else if (dataSize<=1000)//小于1M
+    {
+        size = CGSizeMake(width/2.f, height/2.f);
+    }
+    else if (dataSize<=2000)//小于2M
+    {
+        size = CGSizeMake(width/2.f, height/2.f);
+    }
+    else//大于2M
+    {
+        size = CGSizeMake(width/2.f, height/2.f);
+    }
+    NSLog(@"%f,%f",size.width,size.height);
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
+    UIImage *newImage =UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if (!newImage){
+        return image;
+    }
+    return newImage;
+}
+
+
 
 
 #pragma mark - 获取事故权限

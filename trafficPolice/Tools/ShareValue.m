@@ -26,6 +26,19 @@ LRSingletonM(Default)
 
 }
 
+- (void)setPhone:(NSString *)phone{
+    
+    [[NSUserDefaults standardUserDefaults] setObject:phone forKey:USERDEFAULT_KEY_PHONE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+- (NSString *)phone{
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USERDEFAULT_KEY_PHONE];
+    
+}
+
 
 
 @end
