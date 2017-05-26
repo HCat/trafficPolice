@@ -279,7 +279,7 @@
 + (void)getAccidentCodes{
 
     AccidentGetCodesManger *manger = [AccidentGetCodesManger new];
-    manger.isLog = NO;
+    manger.isLog = YES;
     manger.isNeedShowHud = NO;
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
        

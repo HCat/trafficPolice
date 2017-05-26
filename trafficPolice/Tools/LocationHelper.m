@@ -48,6 +48,7 @@ LRSingletonM(Default)
     else
     {
         NSLog(@"反geo检索发送失败");
+        [self startReverseGeocode];
     }
     
 }

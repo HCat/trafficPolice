@@ -11,6 +11,7 @@
 #import "ZLPhotoActionSheet.h"
 #import "ZLCollectionCell.h"
 #import "ZLPhotoModel.h"
+#import "AccidentAPI.h"
 
 @interface AccidentVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -72,6 +73,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     WS(weakSelf);
     [actionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
         SW(strongSelf, weakSelf);
+        strongSelf.footView.arr_photes = images;
         strongSelf.arr_photos = images;
         strongSelf.lastSelectAssets = assets.mutableCopy;
         strongSelf.lastSelectPhotos = images.mutableCopy;
@@ -147,6 +149,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
         
         self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
+        
         if (!self.isObserver) {
             [_footView addObserver:self forKeyPath:@"isShowMoreAccidentInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
             [_footView addObserver:self forKeyPath:@"isShowMoreInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];

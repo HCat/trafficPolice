@@ -16,7 +16,10 @@
 
 #define Base_URL DEBUG_URL
 
-
+//上传用的key
+#define key_file @"file" 
+#define key_files @"files"
+#define key_certFiles @"certfiles"
 
 #pragma mark - 登录相关API
 

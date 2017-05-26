@@ -7,6 +7,8 @@
 //
 
 #import "AccidentAPI.h"
+#import "ImageFileInfo.h"
+#import <AFNetworking.h>
 
 
 #pragma mark - 获取交通事故通用值API
@@ -52,7 +54,7 @@
 
     if (items && items.count > 0) {
         for(AccidentGetCodesModel *model in items){
-            if (model.modelId == modelType) {
+            if (model.modelType == modelType) {
                 return model.modelName;
             }
         }
@@ -64,14 +66,13 @@
     
     if (items && items.count > 0) {
         for(AccidentGetCodesModel *model in items){
-            if (model.modelName == modelName) {
+            if ([model.modelName isEqualToString:modelName]) {
                 return model.modelId;
             }
         }
     }
     return 0;
 }
-
 
 @end
 
@@ -105,6 +106,10 @@
 
 @implementation AccidentSaveParam
 
++ (NSArray *)modelPropertyBlacklist {
+    return @[@"files", @"certFiles"];
+}
+
 @end
 
 @implementation AccidentSaveManger
@@ -113,6 +118,24 @@
 - (NSString *)requestUrl
 {
     return URL_ACCIDENT_SAVE;
+}
+
+- (YTKRequestMethod)requestMethod
+{
+    return YTKRequestMethodPOST;
+}
+
+
+- (AFConstructingBlock)constructingBodyBlock {
+    return ^(id<AFMultipartFormData> formData) {
+        for (ImageFileInfo *filesImage in self.param.files){
+            [formData appendPartWithFileData:filesImage.fileData name:filesImage.name fileName:filesImage.fileName mimeType:filesImage.mimeType];
+        }
+        for (ImageFileInfo *certFilesImage in self.param.certFiles){
+            [formData appendPartWithFileData:certFilesImage.fileData name:certFilesImage.name fileName:certFilesImage.fileName mimeType:certFilesImage.mimeType];
+        }
+    
+    };
 }
 
 //请求参数

@@ -14,5 +14,6 @@
 @property (nonatomic,assign) BOOL isShowMoreAccidentInfo;
 @property (nonatomic,assign) BOOL isShowMoreInfo;
 @property (nonatomic,strong) AccidentSaveParam *param;
+@property (nonatomic,strong) NSArray *arr_photes;//选中的要上传的图片
 
 @end
