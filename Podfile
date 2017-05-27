@@ -16,6 +16,6 @@ pod 'AMScrollingNavbar', '~> 1.5.1’
 pod 'WechatOpenSDK' 
 pod 'TOCropViewController'
 pod 'LLSimpleCamera'
-
+pod 'RealReachability'
 
 end

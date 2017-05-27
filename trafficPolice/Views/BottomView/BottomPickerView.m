@@ -7,6 +7,7 @@
 //
 
 #import "BottomPickerView.h"
+#import "UIButton+Block.h"
 
 
 @interface BottomPickerView()<UIPickerViewDataSource,UIPickerViewDelegate>
@@ -15,9 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lb_PickTitle;
 @property (weak, nonatomic) IBOutlet UIButton *btn_selectedItem;
 
-
 @end
-
 
 @implementation BottomPickerView
 
@@ -30,6 +29,7 @@
     [super awakeFromNib];
     self.pickView.delegate = self;
     self.pickView.dataSource = self;
+    [_btn_selectedItem setEnlargeEdgeWithTop:10 right:30 bottom:10 left:50];
     // Initialization code
 }
 

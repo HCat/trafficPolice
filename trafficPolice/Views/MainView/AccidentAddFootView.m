@@ -7,16 +7,22 @@
 //
 
 #import "AccidentAddFootView.h"
+
 #import "YUSegment.h"
-#import "UIButton+NoRepeatClick.h"
+#import "FSTextView.h"
+#import "AccidentVC.h"
+#import "LRCameraVC.h"
+
 #import "CertificateView.h"
 #import "BottomView.h"
 #import "BottomPickerView.h"
-#import "FSTextView.h"
+
+
 #import "ShareFun.h"
 #import "CommonAPI.h"
-#import "LRCameraVC.h"
-#import "AccidentVC.h"
+
+#import "UIButton+NoRepeatClick.h"
+#import "UIButton+Block.h"
 
 
 
@@ -111,6 +117,14 @@
     //详情请查看UIButton+NoRepeatClick
     self.btn_moreInfo.isIgnore = YES;
     self.btn_moreAccidentInfo.isIgnore = YES;
+    
+    //设置扩展按钮的点击范围
+    [_btn_temporaryCar setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    [_btn_temporaryDrivelib setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    [_btn_temporarylib setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    [_btn_temporaryIdentityCard setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    
+    
     
     //设置更多设置下划线，直接设置不想用别人的子类，可以说我懒，觉得没有必要
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"更多信息"];
@@ -423,7 +437,7 @@
                         break;
                     }
                     case 1:{
-                        strongSelf.param.ptaCarNo  = camera.commonIdentifyResponse.carNo;
+                        strongSelf.param.ptbCarNo  = camera.commonIdentifyResponse.carNo;
                         NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:[ShareValue sharedDefault].accidentCodes.vehicle];
                         strongSelf.param.ptbVehicleId = @(IdNo);
                         dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -434,7 +448,7 @@
                         break;
                     }
                     case 2:{
-                        strongSelf.param.ptaCarNo  = camera.commonIdentifyResponse.carNo;
+                        strongSelf.param.ptcCarNo  = camera.commonIdentifyResponse.carNo;
                         NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:[ShareValue sharedDefault].accidentCodes.vehicle];
                         strongSelf.param.ptcVehicleId = @(IdNo);
                         dispatch_async(dispatch_get_global_queue(0, 0), ^{

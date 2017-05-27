@@ -40,7 +40,9 @@
         [self sure_SendAction:action to:target forEvent:event];
         return;
     }
-    if ([NSStringFromClass(self.class) isEqualToString:@"UIButton"]) {        self.timeInterval = self.timeInterval == 0 ? buttonRepeatInterval:self.timeInterval;
+    
+    if ([NSStringFromClass(self.class) isEqualToString:@"UIButton"]) {
+        self.timeInterval = self.timeInterval == 0 ? buttonRepeatInterval:self.timeInterval;
         
         if (self.isIgnoreEvent){
             return;

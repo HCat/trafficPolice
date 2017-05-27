@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonAPI.h"
+#import "BaseViewController.h"
 
 @class LRCameraVC;
 
 typedef void (^fininshCaptureBlock)(LRCameraVC
 *camera);
 
-@interface LRCameraVC : UIViewController
+@interface LRCameraVC : BaseViewController
 
 //文件类型1：车牌号 2：身份证 3：驾驶证 4：行驶证
 @property (nonatomic,assign) NSInteger type;

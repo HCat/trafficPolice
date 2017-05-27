@@ -44,9 +44,6 @@
 		C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC1E1EC1AF2D008ED063 /* ListHomeVC.xib */; };
 		C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */; };
 		C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */; };
-		CE08F71E1ED7BFE200D481DF /* UIImage+JKR_MessageImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F7191ED7BFE200D481DF /* UIImage+JKR_MessageImage.m */; };
-		CE08F71F1ED7BFE200D481DF /* UIImage+JKRImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F71B1ED7BFE200D481DF /* UIImage+JKRImage.m */; };
-		CE08F7201ED7BFE200D481DF /* UIImage+JKRRender.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F71D1ED7BFE200D481DF /* UIImage+JKRRender.m */; };
 		CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */; };
 		CE321A911ED6804B00F842E4 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE321A901ED6804A00F842E4 /* LocationHelper.m */; };
 		CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */; };
@@ -143,6 +140,8 @@
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
 		CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E52D41ED2B59A002C4603 /* ShowHUD.m */; };
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
+		CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */; };
+		CE6F9C2D1ED92C2100ADDA23 /* LSStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */; };
 		CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */; };
 		CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834C41ED1D38F00666CEE /* IllegalParkListModel.m */; };
 		CE8834C81ED1D5BA00666CEE /* IllegalParkDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834C71ED1D5BA00666CEE /* IllegalParkDetailModel.m */; };
@@ -229,12 +228,6 @@
 		C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHomeVC.m; sourceTree = "<group>"; };
 		C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHomeVC.xib; sourceTree = "<group>"; };
 		C7E0DC261EC1B9E7008ED063 /* UtilsMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
-		CE08F7181ED7BFE200D481DF /* UIImage+JKR_MessageImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JKR_MessageImage.h"; sourceTree = "<group>"; };
-		CE08F7191ED7BFE200D481DF /* UIImage+JKR_MessageImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JKR_MessageImage.m"; sourceTree = "<group>"; };
-		CE08F71A1ED7BFE200D481DF /* UIImage+JKRImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JKRImage.h"; sourceTree = "<group>"; };
-		CE08F71B1ED7BFE200D481DF /* UIImage+JKRImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JKRImage.m"; sourceTree = "<group>"; };
-		CE08F71C1ED7BFE200D481DF /* UIImage+JKRRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JKRRender.h"; sourceTree = "<group>"; };
-		CE08F71D1ED7BFE200D481DF /* UIImage+JKRRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JKRRender.m"; sourceTree = "<group>"; };
 		CE08F7211ED7FAAF00D481DF /* ImageFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFileInfo.h; sourceTree = "<group>"; };
 		CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFileInfo.m; sourceTree = "<group>"; };
 		CE321A8F1ED6804A00F842E4 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
@@ -404,6 +397,10 @@
 		CE6E52D31ED2B59A002C4603 /* ShowHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowHUD.h; sourceTree = "<group>"; };
 		CE6E52D41ED2B59A002C4603 /* ShowHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowHUD.m; sourceTree = "<group>"; };
 		CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShowHUDUntil.bundle; sourceTree = "<group>"; };
+		CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LSStatusBarHUD.bundle; sourceTree = "<group>"; };
+		CE6F9C291ED92C2100ADDA23 /* LSStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUD.h; sourceTree = "<group>"; };
+		CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSStatusBarHUD.m; sourceTree = "<group>"; };
+		CE6F9C2B1ED92C2100ADDA23 /* LSStatusBarHUDConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUDConst.h; sourceTree = "<group>"; };
 		CE7EED811ED1C42A00478777 /* IllegalParkAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkAPI.h; sourceTree = "<group>"; };
 		CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalParkAPI.m; sourceTree = "<group>"; };
 		CE8834C31ED1D38F00666CEE /* IllegalParkListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkListModel.h; sourceTree = "<group>"; };
@@ -559,7 +556,6 @@
 		C7E0DBDF1EC1A1C8008ED063 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				CE08F7171ED7BFE200D481DF /* UIImage */,
 				C7621D0A1EC413A300980058 /* NSObject+Swizzling.h */,
 				C7621D0B1EC413A300980058 /* NSObject+Swizzling.m */,
 				C7621D0D1EC4192C00980058 /* UIButton+NoRepeatClick.h */,
@@ -598,6 +594,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE6F9C271ED92C2100ADDA23 /* LSStatusBarHUD */,
 				CE4763371ED5D52500F29968 /* FSTextView */,
 				CE6314D01ED4FCBE00A885A7 /* YUSegment */,
 				CE5786081ED4088700B4CC9F /* PhotoBrowser */,
@@ -662,10 +659,10 @@
 				CE4CFDFC1ECB47EA00E59524 /* ShareFun.m */,
 				CE4CFDFE1ECB4D2700E59524 /* ShareValue.h */,
 				CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */,
-				CE343ECF1ECA9DAC00C8E31B /* Views */,
-				C7E0DBF41EC1A1C9008ED063 /* Controllers */,
 				CE321A8F1ED6804A00F842E4 /* LocationHelper.h */,
 				CE321A901ED6804A00F842E4 /* LocationHelper.m */,
+				CE343ECF1ECA9DAC00C8E31B /* Views */,
+				C7E0DBF41EC1A1C9008ED063 /* Controllers */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -759,19 +756,6 @@
 				5315943D58AFCAE8E122A7A7 /* libPods-trafficPolice.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CE08F7171ED7BFE200D481DF /* UIImage */ = {
-			isa = PBXGroup;
-			children = (
-				CE08F7181ED7BFE200D481DF /* UIImage+JKR_MessageImage.h */,
-				CE08F7191ED7BFE200D481DF /* UIImage+JKR_MessageImage.m */,
-				CE08F71A1ED7BFE200D481DF /* UIImage+JKRImage.h */,
-				CE08F71B1ED7BFE200D481DF /* UIImage+JKRImage.m */,
-				CE08F71C1ED7BFE200D481DF /* UIImage+JKRRender.h */,
-				CE08F71D1ED7BFE200D481DF /* UIImage+JKRRender.m */,
-			);
-			path = UIImage;
 			sourceTree = "<group>";
 		};
 		CE343ECF1ECA9DAC00C8E31B /* Views */ = {
@@ -1064,6 +1048,17 @@
 			path = ShowHUD;
 			sourceTree = "<group>";
 		};
+		CE6F9C271ED92C2100ADDA23 /* LSStatusBarHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */,
+				CE6F9C291ED92C2100ADDA23 /* LSStatusBarHUD.h */,
+				CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */,
+				CE6F9C2B1ED92C2100ADDA23 /* LSStatusBarHUDConst.h */,
+			);
+			path = LSStatusBarHUD;
+			sourceTree = "<group>";
+		};
 		CE9C51531EC49C2C004A7611 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1158,6 +1153,7 @@
 				CE5786511ED4088700B4CC9F /* ZLThumbnailViewController.xib in Resources */,
 				CE57864E1ED4088700B4CC9F /* ZLPhotoActionSheet.xib in Resources */,
 				CE5786491ED4088700B4CC9F /* defaultphoto.png in Resources */,
+				CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */,
 				C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */,
 				CE5786401ED4088700B4CC9F /* btn_original_circle.png in Resources */,
 				CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */,
@@ -1321,7 +1317,6 @@
 				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,
 				C7E0DC1A1EC1AF18008ED063 /* MainHomeVC.m in Sources */,
-				CE08F7201ED7BFE200D481DF /* UIImage+JKRRender.m in Sources */,
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */,
@@ -1336,7 +1331,6 @@
 				CE435EFA1ECD996800F85B38 /* LRBaseResponse.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				CE5786531ED4088700B4CC9F /* ZLBigImageCell.m in Sources */,
-				CE08F71F1ED7BFE200D481DF /* UIImage+JKRImage.m in Sources */,
 				CE4C93F21ECEA00300BE06F0 /* AccidentModel.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
@@ -1345,12 +1339,12 @@
 				CE39E0131ECF355200F284C1 /* AccidentCountModel.m in Sources */,
 				CE8834CE1ED1DBA600666CEE /* IllegalThroughAPI.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,
+				CE6F9C2D1ED92C2100ADDA23 /* LSStatusBarHUD.m in Sources */,
 				CE8834C81ED1D5BA00666CEE /* IllegalParkDetailModel.m in Sources */,
 				CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */,
 				CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 				CE5786521ED4088700B4CC9F /* ToastUtils.m in Sources */,
-				CE08F71E1ED7BFE200D481DF /* UIImage+JKR_MessageImage.m in Sources */,
 				CE57865B1ED4088700B4CC9F /* ZLProgressHUD.m in Sources */,
 				CE5786541ED4088700B4CC9F /* ZLCollectionCell.m in Sources */,
 			);

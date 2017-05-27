@@ -7,6 +7,7 @@
 //
 
 #import "UINavigationBar+BarItem.h"
+#import "UIButton+Block.m"
 
 @implementation UIViewController (BarItem)
 
@@ -19,6 +20,7 @@
     button.frame = buttonFrame;
     [button setImage:image forState:UIControlStateNormal];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button setEnlargeEdgeWithTop:10 right:20 bottom:10 left:50];
 //    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 20)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
@@ -32,9 +34,11 @@
     button.frame = buttonFrame;
     [button setImage:image forState:UIControlStateNormal];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button setEnlargeEdgeWithTop:10 right:30 bottom:10 left:30];
 //    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, -20)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
+
 
 - (void)showLeftBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action {
     

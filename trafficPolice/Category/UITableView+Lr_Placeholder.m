@@ -23,6 +23,11 @@
 }
 
 - (void)lr_reloadData{
+    if (self.isNeedPlaceholderView == NO) {
+        //不需要被methods swizzing
+        [self lr_reloadData];
+        return;
+    }
     
     if (!self.firstReload) {
         
@@ -35,6 +40,7 @@
             self.placeholderView.hidden = NO;
            
         }else{
+            
             if (!self.placeholderView) {
                  [self makeDefaultPlaceholderView];
             }
@@ -55,7 +61,6 @@
     LRPlaceholderView *placeholderView = [[LRPlaceholderView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     placeholderView.isNetvailable = self.isNetAvailable;
 
-    
     __weak typeof(self) weakSelf = self;
     [placeholderView setReloadClickBlock:^{
         __strong typeof (self) strongSelf = weakSelf;
@@ -72,7 +77,6 @@
     
     LRPlaceholderView *placeholderView = [[LRPlaceholderView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     placeholderView.isNetvailable = self.isNetAvailable;
-    
     
     self.placeholderView = placeholderView;
 
@@ -106,9 +110,10 @@
         self.placeholderView.hidden = YES;
         [self.placeholderView removeFromSuperview];
     }
-
+    
 }
 
+#pragma mark - placeholderView
 
 - (UIView *)placeholderView{
 
@@ -120,6 +125,8 @@
 
 }
 
+#pragma mark - firstReload
+
 - (BOOL)firstReload {
     return [objc_getAssociatedObject(self, @selector(firstReload)) boolValue];
 }
@@ -127,6 +134,8 @@
 - (void)setFirstReload:(BOOL)firstReload {
     objc_setAssociatedObject(self, @selector(firstReload), @(firstReload), OBJC_ASSOCIATION_ASSIGN);
 }
+
+#pragma mark - isNetAvailable
 
 - (BOOL)isNetAvailable {
     return [objc_getAssociatedObject(self, @selector(isNetAvailable)) boolValue];
@@ -140,9 +149,21 @@
         self.placeholderView.hidden = YES;
         
     }
-    
 }
 
+#pragma mark - isNeedPlaceholderView
+
+- (void)setIsNeedPlaceholderView:(BOOL)isNeedPlaceholderView{
+    // 注意BOOL类型 需要用OBJC_ASSOCIATION_RETAIN_NONATOMIC 不要用错，否则set方法会赋值出错
+    objc_setAssociatedObject(self, @selector(isNeedPlaceholderView), @(isNeedPlaceholderView), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isNeedPlaceholderView{
+    //_cmd == @select(isIgnore); 和set方法里一致
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+#pragma mark - reloadBlock
 
 - (void (^)(void))reloadBlock {
     return objc_getAssociatedObject(self, @selector(reloadBlock));

@@ -20,7 +20,7 @@
 #import <YTKNetwork.h>
 #import "LRBaseRequest.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
-
+#import "RealReachability.h"
 
 
 
@@ -36,27 +36,17 @@ BMKMapManager* _mapManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //******** 导航栏的设置 ********//
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4281E8)];
-    [UINavigationBar appearance].titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    if([[UIDevice currentDevice].systemVersion floatValue] >= 8 && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-        [UINavigationBar appearance].translucent = NO;
-    }
-    //******** 注册第三方：微信，百度地图等 ********//
+    [self commonConfig];
+    
+    //注册第三方：微信，百度地图
     [self addThirthPart:launchOptions];
-    //******** 开启定位等 ********//
+    //开始定位
     [[LocationHelper sharedDefault] startLocation];
-    
-    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
-    config.baseUrl = Base_URL;
-    
-    
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
     if ([ShareValue sharedDefault].token) {
-        /*********** 切换到首页界面 ************/
         [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
         
         [self initAKTabBarController];
@@ -67,11 +57,7 @@ BMKMapManager* _mapManager;
         UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:_vc_login];
         self.window.rootViewController = t_nav;
     }
-    
-//    [self initAKTabBarController];
-//    self.window.rootViewController = self.vc_tabBar;
 
-    
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -79,6 +65,33 @@ BMKMapManager* _mapManager;
 }
 
 #pragma mark - Methods
+
+//通用配置
+-(void)commonConfig{
+
+    //设置导航栏
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x4281E8)];
+    [UINavigationBar appearance].titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    if([[UIDevice currentDevice].systemVersion floatValue] >= 8 && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [UINavigationBar appearance].translucent = NO;
+    }
+    
+    [GLobalRealReachability startNotifier];
+    
+    //配置网络改变监听
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkChanged:)
+                                                 name:kRealReachabilityChangedNotification
+                                               object:nil];
+    
+    
+    
+    //配置统一的网络基地址
+    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+    config.baseUrl = Base_URL;
+
+}
 
 -(void)initAKTabBarController{
 
@@ -219,9 +232,52 @@ BMKMapManager* _mapManager;
             [alert show];
         }
     }
-    
-
 }
+
+#pragma mark - 网络改变监听
+
+- (void)networkChanged:(NSNotification *)notification
+{
+    RealReachability *reachability = (RealReachability *)notification.object;
+    ReachabilityStatus status = [reachability currentReachabilityStatus];
+    ReachabilityStatus previousStatus = [reachability previousReachabilityStatus];
+    LxPrintf(@"networkChanged, currentStatus:%@, previousStatus:%@", @(status), @(previousStatus));
+    
+    if (status == RealStatusNotReachable){
+        LxPrintf(@"Network unreachable!");
+        
+    }
+    
+    if (status == RealStatusViaWiFi){
+        LxPrintf(@"Network wifi! Free!");
+        
+    }
+    
+    if (status == RealStatusViaWWAN){
+        LxPrintf(@"Network WWAN! In charge!");
+        
+    }
+    
+    WWANAccessType accessType = [GLobalRealReachability currentWWANtype];
+    
+    if (status == RealStatusViaWWAN){
+        
+        if (accessType == WWANType2G){
+            LxPrintf(@"RealReachabilityStatus2G");
+        }
+        else if (accessType == WWANType3G){
+            LxPrintf(@"RealReachabilityStatus3G");
+        }
+        else if (accessType == WWANType4G){
+            LxPrintf(@"RealReachabilityStatus4G");
+        }
+        else{
+            LxPrintf(@"Unknown RealReachability WWAN Status, might be iOS6");
+        }
+    }
+    
+}
+
 
 
 #pragma mark -
@@ -250,7 +306,7 @@ BMKMapManager* _mapManager;
 
 - (void)applicationWillTerminate:(UIApplication *)application {
      [[LocationHelper sharedDefault] stopLocation];
-    
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

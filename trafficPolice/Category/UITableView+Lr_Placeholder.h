@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIView *placeholderView; //用于外部设置异常加载占位图,如果没有设置，则使用默认的异常加载占位图
 @property (nonatomic, copy)   void (^reloadBlock)(void);
 
-
+//判断是否需要占位图, 默认是不需要的
+@property (nonatomic, assign) BOOL isNeedPlaceholderView;
 
 @end
