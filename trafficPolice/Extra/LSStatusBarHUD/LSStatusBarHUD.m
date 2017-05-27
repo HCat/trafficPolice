@@ -164,7 +164,7 @@
 +(instancetype)createWindowWithAutoHide:(BOOL)autoHide
 {
     UIViewController *vc= [UIApplication sharedApplication].keyWindow.rootViewController;
-    BOOL exist;
+    BOOL exist = NO;
     LSStatusBarHUD *lastHud= vc.ls_hudWindow;
     if (lastHud) {
         exist=YES;
@@ -252,7 +252,7 @@
 -(void)dealloc
 {
     
-    LSLog(@"释放了---------------");
+    LSLog(@"LSStatusBarHUD dealloc");
     
 }
 @end

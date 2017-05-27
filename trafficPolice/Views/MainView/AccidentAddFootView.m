@@ -124,9 +124,8 @@
     [_btn_temporarylib setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     [_btn_temporaryIdentityCard setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     
-    
-    
     //设置更多设置下划线，直接设置不想用别人的子类，可以说我懒，觉得没有必要
+    
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"更多信息"];
     NSRange strRange = {0,[str length]};
     [str addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xFF8B33) range:strRange];
@@ -806,8 +805,6 @@
     WS(weakSelf);
     AccidentSaveManger *manger = [[AccidentSaveManger alloc] init];
     manger.param = self.param;
-    manger.isLog = YES;
-    manger.isNeedShowHud = YES;
     manger.successMessage = @"提交成功";
     manger.failMessage = @"提交失败";
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];

@@ -66,8 +66,6 @@
     WS(weakSelf);
     
     CommonIdentifyManger *manger = [[CommonIdentifyManger alloc] init];
-    manger.isLog = YES;
-    manger.isNeedShowHud = YES;
     manger.successMessage = @"";
     manger.failMessage = @"识别失败";
     

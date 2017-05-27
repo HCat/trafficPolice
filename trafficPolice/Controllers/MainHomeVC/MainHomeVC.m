@@ -39,6 +39,18 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [ShareFun getAccidentCodes];
     });
+    
+    WS(weakSelf);
+    
+    //断网之后重新连接网络该做的事情
+    self.networkChangeBlock = ^{
+        SW(strongSelf, weakSelf);
+        [strongSelf getImgPlay];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [ShareFun getAccidentCodes];
+        });
+    };
+    
 
 }
 
@@ -58,6 +70,8 @@
 
     WS(weakSelf);
     CommonGetImgPlayManger *manger = [CommonGetImgPlayManger new];
+    manger.isLog = NO;
+    manger.v_showHud = self.view;
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         SW(strongSelf, weakSelf);
         if (manger.responseModel.code == CODE_SUCCESS) {
@@ -65,6 +79,7 @@
             [strongSelf.cycleView reloadData];
         }
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
         
     }];
 

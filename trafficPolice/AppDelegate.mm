@@ -21,6 +21,7 @@
 #import "LRBaseRequest.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "RealReachability.h"
+#import "LSStatusBarHUD.h"
 
 
 
@@ -245,21 +246,25 @@ BMKMapManager* _mapManager;
     
     if (status == RealStatusNotReachable){
         LxPrintf(@"Network unreachable!");
-        
+        [LSStatusBarHUD showMessageAndImage:@"当前无网络,请检查网络是否正常"];
+    }else{
+        if (previousStatus == RealStatusNotReachable || previousStatus == RealStatusUnknown) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HAVENETWORK_SUCCESS object:nil];
+            BOOL ret = [_mapManager start:BAIDUMAP_APP_KEY generalDelegate:self];
+            if (!ret) {
+                NSLog(@"manager start failed!");
+            }
+            [[LocationHelper sharedDefault] startLocation];
+        }
     }
     
     if (status == RealStatusViaWiFi){
         LxPrintf(@"Network wifi! Free!");
-        
     }
-    
     if (status == RealStatusViaWWAN){
         LxPrintf(@"Network WWAN! In charge!");
-        
     }
-    
     WWANAccessType accessType = [GLobalRealReachability currentWWANtype];
-    
     if (status == RealStatusViaWWAN){
         
         if (accessType == WWANType2G){

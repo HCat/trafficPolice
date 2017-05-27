@@ -65,8 +65,6 @@
         
         LoginTakeCodeManger *manger = [LoginTakeCodeManger new];
         manger.openId = [ShareValue sharedDefault].unionid;
-        manger.isLog = YES;
-        
         ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:strongSelf.view config:nil];
         
         [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -132,7 +130,6 @@
     
     LoginCheckManger *manger = [LoginCheckManger new];
     manger.param = param;
-    manger.isLog = YES;
     manger.successMessage = @"登录成功!";
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
     

@@ -7,6 +7,7 @@
 //
 
 #import "LocationHelper.h"
+#import <RealReachability.h>
 
 @implementation LocationHelper
 
@@ -29,8 +30,7 @@ LRSingletonM(Default)
 }
 
 - (void)startReverseGeocode{
-    
-    
+
     if (!self.geocodesearch) {
         self.geocodesearch = [[BMKGeoCodeSearch alloc]init];
         self.geocodesearch.delegate = self;
@@ -48,9 +48,13 @@ LRSingletonM(Default)
     else
     {
         NSLog(@"反geo检索发送失败");
-        [self startReverseGeocode];
-    }
+        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+            if (status != RealStatusNotReachable) {
+                [self performSelector:@selector(startReverseGeocode) withObject:nil afterDelay:1.5];
+                 //[self startReverseGeocode];
+            }
     
+    }
 }
 
 #pragma mark - 百度地图定位Delegate

@@ -279,8 +279,8 @@
 + (void)getAccidentCodes{
 
     AccidentGetCodesManger *manger = [AccidentGetCodesManger new];
-    manger.isLog = YES;
     manger.isNeedShowHud = NO;
+    manger.isLog = NO;
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
        
         if (manger.responseModel.code == CODE_SUCCESS) {

@@ -99,7 +99,6 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 }
 
 
-
 #pragma mark - UICollectionView Data Source
 
 //返回多少个组

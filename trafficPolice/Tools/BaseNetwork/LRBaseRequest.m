@@ -14,7 +14,7 @@
 -(id)init{
 
     if(self = [super init]){
-    
+        _isLog = YES;
         _isNeedShowHud = YES;
     
     };
@@ -75,20 +75,23 @@
     }
     
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (!self.v_showHud) {
+        self.v_showHud = window;
+    }
     
     if (self.responseModel.code == CODE_TOKENTIMEOUT ) {
         //处理token失效情况
-        [ShowHUD showError:@"token过期,重新登录" duration:1.2f inView:window config:nil];
+        [ShowHUD showError:@"token过期,重新登录" duration:1.2f inView:self.v_showHud config:nil];
         
     }else if (self.responseModel.code == CODE_FAILED){
         //处理网络请求失败情况
         if (_isNeedShowHud) {
             if (_failMessage) {
                 if (_failMessage.length != 0) {
-                    [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
+                    [ShowHUD showSuccess:_successMessage duration:1.2f inView:self.v_showHud config:nil];
                 }
             }else{
-                [ShowHUD showError:self.responseModel.msg duration:1.2f inView:window config:nil];
+                [ShowHUD showError:self.responseModel.msg duration:1.2f inView:self.v_showHud config:nil];
             }
         }
     }else if (self.responseModel.code == CODE_SUCCESS){
@@ -96,11 +99,11 @@
         if (_isNeedShowHud) {
             if (_successMessage) {
                 if (_successMessage.length != 0) {
-                    [ShowHUD showSuccess:_successMessage duration:1.2f inView:window config:nil];
+                    [ShowHUD showSuccess:_successMessage duration:1.2f inView:self.v_showHud config:nil];
                 }
                 
             }else{
-                [ShowHUD showSuccess:@"请求成功!" duration:1.2f inView:window config:nil];
+                [ShowHUD showSuccess:@"请求成功!" duration:1.2f inView:self.v_showHud config:nil];
             }
         }
         
@@ -122,8 +125,7 @@
         LxDBAnyVar(self.error.localizedDescription);
     }
     
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
-    [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%ld",self.responseStatusCode] duration:1.2f inView:window config:nil];
+    [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%d",self.responseStatusCode] duration:1.2f inView:self.v_showHud config:nil];
     
 }
 
