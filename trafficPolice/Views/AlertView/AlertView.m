@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UILabel *lb_content;
 @property (nonatomic, strong) UIButton *btn_quit;
 
+@property (nonatomic, strong) UIWindow *keyWindow;
 
 @end
 
@@ -37,9 +38,17 @@
 + (void)showWindowWithTitle:(NSString*)title
                    contents:(NSString *)contents{
 
+    NSArray *windows = [UIApplication sharedApplication].windows;
+    LxDBAnyVar(windows);
+    
     AlertView *window = [[AlertView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     window.title = title;
     window.content = contents;
+    
+    window.keyWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    window.keyWindow.backgroundColor = [UIColor clearColor];
+    window.keyWindow.windowLevel = UIWindowLevelAlert+100000000;
+    [window.keyWindow makeKeyAndVisible];
     [[UIApplication sharedApplication].keyWindow addSubview:window];
 
     window.contentView.center = window.center;
@@ -57,7 +66,13 @@
 
 
     AlertView *window = [[AlertView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    window.keyWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    window.keyWindow.backgroundColor = [UIColor clearColor];
+    window.keyWindow.windowLevel = UIWindowLevelAlert+100000000;
+    [window.keyWindow makeKeyAndVisible];
     [[UIApplication sharedApplication].keyWindow addSubview:window];
+    
+
     
     window.contentView = contentView;
     window.contentView.center = window.center;
@@ -183,10 +198,22 @@
 
     [self removeFromSuperview];
 
+    [self.keyWindow resignKeyWindow];
+    [[UIApplication sharedApplication].delegate.window makeKeyWindow];
+    
+
 }
 
 - (void)tapBackViewAction{
     [self removeFromSuperview];
+    [self.keyWindow resignKeyWindow];
+    [[UIApplication sharedApplication].delegate.window makeKeyWindow];
+
+}
+
+- (void)dealloc{
+
+    LxPrintf(@"AlertView dealloc");
 }
 
 

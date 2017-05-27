@@ -17,9 +17,17 @@
 //验证手机验证码格式
 + (BOOL)validatePhoneNumber:(NSString *)phoneNumber;
 
+//身份证验证
++ (BOOL)validateIDCardNumber:(NSString *)value;
+
+//车牌号验证
++ (BOOL) validateCarNumber:(NSString *) carNumber;
+
 //高亮一段NSSting中的数字部分
 
 + (NSMutableAttributedString *)highlightNummerInString:(NSString *)originString;
+
++ (NSMutableAttributedString *)highlightInString:(NSString *)originString withSubString:(NSString *)subString;
 
 //获取唯一标识符
 

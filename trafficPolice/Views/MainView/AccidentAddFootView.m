@@ -12,6 +12,7 @@
 #import "FSTextView.h"
 #import "AccidentVC.h"
 #import "LRCameraVC.h"
+#import "SearchLocationVC.h"
 
 #import "CertificateView.h"
 #import "BottomView.h"
@@ -23,6 +24,7 @@
 
 #import "UIButton+NoRepeatClick.h"
 #import "UIButton+Block.h"
+#import "CountAccidentHelper.h"
 
 
 
@@ -74,8 +76,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lb_textCount;             //用于显示简述输入多少文字
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_commit;
+
 
 @property(nonatomic,strong) NSMutableArray *arr_credentials;//用于存储证件照片，以及证件对应名称值
+
+@property(nonatomic,assign) BOOL isCanCommit;
 
 @end
 
@@ -106,7 +112,9 @@
     
     //获取当前事故时间
     _tf_accidentTime.text = [ShareFun getCurrentTime];
-    self.param.happenTimeStr = _tf_accidentTime.text;
+    self.param.happenTimeStr = [ShareFun getCurrentTime];
+    
+    self.isCanCommit = NO;
 }
 
 #pragma mark - 配置视图页面
@@ -117,6 +125,11 @@
     //详情请查看UIButton+NoRepeatClick
     self.btn_moreInfo.isIgnore = YES;
     self.btn_moreAccidentInfo.isIgnore = YES;
+    
+    //设置UITextField的Placeholder高亮来提示哪些是需要输入的
+    _tf_accidentTime.attributedPlaceholder = [ShareFun highlightInString:@"请输入事故时间(必填)" withSubString:@"(必填)"];
+    _tf_location.attributedPlaceholder = [ShareFun highlightInString:@"请选择位置(必选)" withSubString:@"(必选)"];
+    _tf_accidentAddress.attributedPlaceholder = [ShareFun highlightInString:@"请输入事故地点(必填)" withSubString:@"(必填)"];
     
     //设置扩展按钮的点击范围
     [_btn_temporaryCar setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
@@ -191,6 +204,18 @@
 }
 
 #pragma mark - set && get
+
+-(void)setIsCanCommit:(BOOL)isCanCommit{
+    _isCanCommit = isCanCommit;
+    if (_isCanCommit == NO) {
+        _btn_commit.enabled = NO;
+        [_btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
+    }else{
+        _btn_commit.enabled = YES;
+        [_btn_commit setBackgroundColor:UIColorFromRGB(0x4281E8)];
+    }
+}
+
 
 - (void)setArr_photes:(NSArray *)arr_photes{
 
@@ -335,6 +360,9 @@
                         default:
                             break;
                     }
+                    
+                    //用于请求是否有违规行为
+                    [[CountAccidentHelper sharedDefault] setIdNo:camera.commonIdentifyResponse.idNo];
                 }
             }
         };
@@ -393,8 +421,9 @@
                         default:
                             break;
                     }
+                    //用于请求是否有违规行为
+                    [[CountAccidentHelper sharedDefault] setIdNo:camera.commonIdentifyResponse.idNo];
                 }
-            
             }
         };
         [t_vc presentViewController:home
@@ -460,6 +489,10 @@
                     default:
                         break;
                 }
+                
+                //用于请求是否有违规行为
+                [[CountAccidentHelper sharedDefault] setCarNo:camera.commonIdentifyResponse.carNo];
+                
             }
             
         }
@@ -502,6 +535,16 @@
 
 - (IBAction)handleBtnChoiceLocationClicked:(id)sender {
     
+    AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:self];
+    SearchLocationVC *t_searchLocationvc = [SearchLocationVC new];
+    WS(weakSelf);
+    t_searchLocationvc.searchLocationBlock = ^(AccidentGetCodesModel *model) {
+        SW(strongSelf, weakSelf);
+        strongSelf.tf_location.text = model.modelName;
+        strongSelf.param.roadId = @(model.modelId);
+        [strongSelf juegeCanCommit];
+    };
+    [t_vc.navigationController pushViewController:t_searchLocationvc animated:YES];
     
 }
 
@@ -571,6 +614,7 @@
                 break;
         }
         
+        [strongSelf juegeCanCommit];
         [BottomView dismissWindow];
 
     }];
@@ -799,6 +843,16 @@
 #pragma mark - 提交按钮事件
 
 - (IBAction)handleBtnUploadClicked:(id)sender {
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    
+    if ([self validateNumber] == NO) {
+        return;
+    }
+    
+    //如果roadId不为0，则不需要传roadName
+    if (self.param.roadId != 0) {
+        self.param.roadName = nil;
+    }
     
     [self configParamInCertFilesAndCertRemarks];
     LxDBObjectAsJson(self.param);
@@ -807,7 +861,7 @@
     manger.param = self.param;
     manger.successMessage = @"提交成功";
     manger.failMessage = @"提交失败";
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    
     ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         [hud hide];
@@ -821,11 +875,8 @@
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [hud hide];
     }];
-    
 
 }
-
-
 
 #pragma mark - 添加监听Textfield的变化，用于给参数实时赋值
 
@@ -878,6 +929,85 @@
     
 }
 
+#pragma mark - 判断是否可以提交
+
+-(void)juegeCanCommit{
+    LxDBObjectAsJson(self.param);
+    if (self.param.happenTimeStr.length >0 && self.param.roadId && self.param.address.length > 0 && self.param.ptaName.length > 0 && self.param.ptaIdNo.length > 0 && self.param.ptaVehicleId && self.param.ptaPhone.length > 0) {
+        self.isCanCommit = YES;
+    }else{
+        self.isCanCommit = NO;
+    }
+}
+
+#pragma mark - 判断哪些TextFiled是必填项
+
+- (void)judgeTextFieldWithIndex:(NSInteger)index{
+    
+    if(index == 0){
+        
+        _tf_name.attributedPlaceholder = [ShareFun highlightInString:@"请输入名字(必填)" withSubString:@"(必填)"];
+        _tf_identityCard.attributedPlaceholder = [ShareFun highlightInString:@"请输入身份证号(必填)" withSubString:@"(必填)"];
+        _tf_carType.attributedPlaceholder = [ShareFun highlightInString:@"请选择车辆类型(必选)" withSubString:@"(必选)"];
+        _tf_phone.attributedPlaceholder = [ShareFun highlightInString:@"请输入联系方式(必填)" withSubString:@"(必填)"];
+    }else{
+        _tf_name.placeholder = @"请输入名字";
+        _tf_identityCard.placeholder = @"请输入身份证号";
+        _tf_carType.placeholder = @"请选择车辆类型";
+        _tf_phone.placeholder = @"请输入联系方式";
+    }
+}
+
+#pragma mark - 判断输入的身份证或者手机号码是否正确
+
+- (BOOL) validateNumber{
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    
+    if (self.param.ptaIdNo) {
+        if([ShareFun validateIDCardNumber:self.param.ptaIdNo] == NO){
+            [ShowHUD showError:@"甲方身份证格式错误" duration:1.f inView:window config:nil];
+            return NO;
+        }
+    }
+    
+    if (self.param.ptaPhone) {
+        if ([ShareFun validatePhoneNumber:self.param.ptaPhone] == NO) {
+            [ShowHUD showError:@"甲方手机号码格式错误" duration:1.f inView:window config:nil];
+            return NO;
+        }
+    }
+    
+    if (self.param.ptbIdNo) {
+        if([ShareFun validateIDCardNumber:self.param.ptbIdNo] == NO){
+            [ShowHUD showError:@"乙方身份证格式错误" duration:1.f inView:window config:nil];
+            return NO;
+        }
+    }
+    
+    if (self.param.ptbPhone) {
+        if ([ShareFun validatePhoneNumber:self.param.ptbPhone] == NO) {
+            [ShowHUD showError:@"甲方手机号码格式错误" duration:1.0f inView:window config:nil];
+            return NO;
+        }
+    }
+    
+    if (self.param.ptcIdNo) {
+        if([ShareFun validateIDCardNumber:self.param.ptcIdNo] == NO){
+            [ShowHUD showError:@"丙方身份证格式错误" duration:1.0f inView:window config:nil];
+            return NO;
+        }
+    }
+    
+    if (self.param.ptcPhone) {
+        if ([ShareFun validatePhoneNumber:self.param.ptcPhone] == NO) {
+            [ShowHUD showError:@"丙方手机号码格式错误" duration:1.0f inView:window config:nil];
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 #pragma mark - 配置分段选择控件
 
 -(void)setUpSegmentedControl{
@@ -897,6 +1027,7 @@
     _segmentedControl.showsVerticalDivider = YES;
     _segmentedControl.showsTopSeparator = NO;
     _segmentedControl.showsBottomSeparator = NO;
+    [self judgeTextFieldWithIndex:_segmentedControl.selectedSegmentIndex];
 
 }
 
@@ -905,29 +1036,30 @@
 -(void)passConTextChange:(id)sender{
     UITextField* textField = (UITextField*)sender;
     LxDBAnyVar(textField.text);
+    NSInteger length =  textField.text.length;
     if (textField == self.tf_accidentTime) {
-        self.param.happenTimeStr = self.tf_accidentTime.text;
+        self.param.happenTimeStr = length > 0 ? self.tf_accidentTime.text : nil;
     }
     
     if (textField == self.tf_accidentAddress) {
-        self.param.address = self.tf_accidentAddress.text;
+        self.param.address = length > 0 ? self.tf_accidentAddress.text : nil;
     }
     
     if (textField == self.tf_weather) {
-        self.param.weather = self.tf_weather.text;
+        self.param.weather = length > 0 ? self.tf_weather.text : nil;
     }
     
     if (textField == self.tf_name) {
         NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
         switch (selectedIndex) {
             case 0:
-                self.param.ptaName  = self.tf_name.text;
+                self.param.ptaName  = length > 0 ? self.tf_name.text : nil;
                 break;
             case 1:
-                self.param.ptbName  = self.tf_name.text;
+                self.param.ptbName  = length > 0 ? self.tf_name.text : nil;
                 break;
             case 2:
-                self.param.ptcName  = self.tf_name.text;
+                self.param.ptcName  = length > 0 ? self.tf_name.text : nil;
                 break;
             default:
                 break;
@@ -939,50 +1071,59 @@
         NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
         switch (selectedIndex) {
             case 0:
-                self.param.ptaIdNo  = self.tf_identityCard.text;
+                self.param.ptaIdNo  = length > 0 ? self.tf_identityCard.text : nil;
                 break;
             case 1:
-                self.param.ptbIdNo  = self.tf_identityCard.text;
+                self.param.ptbIdNo  = length > 0 ? self.tf_identityCard.text : nil;
                 break;
             case 2:
-                self.param.ptcIdNo  = self.tf_identityCard.text;
+                self.param.ptcIdNo  = length > 0 ? self.tf_identityCard.text : nil;
                 break;
             default:
                 break;
         }
+        //用于请求是否有违规行为
+        [[CountAccidentHelper sharedDefault] setIdNo:self.tf_identityCard.text];
     }
     if (textField == self.tf_carNumber) {
         NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
         switch (selectedIndex) {
             case 0:
-                self.param.ptaCarNo  = self.tf_carNumber.text;
+                self.param.ptaCarNo  = length > 0 ? self.tf_carNumber.text : nil;
                 break;
             case 1:
-                self.param.ptbCarNo  = self.tf_carNumber.text;
+                self.param.ptbCarNo  = length > 0 ? self.tf_carNumber.text : nil;
                 break;
             case 2:
-                self.param.ptcCarNo  = self.tf_carNumber.text;
+                self.param.ptcCarNo  = length > 0 ? self.tf_carNumber.text : nil;
                 break;
             default:
                 break;
         }
+        
+        //用于请求是否有违规行为
+        [[CountAccidentHelper sharedDefault] setCarNo:self.tf_carNumber.text];
     }
     if (textField == self.tf_phone) {
         NSUInteger selectedIndex = self.segmentedControl.selectedSegmentIndex;
         switch (selectedIndex) {
             case 0:
-                self.param.ptaPhone  = self.tf_phone.text;
+                self.param.ptaPhone  = length > 0 ? self.tf_phone.text : nil;
                 break;
             case 1:
-                self.param.ptbPhone  = self.tf_phone.text;
+                self.param.ptbPhone  = length > 0 ? self.tf_phone.text : nil;
                 break;
             case 2:
-                self.param.ptcPhone  = self.tf_phone.text;
+                self.param.ptcPhone  = length > 0 ? self.tf_phone.text : nil;
                 break;
             default:
                 break;
         }
+        
+        //用于请求是否有违规行为
+        [[CountAccidentHelper sharedDefault] setTelNum:self.tf_phone.text];
     }
+    [self juegeCanCommit];
     
 }
 
@@ -1005,8 +1146,6 @@
         default:
             break;
     }
-
-
 }
 
 #pragma mark - 重新定位之后的通知
@@ -1017,6 +1156,7 @@
     NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:[LocationHelper sharedDefault].streetName WithArray:[ShareValue sharedDefault].accidentCodes.road];
     self.param.roadId = @(IdNo);
     self.param.roadName = [LocationHelper sharedDefault].streetName;
+     [self juegeCanCommit];
 }
 
 #pragma mark - 分段控件选中之后的处理
@@ -1025,6 +1165,7 @@
     
    NSUInteger selectedIndex = _segmentedControl.selectedSegmentIndex;
     LxDBAnyVar(selectedIndex);
+    [self judgeTextFieldWithIndex:selectedIndex];
     //无语的接口,待优化
     if (selectedIndex == 0) {
         self.tf_name.text = self.param.ptaName;
@@ -1166,12 +1307,13 @@
         self.tv_describe.text = self.param.ptcDescribe;
 
     }
-    
 }
 
+#pragma mark - dealloc
 - (void)dealloc{
+    LxPrintf(@"AccidentAddFootView dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-   
+
 }
 
 @end

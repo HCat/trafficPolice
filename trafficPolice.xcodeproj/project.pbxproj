@@ -157,7 +157,10 @@
 		CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */; };
 		CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */; };
 		CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */; };
+		CEAF130C1ED9E3D4004A8E73 /* CountAccidentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF130B1ED9E3D4004A8E73 /* CountAccidentHelper.m */; };
 		CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE29491ECC3F3300075BA2 /* NSString+Range.m */; };
+		CEF0D1AD1ED9C19100C78905 /* SearchLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1AB1ED9C19100C78905 /* SearchLocationVC.m */; };
+		CEF0D1AE1ED9C19100C78905 /* SearchLocationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1AC1ED9C19100C78905 /* SearchLocationVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -427,8 +430,13 @@
 		CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionCell.h; sourceTree = "<group>"; };
 		CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionCell.m; sourceTree = "<group>"; };
 		CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionCell.xib; sourceTree = "<group>"; };
+		CEAF130A1ED9E3D4004A8E73 /* CountAccidentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountAccidentHelper.h; sourceTree = "<group>"; };
+		CEAF130B1ED9E3D4004A8E73 /* CountAccidentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountAccidentHelper.m; sourceTree = "<group>"; };
 		CECE29481ECC3F3300075BA2 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
 		CECE29491ECC3F3300075BA2 /* NSString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Range.m"; sourceTree = "<group>"; };
+		CEF0D1AA1ED9C19100C78905 /* SearchLocationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationVC.h; sourceTree = "<group>"; };
+		CEF0D1AB1ED9C19100C78905 /* SearchLocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationVC.m; sourceTree = "<group>"; };
+		CEF0D1AC1ED9C19100C78905 /* SearchLocationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -661,6 +669,8 @@
 				CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */,
 				CE321A8F1ED6804A00F842E4 /* LocationHelper.h */,
 				CE321A901ED6804A00F842E4 /* LocationHelper.m */,
+				CEAF130A1ED9E3D4004A8E73 /* CountAccidentHelper.h */,
+				CEAF130B1ED9E3D4004A8E73 /* CountAccidentHelper.m */,
 				CE343ECF1ECA9DAC00C8E31B /* Views */,
 				C7E0DBF41EC1A1C9008ED063 /* Controllers */,
 			);
@@ -1012,6 +1022,9 @@
 				CE5786611ED40EBA00B4CC9F /* AccidentVC.h */,
 				CE5786621ED40EBA00B4CC9F /* AccidentVC.m */,
 				CE5786631ED40EBA00B4CC9F /* AccidentVC.xib */,
+				CEF0D1AA1ED9C19100C78905 /* SearchLocationVC.h */,
+				CEF0D1AB1ED9C19100C78905 /* SearchLocationVC.m */,
+				CEF0D1AC1ED9C19100C78905 /* SearchLocationVC.xib */,
 			);
 			path = AccidentVC;
 			sourceTree = "<group>";
@@ -1164,6 +1177,7 @@
 				C7621D181EC43F0C00980058 /* ListBaseVC.xib in Resources */,
 				C79C99491EC5959000258CF1 /* UserReusableView.xib in Resources */,
 				CE5786411ED4088700B4CC9F /* btn_original_circle@2x.png in Resources */,
+				CEF0D1AE1ED9C19100C78905 /* SearchLocationVC.xib in Resources */,
 				CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */,
 				CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
@@ -1289,6 +1303,7 @@
 				CE4C93E91ECE7F1B00BE06F0 /* AccidentAPI.m in Sources */,
 				CE321A911ED6804B00F842E4 /* LocationHelper.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
+				CEAF130C1ED9E3D4004A8E73 /* CountAccidentHelper.m in Sources */,
 				CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */,
 				CE5786581ED4088700B4CC9F /* ZLPhotoBrowserCell.m in Sources */,
 				CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */,
@@ -1300,6 +1315,7 @@
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
 				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
 				CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */,
+				CEF0D1AD1ED9C19100C78905 /* SearchLocationVC.m in Sources */,
 				CE57865D1ED4088700B4CC9F /* ZLShowGifViewController.m in Sources */,
 				CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */,
 				CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */,

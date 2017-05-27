@@ -46,9 +46,12 @@
     self.networkChangeBlock = ^{
         SW(strongSelf, weakSelf);
         [strongSelf getImgPlay];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [ShareFun getAccidentCodes];
-        });
+        if ([ShareValue sharedDefault].accidentCodes == nil) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [ShareFun getAccidentCodes];
+            });
+
+        }
     };
     
 
@@ -67,21 +70,24 @@
 #pragma mark - 轮播请求数据
 
 - (void)getImgPlay{
-
-    WS(weakSelf);
-    CommonGetImgPlayManger *manger = [CommonGetImgPlayManger new];
-    manger.isLog = NO;
-    manger.v_showHud = self.view;
-    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        SW(strongSelf, weakSelf);
-        if (manger.responseModel.code == CODE_SUCCESS) {
-            strongSelf.arr_imageSource = manger.commonGetImgPlayModel;
-            [strongSelf.cycleView reloadData];
-        }
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        
-        
-    }];
+    //当没有数据的时候再请求
+    if (self.arr_imageSource == nil) {
+        WS(weakSelf);
+        CommonGetImgPlayManger *manger = [CommonGetImgPlayManger new];
+        manger.isLog = NO;
+        manger.v_showHud = self.view;
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            SW(strongSelf, weakSelf);
+            if (manger.responseModel.code == CODE_SUCCESS) {
+                strongSelf.arr_imageSource = manger.commonGetImgPlayModel;
+                [strongSelf.cycleView reloadData];
+            }
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            
+        }];
+    }
+    
 
 }
 
