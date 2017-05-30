@@ -58,6 +58,7 @@
 @property (nonatomic,copy) NSString * weather;          //天气 默认值从天气接口获取，可编辑
 @property (nonatomic,copy) NSString * injuredNum;       //受伤人数
 @property (nonatomic,strong) NSNumber * roadType;         //事故地点类型 从通用值【事故地点类型】获取ID
+
 @property (nonatomic,copy) NSString * ptaName;          //甲方姓名 必填，可用身份证、驾驶证识别
 @property (nonatomic,copy) NSString * ptaIdNo;          //甲方身份证号码 必填，可用身份证、驾驶证识别
 @property (nonatomic,strong) NSNumber * ptaVehicleId;     //甲方车辆类型 必填，从通用值【车辆类型】获取ID，可用行驶证识别

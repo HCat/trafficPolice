@@ -133,6 +133,8 @@
 		CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786741ED436C200B4CC9F /* AccidentAddHeadView.m */; };
 		CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */; };
 		CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786791ED441E600B4CC9F /* CALayer+Additions.m */; };
+		CE5D30EB1EDB17330092F143 /* PartyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D30EA1EDB17330092F143 /* PartyModel.m */; };
+		CE5D30EE1EDB1B810092F143 /* PartyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D30ED1EDB1B810092F143 /* PartyFactory.m */; };
 		CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */; };
 		CE60BE121ED71EF400C328A1 /* LRCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */; };
 		CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */; };
@@ -385,6 +387,10 @@
 		CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentAddHeadView.xib; sourceTree = "<group>"; };
 		CE5786781ED441E600B4CC9F /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		CE5786791ED441E600B4CC9F /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		CE5D30E91EDB17330092F143 /* PartyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyModel.h; sourceTree = "<group>"; };
+		CE5D30EA1EDB17330092F143 /* PartyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyModel.m; sourceTree = "<group>"; };
+		CE5D30EC1EDB1B810092F143 /* PartyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyFactory.h; sourceTree = "<group>"; };
+		CE5D30ED1EDB1B810092F143 /* PartyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyFactory.m; sourceTree = "<group>"; };
 		CE60BE0E1ED71EF400C328A1 /* LRCameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCameraVC.h; sourceTree = "<group>"; };
 		CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCameraVC.m; sourceTree = "<group>"; };
 		CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRCameraVC.xib; sourceTree = "<group>"; };
@@ -904,6 +910,10 @@
 				CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */,
 				CE08F7211ED7FAAF00D481DF /* ImageFileInfo.h */,
 				CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */,
+				CE5D30E91EDB17330092F143 /* PartyModel.h */,
+				CE5D30EA1EDB17330092F143 /* PartyModel.m */,
+				CE5D30EC1EDB1B810092F143 /* PartyFactory.h */,
+				CE5D30ED1EDB1B810092F143 /* PartyFactory.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1272,12 +1282,14 @@
 				CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */,
 				CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */,
 				CE3A6CA31EC9A87400D7D9D5 /* HideTabSuperVC.m in Sources */,
+				CE5D30EE1EDB1B810092F143 /* PartyFactory.m in Sources */,
 				CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */,
 				CE43C15D1ECDE84700309507 /* YTKUrlArgumentsFilter.m in Sources */,
 				CE4C93EC1ECE986F00BE06F0 /* AccidentListModel.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				CE4C93EF1ECE98E100BE06F0 /* AccidentDetailModel.m in Sources */,
 				CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */,
+				CE5D30EB1EDB17330092F143 /* PartyModel.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
 				CE57865F1ED4088700B4CC9F /* ZLThumbnailViewController.m in Sources */,
 				CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */,
