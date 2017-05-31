@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) AKTabBarController *vc_tabBar;
 
+@property (nonatomic,assign)NSInteger allowRotate; //进行横竖屏的切换用的
 
 -(void)initAKTabBarController;
 

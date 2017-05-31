@@ -11,6 +11,7 @@
 #import "UIImage+FixOrientation.h"
 #import "LLSimpleCamera+Helper.h"
 
+
 @interface LLSimpleCamera () <AVCaptureFileOutputRecordingDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) UIView *preview;
 @property (strong, nonatomic) AVCaptureStillImageOutput *stillImageOutput;

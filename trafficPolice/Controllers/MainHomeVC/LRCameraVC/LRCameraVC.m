@@ -11,6 +11,9 @@
 #import <LLSimpleCamera.h>
 #import "ZLPhotoActionSheet.h"
 #import "ImageFileInfo.h"
+#import "AppDelegate.h"
+#import "PureLayout.h"
+#import "maskingView.h"
 
 @interface LRCameraVC ()<TOCropViewControllerDelegate>
 
@@ -29,6 +32,7 @@
 //拍照按钮
 @property (weak, nonatomic) IBOutlet UIButton *btn_snap;
 
+@property (weak, nonatomic) IBOutlet maskingView *v_masking;
 
 
 
@@ -39,15 +43,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //初始化照相机，通过AVFoundation自定义的相机
+    if (_type == 1) {
+        _v_masking.type = 1;
+
+    }else{
+        _v_masking.type = 2;
+    }
+        //初始化照相机，通过AVFoundation自定义的相机
     [self initializeCamera];
+    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    delegate.allowRotate = 1;
     //调用Start开始拍照功能
     [self.camera start];
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    delegate.allowRotate = 0;
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val = UIInterfaceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
 
 }
 
@@ -57,6 +86,9 @@
     [self.camera stop];
     [super viewDidDisappear:animated];
 }
+
+#pragma mark - set && get 
+
 
 #pragma mark - 请求数据
 
@@ -112,9 +144,14 @@
     self.camera = [[LLSimpleCamera alloc] initWithQuality:AVCaptureSessionPresetHigh  position:LLCameraPositionRear
                                              videoEnabled:YES];
     
+    
     // 关联到具体的VC中
     [self.camera attachToViewController:self withFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+    [self.camera.view configureForAutoLayout];
+    [self.camera.view autoPinEdgesToSuperviewEdges];
     self.camera.fixOrientationAfterCapture = YES;
+    self.camera.useDeviceOrientation = YES;
+    
     
     __weak typeof(self) weakSelf = self;
     [self.camera setOnDeviceChange:^(LLSimpleCamera *camera, AVCaptureDevice * device) {

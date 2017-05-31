@@ -16,11 +16,10 @@
 
 @interface IllegalParkVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray<UIImage *> *arr_photos; //更多照片
-@property (nonatomic, strong) UIImage *img_carNumber; //车牌近照
-@property (nonatomic, strong) UIImage *img_illegalPark; //违停照片
 
+@property (nonatomic, strong) NSMutableArray<UIImage *> *arr_photos; //更多照片
+
+@property (nonatomic, strong) UIImage *img_illegalPark; //违停照片
 @property (nonatomic, strong) IllegalParkAddHeadView *headView;
 @property (nonatomic, strong) IllegalParkAddFootView *footView;
 
@@ -82,12 +81,12 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     IllegalParkCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"IllegalParkCell" forIndexPath:indexPath];
    
     cell.layer.masksToBounds = YES;
-    cell.layer.cornerRadius = 0.0f;
+    cell.imageView.layer.cornerRadius = 5.0f;
     if (indexPath.row == self.arr_photos.count+2) {
         cell.lb_title.text = @"更多照片";
         cell.imageView.image = [UIImage imageNamed:@"updataPhoto.png"];
     }else if(indexPath.row == 0){
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        cell.imageView.contentMode = UIViewContentModeScaleToFill;
         cell.lb_title.text = @"车牌近照";
         if (!_img_carNumber) {
             cell.imageView.image = [UIImage imageNamed:@"updataPhoto.png"];
@@ -95,7 +94,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             cell.imageView.image = _img_carNumber;
         }
     }else if(indexPath.row == 1){
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        cell.imageView.contentMode = UIViewContentModeScaleToFill;
         cell.lb_title.text = @"违停照片";
         if (!_img_illegalPark) {
             cell.imageView.image = [UIImage imageNamed:@"updataPhoto.png"];
@@ -105,7 +104,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     
     }else {
         cell.imageView.image = _arr_photos[indexPath.row];
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        cell.imageView.contentMode = UIViewContentModeScaleToFill;
     }
     
     return cell;
@@ -151,6 +150,20 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     WS(weakSelf);
+    
+    if (indexPath.row == self.arr_photos.count+2) {
+       
+    }else if(indexPath.row == 0){
+        
+    }else if(indexPath.row == 1){
+       
+        
+        
+    }else {
+       
+    }
+    
+    
     LRCameraVC *home = [[LRCameraVC alloc] init];
     home.type = 1;
     home.fininshCaptureBlock = ^(LRCameraVC *camera) {
@@ -164,6 +177,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                     imageFileInfo.name = key_files;
                     
                 });
+                strongSelf.img_carNumber = camera.image;
+                [strongSelf.collectionView reloadData];
                 
             }
         }

@@ -283,6 +283,28 @@ BMKMapManager* _mapManager;
     
 }
 
+//此方法会在设备横竖屏变化的时候调用
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    
+    //   NSLog(@"方向  =============   %ld", _allowRotate);
+    if (_allowRotate == 1) {
+        return UIInterfaceOrientationMaskAll;
+    }else{
+        return (UIInterfaceOrientationMaskPortrait);
+    }
+}
+
+
+// 返回是否支持设备自动旋转
+- (BOOL)shouldAutorotate
+{
+    if (_allowRotate == 1) {
+        return YES;
+    }
+    return NO;
+}
+
 
 
 #pragma mark -

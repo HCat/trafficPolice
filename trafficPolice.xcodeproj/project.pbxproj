@@ -144,6 +144,7 @@
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
 		CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */; };
 		CE6F9C2D1ED92C2100ADDA23 /* LSStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */; };
+		CE7CFF171EDF137C00B74ABB /* maskingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7CFF161EDF137C00B74ABB /* maskingView.m */; };
 		CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */; };
 		CE7F14E01EDE9B3900C7AEDA /* IllegalParkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F14DE1EDE9B3900C7AEDA /* IllegalParkVC.m */; };
 		CE7F14E11EDE9B3900C7AEDA /* IllegalParkVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7F14DF1EDE9B3900C7AEDA /* IllegalParkVC.xib */; };
@@ -418,6 +419,8 @@
 		CE6F9C291ED92C2100ADDA23 /* LSStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUD.h; sourceTree = "<group>"; };
 		CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSStatusBarHUD.m; sourceTree = "<group>"; };
 		CE6F9C2B1ED92C2100ADDA23 /* LSStatusBarHUDConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUDConst.h; sourceTree = "<group>"; };
+		CE7CFF151EDF137C00B74ABB /* maskingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maskingView.h; sourceTree = "<group>"; };
+		CE7CFF161EDF137C00B74ABB /* maskingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = maskingView.m; sourceTree = "<group>"; };
 		CE7EED811ED1C42A00478777 /* IllegalParkAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkAPI.h; sourceTree = "<group>"; };
 		CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalParkAPI.m; sourceTree = "<group>"; };
 		CE7F14DD1EDE9B3900C7AEDA /* IllegalParkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkVC.h; sourceTree = "<group>"; };
@@ -1075,6 +1078,8 @@
 				CE60BE0E1ED71EF400C328A1 /* LRCameraVC.h */,
 				CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */,
 				CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */,
+				CE7CFF151EDF137C00B74ABB /* maskingView.h */,
+				CE7CFF161EDF137C00B74ABB /* maskingView.m */,
 			);
 			path = LRCameraVC;
 			sourceTree = "<group>";
@@ -1396,6 +1401,7 @@
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
+				CE7CFF171EDF137C00B74ABB /* maskingView.m in Sources */,
 				C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */,
 				CE5786641ED40EBA00B4CC9F /* AccidentVC.m in Sources */,
 				CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */,

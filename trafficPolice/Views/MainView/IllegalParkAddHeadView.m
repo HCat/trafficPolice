@@ -62,8 +62,10 @@
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     ImageFileInfo *imageFileInfo = camera.imageInfo;
                     imageFileInfo.name = key_files;
-                   
+                    
                 });
+                t_vc.img_carNumber = camera.image;
+                [t_vc.collectionView reloadData];
                 
             }
         }
