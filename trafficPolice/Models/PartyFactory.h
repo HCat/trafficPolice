@@ -16,6 +16,7 @@
 @property(nonatomic,assign) NSInteger index; //设置index
 @property(nonatomic,strong) PartyModel *partModel; //当前的partModel;
 @property(nonatomic,strong) NSMutableArray *arr_credentials;//用于存储证件照片，以及证件对应名称值
+@property(nonatomic,assign) AccidentType accidentType; //用于判断是快处还是事故录入
 
 #pragma mark - 初始化
 -(instancetype)init;

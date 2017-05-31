@@ -7,23 +7,12 @@
 //
 
 #import "FastAccidentAPI.h"
+#import "ImageFileInfo.h"
+#import <AFNetworking.h>
 
 
 #pragma mark - 获取交通事故通用值API
 
-@implementation FastAccidentGetCodesModel
-
-+ (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"modelId" : @"id",
-             @"modelName" : @"name",
-             @"modelType" : @"type"};
-}
-
-@end
-
-@implementation FastAccidentGetCodesResponse
-
-@end
 
 @implementation FastAccidentGetCodesManger
 
@@ -40,10 +29,10 @@
 }
 
 //返回参数
-- (FastAccidentGetCodesResponse *)fastAccidentGetCodesResponse{
+- (AccidentGetCodesResponse *)fastAccidentGetCodesResponse{
     
     if (self.responseModel.data) {
-        return [FastAccidentGetCodesResponse modelWithDictionary:self.responseModel.data];
+        return [AccidentGetCodesResponse modelWithDictionary:self.responseModel.data];
     }
     
     return nil;
@@ -52,10 +41,6 @@
 @end
 
 #pragma mark - 快处事故增加API
-
-@implementation FastAccidentSaveParam
-
-@end
 
 @implementation FastAccidentSaveManger
 
@@ -70,6 +55,27 @@
 {
     return self.param.modelToJSONObject;
 }
+
+//请求方式
+- (YTKRequestMethod)requestMethod
+{
+    return YTKRequestMethodPOST;
+}
+
+
+//上传图片
+- (AFConstructingBlock)constructingBodyBlock {
+    return ^(id<AFMultipartFormData> formData) {
+        for (ImageFileInfo *filesImage in self.param.files){
+            [formData appendPartWithFileData:filesImage.fileData name:filesImage.name fileName:filesImage.fileName mimeType:filesImage.mimeType];
+        }
+        for (ImageFileInfo *certFilesImage in self.param.certFiles){
+            [formData appendPartWithFileData:certFilesImage.fileData name:certFilesImage.name fileName:certFilesImage.fileName mimeType:certFilesImage.mimeType];
+        }
+        
+    };
+}
+
 
 //返回参数
 

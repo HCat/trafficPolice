@@ -9,9 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "LRSingleton.h"
 #import "AccidentAPI.h"
+#import "CommonAPI.h"
 
 #define kmaxPreviewCount 30
 #define kmaxSelectCount 30
+
+
+typedef NS_ENUM(NSInteger, AccidentType) {
+    AccidentTypeAccident,//默认从0开始
+    AccidentTypeFastAccident,
+};
+
 
 @interface ShareValue : NSObject
 
@@ -23,5 +31,10 @@ LRSingletonH(Default)
 @property (nonatomic, copy) NSString *phone;    //登录返回的手机号码
 
 @property (nonatomic, strong) AccidentGetCodesResponse *accidentCodes; //事故通用值，用于匹配ID.必须保存(不得不吐槽接口)
+
+@property (nonatomic, strong) AccidentGetCodesResponse * fastAccidentCodes; //快处事故通用值，用于匹配ID.必须保存(不得不吐槽接口)
+
+@property (nonatomic, copy) NSArray <CommonGetRoadModel *> * roadModels; //道路通用值，用于匹配ID.必须保存(不得不吐槽接口)
+
 
 @end

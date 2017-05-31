@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1047,7 +1047,7 @@
                 <constraint firstItem="vpZ-t7-bOL" firstAttribute="leading" secondItem="lKw-je-xyE" secondAttribute="leading" id="kws-xp-Tou"/>
                 <constraint firstAttribute="trailing" secondItem="i4A-2k-F5C" secondAttribute="trailing" id="lF5-5D-aKM"/>
                 <constraint firstItem="Awm-om-15f" firstAttribute="centerY" secondItem="ihx-Ri-UW0" secondAttribute="centerY" id="lZK-W4-cMP"/>
-                <constraint firstItem="gOF-eR-5DK" firstAttribute="top" secondItem="I7t-5r-TV7" secondAttribute="bottom" constant="14" id="mqq-Ho-Kln"/>
+                <constraint firstItem="gOF-eR-5DK" firstAttribute="top" secondItem="M9d-iH-SPp" secondAttribute="bottom" constant="58" id="len-JA-v9q"/>
                 <constraint firstItem="esv-Qi-xWU" firstAttribute="leading" secondItem="9uV-Ei-TMB" secondAttribute="leading" id="nVq-as-awr"/>
                 <constraint firstAttribute="trailing" secondItem="9qH-os-jSe" secondAttribute="trailing" constant="12" id="ntI-Qi-sKy"/>
                 <constraint firstItem="nF2-PK-srv" firstAttribute="leading" secondItem="HbR-jQ-OmF" secondAttribute="leading" id="nwc-X4-DC4"/>
@@ -1084,8 +1084,10 @@
                 <outlet property="btn_temporaryDrivelib" destination="0Sa-yQ-NW3" id="Wyy-cD-Ucl"/>
                 <outlet property="btn_temporaryIdentityCard" destination="esv-Qi-xWU" id="Iqd-6c-btY"/>
                 <outlet property="btn_temporarylib" destination="9uV-Ei-TMB" id="scf-7U-I45"/>
+                <outlet property="layout_InsuranceCompany" destination="len-JA-v9q" id="aiU-Ku-4CF"/>
                 <outlet property="layout_accidentInfo" destination="H77-fd-j63" id="3kc-Vg-Fo6"/>
                 <outlet property="layout_moreinfo" destination="6Xu-7D-pmM" id="f6r-49-CNA"/>
+                <outlet property="lb_illegalBehavior" destination="y8u-4H-0dK" id="QqH-bu-ACV"/>
                 <outlet property="lb_textCount" destination="V6M-uJ-uFc" id="tIE-0C-qrL"/>
                 <outlet property="segmentedControl" destination="6dg-Vg-Oef" id="AK6-j0-cU3"/>
                 <outlet property="tf_accidentAddress" destination="HLJ-3t-PJe" id="9Eq-nU-tKW"/>
@@ -1105,6 +1107,7 @@
                 <outlet property="tf_roadType" destination="D91-j3-9BW" id="XQc-kF-oKB"/>
                 <outlet property="tf_weather" destination="3xl-lm-jZk" id="KqP-Xh-hOJ"/>
                 <outlet property="tv_describe" destination="Ek5-Dg-XBn" id="8l9-XU-ojL"/>
+                <outlet property="v_illegalBehavior" destination="I7t-5r-TV7" id="31m-90-Gpa"/>
                 <outletCollection property="lb_moreAccidentInfos" destination="pLe-wI-eFp" id="e89-uM-gEA"/>
                 <outletCollection property="lb_moreAccidentInfos" destination="lKw-je-xyE" id="iBv-KT-0ti"/>
                 <outletCollection property="v_moreAccidentInfos" destination="QTl-pv-Ghc" id="5wj-cA-ksa"/>

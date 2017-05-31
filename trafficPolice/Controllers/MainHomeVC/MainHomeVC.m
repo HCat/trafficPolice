@@ -14,7 +14,7 @@
 #import <UIImageView+WebCache.h>
 
 #import "AccidentVC.h"
-#import "ShareFun.h"
+#import "IllegalParkVC.h"
 
 
 
@@ -36,9 +36,6 @@
     LxDBAnyVar([UserModel getUserModel].menus);
     [self initCycleView];
     [self getImgPlay];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [ShareFun getAccidentCodes];
-    });
     
     WS(weakSelf);
     
@@ -46,12 +43,7 @@
     self.networkChangeBlock = ^{
         SW(strongSelf, weakSelf);
         [strongSelf getImgPlay];
-        if ([ShareValue sharedDefault].accidentCodes == nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [ShareFun getAccidentCodes];
-            });
-
-        }
+        
     };
     
 
@@ -283,15 +275,19 @@
         if ([cell.str_title isEqualToString:@"事故快处"]) {
             LxPrintf(@"点击事故快处");
             AccidentVC *t_vc = [[AccidentVC alloc] init];
+            t_vc.accidentType = AccidentTypeFastAccident;
             [self.navigationController pushViewController:t_vc animated:YES];
             
         }else if ([cell.str_title isEqualToString:@"事故"]) {
             LxPrintf(@"点击事故");
             AccidentVC *t_vc = [[AccidentVC alloc] init];
+            t_vc.accidentType = AccidentTypeAccident;
             [self.navigationController pushViewController:t_vc animated:YES];
             
         }else if ([cell.str_title isEqualToString:@"违停采集"]) {
             LxPrintf(@"点击违停采集");
+            IllegalParkVC *t_vc = [[IllegalParkVC alloc] init];
+            [self.navigationController pushViewController:t_vc animated:YES];
         }else if ([cell.str_title isEqualToString:@"闯禁令采集"]) {
             LxPrintf(@"点击闯禁令采集");
         }else if ([cell.str_title isEqualToString:@"视频录入"]) {

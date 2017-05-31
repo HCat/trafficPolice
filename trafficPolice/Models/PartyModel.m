@@ -445,7 +445,11 @@
 - (NSString *)partycarType{
     
     if (self.partyVehicleId) {
-        self.partycarType = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyVehicleId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.vehicle];
+        if (self.accidentType == AccidentTypeAccident) {
+            self.partycarType = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyVehicleId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.vehicle];
+        }else if (self.accidentType == AccidentTypeFastAccident){
+            self.partycarType = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelId:[self.partyVehicleId integerValue] WithArray:[ShareValue sharedDefault].fastAccidentCodes.vehicle];
+        }
         return _partycarType;
         
     }else{
@@ -460,7 +464,12 @@
 - (NSString *)partyDriverDirect{
     
     if (self.partyDirectId) {
-        self.partyDriverDirect = [[ShareValue sharedDefault].accidentCodes searchNameWithModelType:[self.partyDirectId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.driverDirect];
+        if (self.accidentType == AccidentTypeAccident) {
+           self.partyDriverDirect = [[ShareValue sharedDefault].accidentCodes searchNameWithModelType:[self.partyDirectId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.driverDirect];
+        }else if (self.accidentType == AccidentTypeFastAccident){
+            self.partyDriverDirect = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelType:[self.partyDirectId integerValue] WithArray:[ShareValue sharedDefault].fastAccidentCodes.driverDirect];
+        }
+        
         return _partyDriverDirect;
         
     }else{
@@ -474,8 +483,14 @@
 - (NSString *)partyBehaviour{
     
     if (self.partyBehaviourId) {
-        self.partyBehaviour = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyBehaviourId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.behaviour];
-        return _partyBehaviour;
+        
+        if (self.accidentType == AccidentTypeAccident) {
+            self.partyBehaviour = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyBehaviourId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.behaviour];
+        }else if (self.accidentType == AccidentTypeFastAccident){
+            self.partyBehaviour = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelId:[self.partyBehaviourId integerValue] WithArray:[ShareValue sharedDefault].fastAccidentCodes.behaviour];
+        }
+        
+            return _partyBehaviour;
         
     }else{
         
@@ -488,7 +503,12 @@
 - (NSString *)partyInsuranceCompany{
     
     if (self.partyInsuranceCompanyId) {
-        self.partyInsuranceCompany = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyInsuranceCompanyId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.insuranceCompany];
+        if (self.accidentType == AccidentTypeAccident) {
+            self.partyInsuranceCompany = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyInsuranceCompanyId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.insuranceCompany];
+        }else if (self.accidentType == AccidentTypeFastAccident){
+            self.partyInsuranceCompany = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelId:[self.partyInsuranceCompanyId integerValue] WithArray:[ShareValue sharedDefault].fastAccidentCodes.insuranceCompany];
+        }
+        
         return _partyInsuranceCompany;
         
     }else{
@@ -502,7 +522,13 @@
 - (NSString *)partyResponsibility{
     
     if (self.partyResponsibilityId) {
-        self.partyResponsibility = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyResponsibilityId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.responsibility];
+        
+        if (self.accidentType == AccidentTypeAccident) {
+            self.partyResponsibility = [[ShareValue sharedDefault].accidentCodes searchNameWithModelId:[self.partyResponsibilityId integerValue] WithArray:[ShareValue sharedDefault].accidentCodes.responsibility];
+        }else if (self.accidentType == AccidentTypeFastAccident){
+            self.partyResponsibility = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelId:[self.partyResponsibilityId integerValue] WithArray:[ShareValue sharedDefault].fastAccidentCodes.responsibility];
+        }
+
         return _partyResponsibility;
         
     }else{
@@ -511,6 +537,11 @@
         
     }
     
+}
+
+- (void)dealloc{
+    LxPrintf(@"PartyModel dealloc");
+
 }
 
 

@@ -28,6 +28,28 @@
     return self;
 }
 
+#pragma mark - 
+
+-(void)setAccidentType:(AccidentType)accidentType{
+
+    _accidentType = accidentType;
+    
+    if (self.partyA) {
+        self.partyA.accidentType = _accidentType;
+    }
+    
+    if (self.partyB) {
+        self.partyB.accidentType = _accidentType;
+    }
+    
+    if (self.partyC) {
+        self.partyC.accidentType = _accidentType;
+    }
+
+
+}
+
+
 -(void)setIndex:(NSInteger)index{
 
     _index = index;
@@ -36,6 +58,7 @@
         
         if (self.partyA == nil) {
             self.partyA = [[PartyModel alloc] initWithIndex:0 withParam:self.param];
+            self.partyA.accidentType = self.accidentType;
         }
         
         self.partModel = self.partyA;
@@ -44,6 +67,7 @@
         
         if (self.partyB == nil) {
             self.partyB = [[PartyModel alloc] initWithIndex:1 withParam:self.param];
+            self.partyB.accidentType = self.accidentType;
         }
         
         self.partModel = self.partyB;
@@ -52,6 +76,7 @@
         
         if (self.partyC == nil) {
             self.partyC = [[PartyModel alloc] initWithIndex:2 withParam:self.param];
+            self.partyC.accidentType = self.accidentType;
         }
         
         self.partModel = self.partyC;
@@ -114,9 +139,14 @@
 #pragma mark - 通过道路名称获取得到道路ID
 - (void)setRoadId:(NSString *)roadName{
 
-    NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:roadName WithArray:[ShareValue sharedDefault].accidentCodes.road];
-    self.param.roadId = @(IdNo);
-
+    if (_accidentType == AccidentTypeAccident) {
+        NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:roadName WithArray:[ShareValue sharedDefault].accidentCodes.road];
+        _param.roadId = @(IdNo);
+    }else if(_accidentType == AccidentTypeFastAccident){
+        NSInteger IdNo = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelName:roadName WithArray:[ShareValue sharedDefault].fastAccidentCodes.road];
+        _param.roadId = @(IdNo);
+    }
+   
 }
 
 #pragma mark - 添加到证件图片到数组中用于上传用的
@@ -199,5 +229,9 @@
     }
 }
 
+- (void)dealloc{
+
+    LxPrintf(@"PartyFactory dealloc");
+}
 
 @end

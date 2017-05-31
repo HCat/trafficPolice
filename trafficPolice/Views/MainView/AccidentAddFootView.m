@@ -28,6 +28,8 @@
 
 #import "PartyFactory.h"
 
+#import "FastAccidentAPI.h"
+
 
 
 @interface AccidentAddFootView()<UITextViewDelegate>
@@ -48,6 +50,13 @@
 //点击当事人信息更多信息将要显示或者隐藏的UILabel 和 UIView
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *lb_moreInfos;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btn_moreInfos;
+
+
+//快处事件的UI处理
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layout_InsuranceCompany;
+@property (weak, nonatomic) IBOutlet UILabel *lb_illegalBehavior;
+@property (weak, nonatomic) IBOutlet UIView *v_illegalBehavior;
+
 
 //事故信息里面用到的textField
 @property (weak, nonatomic) IBOutlet UITextField *tf_accidentCauses;    //事故成因
@@ -80,30 +89,38 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_commit;
 
-
-@property(nonatomic,strong) NSMutableArray *arr_credentials;//用于存储证件照片，以及证件对应名称值
-
 @property(nonatomic,assign) BOOL isCanCommit;
 
 @property(nonatomic,strong) PartyFactory *partyFactory;//当事人信息的管理类
+
+
 
 @end
 
 @implementation AccidentAddFootView
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        //添加对定位的监听
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChange) name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
+        
+    }
+    return self;
+}
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
+    //默认设置是否显示更多信息，这里预先设置是为了调用UICollectionView可以刷新下数据
+    //这里待优化
+    
     self.partyFactory = [[PartyFactory alloc] init];
     //配置视图页面
     [self configView];
-   
-    //默认设置是否显示更多信息，这里预先设置是为了调用UICollectionView可以刷新下数据
-    //这里待优化
+    
     self.isShowMoreInfo = YES;
     self.isShowMoreAccidentInfo = YES;
-    
-    //添加对定位的监听
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChange) name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
     
     //异步请求即将用到数据
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -112,12 +129,13 @@
     
     //重新定位下
     [[LocationHelper sharedDefault] startLocation];
-    
+
     //获取当前事故时间
     _tf_accidentTime.text = [ShareFun getCurrentTime];
     self.partyFactory.param.happenTimeStr = [ShareFun getCurrentTime];
     
     self.isCanCommit = NO;
+    
 }
 
 #pragma mark - 配置视图页面
@@ -185,9 +203,6 @@
 
 - (void) getServerData{
     
-    //获取事故通用值
-    [ShareFun getAccidentCodes];
-    
     //获取当前天气
     WS(weakSelf);
     CommonGetWeatherManger *manger = [CommonGetWeatherManger new];
@@ -208,6 +223,29 @@
 
 #pragma mark - set && get
 
+- (void)setAccidentType:(AccidentType)accidentType{
+
+    _accidentType = accidentType;
+    _partyFactory.accidentType = _accidentType;
+    
+    //快处事故的UI处理
+    if (_accidentType == AccidentTypeFastAccident){
+        
+        self.isShowMoreInfo = YES;
+        self.isShowMoreAccidentInfo = YES;
+        self.btn_moreAccidentInfo.hidden = YES;
+        self.btn_moreInfo.hidden = YES;
+        _layout_InsuranceCompany.constant = 14.f;
+        _layout_moreinfo.constant = 10.f;
+        [self layoutIfNeeded];
+        self.lb_illegalBehavior.hidden = YES;
+        self.v_illegalBehavior.hidden = YES;
+        
+    }
+    
+}
+
+
 - (void)setArr_photes:(NSArray *)arr_photes{
     
     if (arr_photes) {
@@ -217,7 +255,7 @@
             ImageFileInfo *t_imageFileInfo = [[ImageFileInfo alloc] initWithImage:t_image withName:key_files];
             [t_arr addObject:t_imageFileInfo];
         }
-        self.partyFactory.param.files = t_arr;
+        _partyFactory.param.files = t_arr;
         
     }
     
@@ -399,9 +437,14 @@
                 
                 strongSelf.partyFactory.partModel.partyCarNummber = camera.commonIdentifyResponse.carNo;
                 
-                NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:[ShareValue sharedDefault].accidentCodes.vehicle];
-                strongSelf.partyFactory.partModel.partyVehicleId = @(IdNo);
-                
+                if (strongSelf.accidentType == AccidentTypeAccident) {
+                    NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:[ShareValue sharedDefault].accidentCodes.vehicle];
+                    strongSelf.partyFactory.partModel.partyVehicleId = @(IdNo);
+                }else if (strongSelf.accidentType == AccidentTypeFastAccident){
+                    NSInteger IdNo = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:[ShareValue sharedDefault].fastAccidentCodes.vehicle];
+                    strongSelf.partyFactory.partModel.partyVehicleId = @(IdNo);
+                }
+               
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     ImageFileInfo *imageFileInfo = camera.imageInfo;
                     imageFileInfo.name = key_certFiles;
@@ -420,8 +463,6 @@
                      completion:^{
                      }];
     
-    [BottomView dismissWindow];
-
 }
 
 #pragma mark - 重新定位按钮点击
@@ -437,7 +478,14 @@
 - (IBAction)handleBtnAccidentCausesClicked:(id)sender {
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"事故成因" items:[ShareValue sharedDefault].accidentCodes.behaviour block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    NSArray *t_arr = nil;
+    if (self.accidentType == AccidentTypeAccident) {
+        t_arr = [ShareValue sharedDefault].accidentCodes.behaviour;
+    }else if (self.accidentType == AccidentTypeFastAccident){
+        t_arr = [ShareValue sharedDefault].fastAccidentCodes.behaviour;
+    }
+    
+    [self showBottomPickViewWithTitle:@"事故成因" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_accidentCauses.text = title;
@@ -455,6 +503,16 @@
     
     AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:self];
     SearchLocationVC *t_searchLocationvc = [SearchLocationVC new];
+    if (_accidentType == AccidentTypeAccident) {
+        t_searchLocationvc.arr_content = [ShareValue sharedDefault].accidentCodes.road;
+        t_searchLocationvc.arr_temp = [ShareValue sharedDefault].accidentCodes.road;
+        t_searchLocationvc.searchType = SearchLocationTypeAccident;
+    }else if (_accidentType == AccidentTypeFastAccident){
+        t_searchLocationvc.arr_content = [ShareValue sharedDefault].fastAccidentCodes.road;
+        t_searchLocationvc.arr_temp = [ShareValue sharedDefault].fastAccidentCodes.road;
+        t_searchLocationvc.searchType = SearchLocationTypeFastAccident;
+    }
+    
     WS(weakSelf);
     t_searchLocationvc.searchLocationBlock = ^(AccidentGetCodesModel *model) {
         SW(strongSelf, weakSelf);
@@ -495,7 +553,14 @@
     
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"道路类型" items:[ShareValue sharedDefault].accidentCodes.roadType block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    NSArray *t_arr = nil;
+    if (self.accidentType == AccidentTypeAccident) {
+        t_arr = [ShareValue sharedDefault].accidentCodes.roadType;
+    }else if (self.accidentType == AccidentTypeFastAccident){
+        t_arr = [ShareValue sharedDefault].fastAccidentCodes.roadType;
+    }
+
+    [self showBottomPickViewWithTitle:@"道路类型" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         SW(strongSelf, weakSelf);
         strongSelf.tf_roadType.text = title;
         strongSelf.partyFactory.param.roadType  = @(itemType);
@@ -513,7 +578,14 @@
     
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"车辆类型" items:[ShareValue sharedDefault].accidentCodes.vehicle block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    NSArray *t_arr = nil;
+    if (self.accidentType == AccidentTypeAccident) {
+        t_arr = [ShareValue sharedDefault].accidentCodes.vehicle;
+    }else if (self.accidentType == AccidentTypeFastAccident){
+        t_arr = [ShareValue sharedDefault].fastAccidentCodes.vehicle;
+    }
+    
+    [self showBottomPickViewWithTitle:@"车辆类型" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         SW(strongSelf, weakSelf);
         strongSelf.tf_carType.text = title;
         strongSelf.partyFactory.partModel.partyVehicleId =  @(itemId);
@@ -531,7 +603,14 @@
     
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"行驶状态" items:[ShareValue sharedDefault].accidentCodes.driverDirect block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    NSArray *t_arr = nil;
+    if (self.accidentType == AccidentTypeAccident) {
+        t_arr = [ShareValue sharedDefault].accidentCodes.driverDirect;
+    }else if (self.accidentType == AccidentTypeFastAccident){
+        t_arr = [ShareValue sharedDefault].fastAccidentCodes.driverDirect;
+    }
+    
+    [self showBottomPickViewWithTitle:@"行驶状态" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_drivingState.text = title;
@@ -547,7 +626,14 @@
 - (IBAction)handleBtnIllegalBehaviorClicked:(id)sender {
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"违法行为" items:[ShareValue sharedDefault].accidentCodes.behaviour block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    NSArray *t_arr = nil;
+    if (_accidentType == AccidentTypeAccident) {
+        t_arr = [ShareValue sharedDefault].accidentCodes.behaviour;
+    }else if (_accidentType == AccidentTypeFastAccident){
+        t_arr = [ShareValue sharedDefault].fastAccidentCodes.behaviour;
+    }
+    
+    [self showBottomPickViewWithTitle:@"违法行为" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_illegalBehavior.text = title;
@@ -563,7 +649,14 @@
 - (IBAction)handleBtnInsuranceCompanyClicked:(id)sender {
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"保险公司" items:[ShareValue sharedDefault].accidentCodes.insuranceCompany block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    NSArray *t_arr = nil;
+    if (_accidentType == AccidentTypeAccident) {
+        t_arr = [ShareValue sharedDefault].accidentCodes.insuranceCompany;
+    }else if (_accidentType == AccidentTypeFastAccident){
+        t_arr = [ShareValue sharedDefault].fastAccidentCodes.insuranceCompany;
+    }
+
+    [self showBottomPickViewWithTitle:@"保险公司" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_insuranceCompany.text = title;
@@ -579,7 +672,14 @@
 - (IBAction)handleBtnResponsibilityClicked:(id)sender {
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"事故责任" items:[ShareValue sharedDefault].accidentCodes.responsibility block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    NSArray *t_arr = nil;
+    if (_accidentType == AccidentTypeAccident) {
+        t_arr = [ShareValue sharedDefault].accidentCodes.responsibility;
+    }else if (_accidentType == AccidentTypeFastAccident){
+        t_arr = [ShareValue sharedDefault].fastAccidentCodes.responsibility;
+    }
+    
+    [self showBottomPickViewWithTitle:@"事故责任" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_responsibility.text = title;
@@ -595,7 +695,7 @@
 
 - (IBAction)handleBtnTemporaryCarClicked:(id)sender {
     _btn_temporaryCar.selected = !_btn_temporaryCar.selected;
-    self.partyFactory.partModel.partyIsZkCl = @(_btn_temporaryCar.selected);
+    _partyFactory.partModel.partyIsZkCl = @(_btn_temporaryCar.selected);
 }
 
 #pragma mark - 是否暂扣行驶证按钮点击
@@ -603,7 +703,7 @@
 
 - (IBAction)handleBtnTemporaryDrivingLicenseClicked:(id)sender {
     _btn_temporaryDrivelib.selected = !_btn_temporaryDrivelib.selected;
-    self.partyFactory.partModel.partyIsZkXsz = @(_btn_temporaryDrivelib.selected);
+    _partyFactory.partModel.partyIsZkXsz = @(_btn_temporaryDrivelib.selected);
     
 }
 
@@ -611,7 +711,7 @@
 
 - (IBAction)handleBtnTemporaryLicenseClicked:(id)sender {
     _btn_temporarylib.selected = !_btn_temporarylib.selected;
-    self.partyFactory.partModel.partyIsZkJsz = @(_btn_temporarylib.selected);
+    _partyFactory.partModel.partyIsZkJsz = @(_btn_temporarylib.selected);
 }
 
 
@@ -619,7 +719,7 @@
 
 - (IBAction)handleBtnIdentityCardClicked:(id)sender {
     _btn_temporaryIdentityCard.selected = !_btn_temporaryIdentityCard.selected;
-    self.partyFactory.partModel.partyIsZkSfz = @(_btn_temporaryIdentityCard.selected);
+    _partyFactory.partModel.partyIsZkSfz = @(_btn_temporaryIdentityCard.selected);
 
 }
 
@@ -628,38 +728,64 @@
 - (IBAction)handleBtnUploadClicked:(id)sender {
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
     
-    if ([self.partyFactory validateNumber] == NO) {
+    if ([_partyFactory validateNumber] == NO) {
         return;
     }
     
     //如果roadId不为0，则不需要传roadName
-    if (self.partyFactory.param.roadId != 0) {
-        self.partyFactory.param.roadName = nil;
+    if (_partyFactory.param.roadId != 0) {
+        _partyFactory.param.roadName = nil;
     }
     
-    [self.partyFactory configParamInCertFilesAndCertRemarks];
+    [_partyFactory configParamInCertFilesAndCertRemarks];
     
-    LxDBObjectAsJson(self.partyFactory.param);
+    LxDBObjectAsJson(_partyFactory.param);
     WS(weakSelf);
-    AccidentSaveManger *manger = [[AccidentSaveManger alloc] init];
-    manger.param = self.partyFactory.param;
-    manger.successMessage = @"提交成功";
-    manger.failMessage = @"提交失败";
     
-    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
-    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [hud hide];
+    if (_accidentType == AccidentTypeAccident) {
         
-        SW(strongSelf, weakSelf);
-        if (manger.responseModel.code == CODE_SUCCESS) {
-            AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:strongSelf];
-            [t_vc.navigationController popViewControllerAnimated:YES];
+        AccidentSaveManger *manger = [[AccidentSaveManger alloc] init];
+        manger.param = self.partyFactory.param;
+        manger.successMessage = @"提交成功";
+        manger.failMessage = @"提交失败";
+        
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
             
-        }
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [hud hide];
-    }];
-
+            SW(strongSelf, weakSelf);
+            if (manger.responseModel.code == CODE_SUCCESS) {
+                AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:strongSelf];
+                [t_vc.navigationController popViewControllerAnimated:YES];
+                
+            }
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
+        }];
+        
+    }else if (_accidentType == AccidentTypeFastAccident){
+    
+        FastAccidentSaveManger *manger = [[FastAccidentSaveManger alloc] init];
+        manger.param = self.partyFactory.param;
+        manger.successMessage = @"提交成功";
+        manger.failMessage = @"提交失败";
+        
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
+            
+            SW(strongSelf, weakSelf);
+            if (manger.responseModel.code == CODE_SUCCESS) {
+                AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:strongSelf];
+                [t_vc.navigationController popViewControllerAnimated:YES];
+                
+            }
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
+        }];
+    
+    }
+    
 }
 
 #pragma mark - 添加监听Textfield的变化，用于给参数实时赋值
@@ -722,7 +848,7 @@
     _segmentedControl.showsTopSeparator = NO;
     _segmentedControl.showsBottomSeparator = NO;
     [self judgeTextFieldWithIndex:_segmentedControl.selectedSegmentIndex];
-    [self.partyFactory setIndex:_segmentedControl.selectedSegmentIndex];
+    [_partyFactory setIndex:_segmentedControl.selectedSegmentIndex];
 
 }
 
@@ -732,41 +858,41 @@
     UITextField* textField = (UITextField*)sender;
     LxDBAnyVar(textField.text);
     NSInteger length =  textField.text.length;
-    if (textField == self.tf_accidentTime) {
-        self.partyFactory.param.happenTimeStr = length > 0 ? self.tf_accidentTime.text : nil;
+    if (textField == _tf_accidentTime) {
+        _partyFactory.param.happenTimeStr = length > 0 ? _tf_accidentTime.text : nil;
     }
     
-    if (textField == self.tf_accidentAddress) {
-        self.partyFactory.param.address = length > 0 ? self.tf_accidentAddress.text : nil;
+    if (textField == _tf_accidentAddress) {
+        _partyFactory.param.address = length > 0 ? _tf_accidentAddress.text : nil;
     }
     
-    if (textField == self.tf_weather) {
-        self.partyFactory.param.weather = length > 0 ? self.tf_weather.text : nil;
+    if (textField == _tf_weather) {
+        _partyFactory.param.weather = length > 0 ? _tf_weather.text : nil;
     }
     
-    if (textField == self.tf_name) {
-        self.partyFactory.partModel.partyName = length > 0 ? self.tf_name.text : nil;
+    if (textField == _tf_name) {
+        _partyFactory.partModel.partyName = length > 0 ? _tf_name.text : nil;
         
     }
-    if (textField == self.tf_identityCard) {
+    if (textField == _tf_identityCard) {
         
-        self.partyFactory.partModel.partyIdNummber = length > 0 ? self.tf_identityCard.text : nil;
+        _partyFactory.partModel.partyIdNummber = length > 0 ? _tf_identityCard.text : nil;
         //用于请求是否有违规行为
-        [[CountAccidentHelper sharedDefault] setIdNo:self.tf_identityCard.text];
+        [[CountAccidentHelper sharedDefault] setIdNo:_tf_identityCard.text];
     }
-    if (textField == self.tf_carNumber) {
+    if (textField == _tf_carNumber) {
         
-        self.partyFactory.partModel.partyCarNummber = length > 0 ? self.tf_carNumber.text : nil;
+        _partyFactory.partModel.partyCarNummber = length > 0 ? _tf_carNumber.text : nil;
         //用于请求是否有违规行为
-        [[CountAccidentHelper sharedDefault] setCarNo:self.tf_carNumber.text];
+        [[CountAccidentHelper sharedDefault] setCarNo:_tf_carNumber.text];
     }
-    if (textField == self.tf_phone) {
+    if (textField == _tf_phone) {
         
-        self.partyFactory.partModel.partyPhone = length > 0 ? self.tf_phone.text : nil;
+        _partyFactory.partModel.partyPhone = length > 0 ? _tf_phone.text : nil;
         //用于请求是否有违规行为
-        [[CountAccidentHelper sharedDefault] setTelNum:self.tf_phone.text];
+        [[CountAccidentHelper sharedDefault] setTelNum:_tf_phone.text];
     }
-    self.isCanCommit = [self.partyFactory juegeCanCommit];
+    self.isCanCommit = [_partyFactory juegeCanCommit];
     
 }
 
@@ -774,7 +900,7 @@
 //只能监听键盘输入时的变化(setText: 方式无法监听),如果想修复可以参考http://www.jianshu.com/p/75355acdd058
 - (void)textViewDidChange:(FSTextView *)textView{
     
-    self.partyFactory.partModel.partyDescribe = textView.formatText;
+    _partyFactory.partModel.partyDescribe = textView.formatText;
 
 }
 
@@ -782,10 +908,10 @@
 
 -(void)locationChange{
     //这里待优化
-    self.tf_location.text = [LocationHelper sharedDefault].streetName;
-    [self.partyFactory setRoadId:[LocationHelper sharedDefault].streetName];
-    self.partyFactory.param.roadName = [LocationHelper sharedDefault].streetName;
-    self.isCanCommit =  [self.partyFactory juegeCanCommit];
+    _tf_location.text = [LocationHelper sharedDefault].streetName;
+    [_partyFactory setRoadId:[LocationHelper sharedDefault].streetName];
+    _partyFactory.param.roadName = [LocationHelper sharedDefault].streetName;
+    self.isCanCommit =  [_partyFactory juegeCanCommit];
 }
 
 #pragma mark - 分段控件选中之后的处理

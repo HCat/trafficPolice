@@ -14,8 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *tf_search;
 @property (weak, nonatomic) IBOutlet UITableView *tb_content;
-@property (nonatomic,copy) NSArray *arr_content;
-@property (nonatomic,copy) NSArray *arr_temp; //用于临时存储总数据
+
 @end
 
 @implementation SearchLocationVC
@@ -35,7 +34,18 @@
     //设置显示模式为永远显示(默认不显示)
     _tf_search.leftViewMode = UITextFieldViewModeAlways;
     
-    [self getAccidentCodes];
+    if (_arr_content == nil) {
+        if (_searchType == SearchLocationTypeAccident) {
+             [self getAccidentCodes];
+        }else if(_searchType == SearchLocationTypeFastAccident){
+             [self getFastAccidentCodes];
+        
+        }else if (_searchType == SearchLocationTypeIllegal){
+             [self getRoadName];
+        
+        }
+    }
+   
     WS(weakSelf);
     
     //网络断开之后重新连接之后的处理
@@ -45,7 +55,13 @@
             strongSelf.arr_content = nil;
         }
         strongSelf.tb_content.isNetAvailable = NO;
-        [strongSelf getAccidentCodes];
+        if (strongSelf.searchType == SearchLocationTypeAccident) {
+            [strongSelf getAccidentCodes];
+        }else if(strongSelf.searchType == SearchLocationTypeFastAccident){
+            [strongSelf getFastAccidentCodes];
+        }else if (strongSelf.searchType == SearchLocationTypeIllegal){
+            [strongSelf getRoadName];
+        }
     };
     
     self.tb_content.reloadBlock = ^{
@@ -54,7 +70,13 @@
             strongSelf.arr_content = nil;
         }
         strongSelf.tb_content.isNetAvailable = NO;
-        [strongSelf getAccidentCodes];
+        if (strongSelf.searchType == SearchLocationTypeAccident) {
+            [strongSelf getAccidentCodes];
+        }else if(strongSelf.searchType == SearchLocationTypeFastAccident){
+            [strongSelf getFastAccidentCodes];
+        }else if (strongSelf.searchType == SearchLocationTypeIllegal){
+            [strongSelf getRoadName];
+        }
     };
     
      [_tf_search addTarget:self action:@selector(passConTextChange:) forControlEvents:UIControlEventEditingChanged];
@@ -66,9 +88,7 @@
 
     WS(weakSelf);
     AccidentGetCodesManger *manger = [AccidentGetCodesManger new];
-    manger.isNeedShowHud = YES;
-    manger.isLog = YES;
-    
+
     ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:self.view config:nil];
     
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -94,6 +114,67 @@
 
 }
 
+#pragma mark - 获取快处事故通用值
+- (void)getFastAccidentCodes{
+    
+    WS(weakSelf);
+    FastAccidentGetCodesManger *manger = [FastAccidentGetCodesManger new];
+
+    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:self.view config:nil];
+    
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+        SW(strongSelf,weakSelf);
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            [ShareValue sharedDefault].fastAccidentCodes = manger.fastAccidentGetCodesResponse;
+            strongSelf.arr_content = [ShareValue sharedDefault].fastAccidentCodes.road;
+            strongSelf.arr_temp = [ShareValue sharedDefault].fastAccidentCodes.road;
+            [strongSelf.tb_content reloadData];
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+        SW(strongSelf,weakSelf);
+        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+        if (status == RealStatusNotReachable) {
+            strongSelf.tb_content.isNetAvailable = YES;
+            [strongSelf.tb_content reloadData];
+        }
+        
+    }];
+    
+}
+
+- (void)getRoadName{
+
+    WS(weakSelf);
+    
+    CommonGetRoadManger *manger = [[CommonGetRoadManger alloc] init];
+
+    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:self.view config:nil];
+    
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+        SW(strongSelf,weakSelf);
+        if (manger.responseModel.code == CODE_SUCCESS) {
+
+            strongSelf.arr_content = manger.commonGetRoadResponse;
+            strongSelf.arr_temp =  manger.commonGetRoadResponse;
+            [strongSelf.tb_content reloadData];
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+        SW(strongSelf,weakSelf);
+        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+        if (status == RealStatusNotReachable) {
+            strongSelf.tb_content.isNetAvailable = YES;
+            [strongSelf.tb_content reloadData];
+        }
+        
+    }];
+    
+}
 
 #pragma mark - buttonMethods
 
@@ -130,8 +211,13 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    AccidentGetCodesModel *model = _arr_content[indexPath.row];
-    cell.textLabel.text = model.modelName;
+    if (_searchType == SearchLocationTypeIllegal) {
+        CommonGetRoadModel *model = _arr_content[indexPath.row];
+        cell.textLabel.text = model.getRoadName;
+    }else{
+        AccidentGetCodesModel *model = _arr_content[indexPath.row];
+        cell.textLabel.text = model.modelName;
+    }
     
     return cell;
 }
@@ -144,10 +230,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     AccidentGetCodesModel *model = _arr_content[indexPath.row];
-    if (self.searchLocationBlock) {
-        self.searchLocationBlock(model);
+    if (_searchType == SearchLocationTypeIllegal) {
+        CommonGetRoadModel *model = _arr_content[indexPath.row];
+        if (self.getRoadBlock) {
+            self.getRoadBlock(model);
+        }
+    }else{
+        AccidentGetCodesModel *model = _arr_content[indexPath.row];
+        if (self.searchLocationBlock) {
+            self.searchLocationBlock(model);
+        }
     }
+
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -156,22 +250,33 @@
 
 -(void)passConTextChange:(id)sender{
     UITextField* textField = (UITextField*)sender;
-    if (!self.arr_temp || self.arr_temp.count == 0) {
+    if (!_arr_temp || _arr_temp.count == 0) {
         return;
     }
     
     if (textField.text.length == 0) {
-        self.arr_content = self.arr_temp;
-        [self.tb_content reloadData];
+        self.arr_content = _arr_temp;
+        [_tb_content reloadData];
         return;
     }
     
     NSMutableArray *arr = [NSMutableArray array];
-    [self.arr_temp enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        AccidentGetCodesModel *model = (AccidentGetCodesModel *)obj;
-        if ([model.modelName containsString:textField.text]) {
-            [arr addObject:model];
+    WS(weakSelf);
+    [_arr_temp enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        SW(strongSelf, weakSelf);
+        if (strongSelf.searchType == SearchLocationTypeIllegal) {
+            CommonGetRoadModel *model = (CommonGetRoadModel *)obj;
+            if ([model.getRoadName containsString:textField.text]) {
+                [arr addObject:model];
+            }
+        }else{
+            AccidentGetCodesModel *model = (AccidentGetCodesModel *)obj;
+            if ([model.modelName containsString:textField.text]) {
+                [arr addObject:model];
+            }
         }
+        
+       
     }];
     self.arr_content = [NSArray arrayWithArray:arr];
     [self.tb_content reloadData];

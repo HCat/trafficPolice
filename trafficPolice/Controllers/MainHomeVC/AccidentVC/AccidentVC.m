@@ -12,6 +12,7 @@
 #import "ZLCollectionCell.h"
 #import "ZLPhotoModel.h"
 #import "AccidentAPI.h"
+#import "ShareFun.h"
 
 
 @interface AccidentVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -33,13 +34,51 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"事故录入", nil);
+    if (_accidentType == AccidentTypeAccident) {
+        self.title = NSLocalizedString(@"事故录入", nil);
+    }else{
+        self.title = NSLocalizedString(@"快处事故录入", nil);
+    }
+    
     
     [_collectionView registerNib:[UINib nibWithNibName:@"ZLCollectionCell" bundle:nil] forCellWithReuseIdentifier:cellId];
     [_collectionView registerNib:[UINib nibWithNibName:@"AccidentAddFootView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footId];
     [_collectionView registerNib:[UINib nibWithNibName:@"AccidentAddHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headId];
     self.isFirstLoad = YES;
     self.isObserver = NO;
+    
+    WS(weakSelf);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        SW(strongSelf, weakSelf);
+        if (strongSelf.accidentType == AccidentTypeAccident) {
+            [ShareFun getAccidentCodes];
+        }else if (strongSelf.accidentType == AccidentTypeFastAccident){
+            [ShareFun getFastAccidentCodes];
+        }
+        
+    });
+    
+    //断网之后重新连接网络该做的事情
+
+    self.networkChangeBlock = ^{
+        SW(strongSelf, weakSelf);
+        if (strongSelf.accidentType == AccidentTypeAccident) {
+            if ([ShareValue sharedDefault].accidentCodes == nil) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [ShareFun getAccidentCodes];
+                });
+            }
+        }else if (strongSelf.accidentType == AccidentTypeFastAccident){
+            if ([ShareValue sharedDefault].fastAccidentCodes == nil) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [ShareFun getFastAccidentCodes];
+                });
+            }
+        }
+
+    };
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -149,8 +188,9 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
         
         self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
+        _footView.accidentType = _accidentType;
         
-        if (!self.isObserver) {
+        if (!_isObserver && _footView.accidentType == AccidentTypeAccident) {
             [_footView addObserver:self forKeyPath:@"isShowMoreAccidentInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
             [_footView addObserver:self forKeyPath:@"isShowMoreInfo" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
             self.isObserver = YES;
@@ -180,7 +220,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 //选中某个 item 触发
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.arr_photos.count) {
+    if (indexPath.row == _arr_photos.count) {
         
         [self showPhotoLibrary];
         
@@ -226,35 +266,57 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 
 //footer底部大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    if (self.footView.isShowMoreAccidentInfo && self.footView.isShowMoreInfo) {
+    if (_footView.isShowMoreAccidentInfo && _footView.isShowMoreInfo) {
         return (CGSize){ScreenWidth,1214-88-124};
     }else{
-        if (self.footView.isShowMoreAccidentInfo) {
+        if (_footView.isShowMoreAccidentInfo) {
             return (CGSize){ScreenWidth,1214-88};
-        }else if(self.footView.isShowMoreInfo){
+        }else if(_footView.isShowMoreInfo){
             return (CGSize){ScreenWidth,1214-124};
         }
     
     }
-    if (self.isFirstLoad) {
-        self.isFirstLoad = NO;
-        return (CGSize){ScreenWidth,1214-88-124};
+    if (_isFirstLoad) {
+        _isFirstLoad = NO;
+        if (_accidentType == AccidentTypeAccident) {
+            return (CGSize){ScreenWidth,1214-88-124};
+        }else{
+            return (CGSize){ScreenWidth,1214-88-124-24-44};
+        }
+        
     }else{
-        return (CGSize){ScreenWidth,1214};
+        if (_accidentType == AccidentTypeAccident) {
+            return (CGSize){ScreenWidth,1214};
+        }else{
+            return (CGSize){ScreenWidth,1214-88-124-24-44};
+        }
     }
     
+}
+
+#pragma mark - scrollViewDelegate
+//用于滚动到顶部的时候使得tableView不能再继续下拉
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    if (scrollView == _collectionView){
+        if (scrollView.contentOffset.y < 0) {
+            CGPoint position = CGPointMake(0, 0);
+            [scrollView setContentOffset:position animated:NO];
+            return;
+        }
+    }
 }
 
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     
-    if ([keyPath isEqualToString:@"isShowMoreAccidentInfo"] && object == self.footView) {
-        [self.collectionView reloadData];
+    if ([keyPath isEqualToString:@"isShowMoreAccidentInfo"] && object == _footView) {
+        [_collectionView reloadData];
     }
     
-    if ([keyPath isEqualToString:@"isShowMoreInfo"] && object == self.footView) {
-        [self.collectionView reloadData];
+    if ([keyPath isEqualToString:@"isShowMoreInfo"] && object == _footView) {
+        [_collectionView reloadData];
     }
 
 }

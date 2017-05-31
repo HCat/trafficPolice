@@ -114,7 +114,7 @@
     
     // 关联到具体的VC中
     [self.camera attachToViewController:self withFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
-    self.camera.fixOrientationAfterCapture = NO;
+    self.camera.fixOrientationAfterCapture = YES;
     
     __weak typeof(self) weakSelf = self;
     [self.camera setOnDeviceChange:^(LLSimpleCamera *camera, AVCaptureDevice * device) {
@@ -205,7 +205,7 @@
             [self.btn_flash setTitle:@"关闭" forState:UIControlStateNormal];
             [self.btn_flash setImage:[UIImage imageNamed:@"camera_flash_close"] forState:UIControlStateNormal];
         }
-    
+        
     }
     
 }

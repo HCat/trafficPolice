@@ -51,6 +51,13 @@
 //获取事故通用值
 + (void)getAccidentCodes;
 
+//获取快处事故通用值
++ (void)getFastAccidentCodes;
+
+//获取通用道路值
+
++ (void)getCommonRoad;
+
 //获取列表权限
 
 + (BOOL)isPermissionForAccidentList;        //事故和快处权限

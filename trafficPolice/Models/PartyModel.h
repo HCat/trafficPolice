@@ -35,6 +35,8 @@
 @property(nonatomic,copy) NSString *partyInsuranceCompany;
 @property(nonatomic,copy) NSString *partyResponsibility;
 
+@property(nonatomic,assign) AccidentType accidentType; //用于判断是快处还是事故录入
+
 //初始化
 //
 -(instancetype)initWithIndex:(NSInteger)type withParam:(AccidentSaveParam *)param;

@@ -110,7 +110,7 @@
 //返回参数
 - (NSArray *)commonGetRoadResponse{
     
-    if (self.responseModel.data) {
+    if (self.responseModel) {
         return [NSArray modelArrayWithClass:[CommonGetRoadModel class] json:self.responseJSONObject[@"data"]];
     }
     

@@ -10,4 +10,6 @@
 
 @interface AccidentVC : HideTabSuperVC
 
+@property(nonatomic,assign) AccidentType accidentType;
+
 @end
