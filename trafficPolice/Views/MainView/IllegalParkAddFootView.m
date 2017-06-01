@@ -15,4 +15,22 @@
     // Initialization code
 }
 
+#pragma mark - buttonMethods 
+
+- (IBAction)handleBtnCommitClicked:(id)sender {
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(handleCommitClicked)]) {
+        [self.delegate handleCommitClicked];
+    }
+
+}
+
+#pragma mark - dealloc
+
+- (void)dealloc{
+
+    LxPrintf(@"IllegalParkAddFootView dealloc");
+
+}
+
 @end

@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) CAShapeLayer * shapeLayer;
 @property (nonatomic,strong)  UIBezierPath *circlePath;
+@property (nonatomic,assign) BOOL isClearnBorder;
 
 @end
 
@@ -27,6 +28,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         
+        self.isClearnBorder = NO;
         self.shapeLayer = [CAShapeLayer layer];
         [self.layer addSublayer:self.shapeLayer];
     
@@ -50,9 +52,11 @@
             myRect =CGRectMake(ScreenWidth/2-(ScreenWidth*3/10),ScreenHeight/2-(ScreenHeight*2/6),ScreenWidth*3/5, ScreenHeight * 2/3);
         }
         
+        [self setNeedsDisplay];
+        self.isClearnBorder = YES;
+        
         self.circlePath = [UIBezierPath bezierPathWithRect:myRect];
        
-        [self setNeedsDisplay];
         [path appendPath:_circlePath];
         [path setUsesEvenOddFillRule:YES];
         
@@ -60,6 +64,15 @@
         self.shapeLayer.fillRule = kCAFillRuleEvenOdd;
         self.shapeLayer.fillColor = [UIColor blackColor].CGColor;
         self.shapeLayer.opacity = 0.95;
+        
+        WS(weakSelf);
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5/*延迟执行时间*/ * NSEC_PER_SEC));
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [weakSelf setNeedsDisplay];
+            weakSelf.isClearnBorder = NO;
+        });
+        
+        
     }
 
 }
@@ -77,24 +90,47 @@
         myRect =CGRectMake(ScreenWidth/2-(ScreenWidth * 4/10),ScreenHeight/2-(ScreenHeight/6),ScreenWidth * 4/5, ScreenHeight/3);
     }
     
-    self.circlePath = [UIBezierPath bezierPathWithRect:myRect];
+    
     [self setNeedsDisplay];
+    self.isClearnBorder = YES;
+    
+    self.circlePath = [UIBezierPath bezierPathWithRect:myRect];
     [path appendPath:_circlePath];
     [path setUsesEvenOddFillRule:YES];
     self.shapeLayer.path = path.CGPath;
     self.shapeLayer.fillRule = kCAFillRuleEvenOdd;
     self.shapeLayer.fillColor = [UIColor blackColor].CGColor;
     self.shapeLayer.opacity = 0.95;
+    
+    WS(weakSelf);
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5/*延迟执行时间*/ * NSEC_PER_SEC));
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        [weakSelf setNeedsDisplay];
+        weakSelf.isClearnBorder = NO;
+        
+    });
+
 }
 
 
 - (void) drawRect:(CGRect)rect {
-    _circlePath.lineWidth = 2;
-    UIColor *color = [UIColor whiteColor];
-    [color set];
-    _circlePath.lineCapStyle = kCGLineCapRound;
-    _circlePath.lineJoinStyle = kCGLineJoinRound;
-    [_circlePath stroke];
+    
+    if (_isClearnBorder) {
+        _circlePath.lineWidth = 1;
+        UIColor *color = [UIColor clearColor];
+        [color set];
+        _circlePath.lineCapStyle = kCGLineCapRound;
+        _circlePath.lineJoinStyle = kCGLineJoinRound;
+        [_circlePath stroke];
+    }else{
+        _circlePath.lineWidth = 2;
+        UIColor *color = [UIColor whiteColor];
+        [color set];
+        _circlePath.lineCapStyle = kCGLineCapRound;
+        _circlePath.lineJoinStyle = kCGLineJoinRound;
+        [_circlePath stroke];
+    }
+    
     
 }
 

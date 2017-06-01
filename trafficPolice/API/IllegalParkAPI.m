@@ -7,11 +7,17 @@
 //
 
 #import "IllegalParkAPI.h"
+#import "ImageFileInfo.h"
+#import <AFNetworking.h>
 
 #pragma mark - 违停采集增加API
 
 @implementation IllegalParkSaveParam
 
+//黑名单，不被转换
++ (NSArray *)modelPropertyBlacklist {
+    return @[@"files"];
+}
 
 @end
 
@@ -27,6 +33,22 @@
 - (nullable id)requestArgument
 {
     return self.param.modelToJSONObject;
+}
+
+//请求方式
+- (YTKRequestMethod)requestMethod
+{
+    return YTKRequestMethodPOST;
+}
+
+//上传图片
+- (AFConstructingBlock)constructingBodyBlock {
+    return ^(id<AFMultipartFormData> formData) {
+        for (ImageFileInfo *filesImage in self.param.files){
+            [formData appendPartWithFileData:filesImage.fileData name:filesImage.name fileName:filesImage.fileName mimeType:filesImage.mimeType];
+        }
+
+    };
 }
 
 //返回参数

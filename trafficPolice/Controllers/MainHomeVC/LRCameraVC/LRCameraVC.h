@@ -18,7 +18,12 @@ typedef void (^fininshCaptureBlock)(LRCameraVC
 @interface LRCameraVC : BaseViewController
 
 //文件类型1：车牌号 2：身份证 3：驾驶证 4：行驶证
+
+//说明，如果是type是5，则表示正常播放模式，而不是识别模式
+
 @property (nonatomic,assign) NSInteger type;
+
+
 
 //获取得到压缩的图片
 @property (nonatomic,strong) UIImage *image;

@@ -27,12 +27,11 @@
             _name = name; //对应网站上[upload.php中]处理文件的[字段"file"]
             _mimeType = @"image/jpeg";
             //进行压缩
-            
-            
+    
             //long long time = [[NSDate date]timeIntervalSince1970] * 100000;
             
             self.image = [ShareFun scaleFromImage:image];
-            _fileData = UIImageJPEGRepresentation(self.image, 0.7);
+            _fileData = UIImageJPEGRepresentation(self.image, 0.85);
             LxPrintf(@"压缩成jpg之后的数据大小:%zd", _fileData.length/1000);
             if (_fileData == nil)
             {

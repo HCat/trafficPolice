@@ -24,6 +24,9 @@
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="handleBtnCommitClicked:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="K5Q-Xh-I8g"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,6 +36,9 @@
                 <constraint firstItem="CBg-F9-aHa" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="13" id="W1l-Zv-E8G"/>
                 <constraint firstAttribute="trailing" secondItem="CBg-F9-aHa" secondAttribute="trailing" constant="13" id="csr-ZG-dEM"/>
             </constraints>
+            <connections>
+                <outlet property="btn_commit" destination="CBg-F9-aHa" id="G3X-Gg-k2P"/>
+            </connections>
             <point key="canvasLocation" x="25" y="64.5"/>
         </collectionReusableView>
     </objects>

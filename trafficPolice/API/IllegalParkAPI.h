@@ -15,16 +15,16 @@
 
 @interface IllegalParkSaveParam :  NSObject
 
-@property (nonatomic,copy) NSString * roadId;           //道路ID 必填，从通用值【道路】获取ID
-@property (nonatomic,copy) NSString * address;          //事故地点
-@property (nonatomic,copy) NSString * addressRemark; //地址备注 非必填
-@property (nonatomic,copy) NSString * carNo; //车牌号
-@property (nonatomic,assign) double longitude; //经度
-@property (nonatomic,assign) double latitude;
-//纬度
-@property (nonatomic,copy) NSArray  * files;                    //事故图片 列表，最多可上传30张
-@property (nonatomic,copy) NSArray  * remarks;  //违停图片名称  违章图片名称，字符串列表。和图片一对一，名称统一命名，车牌近照（一张）、违停照片（可多张）
-@property (nonatomic,copy) NSArray  * taketimes; //拍照时间 拍照时间，字符串列表，格式yyyy-MM-dd HH:mm:ss，和图片一对一
+@property (nonatomic,strong) NSNumber * roadId;               //道路ID 必填，从通用值【道路】获取ID
+@property (nonatomic,copy) NSString * roadName;               //道路名字 如果roadId为0的时候设置
+@property (nonatomic,copy) NSString * address;              //事故地点 必填
+@property (nonatomic,copy) NSString * addressRemark;        //地址备注 非必填
+@property (nonatomic,copy) NSString * carNo;                //车牌号 必填
+@property (nonatomic,strong) NSNumber * longitude;          //经度 必填
+@property (nonatomic,strong) NSNumber * latitude;           //纬度 必填
+@property (nonatomic,copy) NSArray  * files;                //事故图片 列表，最多可上传30张
+@property (nonatomic,copy) NSArray  * remarks;              //违停图片名称  违章图片名称，字符串列表。和图片一对一，名称统一命名，车牌近照（一张）、违停照片（可多张）
+@property (nonatomic,copy) NSArray  * taketimes;            //拍照时间 拍照时间，字符串列表，格式yyyy-MM-dd HH:mm:ss，和图片一对一
 
 
 @end

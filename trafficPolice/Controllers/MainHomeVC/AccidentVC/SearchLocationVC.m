@@ -158,6 +158,7 @@
         SW(strongSelf,weakSelf);
         if (manger.responseModel.code == CODE_SUCCESS) {
 
+            [ShareValue sharedDefault].roadModels = manger.commonGetRoadResponse;
             strongSelf.arr_content = manger.commonGetRoadResponse;
             strongSelf.arr_temp =  manger.commonGetRoadResponse;
             [strongSelf.tb_content reloadData];

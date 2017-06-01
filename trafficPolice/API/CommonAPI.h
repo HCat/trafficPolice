@@ -51,7 +51,7 @@
 
 @interface CommonGetRoadModel : NSObject
 
-@property (nonatomic,copy) NSString *getRoadId;     //通用值id
+@property (nonatomic,copy) NSNumber *getRoadId;     //通用值id
 @property (nonatomic,copy) NSString *getRoadName;   //通用值名称
 
 

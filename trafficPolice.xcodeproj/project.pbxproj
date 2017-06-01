@@ -133,6 +133,9 @@
 		CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786741ED436C200B4CC9F /* AccidentAddHeadView.m */; };
 		CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */; };
 		CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5786791ED441E600B4CC9F /* CALayer+Additions.m */; };
+		CE5ACBFF1EE0346600B60089 /* LLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5ACBFA1EE0346600B60089 /* LLCollectionViewCell.m */; };
+		CE5ACC001EE0346600B60089 /* LLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5ACBFC1EE0346600B60089 /* LLPhoto.m */; };
+		CE5ACC011EE0346600B60089 /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5ACBFE1EE0346600B60089 /* LLPhotoBrowser.m */; };
 		CE5D30EB1EDB17330092F143 /* PartyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D30EA1EDB17330092F143 /* PartyModel.m */; };
 		CE5D30EE1EDB1B810092F143 /* PartyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D30ED1EDB1B810092F143 /* PartyFactory.m */; };
 		CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */; };
@@ -396,6 +399,12 @@
 		CE5786751ED436C200B4CC9F /* AccidentAddHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentAddHeadView.xib; sourceTree = "<group>"; };
 		CE5786781ED441E600B4CC9F /* CALayer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Additions.h"; sourceTree = "<group>"; };
 		CE5786791ED441E600B4CC9F /* CALayer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Additions.m"; sourceTree = "<group>"; };
+		CE5ACBF91EE0346600B60089 /* LLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCollectionViewCell.h; sourceTree = "<group>"; };
+		CE5ACBFA1EE0346600B60089 /* LLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCollectionViewCell.m; sourceTree = "<group>"; };
+		CE5ACBFB1EE0346600B60089 /* LLPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhoto.h; sourceTree = "<group>"; };
+		CE5ACBFC1EE0346600B60089 /* LLPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhoto.m; sourceTree = "<group>"; };
+		CE5ACBFD1EE0346600B60089 /* LLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowser.h; sourceTree = "<group>"; };
+		CE5ACBFE1EE0346600B60089 /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
 		CE5D30E91EDB17330092F143 /* PartyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyModel.h; sourceTree = "<group>"; };
 		CE5D30EA1EDB17330092F143 /* PartyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyModel.m; sourceTree = "<group>"; };
 		CE5D30EC1EDB1B810092F143 /* PartyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyFactory.h; sourceTree = "<group>"; };
@@ -640,6 +649,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE5ACBF81EE0345400B60089 /* LLPhotoBrowser */,
 				CE6F9C271ED92C2100ADDA23 /* LSStatusBarHUD */,
 				CE4763371ED5D52500F29968 /* FSTextView */,
 				CE6314D01ED4FCBE00A885A7 /* YUSegment */,
@@ -1072,6 +1082,19 @@
 			path = AccidentVC;
 			sourceTree = "<group>";
 		};
+		CE5ACBF81EE0345400B60089 /* LLPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				CE5ACBF91EE0346600B60089 /* LLCollectionViewCell.h */,
+				CE5ACBFA1EE0346600B60089 /* LLCollectionViewCell.m */,
+				CE5ACBFB1EE0346600B60089 /* LLPhoto.h */,
+				CE5ACBFC1EE0346600B60089 /* LLPhoto.m */,
+				CE5ACBFD1EE0346600B60089 /* LLPhotoBrowser.h */,
+				CE5ACBFE1EE0346600B60089 /* LLPhotoBrowser.m */,
+			);
+			path = LLPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		CE60BE0D1ED71ECD00C328A1 /* LRCameraVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,6 +1341,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5ACBFF1EE0346600B60089 /* LLCollectionViewCell.m in Sources */,
+				CE5ACC001EE0346600B60089 /* LLPhoto.m in Sources */,
 				C7E0DBF61EC1A1C9008ED063 /* AKTab.m in Sources */,
 				CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */,
 				C7E0DC021EC1A5F8008ED063 /* BaseViewController.m in Sources */,
@@ -1427,6 +1452,7 @@
 				CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 				CE5786521ED4088700B4CC9F /* ToastUtils.m in Sources */,
+				CE5ACC011EE0346600B60089 /* LLPhotoBrowser.m in Sources */,
 				CE57865B1ED4088700B4CC9F /* ZLProgressHUD.m in Sources */,
 				CE5786541ED4088700B4CC9F /* ZLCollectionCell.m in Sources */,
 			);

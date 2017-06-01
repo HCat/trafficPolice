@@ -10,7 +10,6 @@
 
 @interface IllegalParkVC : HideTabSuperVC
 
-@property (nonatomic, strong) UIImage *img_carNumber; //车牌近照
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 
 @end

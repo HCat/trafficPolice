@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "PureLayout.h"
 #import "maskingView.h"
+#import "UIButton+Block.h"
 
 @interface LRCameraVC ()<TOCropViewControllerDelegate>
 
@@ -43,13 +44,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (_type == 1) {
+    [_btn_photoAlbum setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
+    [_btn_flash setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
+    
+    if(_type == 1) {
+        
         _v_masking.type = 1;
-
+        _btn_photoAlbum.hidden = YES;
+    
+    }else if(_type == 5) {
+        
+        _v_masking.hidden = YES;
+        [_v_masking removeFromSuperview];
+        
+        _btn_photoAlbum.hidden = YES;
+        
     }else{
         _v_masking.type = 2;
     }
-        //初始化照相机，通过AVFoundation自定义的相机
+
+    //初始化照相机，通过AVFoundation自定义的相机
     [self initializeCamera];
     
 }
@@ -58,6 +72,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    //允许单个页面可以横竖屏操作
     AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     delegate.allowRotate = 1;
     //调用Start开始拍照功能
@@ -66,6 +81,8 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    
+    //退出这个页面禁止横竖屏操作，有个Bug,就是当横屏的时候退出，上一个页面也是横屏的，修复下面if方法有用，但是会延迟横屏，并没有马上退出就横屏
     AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     delegate.allowRotate = 0;
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
@@ -77,6 +94,8 @@
         [invocation setArgument:&val atIndex:2];
         [invocation invoke];
     }
+    
+    [super viewWillDisappear:animated];
 
 }
 
@@ -118,7 +137,7 @@
                 if (strongSelf.fininshCaptureBlock) {
                     strongSelf.fininshCaptureBlock(strongSelf);
                 }
-                [strongSelf dismissViewControllerAnimated:NO completion:^{
+                [strongSelf dismissViewControllerAnimated:YES completion:^{
                 }];
                 
             }
@@ -281,12 +300,27 @@
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle{
     
-    //获取的照片转换成ImageFileInfo对象来得到图片信息，并且赋值name用于服务端需要的key中
-    self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_file];
-    self.image = self.imageInfo.image;
-    //请求数据获取证件信息
-    [self getIdentifyRequest];
+    if (_type != 5) {
+        //获取的照片转换成ImageFileInfo对象来得到图片信息，并且赋值name用于服务端需要的key中
+        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_file];
+        self.image = self.imageInfo.image;
+        //请求数据获取证件信息
+        [self getIdentifyRequest];
+    }else{
+        
+        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_files];
+        self.image = self.imageInfo.image;
     
+        if (self.fininshCaptureBlock) {
+            self.fininshCaptureBlock(self);
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+        
+      
+    }
+
     if (cropViewController.navigationController) {
         [cropViewController.navigationController popViewControllerAnimated:YES];
     }

@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol IllegalParkAddFootViewDelegate <NSObject>
+
+-(void)handleCommitClicked;
+
+
+@end
+
+typedef void(^IllegalParkCommitBlock)();
+
 @interface IllegalParkAddFootView : UICollectionReusableView
+
+@property (weak, nonatomic) IBOutlet UIButton *btn_commit;
+@property (nonatomic, weak) id<IllegalParkAddFootViewDelegate> delegate;
 
 @end
