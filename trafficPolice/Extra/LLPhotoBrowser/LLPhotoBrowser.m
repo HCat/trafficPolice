@@ -9,8 +9,10 @@
 #import "LLPhotoBrowser.h"
 #import "LLCollectionViewCell.h"
 #import "UIButton+Block.h"
+#import "ImageFileInfo.h"
 
 @interface LLPhotoBrowser ()<UICollectionViewDelegate,UICollectionViewDataSource,LLPhotoDelegate,UICollectionViewDelegateFlowLayout>{
+    
     NSMutableArray *_images;
     NSInteger _currentIndex;
     UICollectionView *_collectionView;
@@ -20,9 +22,22 @@
     UIView *_tabBar;
 }
 
+@property(nonatomic,strong) NSMutableDictionary *dic_delete;
+
 @end
 
 @implementation LLPhotoBrowser
+
+- (instancetype)initWithupImages:(NSMutableArray<NSMutableDictionary *> *)arr_upImages currentIndex:(NSInteger)currentIndex{
+    self = [super init];
+    if (self) {
+        self.arr_upImages = arr_upImages;
+        _currentIndex = currentIndex;
+    }
+    return self;
+
+}
+
 
 - (instancetype)initWithImages:(NSMutableArray<UIImage *> *)images currentIndex:(NSInteger)currentIndex {
     self = [super init];
@@ -54,8 +69,18 @@
     [_collectionView registerClass:[LLCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.view addSubview:_collectionView];
     
-    if (_currentIndex < _images.count) {
-        [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
+    if (_arr_upImages) {
+        if (_currentIndex < _arr_upImages.count) {
+            [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+    }
+    
+    
+    if (_images) {
+        if (_currentIndex < _images.count) {
+            [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+
     }
     
     /******自定义界面******/
@@ -87,7 +112,15 @@
     
     
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 17, self.view.bounds.size.width-160, 30)];
-    _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_images.count];
+    
+    if (_arr_upImages) {
+         _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_arr_upImages.count];
+    }
+    
+    if (_images) {
+         _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_images.count];
+    }
+   
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.font = [UIFont systemFontOfSize:18];
@@ -102,7 +135,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _images.count;
+    if (_arr_upImages) {
+        return _arr_upImages.count;
+    }
+    
+    if (_images) {
+        return _images.count;
+    }
+    
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -111,7 +152,16 @@
     if (!cell.photo.ll_delegate) {
         cell.photo.ll_delegate = self;
     }
-    cell.photo.ll_image = _images[indexPath.item];
+    
+    if (_arr_upImages && _arr_upImages.count > 0) {
+        NSMutableDictionary *t_dic = _arr_upImages[indexPath.item];
+        ImageFileInfo *imageInfo = [t_dic objectForKey:@"files"];
+        cell.photo.ll_image = imageInfo.image;
+    }
+    
+    if (_images&&_images.count > 0) {
+        cell.photo.ll_image = _images[indexPath.item];
+    }
     cell.photo.zoomScale = 1.0;
     
     return cell;
@@ -125,7 +175,16 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     _currentIndex = (long)scrollView.contentOffset.x/self.view.bounds.size.width;
-    _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_images.count];
+    
+    if (_arr_upImages) {
+       _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_arr_upImages.count];
+    }
+    
+    if (_images) {
+        _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_images.count];
+    }
+    
+    
 }
 
 #pragma mark - LLPhotoDelegate 图片单击事件，显示/隐藏标题栏
@@ -151,33 +210,81 @@
 
 - (void)trachBtn{
 
-    
-    
+
     // 取出可见cell
     // 判断即将显示哪一张
     NSIndexPath *currentIndexPath = [NSIndexPath indexPathForItem:_currentIndex inSection:0];
     LLCollectionViewCell *currentCell = (LLCollectionViewCell *)[_collectionView cellForItemAtIndexPath:currentIndexPath];
     
     // 移除数组中的某个元素
-    [_images removeObjectAtIndex:_currentIndex];
+    NSInteger count = -1;
+    if (_arr_upImages) {
+        count = _arr_upImages.count;
+    }
+    
+    if (_images) {
+        count = _images.count;
+    }
+    
+    
+    
+    if (_currentIndex > count - 1 ) {
+        _currentIndex = count - 1;
+    }
+    
+    
+    
+    if (_arr_upImages) {
+        self.dic_delete = _arr_upImages[_currentIndex];
+         [_arr_upImages removeObjectAtIndex:_currentIndex];
+    }
+    
+    if (_images) {
+         [_images removeObjectAtIndex:_currentIndex];
+    }
+    
     // 移除cell
     [currentCell removeFromSuperview];
     // 刷新cell
-   
-    
-    LxDBAnyVar(_images.count);
-
-    // 往前移一张
-    _collectionView.contentOffset = CGPointMake((_currentIndex - 1) * _collectionView.frame.size.width, 0);
-    // 刷新标题
-    _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex,_images.count];
-    
     [_collectionView reloadData];
     
-    if (_images.count == 0) {
-        // 来到这里说明没有图片，退出预览
-        [self goBack];
-    };
+    // 刷新标题
+    if (self.deleteBlock) {
+        self.deleteBlock(_dic_delete);
+    }
+    
+    if (_arr_upImages) {
+        
+        if (_currentIndex == count - 1) {
+            _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex,_arr_upImages.count];
+        }else{
+            _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex+1,_arr_upImages.count];
+        }
+        
+        
+        if (_arr_upImages.count == 0) {
+            // 来到这里说明没有图片，退出预览
+            [self goBack];
+        };
+    }
+    
+    if (_images) {
+        
+        if (_currentIndex == count - 1) {
+            _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex,_images.count];
+        }else{
+            _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex+1,_images.count];
+        }
+        
+        
+        if (_images.count == 0) {
+            // 来到这里说明没有图片，退出预览
+            [self goBack];
+        };
+    }
+    
+    
+    
     
 }
 

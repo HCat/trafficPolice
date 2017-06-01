@@ -17,11 +17,6 @@
 @interface IllegalParkAddHeadView()
 
 
-@property (weak, nonatomic) IBOutlet UITextField *tf_roadSection; //选择路段
-@property (weak, nonatomic) IBOutlet UITextField *tf_address; //所在位置
-@property (weak, nonatomic) IBOutlet UITextField *tf_addressRemarks; //地址备注
-
-
 @end
 
 @implementation IllegalParkAddHeadView
