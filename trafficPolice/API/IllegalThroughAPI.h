@@ -21,8 +21,8 @@
 @interface IllegalThroughQuerySecManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, strong) NSString *carNo;  //车牌号
-@property (nonatomic, strong) NSString *roadId; //道路ID
+@property (nonatomic, copy) NSString * carNo;  //车牌号
+@property (nonatomic, strong) NSNumber * roadId; //道路ID
 
 /****** 返回数据 ******/
 

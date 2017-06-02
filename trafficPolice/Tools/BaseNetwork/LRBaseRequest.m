@@ -79,11 +79,7 @@
         self.v_showHud = window;
     }
     
-    if (self.responseModel.code == CODE_TOKENTIMEOUT ) {
-        //处理token失效情况
-        [ShowHUD showError:@"token过期,重新登录" duration:1.2f inView:self.v_showHud config:nil];
-        
-    }else if (self.responseModel.code == CODE_FAILED){
+    if (self.responseModel.code == CODE_FAILED){
         //处理网络请求失败情况
         if (_isNeedShowHud) {
             if (_failMessage) {

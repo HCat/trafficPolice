@@ -147,6 +147,8 @@
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
 		CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */; };
 		CE6F9C2D1ED92C2100ADDA23 /* LSStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */; };
+		CE7CF0371EE19EFA00E91080 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7CF0341EE19EFA00E91080 /* FXBlurView.m */; };
+		CE7CF0381EE19EFB00E91080 /* SRAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7CF0361EE19EFA00E91080 /* SRAlertView.m */; };
 		CE7CFF171EDF137C00B74ABB /* maskingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7CFF161EDF137C00B74ABB /* maskingView.m */; };
 		CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7EED821ED1C42A00478777 /* IllegalParkAPI.m */; };
 		CE7F14E01EDE9B3900C7AEDA /* IllegalParkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F14DE1EDE9B3900C7AEDA /* IllegalParkVC.m */; };
@@ -428,6 +430,10 @@
 		CE6F9C291ED92C2100ADDA23 /* LSStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUD.h; sourceTree = "<group>"; };
 		CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSStatusBarHUD.m; sourceTree = "<group>"; };
 		CE6F9C2B1ED92C2100ADDA23 /* LSStatusBarHUDConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUDConst.h; sourceTree = "<group>"; };
+		CE7CF0331EE19EFA00E91080 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		CE7CF0341EE19EFA00E91080 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		CE7CF0351EE19EFA00E91080 /* SRAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAlertView.h; sourceTree = "<group>"; };
+		CE7CF0361EE19EFA00E91080 /* SRAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAlertView.m; sourceTree = "<group>"; };
 		CE7CFF151EDF137C00B74ABB /* maskingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maskingView.h; sourceTree = "<group>"; };
 		CE7CFF161EDF137C00B74ABB /* maskingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = maskingView.m; sourceTree = "<group>"; };
 		CE7EED811ED1C42A00478777 /* IllegalParkAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalParkAPI.h; sourceTree = "<group>"; };
@@ -649,6 +655,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE7CF0311EE19EFA00E91080 /* SRAlertView */,
 				CE5ACBF81EE0345400B60089 /* LLPhotoBrowser */,
 				CE6F9C271ED92C2100ADDA23 /* LSStatusBarHUD */,
 				CE4763371ED5D52500F29968 /* FSTextView */,
@@ -1140,6 +1147,25 @@
 			path = LSStatusBarHUD;
 			sourceTree = "<group>";
 		};
+		CE7CF0311EE19EFA00E91080 /* SRAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CE7CF0321EE19EFA00E91080 /* FXBlurView */,
+				CE7CF0351EE19EFA00E91080 /* SRAlertView.h */,
+				CE7CF0361EE19EFA00E91080 /* SRAlertView.m */,
+			);
+			path = SRAlertView;
+			sourceTree = "<group>";
+		};
+		CE7CF0321EE19EFA00E91080 /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				CE7CF0331EE19EFA00E91080 /* FXBlurView.h */,
+				CE7CF0341EE19EFA00E91080 /* FXBlurView.m */,
+			);
+			path = FXBlurView;
+			sourceTree = "<group>";
+		};
 		CE7F14DC1EDE9B0500C7AEDA /* IllegalParkVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1381,6 +1407,7 @@
 				CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
 				CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */,
+				CE7CF0381EE19EFB00E91080 /* SRAlertView.m in Sources */,
 				CE7F14E51EDEA0F900C7AEDA /* IllegalParkAddHeadView.m in Sources */,
 				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
@@ -1418,6 +1445,7 @@
 				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
 				CE5786591ED4088700B4CC9F /* ZLPhotoManager.m in Sources */,
+				CE7CF0371EE19EFA00E91080 /* FXBlurView.m in Sources */,
 				CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */,
 				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,

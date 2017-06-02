@@ -203,6 +203,8 @@
     self.isCanCommit = [self juegeCanCommit];
 }
 
+#pragma mark - 提交之后headView所做的处理
+
 - (void)handleBeforeCommit{
 
     [[LocationHelper sharedDefault] startLocation];
@@ -214,6 +216,26 @@
         self.param.addressRemark = self.tf_addressRemarks.text;
     }
     self.isCanCommit = [self juegeCanCommit];
+    
+}
+
+
+#pragma mark - 通过所在路段的名字获取得到roadId
+
+- (void)getRoadId{
+
+    if ([ShareValue sharedDefault].roadModels && [ShareValue sharedDefault].roadModels.count > 0) {
+        for(CommonGetRoadModel *model in [ShareValue sharedDefault].roadModels){
+            if ([model.getRoadName isEqualToString:_tf_roadSection.text]) {
+                _param.roadId = model.getRoadId;
+                break;
+            }
+        }
+    }
+    if (!_param.roadId) {
+        _param.roadId = @0;
+    }
+    
 }
 
 

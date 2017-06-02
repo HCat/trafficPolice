@@ -18,6 +18,7 @@
 #import "IllegalParkAPI.h"
 #import "IllegalThroughAPI.h" //违禁令
 #import "LLPhotoBrowser.h"
+#import "SRAlertView.h"
 
 @interface IllegalParkVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -73,18 +74,13 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     [_collectionView registerNib:[UINib nibWithNibName:@"IllegalParkAddFootView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footId];
     [_collectionView registerNib:[UINib nibWithNibName:@"IllegalParkAddHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headId];
     
-    //异步请求通用路名ID
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [ShareFun getCommonRoad];
-        
-    });
+    [self getCommonRoad];
     
     //断网之后重新连接网络事件
+    WS(weakSelf);
     self.networkChangeBlock = ^{
         if ([ShareValue sharedDefault].roadModels == nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [ShareFun getCommonRoad];
-            });
+            [weakSelf getCommonRoad];
         }
     };
     
@@ -110,6 +106,80 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
     
     }
+}
+
+#pragma mark -  请求网络数据
+//如果类型为闯禁令，输入或者识别车牌号的时候需要请求是否需要二次采集，如果需要二次采集则跳到二次采集页面
+- (void)judgeNeedSecondCollection:(NSString *)carNumber{
+    
+    if (carNumber && carNumber.length > 0 && [ShareFun validateCarNumber:carNumber]) {
+        
+        WS(weakSelf);
+        //获取roadId
+        [_headView getRoadId];
+        //这里待优化，如果说获取得到的roadId为0的情况的话
+        IllegalThroughQuerySecManger *manger = [[IllegalThroughQuerySecManger alloc] init];
+        manger.isNeedShowHud = NO;
+        manger.carNo = carNumber;
+        manger.roadId = _param.roadId;
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+        /*code:0 超过90秒有一次采集记录，返回一次采集ID、采集时间，提示“同路段该车于yyyy-MM-dd已被拍照采集”，跳转至二次采集页面
+          code:110 提示“同路段当天已有违章行为，请不要重复采集！”
+          code:13 提示“同路段该车1分30秒内有采集记录，是否重新采集？”
+          code:999 无采集记录,不用任何提示
+         */
+        SW(strongSelf, weakSelf);
+        LxPrintf(@"%ld",(long)manger.responseModel.code);
+        if (manger.responseModel.code == 0) {
+            
+            [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:^(AlertViewActionType actionType) {
+                if (actionType == AlertViewActionTypeLeft) {
+                    NSNumber * illegalThroughId = manger.responseModel.data[@"id"];
+                }
+            }];
+            
+        }else if (manger.responseModel.code == 13){
+            
+            [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"重新录入" rightTitle:@"取消" block:^(AlertViewActionType actionType) {
+                
+            }];
+            
+        
+        }else if (manger.responseModel.code == 110){
+        
+           [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:nil];
+            
+        }else if (manger.responseModel.code == 999){
+            //不做处理
+        }
+            
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+        }];
+    }
+
+}
+
+//获取道路ID
+- (void)getCommonRoad{
+
+    WS(weakSelf);
+    CommonGetRoadManger *manger = [[CommonGetRoadManger alloc] init];
+    manger.isNeedShowHud = NO;
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            [ShareValue sharedDefault].roadModels = manger.commonGetRoadResponse;
+            if (strongSelf.headView) {
+                [strongSelf.headView getRoadId];
+            }
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+    }];
+
 }
 
 
@@ -241,6 +311,10 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                         
                         //识别之后所做的操作
                         [strongSelf.headView takePhotoToDiscernmentWithCarNumber:camera.commonIdentifyResponse.carNo];
+                        
+                        if (_illegalType == IllegalTypeThrough) {
+                            [strongSelf judgeNeedSecondCollection:strongSelf.param.carNo];
+                        }
                         
                         [strongSelf.collectionView reloadData];
                 
@@ -419,9 +493,15 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         
         ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
         [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-            [hud hide];
             
+            [hud hide];
             SW(strongSelf, weakSelf);
+            
+            //异步请求通用路名ID,这里需要请求的原因是当传入的roadID为0的情况下，需要重新去服务器里面拉取路名来匹配
+            if ([strongSelf.param.roadId isEqualToNumber:@0]) {
+                [strongSelf getCommonRoad];
+            }
+            
             if (manger.responseModel.code == CODE_SUCCESS) {
                 
                 strongSelf.param = [[IllegalParkSaveParam alloc] init];
@@ -435,6 +515,9 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 strongSelf.headView.param = strongSelf.param;
                 [strongSelf.headView handleBeforeCommit];
                 
+            }else if (manger.responseModel.code == CODE_FAILED){
+                
+               [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:nil];
             }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -452,9 +535,15 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         
         ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
         [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-            [hud hide];
             
+            [hud hide];
             SW(strongSelf, weakSelf);
+            
+            //异步请求通用路名ID,这里需要请求的原因是当传入的roadID为0的情况下，需要重新去服务器里面拉取路名来匹配
+            if ([strongSelf.param.roadId isEqualToNumber:@0]) {
+               [strongSelf getCommonRoad];
+            }
+            
             if (manger.responseModel.code == CODE_SUCCESS) {
                 
                 strongSelf.param = [[IllegalParkSaveParam alloc] init];
@@ -468,6 +557,20 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 strongSelf.headView.param = strongSelf.param;
                 [strongSelf.headView handleBeforeCommit];
                 
+            }else if (manger.responseModel.code == 110){
+            
+                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:^(AlertViewActionType actionType) {
+                    
+                    if (actionType == AlertViewActionTypeLeft) {
+                        NSNumber * illegalThroughId = manger.responseModel.data[@"id"];
+                        
+                    }
+                }];
+               
+            }else if (manger.responseModel.code == 100){
+            
+                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:nil];
+               
             }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -488,6 +591,10 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 
     [self replaceUpImageItemToUpImagesWithImageInfo:imageInfo remark:@"车牌近照" replaceIndex:0];
     [_collectionView reloadData];
+    
+    if (_illegalType == IllegalTypeThrough) {
+        [self judgeNeedSecondCollection:self.param.carNo];
+    }
     
 }
 
@@ -577,6 +684,23 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                      completion:^{
                      }];
     
+}
+
+#pragma mark - 弹出提示框
+
+-(void)showAlertViewWithcontent:(NSString *)content leftTitle:(NSString *)leftTitle rightTitle:(NSString *)rightTitle block:(AlertViewDidSelectAction)selectAction{
+
+    SRAlertView *alertView = [[SRAlertView alloc] initWithTitle:@"温馨提示"
+                                                        message:content
+                                                leftActionTitle:leftTitle
+                                               rightActionTitle:rightTitle
+                                                 animationStyle:AlertViewAnimationNone
+                                                   selectAction:selectAction];
+    alertView.blurCurrentBackgroundView = NO;
+    alertView.actionWhenHighlightedBackgroundColor = UIColorFromRGB(0x4281E8);
+    [alertView show];
+
+
 }
 
 
