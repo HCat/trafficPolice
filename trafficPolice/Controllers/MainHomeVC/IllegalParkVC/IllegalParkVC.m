@@ -538,11 +538,12 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         }
         
         if (t_arr_remarks.count > 0) {
-             _param.remarks = t_arr_remarks;
+            
+             _param.remarks = [t_arr_remarks componentsJoinedByString:@","];
         }
         
         if (t_arr_taketimes.count > 0) {
-            _param.taketimes = t_arr_taketimes;
+            _param.taketimes = [t_arr_taketimes componentsJoinedByString:@","];
         }
 
     }
