@@ -308,6 +308,7 @@
     CGFloat height = image.size.height;
     CGSize size;
     
+    
     if (dataSize<=50)//小于50k
     {
         return image;
@@ -335,7 +336,7 @@
     {
         size = CGSizeMake(width/2.f, height/2.f);
     }
-    NSLog(@"%f,%f",size.width,size.height);
+    LxPrintf(@"%f,%f",size.width,size.height);
     UIGraphicsBeginImageContext(size);
     [image drawInRect:CGRectMake(0,0, size.width, size.height)];
     UIImage *newImage =UIGraphicsGetImageFromCurrentImageContext();

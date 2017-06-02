@@ -287,9 +287,13 @@
         }else if ([cell.str_title isEqualToString:@"违停采集"]) {
             LxPrintf(@"点击违停采集");
             IllegalParkVC *t_vc = [[IllegalParkVC alloc] init];
+            t_vc.illegalType = IllegalTypePark;
             [self.navigationController pushViewController:t_vc animated:YES];
         }else if ([cell.str_title isEqualToString:@"闯禁令采集"]) {
             LxPrintf(@"点击闯禁令采集");
+            IllegalParkVC *t_vc = [[IllegalParkVC alloc] init];
+            t_vc.illegalType = IllegalTypeThrough;
+            [self.navigationController pushViewController:t_vc animated:YES];
         }else if ([cell.str_title isEqualToString:@"视频录入"]) {
             LxPrintf(@"点击视频录入");
         }else{

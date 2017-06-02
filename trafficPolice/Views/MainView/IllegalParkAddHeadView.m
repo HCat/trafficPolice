@@ -10,12 +10,16 @@
 #import "IllegalParkVC.h"
 #import "LRCameraVC.h"
 #import "SearchLocationVC.h"
-#import "CountAccidentHelper.h"
 
 #import "ShareFun.h"
 
 @interface IllegalParkAddHeadView()
 
+@property (weak, nonatomic) IBOutlet UITextField *tf_carNumber; //车牌号
+@property (weak, nonatomic) IBOutlet UITextField *tf_roadSection; //选择路段
+@property (weak, nonatomic) IBOutlet UITextField *tf_address; //所在位置
+@property (weak, nonatomic) IBOutlet UITextField *tf_addressRemarks; //地址备注
+@property (nonatomic,assign,readwrite) BOOL isCanCommit;
 
 @end
 
@@ -66,20 +70,10 @@
             
             if (camera.type == 1) {
                 
-                strongSelf.tf_carNumber.text = camera.commonIdentifyResponse.carNo;
-                strongSelf.param.carNo = camera.commonIdentifyResponse.carNo;
+                [strongSelf takePhotoToDiscernmentWithCarNumber:camera.commonIdentifyResponse.carNo];
                 
-                //用于判断该车牌号码是否有违规行为
-                if (strongSelf.tf_carNumber.text.length > 0) {
-                    [[CountAccidentHelper sharedDefault] setCarNo:strongSelf.tf_carNumber.text];
-                }
-                
-                //判断是否可以提交，用于按钮是否可以点击
-                strongSelf.isCanCommit = [strongSelf juegeCanCommit];
-                
-                ImageFileInfo *imageFileInfo = camera.imageInfo;
                 if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(recognitionCarNumber:)]) {
-                    [strongSelf.delegate recognitionCarNumber:imageFileInfo];
+                    [strongSelf.delegate recognitionCarNumber:camera.imageInfo];
                 }
             
             }
@@ -115,6 +109,9 @@
         strongSelf.tf_roadSection.text = model.getRoadName;
         strongSelf.param.roadId = model.getRoadId;
         strongSelf.param.roadName = model.getRoadName;
+        
+        strongSelf.isCanCommit =  [strongSelf juegeCanCommit];
+        
     };
     
     [t_vc.navigationController pushViewController:t_searchLocationvc animated:YES];
@@ -127,6 +124,7 @@
 -(void)locationChange{
     
     _tf_roadSection.text = [LocationHelper sharedDefault].streetName;
+    _tf_address.text = [LocationHelper sharedDefault].address;
     
     self.param.longitude = @([LocationHelper sharedDefault].longitude);
     self.param.latitude = @([LocationHelper sharedDefault].latitude);
@@ -144,6 +142,8 @@
     }
     
     _param.roadName = [LocationHelper sharedDefault].streetName;
+    _param.address = [LocationHelper sharedDefault].address;
+    
     self.isCanCommit =  [self juegeCanCommit];
 }
 
@@ -162,11 +162,6 @@
     
     if (textField == _tf_carNumber) {
         self.param.carNo = length > 0 ? _tf_carNumber.text : nil;
-        //手动输入车牌号的时候用于判断是否有违法行为进行弹框出来
-        if (length > 0 ) {
-            [[CountAccidentHelper sharedDefault] setCarNo:self.param.carNo];
-        }
-        
     }
     
     if (textField == _tf_address) {
@@ -184,6 +179,7 @@
 
 
 
+
 #pragma mark - 判断是否可以提交
 
 -(BOOL)juegeCanCommit{
@@ -195,6 +191,30 @@
     }
 }
 
+#pragma mark  - public
+
+#pragma mark - 拍照识别车牌照片之后做的处理
+
+- (void)takePhotoToDiscernmentWithCarNumber:(NSString *)carNummber{
+
+    _tf_carNumber.text = carNummber;
+    _param.carNo = carNummber;
+    
+    self.isCanCommit = [self juegeCanCommit];
+}
+
+- (void)handleBeforeCommit{
+
+    [[LocationHelper sharedDefault] startLocation];
+    
+    _tf_roadSection.text = nil;
+    _tf_address.text = nil;
+    _tf_carNumber.text = nil;
+    if (self.tf_addressRemarks.text.length > 0) {
+        self.param.addressRemark = self.tf_addressRemarks.text;
+    }
+    self.isCanCommit = [self juegeCanCommit];
+}
 
 
 #pragma mark - dealloc

@@ -108,7 +108,7 @@
         self.btnOriginalPhoto.enabled = YES;
         self.btnPreView.enabled = YES;
         self.btnDone.enabled = YES;
-        [self.btnDone setTitle:[NSString stringWithFormat:@"%@(%ld)", GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), nav.arrSelectedModels.count] forState:UIControlStateNormal];
+        [self.btnDone setTitle:[NSString stringWithFormat:@"%@(%ld)", GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), (long)nav.arrSelectedModels.count] forState:UIControlStateNormal];
         [self.btnOriginalPhoto setTitleColor:kDoneButton_bgColor forState:UIControlStateNormal];
         [self.btnPreView setTitleColor:kDoneButton_bgColor forState:UIControlStateNormal];
         self.btnDone.backgroundColor = kDoneButton_bgColor;

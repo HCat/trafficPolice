@@ -88,9 +88,11 @@
         if (_isNeedShowHud) {
             if (_failMessage) {
                 if (_failMessage.length != 0) {
-                    [ShowHUD showSuccess:_successMessage duration:1.2f inView:self.v_showHud config:nil];
+                    [ShowHUD showError:_failMessage duration:1.2f inView:self.v_showHud config:nil];
                 }
+                
             }else{
+                
                 [ShowHUD showError:self.responseModel.msg duration:1.2f inView:self.v_showHud config:nil];
             }
         }

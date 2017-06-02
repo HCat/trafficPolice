@@ -20,6 +20,7 @@ LRSingletonH(Default)
 @property (assign, nonatomic) double longitude;
 @property (copy, nonatomic) NSString *city;
 @property (copy, nonatomic) NSString *streetName;
+@property (copy, nonatomic) NSString *address;
 
 - (void)startLocation;
 - (void)stopLocation;

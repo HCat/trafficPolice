@@ -34,7 +34,7 @@
     }];
     
     self.labTitle.text = model.title;
-    self.labCount.text = [NSString stringWithFormat:@"(%ld)", model.count];
+    self.labCount.text = [NSString stringWithFormat:@"(%ld)", (long)model.count];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

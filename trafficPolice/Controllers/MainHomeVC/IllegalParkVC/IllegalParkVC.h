@@ -10,6 +10,6 @@
 
 @interface IllegalParkVC : HideTabSuperVC
 
-
+@property (nonatomic,assign) IllegalType illegalType; //违法类型
 
 @end

@@ -300,27 +300,6 @@
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle{
     
-    if (_type != 5) {
-        //获取的照片转换成ImageFileInfo对象来得到图片信息，并且赋值name用于服务端需要的key中
-        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_file];
-        self.image = self.imageInfo.image;
-        //请求数据获取证件信息
-        [self getIdentifyRequest];
-    }else{
-        
-        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_files];
-        self.image = self.imageInfo.image;
-    
-        if (self.fininshCaptureBlock) {
-            self.fininshCaptureBlock(self);
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:^{
-        }];
-        
-      
-    }
-
     if (cropViewController.navigationController) {
         [cropViewController.navigationController popViewControllerAnimated:YES];
     }
@@ -328,6 +307,35 @@
         cropViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [cropViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
+    
+    if (_type != 5) {
+        //获取的照片转换成ImageFileInfo对象来得到图片信息，并且赋值name用于服务端需要的key中
+        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_file];
+        self.image = self.imageInfo.image;
+        //请求数据获取证件信息
+        [self getIdentifyRequest];
+        
+    }else{
+        TICK
+        
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"图片压缩中..." inView:self.view config:nil];
+        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_files];
+        self.image = self.imageInfo.image;
+        
+        TOCK
+        
+        if (self.fininshCaptureBlock) {
+            self.fininshCaptureBlock(self);
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            [hud hide];
+        }];
+        
+      
+    }
+
+    
     
 }
 

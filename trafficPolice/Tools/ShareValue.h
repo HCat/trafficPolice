@@ -16,8 +16,13 @@
 
 
 typedef NS_ENUM(NSInteger, AccidentType) {
-    AccidentTypeAccident,//默认从0开始
-    AccidentTypeFastAccident,
+    AccidentTypeAccident,       //事故
+    AccidentTypeFastAccident,   //快处
+};
+
+typedef NS_ENUM(NSInteger, IllegalType) {
+    IllegalTypePark,        //违停
+    IllegalTypeThrough,     //违禁令
 };
 
 

@@ -30,8 +30,22 @@
     
             //long long time = [[NSDate date]timeIntervalSince1970] * 100000;
             
+            
+            self.image = image;
+            LxPrintf(@"压缩成jpg之前Image尺寸是(宽：%f 长：%f)",self.image.size.width,self.image.size.height);
+            _fileData = UIImageJPEGRepresentation(self.image, 1.0);
+            LxPrintf(@"压缩成jpg之前的数据大小:%zd", _fileData.length/1000);
+            
+            
             self.image = [ShareFun scaleFromImage:image];
-            _fileData = UIImageJPEGRepresentation(self.image, 0.85);
+            
+            //横向的情况下不压缩得特别厉害
+            if (self.image.size.width > self.image.size.height) {
+                _fileData = UIImageJPEGRepresentation(self.image, 1.0);
+            }else{
+                _fileData = UIImageJPEGRepresentation(self.image, 0.85);
+            }
+            
             LxPrintf(@"压缩成jpg之后的数据大小:%zd", _fileData.length/1000);
             if (_fileData == nil)
             {
@@ -48,7 +62,7 @@
             self.filesize = _fileData.length;
             self.width = self.image.size.width;
             self.height = self.image.size.height;
-            LxPrintf(@"Image尺寸是(宽：%f 长：%f)",self.width,self.height);
+            LxPrintf(@"压缩成jpg之后Image尺寸是(宽：%f 长：%f)",self.width,self.height);
         }
     }
     return self;

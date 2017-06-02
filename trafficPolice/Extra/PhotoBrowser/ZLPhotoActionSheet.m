@@ -405,7 +405,7 @@ static char RelatedKey;
 - (void)changeCancelBtnTitle
 {
     if (self.arrSelectedModels.count > 0) {
-        [self.btnCancel setTitle:[NSString stringWithFormat:@"%@(%ld)", GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), self.arrSelectedModels.count] forState:UIControlStateNormal];
+        [self.btnCancel setTitle:[NSString stringWithFormat:@"%@(%ld)", GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), (unsigned long)self.arrSelectedModels.count] forState:UIControlStateNormal];
         [self.btnCancel setTitleColor:kDoneButton_bgColor forState:UIControlStateNormal];
     } else {
         [self.btnCancel setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserCancelText) forState:UIControlStateNormal];

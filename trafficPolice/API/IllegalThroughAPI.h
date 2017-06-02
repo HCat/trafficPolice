@@ -12,6 +12,8 @@
 #import "IllegalParkListModel.h"
 #import "IllegalParkDetailModel.h"
 
+#import "IllegalParkAPI.h"
+
 
 #pragma mark - 违反禁令查询是否需要二次采集API
 
@@ -46,25 +48,11 @@ code:999 无采集记录,不用任何提示
 ******/
  
 
-@interface IllegalThroughSaveParam :  NSObject
-
-@property (nonatomic,copy) NSString * roadId;           //道路ID 必填，从通用值【道路】获取ID
-@property (nonatomic,copy) NSString * address;          //事故地点
-@property (nonatomic,copy) NSString * addressRemark; //地址备注 非必填
-@property (nonatomic,copy) NSString * carNo; //车牌号
-@property (nonatomic,assign) double longitude; //经度
-@property (nonatomic,assign) double latitude;
-//纬度
-@property (nonatomic,copy) NSArray  * files;                    //事故图片 列表，最多可上传30张
-@property (nonatomic,copy) NSArray  * remarks;  //违停图片名称  违章图片名称，字符串列表。和图片一对一，名称统一命名，车牌近照（一张）、违停照片（可多张）
-@property (nonatomic,copy) NSArray  * taketimes; //拍照时间 拍照时间，字符串列表，格式yyyy-MM-dd HH:mm:ss，和图片一对一
-
-@end
-
 @interface IllegalThroughSaveManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, strong) IllegalThroughSaveParam *param;
+//备注：这里的请求参数和违停的请求参数
+@property (nonatomic, strong) IllegalParkSaveParam *param;
 
 /****** 返回数据 ******/
 //无返回参数

@@ -123,6 +123,7 @@ LRSingletonM(Default)
         BMKAddressComponent *component = result.addressDetail;
         self.city = component.city;
         self.streetName = component.streetName;
+        self.address = result.address;
         LxDBAnyVar(self.city);
         LxDBAnyVar(self.streetName);
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil userInfo:nil];

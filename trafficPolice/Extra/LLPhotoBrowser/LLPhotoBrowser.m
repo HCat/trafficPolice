@@ -99,7 +99,7 @@
     [backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     [backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [backBtn setEnlargeEdgeWithTop:10.f right:10.f bottom:10.f left:10.f];
+    [backBtn setEnlargeEdgeWithTop:25.f right:25.f bottom:25.f left:25.f];
     [_navigationBar addSubview:backBtn];
     
     UIButton *trachBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -107,18 +107,18 @@
     [trachBtn setImage:[UIImage imageNamed:@"icon_trash_alt"] forState:UIControlStateNormal];
     [trachBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [trachBtn addTarget:self action:@selector(trachBtn) forControlEvents:UIControlEventTouchUpInside];
-    [trachBtn setEnlargeEdgeWithTop:10.f right:10.f bottom:10.f left:10.f];
+    [trachBtn setEnlargeEdgeWithTop:25.f right:25.f bottom:25.f left:25.f];
     [_navigationBar addSubview:trachBtn];
     
     
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 17, self.view.bounds.size.width-160, 30)];
     
     if (_arr_upImages) {
-         _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_arr_upImages.count];
+         _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",(long)_currentIndex+1,(unsigned long)_arr_upImages.count];
     }
     
     if (_images) {
-         _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_images.count];
+         _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",(long)_currentIndex+1,(unsigned long)_images.count];
     }
    
     _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -177,11 +177,11 @@
     _currentIndex = (long)scrollView.contentOffset.x/self.view.bounds.size.width;
     
     if (_arr_upImages) {
-       _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_arr_upImages.count];
+       _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",(long)_currentIndex+1,(unsigned long)_arr_upImages.count];
     }
     
     if (_images) {
-        _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,_images.count];
+        _titleLabel.text = [NSString stringWithFormat:@"%ld/%ld",(long)_currentIndex+1,(unsigned long)_images.count];
     }
     
     
@@ -216,44 +216,25 @@
     NSIndexPath *currentIndexPath = [NSIndexPath indexPathForItem:_currentIndex inSection:0];
     LLCollectionViewCell *currentCell = (LLCollectionViewCell *)[_collectionView cellForItemAtIndexPath:currentIndexPath];
     
-    // 移除数组中的某个元素
-    NSInteger count = -1;
     if (_arr_upImages) {
-        count = _arr_upImages.count;
-    }
-    
-    if (_images) {
-        count = _images.count;
-    }
-    
-    
-    
-    if (_currentIndex > count - 1 ) {
-        _currentIndex = count - 1;
-    }
-    
-    
-    
-    if (_arr_upImages) {
+        
+        NSInteger count = _arr_upImages.count;
+        
+        if (_currentIndex > count - 1 ) {
+            _currentIndex = count - 1;
+        }
+        
         self.dic_delete = _arr_upImages[_currentIndex];
-         [_arr_upImages removeObjectAtIndex:_currentIndex];
-    }
-    
-    if (_images) {
-         [_images removeObjectAtIndex:_currentIndex];
-    }
-    
-    // 移除cell
-    [currentCell removeFromSuperview];
-    // 刷新cell
-    [_collectionView reloadData];
-    
-    // 刷新标题
-    if (self.deleteBlock) {
-        self.deleteBlock(_dic_delete);
-    }
-    
-    if (_arr_upImages) {
+        
+        [_arr_upImages removeObjectAtIndex:_currentIndex];
+        [currentCell removeFromSuperview];
+        // 刷新cell
+        [_collectionView reloadData];
+
+        // 刷新标题
+        if (self.deleteBlock) {
+            self.deleteBlock(_dic_delete);
+        }
         
         if (_currentIndex == count - 1) {
             _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex,_arr_upImages.count];
@@ -266,9 +247,20 @@
             // 来到这里说明没有图片，退出预览
             [self goBack];
         };
+        
     }
     
     if (_images) {
+        
+        NSInteger count = _images.count;
+        
+        if (_currentIndex > count - 1 ) {
+            _currentIndex = count - 1;
+        }
+        
+        [_images removeObjectAtIndex:_currentIndex];
+        [currentCell removeFromSuperview];
+        [_collectionView reloadData];
         
         if (_currentIndex == count - 1) {
             _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex,_images.count];
@@ -276,16 +268,13 @@
             _titleLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex+1,_images.count];
         }
         
-        
         if (_images.count == 0) {
             // 来到这里说明没有图片，退出预览
             [self goBack];
         };
+        
     }
-    
-    
-    
-    
+
 }
 
 #pragma mark - 发送按钮

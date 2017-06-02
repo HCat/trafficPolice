@@ -16,8 +16,8 @@
 
 #import "ShareFun.h"
 #import "IllegalParkAPI.h"
+#import "IllegalThroughAPI.h" //违禁令
 #import "LLPhotoBrowser.h"
-#import "CountAccidentHelper.h"
 
 @interface IllegalParkVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -30,11 +30,11 @@
 
 @property (nonatomic,strong) IllegalParkSaveParam *param; //请求参数
 
-@property (nonatomic,assign) BOOL isObserver;
+@property (nonatomic,assign) BOOL isObserver;   //用于注册isCanCommit的KVC,如果注册了设置YES，防止重复注册
 
-@property (nonatomic,strong) NSMutableArray *arr_upimages; //用于存储即将上传的图片
+@property (nonatomic,strong) NSMutableArray *arr_upImages; //用于存储即将上传的图片
 
-@property (nonatomic, strong) LLPhotoBrowser *photoBrowser;
+@property (nonatomic,assign) BOOL isCanCommit; //需要可以上传的条件有两个，一个是需要车牌近照和违停照片，还有就是headView中的必填字段
 
 
 
@@ -50,25 +50,36 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"违停采集";
+    if (_illegalType == IllegalTypePark) {
+        self.title = @"违停采集";
+    }else if(_illegalType == IllegalTypeThrough){
+        self.title = @"闯禁令采集";
+    }
+    
     
     self.isObserver = NO;
+
+    //初始化请求参数
     self.param = [[IllegalParkSaveParam alloc] init];
-    self.arr_upimages = [NSMutableArray array];
-    [self.arr_upimages addObject:[NSNull null]];
-    [self.arr_upimages addObject:[NSNull null]];
     
+    //初始化图片数据，加入两个空对象，分别对应车牌近照，违停照片
+    //如果有了车牌近照和违停照片则替换掉这两个空对象，如果没有则替换回来空对象
+    self.arr_upImages = [NSMutableArray array];
+    [self.arr_upImages addObject:[NSNull null]];
+    [self.arr_upImages addObject:[NSNull null]];
+    
+    //注册collection格式
     [_collectionView registerNib:[UINib nibWithNibName:@"IllegalParkCell" bundle:nil] forCellWithReuseIdentifier:cellId];
     [_collectionView registerNib:[UINib nibWithNibName:@"IllegalParkAddFootView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footId];
     [_collectionView registerNib:[UINib nibWithNibName:@"IllegalParkAddHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headId];
     
-    
+    //异步请求通用路名ID
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [ShareFun getCommonRoad];
         
     });
     
-    //断网之后重新连接网络该做的事情
+    //断网之后重新连接网络事件
     self.networkChangeBlock = ^{
         if ([ShareValue sharedDefault].roadModels == nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -83,6 +94,25 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     [super viewWillAppear:animated];
 }
 
+#pragma mark - set && get 
+
+- (void)setIsCanCommit:(BOOL)isCanCommit{
+
+    _isCanCommit = isCanCommit;
+    
+
+    if (_isCanCommit) {
+        _footView.btn_commit.enabled = YES;
+        [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0x4281E8)];
+        
+    }else{
+        _footView.btn_commit.enabled = NO;
+        [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
+    
+    }
+}
+
+
 #pragma mark - UICollectionView Data Source
 
 //返回多少个组
@@ -90,11 +120,13 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 {
     return 1;
 }
+
 //返回每组多少个视图
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.arr_upimages count] + 1;
+    return [self.arr_upImages count] + 1;
 }
+
 //返回视图的具体事例，我们的数据关联就是放在这里
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,33 +134,35 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
    
     cell.imageView.layer.cornerRadius = 5.0f;
     cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    if (indexPath.row == self.arr_upimages.count) {
+    if (indexPath.row == self.arr_upImages.count) {
         
         cell.lb_title.text = @"更多照片";
         cell.imageView.image = [UIImage imageNamed:@"updataPhoto.png"];
+    }else{
         
-    }else if(indexPath.row == 0){
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        cell.lb_title.text = @"车牌近照";
-    }else if(indexPath.row == 1){
-        
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        cell.lb_title.text = @"违停照片";
-    }else {
-        cell.lb_title.text = @"更多照片";
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        
-    }
+        if(indexPath.row == 0){
+            cell.lb_title.text = @"车牌近照";
+        }else if(indexPath.row == 1){
+            cell.lb_title.text = @"违停照片";
+        }else {
+            cell.lb_title.text = [NSString stringWithFormat:@"违停照片%d",indexPath.row - 1];
+        }
     
-    if (indexPath.row != self.arr_upimages.count ) {
-        if ([_arr_upimages[indexPath.row] isKindOfClass:[NSNull class]]) {
+        //判断是否拥有图片，如果拥有则显示图片，如果没有则显示@“updataPhoto.png”的图片
+        //主要用于分辨车牌近照，和违停照片有没有图片
+        if ([_arr_upImages[indexPath.row] isKindOfClass:[NSNull class]]) {
+            
             cell.imageView.image = [UIImage imageNamed:@"updataPhoto.png"];
+            
         }else{
-            NSMutableDictionary *t_dic = _arr_upimages[indexPath.row];
+            
+            NSMutableDictionary *t_dic = _arr_upImages[indexPath.row];
             ImageFileInfo *imageInfo = [t_dic objectForKey:@"files"];
             cell.imageView.image = imageInfo.image;
         }
+    
     }
     
     return cell;
@@ -144,9 +178,13 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             self.headView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headId forIndexPath:indexPath];
              [_headView setDelegate:(id<IllegalParkAddHeadViewDelegate>)self];
             _headView.param = _param;
+            
+            //监听headView中的isCanCommit来判断是否可以上传
             if (!_isObserver) {
+                
                 [_headView addObserver:self forKeyPath:@"isCanCommit" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
                 self.isObserver = YES;
+                
             }
         }
     
@@ -172,31 +210,24 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 {
     WS(weakSelf);
     
-    if (indexPath.row == _arr_upimages.count) {
-       
+    if (indexPath.row == _arr_upImages.count) {
+        
         [self showCameraWithType:5 withFinishBlock:^(LRCameraVC *camera) {
             if (camera) {
+                
                 SW(strongSelf, weakSelf);
+                
                 if (camera.type == 5) {
-                    
-                    ImageFileInfo *imageFileInfo = camera.imageInfo;
-                    imageFileInfo.name = key_files;
-                    
-                    NSMutableDictionary *t_dic = [NSMutableDictionary dictionary];
-                    [t_dic setObject:imageFileInfo forKey:@"files"];
-                    [t_dic setObject:[NSString stringWithFormat:@"违停照片_%d",strongSelf.arr_upimages.count -1] forKey:@"remarks"];
-                    [t_dic setObject:[ShareFun getCurrentTime] forKey:@"taketimes"];
-                    [strongSelf.arr_upimages addObject:t_dic];
+                    [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"违停照片_%d",indexPath.row - 1]];
                     [strongSelf.collectionView reloadData];
                     
                 }
             }
         }];
         
-       
     }else if(indexPath.row == 0){
         
-        if ([_arr_upimages[indexPath.row] isKindOfClass:[NSNull class]]) {
+        if ([_arr_upImages[0] isKindOfClass:[NSNull class]]) {
             
             [self showCameraWithType:1 withFinishBlock:^(LRCameraVC *camera) {
                 if (camera) {
@@ -205,20 +236,12 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                     
                     if (camera.type == 1) {
                         
-                        strongSelf.headView.tf_carNumber.text = camera.commonIdentifyResponse.carNo;
+                        //替换车牌近照的图片
+                        [self replaceUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:@"车牌近照" replaceIndex:0];
                         
-                        ImageFileInfo *imageFileInfo = camera.imageInfo;
-                        imageFileInfo.name = key_files;
-                        NSMutableDictionary *t_dic = [NSMutableDictionary dictionary];
-                        [t_dic setObject:imageFileInfo forKey:@"files"];
-                        [t_dic setObject:@"车牌近照" forKey:@"remarks"];
-                        [t_dic setObject:[ShareFun getCurrentTime] forKey:@"taketimes"];
-                        strongSelf.param.carNo = camera.commonIdentifyResponse.carNo;
-                        if (camera.commonIdentifyResponse.carNo > 0 ) {
-                            [[CountAccidentHelper sharedDefault] setCarNo:self.param.carNo];
-                        }
-                        strongSelf.headView.isCanCommit = [strongSelf.headView juegeCanCommit];
-                        [strongSelf.arr_upimages  replaceObjectAtIndex:indexPath.row withObject:t_dic];
+                        //识别之后所做的操作
+                        [strongSelf.headView takePhotoToDiscernmentWithCarNumber:camera.commonIdentifyResponse.carNo];
+                        
                         [strongSelf.collectionView reloadData];
                 
                     }
@@ -226,63 +249,49 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             }];
         
         }else{
-            //当存在车牌近照的时候
-            [self handleUpImagesWithIndex:indexPath.row];
-        
+            //当存在车牌近照的时候,弹出图片浏览器
+            [self showPhotoBrowserWithIndex:0];
         }
         
     }else if(indexPath.row == 1){
         
-        if ([_arr_upimages[indexPath.row] isKindOfClass:[NSNull class]]) {
-            
+        if ([_arr_upImages[1] isKindOfClass:[NSNull class]]) {
             [self showCameraWithType:5 withFinishBlock:^(LRCameraVC *camera) {
-                
                 if (camera) {
-                    
                     SW(strongSelf, weakSelf);
                     if (camera.type == 5) {
-                        
-                        ImageFileInfo *imageFileInfo = camera.imageInfo;
-                        imageFileInfo.name = key_files;
-                        NSMutableDictionary *t_dic = [NSMutableDictionary dictionary];
-                        [t_dic setObject:imageFileInfo forKey:@"files"];
-                        [t_dic setObject:@"违停照片_0" forKey:@"remarks"];
-                        [t_dic setObject:[ShareFun getCurrentTime] forKey:@"taketimes"];
-                        
-                        [strongSelf.arr_upimages replaceObjectAtIndex:indexPath.row withObject:t_dic];
+                        //替换违停照片的图片
+                        [self replaceUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:@"违停照片" replaceIndex:1];
                         [strongSelf.collectionView reloadData];
-                        
-
+    
                     }
                 }
             }];
             
         }else{
-            //当违停照片存在的情况下
-           
-            if ([_arr_upimages[0] isKindOfClass:[NSNull class]]) {
-                [self handleUpImagesWithIndex:indexPath.row-1];
+            
+            //当违停照片存在的情况下,弹出图片浏览器,如果车牌近照有的情况下图片索引为1,如果没有则图片索引变成0
+            //
+            if ([_arr_upImages[0] isKindOfClass:[NSNull class]]) {
+                [self showPhotoBrowserWithIndex:0];
             }else {
-                [self handleUpImagesWithIndex:indexPath.row];
+                [self showPhotoBrowserWithIndex:1];
             }
-            
-            
+    
         }
     
     }else {
-        //当更多照片存在的情况下
-        if ([_arr_upimages[0] isKindOfClass:[NSNull class]] && [_arr_upimages[1] isKindOfClass:[NSNull class]]) {
-            [self handleUpImagesWithIndex:indexPath.row-2];
+        //当更多照片存在的情况下,弹出图片浏览器,下面判断图片索引
+        if ([_arr_upImages[0] isKindOfClass:[NSNull class]] && [_arr_upImages[1] isKindOfClass:[NSNull class]]) {
+            [self showPhotoBrowserWithIndex:indexPath.row-2];
         }else {
-            if ([_arr_upimages[0] isKindOfClass:[NSNull class]] || [_arr_upimages[1] isKindOfClass:[NSNull class]]) {
-                [self handleUpImagesWithIndex:indexPath.row-1];
+            if ([_arr_upImages[0] isKindOfClass:[NSNull class]] || [_arr_upImages[1] isKindOfClass:[NSNull class]]) {
+                [self showPhotoBrowserWithIndex:indexPath.row-1];
             }else{
-                [self handleUpImagesWithIndex:indexPath.row];
+                [self showPhotoBrowserWithIndex:indexPath.row];
             }
-        
+    
         }
-        
-        
     }
     
 }
@@ -327,21 +336,6 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     
 }
 
-#pragma mark - 模块化弹出照相机
-
--(void)showCameraWithType:(NSInteger)type withFinishBlock:(void(^)(LRCameraVC *camera))finishBlock{
-    
-    LRCameraVC *home = [[LRCameraVC alloc] init];
-    home.type = type;
-    home.fininshCaptureBlock = finishBlock;
-    [self presentViewController:home
-                       animated:YES
-                     completion:^{
-                     }];
-    
-}
-
-
 #pragma mark - scrollViewDelegate
 
 //用于滚动到顶部的时候使得tableView不能再继续下拉
@@ -363,11 +357,14 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     if ([keyPath isEqualToString:@"isCanCommit"] && object == _headView) {
         
         if (_headView.isCanCommit == NO) {
-            _footView.btn_commit.enabled = NO;
-            [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
+            self.isCanCommit = NO;
         }else{
-            _footView.btn_commit.enabled = YES;
-            [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0x4281E8)];
+            if ([_arr_upImages[0] isKindOfClass:[NSNull class]] || [_arr_upImages[1] isKindOfClass:[NSNull class]]) {
+                self.isCanCommit = NO;
+            }else{
+                self.isCanCommit = YES;
+            }
+        
         }
     }
 
@@ -412,42 +409,76 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     LxDBObjectAsJson(_param);
     WS(weakSelf);
     
-    IllegalParkSaveManger *manger = [[IllegalParkSaveManger alloc] init];
-    manger.param = _param;
-    manger.successMessage = @"提交成功";
-    manger.failMessage = @"提交失败";
-    
-    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
-    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [hud hide];
+    if (_illegalType == IllegalTypePark) {
         
-        SW(strongSelf, weakSelf);
-        if (manger.responseModel.code == CODE_SUCCESS) {
-            strongSelf.param = [[IllegalParkSaveParam alloc] init];
+        //违停请求
+        IllegalParkSaveManger *manger = [[IllegalParkSaveManger alloc] init];
+        manger.param = _param;
+        manger.successMessage = @"提交成功";
+        manger.failMessage = @"提交失败";
+        
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
             
-            [strongSelf.arr_upimages removeAllObjects];
-            [strongSelf.arr_upimages addObject:[NSNull null]];
-            [strongSelf.arr_upimages addObject:[NSNull null]];
-            
-            [strongSelf.collectionView reloadData];
-            
-            [[LocationHelper sharedDefault] startLocation];
-            
-            strongSelf.headView.param = strongSelf.param;
-            strongSelf.headView.tf_roadSection.text = nil;
-            strongSelf.headView.tf_address.text = nil;
-            strongSelf.headView.tf_carNumber.text = nil;
-            if (strongSelf.headView.tf_addressRemarks.text.length > 0) {
-                strongSelf.param.addressRemark = strongSelf.headView.tf_addressRemarks.text;
+            SW(strongSelf, weakSelf);
+            if (manger.responseModel.code == CODE_SUCCESS) {
+                
+                strongSelf.param = [[IllegalParkSaveParam alloc] init];
+                
+                [strongSelf.arr_upImages removeAllObjects];
+                [strongSelf.arr_upImages addObject:[NSNull null]];
+                [strongSelf.arr_upImages addObject:[NSNull null]];
+                
+                [strongSelf.collectionView reloadData];
+                
+                strongSelf.headView.param = strongSelf.param;
+                [strongSelf.headView handleBeforeCommit];
+                
             }
-            strongSelf.headView.isCanCommit = [strongSelf.headView juegeCanCommit];
             
-        }
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            [hud hide];
+            
+        }];
+    }else if (_illegalType == IllegalTypeThrough){
         
-        [hud hide];
+        //违禁令请求
+        IllegalThroughSaveManger *manger = [[IllegalThroughSaveManger alloc] init];
+        manger.param = _param;
+        manger.successMessage = @"提交成功";
+        manger.failMessage = @"提交失败";
         
-    }];
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [hud hide];
+            
+            SW(strongSelf, weakSelf);
+            if (manger.responseModel.code == CODE_SUCCESS) {
+                
+                strongSelf.param = [[IllegalParkSaveParam alloc] init];
+                
+                [strongSelf.arr_upImages removeAllObjects];
+                [strongSelf.arr_upImages addObject:[NSNull null]];
+                [strongSelf.arr_upImages addObject:[NSNull null]];
+                
+                [strongSelf.collectionView reloadData];
+                
+                strongSelf.headView.param = strongSelf.param;
+                [strongSelf.headView handleBeforeCommit];
+                
+            }
+            
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            [hud hide];
+            
+        }];
+    
+    
+    
+    }
 
 }
 
@@ -455,74 +486,60 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 
 - (void)recognitionCarNumber:(ImageFileInfo *)imageInfo{
 
-    imageInfo.name = key_files;
-    NSMutableDictionary *t_dic = [NSMutableDictionary dictionary];
-    [t_dic setObject:imageInfo forKey:@"files"];
-    [t_dic setObject:@"车牌近照" forKey:@"remarks"];
-    [t_dic setObject:[ShareFun getCurrentTime] forKey:@"taketimes"];
-    
-    [_arr_upimages replaceObjectAtIndex:0 withObject:t_dic];
-   
+    [self replaceUpImageItemToUpImagesWithImageInfo:imageInfo remark:@"车牌近照" replaceIndex:0];
     [_collectionView reloadData];
     
 }
 
-#pragma mark - 处理arr_upImages用于上传用的
+#pragma mark - 管理上传图片
 
--(void)handleUpImagesWithIndex:(NSInteger)index{
-
-
-    NSMutableArray *t_arr = [NSMutableArray array];
+//替换图片到arr_upImages数组中
+- (void)replaceUpImageItemToUpImagesWithImageInfo:(ImageFileInfo *)imageFileInfo remark:(NSString *)remark replaceIndex:(NSInteger)index{
     
-    for (int i = 0; i < [_arr_upimages count]; i++) {
-        if ([_arr_upimages[i] isKindOfClass:[NSMutableDictionary class]]) {
-            [t_arr addObject:_arr_upimages[i]];
-        }
+    imageFileInfo.name = key_files;
+    
+    NSMutableDictionary *t_dic = [NSMutableDictionary dictionary];
+    [t_dic setObject:imageFileInfo forKey:@"files"];
+    [t_dic setObject:remark forKey:@"remarks"];
+    [t_dic setObject:[ShareFun getCurrentTime] forKey:@"taketimes"];
+    [self.arr_upImages  replaceObjectAtIndex:index withObject:t_dic];
+    
+    //替换之后做是否可以上传判断
+    if (_headView.isCanCommit == YES && ![_arr_upImages[0] isKindOfClass:[NSNull class]] && ![_arr_upImages[1] isKindOfClass:[NSNull class]]) {
+        self.isCanCommit = YES;
+    }else{
+        self.isCanCommit = NO;
     }
-    
-    WS(weakSelf);
-    
-    self.photoBrowser = [[LLPhotoBrowser alloc] initWithupImages:t_arr currentIndex:index];
-    self.photoBrowser.deleteBlock = ^(NSMutableDictionary *deleteImage) {
-        SW(strongSelf, weakSelf);
-        for (int i = 0; i < [_arr_upimages count]; i++) {
-            if ([strongSelf.arr_upimages[i] isKindOfClass:[NSMutableDictionary class]]) {
-                NSMutableDictionary *t_dic = strongSelf.arr_upimages[i];
-                NSString *t_str = [t_dic objectForKey:@"remarks"];
-                if ([t_str isEqualToString:[deleteImage objectForKey:@"remarks"]]) {
-                    if ([t_str isEqualToString:@"车牌近照"] || [t_str isEqualToString:@"违停照片_0"]) {
-                        [strongSelf.arr_upimages replaceObjectAtIndex:i withObject:[NSNull null]];
-                        [strongSelf.collectionView reloadData];
-                        
-                    }else{
-                        [strongSelf.arr_upimages removeObject:t_dic];
-                        [strongSelf.collectionView reloadData];
-                    }
-                    break;
-                }
-                
-            }
-        }
-        
-    };
-    [self presentViewController:_photoBrowser animated:YES completion:nil];
+  
+}
 
+
+//添加图片到arr_upImages数组中
+- (void)addUpImageItemToUpImagesWithImageInfo:(ImageFileInfo *)imageFileInfo remark:(NSString *)remark{
+
+    imageFileInfo.name = key_files;
+    
+    NSMutableDictionary *t_dic = [NSMutableDictionary dictionary];
+    [t_dic setObject:imageFileInfo forKey:@"files"];
+    [t_dic setObject:remark forKey:@"remarks"];
+    [t_dic setObject:[ShareFun getCurrentTime] forKey:@"taketimes"];
+    [self.arr_upImages addObject:t_dic];
+    
 }
 
 - (void)configParamInFilesAndRemarksAndTimes{
     
-    if (_arr_upimages && _arr_upimages.count > 0) {
+    if (_arr_upImages && _arr_upImages.count > 0) {
         
-        
-        LxDBObjectAsJson(_arr_upimages);
+        LxDBObjectAsJson(_arr_upImages);
         
         NSMutableArray *t_arr_files = [NSMutableArray array];
         NSMutableArray *t_arr_remarks = [NSMutableArray array];
         NSMutableArray *t_arr_taketimes = [NSMutableArray array];
         
-        for (int i = 0; i < _arr_upimages.count; i++) {
-            if([_arr_upimages[i] isKindOfClass:[NSMutableDictionary class]]){
-                NSMutableDictionary *t_dic = _arr_upimages[i];
+        for (int i = 0; i < _arr_upImages.count; i++) {
+            if([_arr_upImages[i] isKindOfClass:[NSMutableDictionary class]]){
+                NSMutableDictionary *t_dic = _arr_upImages[i];
                 ImageFileInfo *imageInfo = [t_dic objectForKey:@"files"];
                 NSString *t_title = [t_dic objectForKey:@"remarks"];
                 NSString *t_taketime = [t_dic objectForKey:@"taketimes"];
@@ -538,15 +555,93 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         }
         
         if (t_arr_remarks.count > 0) {
-            
              _param.remarks = [t_arr_remarks componentsJoinedByString:@","];
         }
         
         if (t_arr_taketimes.count > 0) {
             _param.taketimes = [t_arr_taketimes componentsJoinedByString:@","];
         }
-
     }
+}
+
+
+#pragma mark - 弹出照相机
+
+-(void)showCameraWithType:(NSInteger)type withFinishBlock:(void(^)(LRCameraVC *camera))finishBlock{
+    
+    LRCameraVC *home = [[LRCameraVC alloc] init];
+    home.type = type;
+    home.fininshCaptureBlock = finishBlock;
+    [self presentViewController:home
+                       animated:YES
+                     completion:^{
+                     }];
+    
+}
+
+
+#pragma mark - 调用图片浏览器
+
+-(void)showPhotoBrowserWithIndex:(NSInteger)index{
+    
+    //将arr_upImages中有图片的赋值到t_arr中用于LLPhotoBrowser中
+    
+    NSMutableArray *t_arr = [NSMutableArray array];
+    
+    for (int i = 0; i < [_arr_upImages count]; i++) {
+        if ([_arr_upImages[i] isKindOfClass:[NSMutableDictionary class]]) {
+            [t_arr addObject:_arr_upImages[i]];
+        }
+    }
+    
+    WS(weakSelf);
+    
+    LLPhotoBrowser *photoBrowser = [[LLPhotoBrowser alloc] initWithupImages:t_arr currentIndex:index];
+    
+    //在图片浏览器中点击删除按钮的操作
+    photoBrowser.deleteBlock = ^(NSMutableDictionary *deleteImage) {
+        
+        SW(strongSelf, weakSelf);
+        
+        for (int i = 0; i < [_arr_upImages count]; i++) {
+            
+            if ([strongSelf.arr_upImages[i] isKindOfClass:[NSMutableDictionary class]]) {
+                
+                NSMutableDictionary *t_dic = strongSelf.arr_upImages[i];
+                
+                NSString *t_str = [t_dic objectForKey:@"remarks"];
+                
+                if ([t_str isEqualToString:[deleteImage objectForKey:@"remarks"]]) {
+                    
+                    if ([t_str isEqualToString:@"车牌近照"] || [t_str isEqualToString:@"违停照片"]) {
+                        
+                        [strongSelf.arr_upImages replaceObjectAtIndex:i withObject:[NSNull null]];
+                        
+                        [strongSelf.collectionView reloadData];
+                        
+                    }else{
+                        
+                        [strongSelf.arr_upImages removeObject:t_dic];
+                        
+                        [strongSelf.collectionView reloadData];
+                    }
+                    
+                    //替换之后做是否可以上传判断
+                    if (strongSelf.headView.isCanCommit == YES && ![strongSelf.arr_upImages[0] isKindOfClass:[NSNull class]] && ![strongSelf.arr_upImages[1] isKindOfClass:[NSNull class]]) {
+                        strongSelf.isCanCommit = YES;
+                    }else{
+                        strongSelf.isCanCommit = NO;
+                    }
+                    
+                    break;
+                }
+                
+            }
+        }
+        
+    };
+    
+    [self presentViewController:photoBrowser animated:YES completion:nil];
     
 }
 

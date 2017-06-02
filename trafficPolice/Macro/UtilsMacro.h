@@ -73,4 +73,7 @@
 #define SIMULATOR 0
 #endif
 
+#define TICK   NSDate *startTime = [NSDate date];
+#define TOCK   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow]);
+
 

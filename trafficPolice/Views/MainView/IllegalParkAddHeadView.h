@@ -11,25 +11,25 @@
 
 @protocol IllegalParkAddHeadViewDelegate <NSObject>
 
+
 -(void)recognitionCarNumber:(ImageFileInfo *)imageInfo;
 
 @end
 
-
 @interface IllegalParkAddHeadView : UICollectionReusableView
-
-@property (weak, nonatomic) IBOutlet UITextField *tf_carNumber; //车牌号
-@property (weak, nonatomic) IBOutlet UITextField *tf_roadSection; //选择路段
-@property (weak, nonatomic) IBOutlet UITextField *tf_address; //所在位置
-@property (weak, nonatomic) IBOutlet UITextField *tf_addressRemarks; //地址备注
 
 @property (nonatomic,strong) IllegalParkSaveParam *param;
 
-@property (nonatomic,assign) BOOL isCanCommit;
-
 @property (nonatomic,weak) id<IllegalParkAddHeadViewDelegate>delegate;
 
--(BOOL)juegeCanCommit;
+@property (nonatomic,assign,readonly) BOOL isCanCommit;
 
+//拍照识别车牌照片之后做的处理
+
+- (void)takePhotoToDiscernmentWithCarNumber:(NSString *)carNummber;
+
+//提交成功之后headView所做的处理
+
+- (void)handleBeforeCommit;
 
 @end

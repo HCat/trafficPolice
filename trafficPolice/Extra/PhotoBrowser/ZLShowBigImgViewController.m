@@ -47,7 +47,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     _currentPage = self.selectIndex+1;
-    self.title = [NSString stringWithFormat:@"%ld/%ld", _currentPage, self.models.count];
+    self.title = [NSString stringWithFormat:@"%ld/%ld", (long)_currentPage, (long)self.models.count];
     [self initNavBtns];
     [self initCollectionView];
     [self initBottomView];
@@ -271,7 +271,7 @@
 {
     ZLImageNavigationController *nav = (ZLImageNavigationController *)self.navigationController;
     if (nav.arrSelectedModels.count > 0) {
-        [_btnDone setTitle:[NSString stringWithFormat:@"%@(%ld)", GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), nav.arrSelectedModels.count] forState:UIControlStateNormal];
+        [_btnDone setTitle:[NSString stringWithFormat:@"%@(%ld)", GetLocalLanguageTextValue(ZLPhotoBrowserDoneText), (unsigned long)nav.arrSelectedModels.count] forState:UIControlStateNormal];
     } else {
         [_btnDone setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserDoneText) forState:UIControlStateNormal];
     }
@@ -364,7 +364,7 @@
         CGFloat page = scrollView.contentOffset.x/(kViewWidth+kItemMargin);
         NSString *str = [NSString stringWithFormat:@"%.0f", page];
         _currentPage = str.integerValue + 1;
-        self.title = [NSString stringWithFormat:@"%ld/%ld", _currentPage, self.models.count];
+        self.title = [NSString stringWithFormat:@"%ld/%ld", (long)_currentPage, (unsigned long)self.models.count];
         ZLPhotoModel *model = self.models[_currentPage-1];
         _navRightBtn.selected = model.isSelected;
     }
