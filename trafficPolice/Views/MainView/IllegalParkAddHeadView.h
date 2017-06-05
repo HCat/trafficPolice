@@ -13,6 +13,7 @@
 
 
 -(void)recognitionCarNumber:(ImageFileInfo *)imageInfo;
+-(void)listentCarNumber;
 
 @end
 

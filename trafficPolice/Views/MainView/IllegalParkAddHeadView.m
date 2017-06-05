@@ -162,6 +162,9 @@
     
     if (textField == _tf_carNumber) {
         self.param.carNo = length > 0 ? _tf_carNumber.text : nil;
+        if (self.delegate && [self.delegate performSelector:@selector(listentCarNumber) withObject:nil]) {
+            [self.delegate listentCarNumber];
+        }
     }
     
     if (textField == _tf_address) {

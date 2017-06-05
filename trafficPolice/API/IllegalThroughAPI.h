@@ -67,7 +67,7 @@ code:999 无采集记录,不用任何提示
 @interface IllegalThroughSecAddManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, copy) NSString *illegalThroughId;
+@property (nonatomic, strong) NSNumber *illegalThroughId;
 
 /****** 返回数据 ******/
 
@@ -80,9 +80,10 @@ code:999 无采集记录,不用任何提示
 
 @interface IllegalThroughSecSaveParam : NSObject
 
-@property (nonatomic,copy) NSArray  * files;                    //事故图片 列表，最多可上传30张
-@property (nonatomic,copy) NSArray  * remarks;  //违停图片名称  违章图片名称，字符串列表。和图片一对一，名称统一命名，车牌近照（一张）、违停照片（可多张）
-@property (nonatomic,copy) NSArray  * taketimes; //拍照时间 拍照时间，字符串列表，格式yyyy-MM-dd HH:mm:ss，和图片一对一
+@property (nonatomic,strong) NSNumber  * illegalThroughId;  //id
+@property (nonatomic,copy) NSArray  * files;                //事故图片 列表，最多可上传30张
+@property (nonatomic,copy) NSString * remarks;              //违停图片名称  违章图片名称，字符串列表。和图片一对一，名称统一命名，车牌近照（一张）、违停照片（可多张）
+@property (nonatomic,copy) NSString * taketimes;            //拍照时间 拍照时间，字符串列表，格式yyyy-MM-dd HH:mm:ss，和图片一对一
 
 @end
 

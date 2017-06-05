@@ -19,6 +19,7 @@ typedef void(^photoBrowserDeleteBlock)(NSMutableDictionary * deleteImage);
 @property (nonatomic,copy) photoBrowserDeleteBlock deleteBlock;
 
 @property (nonatomic, strong) NSMutableArray * arr_upImages;
+@property (nonatomic, assign) BOOL isShowDeleteBtn;
 
 
 - (instancetype)initWithupImages:(NSMutableArray<NSMutableDictionary *> *)arr_upImages currentIndex:(NSInteger)currentIndex;

@@ -19,6 +19,7 @@
 #import "IllegalThroughAPI.h" //违禁令
 #import "LLPhotoBrowser.h"
 #import "SRAlertView.h"
+#import "IllegalSecSaveVC.h"
 
 @interface IllegalParkVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -59,6 +60,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     
     
     self.isObserver = NO;
+   
 
     //初始化请求参数
     self.param = [[IllegalParkSaveParam alloc] init];
@@ -136,12 +138,43 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:^(AlertViewActionType actionType) {
                 if (actionType == AlertViewActionTypeLeft) {
                     NSNumber * illegalThroughId = manger.responseModel.data[@"id"];
+                    IllegalSecSaveVC *t_vc = [[IllegalSecSaveVC alloc] init];
+                    t_vc.illegalThroughId = illegalThroughId;
+                    t_vc.saveSuccessBlock = ^{
+                        [strongSelf.arr_upImages removeAllObjects];
+                        [strongSelf.arr_upImages addObject:[NSNull null]];
+                        [strongSelf.arr_upImages addObject:[NSNull null]];
+                        
+                        [strongSelf.collectionView reloadData];
+                        
+                        strongSelf.headView.param = strongSelf.param;
+                        [strongSelf.headView handleBeforeCommit];
+                    };
+                    [strongSelf.navigationController pushViewController:t_vc animated:YES];
                 }
             }];
             
         }else if (manger.responseModel.code == 13){
             
             [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"重新录入" rightTitle:@"取消" block:^(AlertViewActionType actionType) {
+                
+                if (actionType == AlertViewActionTypeLeft) {
+                    
+                    if (strongSelf.headView.isCanCommit == YES && ![strongSelf.arr_upImages[0] isKindOfClass:[NSNull class]] && ![strongSelf.arr_upImages[1] isKindOfClass:[NSNull class]]) {
+                        strongSelf.isCanCommit = YES;
+                    }else{
+                        strongSelf.isCanCommit = NO;
+                    }
+                    
+                    if (strongSelf.isCanCommit == YES) {
+                        [strongSelf handleCommitClicked];
+                    }
+                    
+                }else if (actionType == AlertViewActionTypeRight){
+                
+                    [strongSelf.navigationController popViewControllerAnimated:YES];
+                
+                }
                 
             }];
             
@@ -152,6 +185,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             
         }else if (manger.responseModel.code == 999){
             //不做处理
+            //无任何记录，无需做处理
         }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -261,10 +295,15 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         return _headView;
         
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
+        if (!self.footView) {
+             self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
+            _footView.btn_commit.enabled = NO;
+            [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
+            [_footView setDelegate:(id<IllegalParkAddFootViewDelegate>)self];
+        }
+       
         
-        self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
-        
-        [_footView setDelegate:(id<IllegalParkAddFootViewDelegate>)self];
+       
         
         return _footView;
         
@@ -563,7 +602,19 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                     
                     if (actionType == AlertViewActionTypeLeft) {
                         NSNumber * illegalThroughId = manger.responseModel.data[@"id"];
-                        
+                        IllegalSecSaveVC *t_vc = [[IllegalSecSaveVC alloc] init];
+                        t_vc.illegalThroughId = illegalThroughId;
+                        t_vc.saveSuccessBlock = ^{
+                            [strongSelf.arr_upImages removeAllObjects];
+                            [strongSelf.arr_upImages addObject:[NSNull null]];
+                            [strongSelf.arr_upImages addObject:[NSNull null]];
+                            
+                            [strongSelf.collectionView reloadData];
+                            
+                            strongSelf.headView.param = strongSelf.param;
+                            [strongSelf.headView handleBeforeCommit];
+                        };
+                        [strongSelf.navigationController pushViewController:t_vc animated:YES];
                     }
                 }];
                
@@ -596,6 +647,15 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         [self judgeNeedSecondCollection:self.param.carNo];
     }
     
+}
+
+- (void)listentCarNumber{
+
+    if (_illegalType == IllegalTypeThrough) {
+        [self judgeNeedSecondCollection:self.param.carNo];
+    }
+    
+
 }
 
 #pragma mark - 管理上传图片

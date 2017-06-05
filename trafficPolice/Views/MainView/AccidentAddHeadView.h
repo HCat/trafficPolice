@@ -10,4 +10,6 @@
 
 @interface AccidentAddHeadView : UICollectionReusableView
 
+@property (weak, nonatomic) IBOutlet UILabel *lb_title;
+
 @end

@@ -33,6 +33,7 @@
     if (self) {
         self.arr_upImages = arr_upImages;
         _currentIndex = currentIndex;
+        _isShowDeleteBtn = YES;
     }
     return self;
 
@@ -44,6 +45,7 @@
     if (self) {
         _images = images;
         _currentIndex = currentIndex;
+        _isShowDeleteBtn = YES;
     }
     return self;
 }
@@ -103,11 +105,12 @@
     [_navigationBar addSubview:backBtn];
     
     UIButton *trachBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    trachBtn.frame = CGRectMake(CGRectGetMaxX(_navigationBar.frame)-30, CGRectGetMidY(_navigationBar.frame)-8, 16, 16);
+    trachBtn.frame = CGRectMake(CGRectGetMaxX(_navigationBar.frame)-32, CGRectGetMidY(_navigationBar.frame)-9, 18, 18);
     [trachBtn setImage:[UIImage imageNamed:@"icon_trash_alt"] forState:UIControlStateNormal];
     [trachBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [trachBtn addTarget:self action:@selector(trachBtn) forControlEvents:UIControlEventTouchUpInside];
     [trachBtn setEnlargeEdgeWithTop:25.f right:25.f bottom:25.f left:25.f];
+    trachBtn.hidden = !_isShowDeleteBtn;
     [_navigationBar addSubview:trachBtn];
     
     

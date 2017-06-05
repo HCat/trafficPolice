@@ -143,6 +143,10 @@
 		CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */; };
 		CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */; };
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
+		CE6C04DB1EE4FEFC0053F4D8 /* IllegalSecSaveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C04D91EE4FEFC0053F4D8 /* IllegalSecSaveVC.m */; };
+		CE6C04DC1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6C04DA1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib */; };
+		CE6C04E01EE552010053F4D8 /* IllegalThroughSecAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C04DE1EE552010053F4D8 /* IllegalThroughSecAddView.m */; };
+		CE6C04E11EE552010053F4D8 /* IllegalThroughSecAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6C04DF1EE552010053F4D8 /* IllegalThroughSecAddView.xib */; };
 		CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E52D41ED2B59A002C4603 /* ShowHUD.m */; };
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
 		CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */; };
@@ -422,6 +426,12 @@
 		CE67EFCC1ED2C868000CB8F4 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		CE67EFCF1ED2E324000CB8F4 /* UserDefaultMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultMacro.h; sourceTree = "<group>"; };
+		CE6C04D81EE4FEFC0053F4D8 /* IllegalSecSaveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalSecSaveVC.h; sourceTree = "<group>"; };
+		CE6C04D91EE4FEFC0053F4D8 /* IllegalSecSaveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalSecSaveVC.m; sourceTree = "<group>"; };
+		CE6C04DA1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalSecSaveVC.xib; sourceTree = "<group>"; };
+		CE6C04DD1EE552010053F4D8 /* IllegalThroughSecAddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalThroughSecAddView.h; sourceTree = "<group>"; };
+		CE6C04DE1EE552010053F4D8 /* IllegalThroughSecAddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalThroughSecAddView.m; sourceTree = "<group>"; };
+		CE6C04DF1EE552010053F4D8 /* IllegalThroughSecAddView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalThroughSecAddView.xib; sourceTree = "<group>"; };
 		CE6E52CB1ED27E86002C4603 /* URLErrorMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLErrorMacro.h; sourceTree = "<group>"; };
 		CE6E52D31ED2B59A002C4603 /* ShowHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowHUD.h; sourceTree = "<group>"; };
 		CE6E52D41ED2B59A002C4603 /* ShowHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowHUD.m; sourceTree = "<group>"; };
@@ -540,6 +550,9 @@
 				CE7F14E71EDEA11100C7AEDA /* IllegalParkAddFootView.h */,
 				CE7F14E81EDEA11100C7AEDA /* IllegalParkAddFootView.m */,
 				CE7F14E91EDEA11100C7AEDA /* IllegalParkAddFootView.xib */,
+				CE6C04DD1EE552010053F4D8 /* IllegalThroughSecAddView.h */,
+				CE6C04DE1EE552010053F4D8 /* IllegalThroughSecAddView.m */,
+				CE6C04DF1EE552010053F4D8 /* IllegalThroughSecAddView.xib */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -1172,6 +1185,9 @@
 				CE7F14DD1EDE9B3900C7AEDA /* IllegalParkVC.h */,
 				CE7F14DE1EDE9B3900C7AEDA /* IllegalParkVC.m */,
 				CE7F14DF1EDE9B3900C7AEDA /* IllegalParkVC.xib */,
+				CE6C04D81EE4FEFC0053F4D8 /* IllegalSecSaveVC.h */,
+				CE6C04D91EE4FEFC0053F4D8 /* IllegalSecSaveVC.m */,
+				CE6C04DA1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib */,
 			);
 			path = IllegalParkVC;
 			sourceTree = "<group>";
@@ -1267,6 +1283,7 @@
 				CE5786501ED4088700B4CC9F /* ZLPhotoBrowserCell.xib in Resources */,
 				C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */,
 				CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */,
+				CE6C04E11EE552010053F4D8 /* IllegalThroughSecAddView.xib in Resources */,
 				CE5786511ED4088700B4CC9F /* ZLThumbnailViewController.xib in Resources */,
 				CE57864E1ED4088700B4CC9F /* ZLPhotoActionSheet.xib in Resources */,
 				CE5786491ED4088700B4CC9F /* defaultphoto.png in Resources */,
@@ -1290,6 +1307,7 @@
 				CE7F14E11EDE9B3900C7AEDA /* IllegalParkVC.xib in Resources */,
 				CE57863E1ED4088700B4CC9F /* btn_circle@2x.png in Resources */,
 				CE5786461ED4088700B4CC9F /* btn_unselected.png in Resources */,
+				CE6C04DC1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib in Resources */,
 				CE5786431ED4088700B4CC9F /* btn_selected.png in Resources */,
 				CE5786471ED4088700B4CC9F /* btn_unselected@2x.png in Resources */,
 				CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */,
@@ -1464,7 +1482,9 @@
 				CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
 				CE435EFA1ECD996800F85B38 /* LRBaseResponse.m in Sources */,
+				CE6C04DB1EE4FEFC0053F4D8 /* IllegalSecSaveVC.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
+				CE6C04E01EE552010053F4D8 /* IllegalThroughSecAddView.m in Sources */,
 				CE5786531ED4088700B4CC9F /* ZLBigImageCell.m in Sources */,
 				CE4C93F21ECEA00300BE06F0 /* AccidentModel.m in Sources */,
 				C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */,

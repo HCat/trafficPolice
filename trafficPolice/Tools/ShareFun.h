@@ -39,6 +39,8 @@
 //获取当前时间，格式是 yyyy-MM-dd HH:mm:ss
 + (NSString *)getCurrentTime;
 
++ (NSString *)timeWithTimeIntervalString:(NSString *)timeString;
+
 
 //根据UIImageData获取UIImage是什么格式的
 + (NSString *)typeForImageData:(NSData *)data;
