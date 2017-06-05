@@ -14,8 +14,8 @@
 
 @interface VideoColectSaveParam : NSObject
 
-@property (nonatomic,copy) NSString  *longitude; //经度
-@property (nonatomic,copy) NSString  *latitude; //纬度
+@property (nonatomic,strong) NSNumber  *longitude; //经度
+@property (nonatomic,strong) NSNumber *latitude; //纬度
 @property (nonatomic,copy) NSString  *address; //详细地址 定位自动获取(不可修改)
 @property (nonatomic,copy) NSString  *memo; //地址备注
 @property (nonatomic,copy) NSString  * file;                    //视频文件 文件格式

@@ -147,6 +147,8 @@
 		CE6C04DC1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6C04DA1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib */; };
 		CE6C04E01EE552010053F4D8 /* IllegalThroughSecAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C04DE1EE552010053F4D8 /* IllegalThroughSecAddView.m */; };
 		CE6C04E11EE552010053F4D8 /* IllegalThroughSecAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6C04DF1EE552010053F4D8 /* IllegalThroughSecAddView.xib */; };
+		CE6C04E61EE5710D0053F4D8 /* VideoColectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C04E41EE5710D0053F4D8 /* VideoColectVC.m */; };
+		CE6C04E71EE5710D0053F4D8 /* VideoColectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6C04E51EE5710D0053F4D8 /* VideoColectVC.xib */; };
 		CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E52D41ED2B59A002C4603 /* ShowHUD.m */; };
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
 		CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */; };
@@ -432,6 +434,9 @@
 		CE6C04DD1EE552010053F4D8 /* IllegalThroughSecAddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalThroughSecAddView.h; sourceTree = "<group>"; };
 		CE6C04DE1EE552010053F4D8 /* IllegalThroughSecAddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalThroughSecAddView.m; sourceTree = "<group>"; };
 		CE6C04DF1EE552010053F4D8 /* IllegalThroughSecAddView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalThroughSecAddView.xib; sourceTree = "<group>"; };
+		CE6C04E31EE5710D0053F4D8 /* VideoColectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoColectVC.h; sourceTree = "<group>"; };
+		CE6C04E41EE5710D0053F4D8 /* VideoColectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoColectVC.m; sourceTree = "<group>"; };
+		CE6C04E51EE5710D0053F4D8 /* VideoColectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoColectVC.xib; sourceTree = "<group>"; };
 		CE6E52CB1ED27E86002C4603 /* URLErrorMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLErrorMacro.h; sourceTree = "<group>"; };
 		CE6E52D31ED2B59A002C4603 /* ShowHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowHUD.h; sourceTree = "<group>"; };
 		CE6E52D41ED2B59A002C4603 /* ShowHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowHUD.m; sourceTree = "<group>"; };
@@ -786,6 +791,7 @@
 		C7E0DC131EC1AEAE008ED063 /* MainHomeVC */ = {
 			isa = PBXGroup;
 			children = (
+				CE6C04E21EE570ED0053F4D8 /* VideoColectVC */,
 				CE7F14DC1EDE9B0500C7AEDA /* IllegalParkVC */,
 				CE60BE0D1ED71ECD00C328A1 /* LRCameraVC */,
 				CE5786601ED40E7A00B4CC9F /* AccidentVC */,
@@ -1139,6 +1145,16 @@
 			path = YUSegment;
 			sourceTree = "<group>";
 		};
+		CE6C04E21EE570ED0053F4D8 /* VideoColectVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C04E31EE5710D0053F4D8 /* VideoColectVC.h */,
+				CE6C04E41EE5710D0053F4D8 /* VideoColectVC.m */,
+				CE6C04E51EE5710D0053F4D8 /* VideoColectVC.xib */,
+			);
+			path = VideoColectVC;
+			sourceTree = "<group>";
+		};
 		CE6E52D21ED2B59A002C4603 /* ShowHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,6 +1340,7 @@
 				C7E0DBF81EC1A1C9008ED063 /* AKTabBarController.bundle in Resources */,
 				CE5786451ED4088700B4CC9F /* btn_selected@3x.png in Resources */,
 				CE57864D1ED4088700B4CC9F /* ZLNoAuthorityViewController.xib in Resources */,
+				CE6C04E71EE5710D0053F4D8 /* VideoColectVC.xib in Resources */,
 				C7E0DC1B1EC1AF18008ED063 /* MainHomeVC.xib in Resources */,
 				C78138B11EC2E79E00A124B7 /* MainHomeCell.xib in Resources */,
 				CE57866C1ED4229E00B4CC9F /* AccidentAddFootView.xib in Resources */,
@@ -1462,6 +1479,7 @@
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
 				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
+				CE6C04E61EE5710D0053F4D8 /* VideoColectVC.m in Sources */,
 				CE5786591ED4088700B4CC9F /* ZLPhotoManager.m in Sources */,
 				CE7CF0371EE19EFA00E91080 /* FXBlurView.m in Sources */,
 				CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */,

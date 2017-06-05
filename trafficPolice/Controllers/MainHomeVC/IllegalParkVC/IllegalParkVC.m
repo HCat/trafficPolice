@@ -295,16 +295,14 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         return _headView;
         
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
+        
         if (!self.footView) {
              self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
             _footView.btn_commit.enabled = NO;
             [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
             [_footView setDelegate:(id<IllegalParkAddFootViewDelegate>)self];
         }
-       
-        
-       
-        
+    
         return _footView;
         
     }

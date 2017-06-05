@@ -15,6 +15,7 @@
 
 #import "AccidentVC.h"
 #import "IllegalParkVC.h"
+#import "VideoColectVC.h"
 
 
 
@@ -296,6 +297,8 @@
             [self.navigationController pushViewController:t_vc animated:YES];
         }else if ([cell.str_title isEqualToString:@"视频录入"]) {
             LxPrintf(@"点击视频录入");
+            VideoColectVC *t_vc = [[VideoColectVC alloc] init];
+            [self.navigationController pushViewController:t_vc animated:YES];
         }else{
             LxPrintf(@"其他");
         }
