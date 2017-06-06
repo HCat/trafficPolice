@@ -107,6 +107,11 @@
              };
 }
 
+//黑名单，不被转换
++ (NSArray *)modelPropertyBlacklist {
+    return @[@"files"];
+}
+
 @end
 
 @implementation IllegalThroughSecSaveManger

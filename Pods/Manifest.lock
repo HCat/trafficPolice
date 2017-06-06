@@ -19,11 +19,12 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - IQKeyboardManager (4.0.9)
+  - IQKeyboardManager (4.0.10)
   - LKDBHelper (2.4.2):
     - FMDB
   - LLSimpleCamera (5.0.0)
   - LxDBAnything (1.1.0)
+  - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
   - PureLayout (3.0.2)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - LKDBHelper
   - LLSimpleCamera
   - LxDBAnything
+  - Masonry
   - MBProgressHUD
   - MJRefresh
   - PureLayout
@@ -65,10 +67,11 @@ SPEC CHECKSUMS:
   AMScrollingNavbar: 767ed2db60d927a809bddff5d01b739b7020b12b
   BaiduMapKit: 5118390d63b375483bd64c963e8e32a40fd9ddb5
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
+  IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
   LKDBHelper: ab67373b32f47463bf5f838d730f225824f4492a
   LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
   LxDBAnything: 154a2ad1ae32e70355d886b5443260543bb60c71
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
@@ -79,6 +82,6 @@ SPEC CHECKSUMS:
   YTKNetwork: c4b0c29c9d639dc050d475de69ee626d53eac598
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 179c69368bee16e69eb7ba249cb922a67534e6e9
+PODFILE CHECKSUM: 28a324b28b63b6579ee6817b83349e8b1027837c
 
 COCOAPODS: 1.2.1

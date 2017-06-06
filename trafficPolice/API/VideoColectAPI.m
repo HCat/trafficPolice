@@ -12,6 +12,12 @@
 
 @implementation VideoColectSaveParam
 
+//黑名单，不被转换
++ (NSArray *)modelPropertyBlacklist {
+    return @[@"file",@"preview"];
+}
+
+
 @end
 
 @implementation VideoColectSaveManger
@@ -28,7 +34,21 @@
     return self.param.modelToJSONObject;
 }
 
-//返回参数
+//请求方式
+- (YTKRequestMethod)requestMethod
+{
+    return YTKRequestMethodPOST;
+}
+
+//上传图片
+- (AFConstructingBlock)constructingBodyBlock {
+    
+    return ^(id<AFMultipartFormData> formData) {
+        
+       [formData appendPartWithFileData:filesImage.fileData name:filesImage.name fileName:filesImage.fileName mimeType:filesImage.mimeType];
+    };
+}
+
 
 @end
 

@@ -10,6 +10,8 @@
 #import "FSTextView.h"
 #import "VideoColectAPI.h"
 #import "AppDelegate.h"
+#import "LRVideoVC.h"
+#import "LRPlayVC.h"
 
 @interface VideoColectVC ()
 
@@ -22,6 +24,13 @@
 @property (strong,nonatomic) VideoColectSaveParam *param;
 @property (nonatomic,assign) BOOL isCanCommit;
 
+@property (nonatomic,copy) NSString *videoUrl;
+@property (nonatomic,copy) NSString *thumUrl;
+
+@property (weak, nonatomic) IBOutlet UIView *v_video;
+@property (weak, nonatomic) IBOutlet UIButton *btn_video;
+
+
 @end
 
 @implementation VideoColectVC
@@ -29,7 +38,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-
+        
     }
     return self;
 }
@@ -39,6 +48,9 @@
     [super viewDidLoad];
     
     self.title = @"视频录入";
+    
+    self.v_video.hidden = YES;
+    self.param = [[VideoColectSaveParam alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChange) name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
     
@@ -91,16 +103,42 @@
 
 #pragma mark - buttonAction
 
-#pragma mark - 视频点击录入事件
-- (IBAction)handlebtnInputVideoClicked:(id)sender {
+
+- (IBAction)handleBtnVideoPlayClicked:(id)sender {
     
-    
-    
-    
+    LRPlayVC *t_vc = [[LRPlayVC alloc] init];
+    t_vc.videoUrl = self.videoUrl;
+    WS(weakSelf);
+    t_vc.deleteBlock = ^{
+        SW(strongSelf, weakSelf);
+        strongSelf.v_video.hidden =YES;
+        strongSelf.videoUrl = nil;
+        strongSelf.thumUrl = nil;
+        strongSelf.isCanCommit = NO;
+    };
+    [self.navigationController pushViewController:t_vc animated:YES];
     
 }
 
 
+#pragma mark - 视频点击录入事件
+- (IBAction)handlebtnInputVideoClicked:(id)sender {
+    
+    WS(weakSelf);
+    LRVideoVC *t_videoVC = [[LRVideoVC alloc] init];
+    t_videoVC.recordComplete = ^(NSString *aVideoUrl, NSString *aThumUrl) {
+        SW(strongSelf, weakSelf);
+        strongSelf.videoUrl = aVideoUrl;
+        strongSelf.thumUrl = aThumUrl;
+        strongSelf.v_video.hidden = NO;
+        [strongSelf.btn_video setImage:[UIImage imageWithContentsOfFile:self.thumUrl] forState:UIControlStateNormal];
+        strongSelf.isCanCommit = YES;
+    };
+    [self presentViewController:t_videoVC
+                       animated:YES
+                     completion:^{
+                     }];
+}
 
 #pragma mark -重新定位点击事件
 - (IBAction)handlebtnLocationClicked:(id)sender {

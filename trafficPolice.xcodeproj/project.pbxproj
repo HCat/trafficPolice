@@ -83,6 +83,15 @@
 		CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFDFF1ECB4D2700E59524 /* ShareValue.m */; };
 		CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */; };
 		CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4CFE061ECB599C00E59524 /* LRCountDownButton.m */; };
+		CE4F7DC31EE6775B007E40E2 /* LRVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F7DC11EE6775B007E40E2 /* LRVideoVC.m */; };
+		CE4F7DC41EE6775B007E40E2 /* LRVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4F7DC21EE6775B007E40E2 /* LRVideoVC.xib */; };
+		CE4F7DCA1EE67F50007E40E2 /* ArtAnimationRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F7DC71EE67F50007E40E2 /* ArtAnimationRecordView.m */; };
+		CE4F7DCB1EE67F50007E40E2 /* ArtPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F7DC91EE67F50007E40E2 /* ArtPlayerView.m */; };
+		CE4F7DCE1EE67FA6007E40E2 /* ArtVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F7DCD1EE67FA6007E40E2 /* ArtVideoModel.m */; };
+		CE4F7DD11EE699CE007E40E2 /* ArtVideoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F7DD01EE699CE007E40E2 /* ArtVideoUtil.m */; };
+		CE4F7DD41EE69A61007E40E2 /* NSString+ALi.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F7DD31EE69A61007E40E2 /* NSString+ALi.m */; };
+		CE4F7DD81EE6AF08007E40E2 /* LRPlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F7DD61EE6AF08007E40E2 /* LRPlayVC.m */; };
+		CE4F7DD91EE6AF08007E40E2 /* LRPlayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4F7DD71EE6AF08007E40E2 /* LRPlayVC.xib */; };
 		CE542ED41ECC93D900971B23 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED31ECC93D900971B23 /* BottomView.m */; };
 		CE542ED71ECC942900971B23 /* CertificateView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542ED61ECC942900971B23 /* CertificateView.m */; };
 		CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE542ED81ECC943C00971B23 /* CertificateView.xib */; };
@@ -332,6 +341,22 @@
 		CE4CFE021ECB57B900E59524 /* NSTimer+UnRetain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+UnRetain.m"; sourceTree = "<group>"; };
 		CE4CFE051ECB599C00E59524 /* LRCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCountDownButton.h; sourceTree = "<group>"; };
 		CE4CFE061ECB599C00E59524 /* LRCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCountDownButton.m; sourceTree = "<group>"; };
+		CE4F7DC01EE6775B007E40E2 /* LRVideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRVideoVC.h; sourceTree = "<group>"; };
+		CE4F7DC11EE6775B007E40E2 /* LRVideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRVideoVC.m; sourceTree = "<group>"; };
+		CE4F7DC21EE6775B007E40E2 /* LRVideoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRVideoVC.xib; sourceTree = "<group>"; };
+		CE4F7DC61EE67F50007E40E2 /* ArtAnimationRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtAnimationRecordView.h; sourceTree = "<group>"; };
+		CE4F7DC71EE67F50007E40E2 /* ArtAnimationRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtAnimationRecordView.m; sourceTree = "<group>"; };
+		CE4F7DC81EE67F50007E40E2 /* ArtPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtPlayerView.h; sourceTree = "<group>"; };
+		CE4F7DC91EE67F50007E40E2 /* ArtPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtPlayerView.m; sourceTree = "<group>"; };
+		CE4F7DCC1EE67FA6007E40E2 /* ArtVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtVideoModel.h; sourceTree = "<group>"; };
+		CE4F7DCD1EE67FA6007E40E2 /* ArtVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtVideoModel.m; sourceTree = "<group>"; };
+		CE4F7DCF1EE699CE007E40E2 /* ArtVideoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtVideoUtil.h; sourceTree = "<group>"; };
+		CE4F7DD01EE699CE007E40E2 /* ArtVideoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtVideoUtil.m; sourceTree = "<group>"; };
+		CE4F7DD21EE69A61007E40E2 /* NSString+ALi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ALi.h"; sourceTree = "<group>"; };
+		CE4F7DD31EE69A61007E40E2 /* NSString+ALi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ALi.m"; sourceTree = "<group>"; };
+		CE4F7DD51EE6AF08007E40E2 /* LRPlayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRPlayVC.h; sourceTree = "<group>"; };
+		CE4F7DD61EE6AF08007E40E2 /* LRPlayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRPlayVC.m; sourceTree = "<group>"; };
+		CE4F7DD71EE6AF08007E40E2 /* LRPlayVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRPlayVC.xib; sourceTree = "<group>"; };
 		CE5071571EC9DCFB00BC5609 /* LRSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRSingleton.h; sourceTree = "<group>"; };
 		CE542ED21ECC93D900971B23 /* BottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
 		CE542ED31ECC93D900971B23 /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
@@ -766,6 +791,7 @@
 		C7E0DBF51EC1A1C9008ED063 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE4F7DC51EE67F43007E40E2 /* LRVideoView */,
 				CE542EDA1ECC9F1200971B23 /* AlertView */,
 				CE542ED11ECC93BA00971B23 /* BottomView */,
 				C79C99441EC5952300258CF1 /* UserView */,
@@ -1005,6 +1031,23 @@
 			path = LRCountDownButton;
 			sourceTree = "<group>";
 		};
+		CE4F7DC51EE67F43007E40E2 /* LRVideoView */ = {
+			isa = PBXGroup;
+			children = (
+				CE4F7DCF1EE699CE007E40E2 /* ArtVideoUtil.h */,
+				CE4F7DD01EE699CE007E40E2 /* ArtVideoUtil.m */,
+				CE4F7DD21EE69A61007E40E2 /* NSString+ALi.h */,
+				CE4F7DD31EE69A61007E40E2 /* NSString+ALi.m */,
+				CE4F7DC61EE67F50007E40E2 /* ArtAnimationRecordView.h */,
+				CE4F7DC71EE67F50007E40E2 /* ArtAnimationRecordView.m */,
+				CE4F7DC81EE67F50007E40E2 /* ArtPlayerView.h */,
+				CE4F7DC91EE67F50007E40E2 /* ArtPlayerView.m */,
+				CE4F7DCC1EE67FA6007E40E2 /* ArtVideoModel.h */,
+				CE4F7DCD1EE67FA6007E40E2 /* ArtVideoModel.m */,
+			);
+			path = LRVideoView;
+			sourceTree = "<group>";
+		};
 		CE542ED11ECC93BA00971B23 /* BottomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1151,6 +1194,12 @@
 				CE6C04E31EE5710D0053F4D8 /* VideoColectVC.h */,
 				CE6C04E41EE5710D0053F4D8 /* VideoColectVC.m */,
 				CE6C04E51EE5710D0053F4D8 /* VideoColectVC.xib */,
+				CE4F7DC01EE6775B007E40E2 /* LRVideoVC.h */,
+				CE4F7DC11EE6775B007E40E2 /* LRVideoVC.m */,
+				CE4F7DC21EE6775B007E40E2 /* LRVideoVC.xib */,
+				CE4F7DD51EE6AF08007E40E2 /* LRPlayVC.h */,
+				CE4F7DD61EE6AF08007E40E2 /* LRPlayVC.m */,
+				CE4F7DD71EE6AF08007E40E2 /* LRPlayVC.xib */,
 			);
 			path = VideoColectVC;
 			sourceTree = "<group>";
@@ -1293,6 +1342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE57864C1ED4088700B4CC9F /* ZLCollectionCell.xib in Resources */,
+				CE4F7DC41EE6775B007E40E2 /* LRVideoVC.xib in Resources */,
 				CE60BE121ED71EF400C328A1 /* LRCameraVC.xib in Resources */,
 				CE5786651ED40EBA00B4CC9F /* AccidentVC.xib in Resources */,
 				CE57864F1ED4088700B4CC9F /* ZLPhotoBrowser.bundle in Resources */,
@@ -1335,6 +1385,7 @@
 				C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */,
 				CE5786481ED4088700B4CC9F /* btn_unselected@3x.png in Resources */,
 				CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */,
+				CE4F7DD91EE6AF08007E40E2 /* LRPlayVC.xib in Resources */,
 				CE57863F1ED4088700B4CC9F /* btn_circle@3x.png in Resources */,
 				CE7F14F01EDEC70200C7AEDA /* IllegalParkCell.xib in Resources */,
 				C7E0DBF81EC1A1C9008ED063 /* AKTabBarController.bundle in Resources */,
@@ -1424,9 +1475,11 @@
 				CE4C93EC1ECE986F00BE06F0 /* AccidentListModel.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				CE4C93EF1ECE98E100BE06F0 /* AccidentDetailModel.m in Sources */,
+				CE4F7DD81EE6AF08007E40E2 /* LRPlayVC.m in Sources */,
 				CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */,
 				CE5D30EB1EDB17330092F143 /* PartyModel.m in Sources */,
 				CE3A6C9E1EC9A6E300D7D9D5 /* UINavigationBar+BarItem.m in Sources */,
+				CE4F7DD11EE699CE007E40E2 /* ArtVideoUtil.m in Sources */,
 				CE57865F1ED4088700B4CC9F /* ZLThumbnailViewController.m in Sources */,
 				CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */,
 				CE57863D1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m in Sources */,
@@ -1446,12 +1499,14 @@
 				CE7F14E51EDEA0F900C7AEDA /* IllegalParkAddHeadView.m in Sources */,
 				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
+				CE4F7DCE1EE67FA6007E40E2 /* ArtVideoModel.m in Sources */,
 				CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */,
 				CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */,
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.mm in Sources */,
 				CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */,
 				CE4C93E91ECE7F1B00BE06F0 /* AccidentAPI.m in Sources */,
+				CE4F7DD41EE69A61007E40E2 /* NSString+ALi.m in Sources */,
 				CE321A911ED6804B00F842E4 /* LocationHelper.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
 				CEAF130C1ED9E3D4004A8E73 /* CountAccidentHelper.m in Sources */,
@@ -1470,6 +1525,7 @@
 				CE57865D1ED4088700B4CC9F /* ZLShowGifViewController.m in Sources */,
 				CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */,
 				CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */,
+				CE4F7DC31EE6775B007E40E2 /* LRVideoVC.m in Sources */,
 				CE57866B1ED4229E00B4CC9F /* AccidentAddFootView.m in Sources */,
 				CE57865A1ED4088700B4CC9F /* ZLPhotoModel.m in Sources */,
 				CE5786571ED4088700B4CC9F /* ZLPhotoBrowser.m in Sources */,
@@ -1480,6 +1536,7 @@
 				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
 				CE6C04E61EE5710D0053F4D8 /* VideoColectVC.m in Sources */,
+				CE4F7DCA1EE67F50007E40E2 /* ArtAnimationRecordView.m in Sources */,
 				CE5786591ED4088700B4CC9F /* ZLPhotoManager.m in Sources */,
 				CE7CF0371EE19EFA00E91080 /* FXBlurView.m in Sources */,
 				CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */,
@@ -1509,6 +1566,7 @@
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
 				CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */,
 				CE3E7E861ED1E7E800BBB5C0 /* VideoColectListModel.m in Sources */,
+				CE4F7DCB1EE67F50007E40E2 /* ArtPlayerView.m in Sources */,
 				CE39E0131ECF355200F284C1 /* AccidentCountModel.m in Sources */,
 				CE8834CE1ED1DBA600666CEE /* IllegalThroughAPI.m in Sources */,
 				C7E0DC0C1EC1A65C008ED063 /* LoginHomeVC.m in Sources */,

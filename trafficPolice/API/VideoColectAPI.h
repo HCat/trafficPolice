@@ -20,7 +20,7 @@
 @property (nonatomic,copy) NSString  *memo; //地址备注
 @property (nonatomic,copy) NSString  * file;                    //视频文件 文件格式
 @property (nonatomic,copy) NSString  * preview;  //预览图 文件格式
-@property (nonatomic,assign) NSInteger videoLength; //视频长度 整型，单位：秒
+@property (nonatomic,strong) NSNumber * videoLength; //视频长度 整型，单位：秒
 
 @end
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,9 +13,11 @@
             <connections>
                 <outlet property="btn_InputVideo" destination="cpE-c2-oMo" id="LIt-Cf-KKS"/>
                 <outlet property="btn_commit" destination="Muc-np-oky" id="tgv-mL-Jbo"/>
+                <outlet property="btn_video" destination="g4W-WZ-DvB" id="V2d-Hf-LCa"/>
                 <outlet property="lb_tvCount" destination="lrL-ju-1XB" id="8r5-uD-Ogz"/>
                 <outlet property="tf_address" destination="OwI-4I-8UB" id="LNb-JB-MwW"/>
                 <outlet property="tv_memo" destination="F1g-ix-FjY" id="ouB-7D-kge"/>
+                <outlet property="v_video" destination="N8i-dW-HDp" id="tzy-fT-6iv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -113,9 +115,15 @@
                         <action selector="handleBtnCommitClicked:" destination="-1" eventType="touchUpInside" id="WLY-OJ-Jtl"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrL-ju-1XB">
+                    <rect key="frame" x="270" y="216" width="37" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpE-c2-oMo">
-                    <rect key="frame" x="81.5" y="29" width="157" height="73"/>
-                    <inset key="titleEdgeInsets" minX="-85" minY="0.0" maxX="0.0" maxY="-110"/>
+                    <rect key="frame" x="81" y="29" width="157" height="73"/>
+                    <inset key="titleEdgeInsets" minX="-84" minY="0.0" maxX="0.0" maxY="-110"/>
                     <inset key="imageEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="上传视频" image="video_entry">
                         <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,12 +132,41 @@
                         <action selector="handlebtnInputVideoClicked:" destination="-1" eventType="touchUpInside" id="H7l-T7-1UU"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrL-ju-1XB">
-                    <rect key="frame" x="270" y="216" width="37" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8i-dW-HDp">
+                    <rect key="frame" x="83" y="11" width="154" height="123"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4W-WZ-DvB">
+                            <rect key="frame" x="0.0" y="0.0" width="154" height="123"/>
+                            <connections>
+                                <action selector="handleBtnVideoPlayClicked:" destination="-1" eventType="touchUpInside" id="58d-rX-TXr"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_playVideo" translatesAutoresizingMaskIntoConstraints="NO" id="yOT-vv-AWc">
+                            <rect key="frame" x="52" y="36" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="IO2-0y-7C7"/>
+                                <constraint firstAttribute="height" constant="50" id="mqZ-jm-s7i"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="154" id="7Iu-bz-KAf"/>
+                        <constraint firstAttribute="bottom" secondItem="g4W-WZ-DvB" secondAttribute="bottom" id="HRi-XD-opl"/>
+                        <constraint firstAttribute="height" constant="123" id="Ll2-lT-dkL"/>
+                        <constraint firstItem="yOT-vv-AWc" firstAttribute="centerY" secondItem="N8i-dW-HDp" secondAttribute="centerY" id="OOp-7G-Y1c"/>
+                        <constraint firstItem="yOT-vv-AWc" firstAttribute="centerX" secondItem="N8i-dW-HDp" secondAttribute="centerX" id="m3e-ch-Bml"/>
+                        <constraint firstItem="g4W-WZ-DvB" firstAttribute="leading" secondItem="N8i-dW-HDp" secondAttribute="leading" id="mVw-yH-XPD"/>
+                        <constraint firstItem="g4W-WZ-DvB" firstAttribute="top" secondItem="N8i-dW-HDp" secondAttribute="top" id="paY-QX-jo3"/>
+                        <constraint firstAttribute="trailing" secondItem="g4W-WZ-DvB" secondAttribute="trailing" id="zkM-BH-3jB"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -145,7 +182,9 @@
                 <constraint firstItem="lrL-ju-1XB" firstAttribute="centerY" secondItem="Qou-dH-eKA" secondAttribute="centerY" id="Qzt-Cc-Jhp"/>
                 <constraint firstItem="Muc-np-oky" firstAttribute="trailing" secondItem="F1g-ix-FjY" secondAttribute="trailing" id="Rj3-Dq-ASf"/>
                 <constraint firstAttribute="trailing" secondItem="CyR-sR-I7o" secondAttribute="trailing" constant="9" id="Xx9-KN-pae"/>
+                <constraint firstItem="N8i-dW-HDp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YCQ-1L-QiV"/>
                 <constraint firstItem="Qou-dH-eKA" firstAttribute="leading" secondItem="EUp-tx-3MA" secondAttribute="leading" id="cto-EM-tAd"/>
+                <constraint firstItem="N8i-dW-HDp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="11" id="fuO-j1-GBh"/>
                 <constraint firstItem="cpE-c2-oMo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gGQ-ck-aVf"/>
                 <constraint firstItem="CyR-sR-I7o" firstAttribute="centerY" secondItem="OwI-4I-8UB" secondAttribute="centerY" id="gV9-xA-jZn"/>
                 <constraint firstItem="F1g-ix-FjY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="13" id="i9f-TJ-1jb"/>
@@ -160,6 +199,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_playVideo" width="50" height="50"/>
         <image name="video_entry" width="83" height="73"/>
     </resources>
 </document>

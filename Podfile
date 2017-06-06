@@ -17,5 +17,7 @@ pod 'WechatOpenSDK'
 pod 'TOCropViewController'
 pod 'LLSimpleCamera'
 pod 'RealReachability'
+pod 'Masonry'
+
 
 end

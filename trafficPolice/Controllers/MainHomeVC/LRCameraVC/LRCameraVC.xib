@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -37,7 +37,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEo-Vl-87d">
-                    <rect key="frame" x="24" y="40" width="42" height="20"/>
+                    <rect key="frame" x="20" y="40" width="42" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="关闭" image="camera_flash_open"/>
                     <connections>
@@ -45,7 +45,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZ8-Vm-GhA">
-                    <rect key="frame" x="30" y="598" width="30" height="30"/>
+                    <rect key="frame" x="30" y="602" width="22" height="22"/>
                     <state key="normal" image="camera_close"/>
                     <connections>
                         <action selector="handlebtnCloseClicked:" destination="-1" eventType="touchUpInside" id="Vxt-E4-TBL"/>
@@ -126,7 +126,7 @@
         </view>
     </objects>
     <resources>
-        <image name="camera_close" width="30" height="30"/>
+        <image name="camera_close" width="22" height="22"/>
         <image name="camera_flash_open" width="17" height="20"/>
         <image name="camera_photo" width="18" height="15"/>
         <image name="camera_snap" width="80" height="80"/>
