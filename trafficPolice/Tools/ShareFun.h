@@ -36,6 +36,9 @@
 //通过UIView获取UIViewController
 + (UIViewController *)findViewController:(UIView *)sourceView;
 
+//通过UIView获取UIViewController
++ (UIViewController *)findViewController:(UIView *)sourceView withClass:(Class)classVC;
+
 //获取当前时间，格式是 yyyy-MM-dd HH:mm:ss
 + (NSString *)getCurrentTime;
 

@@ -12,6 +12,10 @@
 #import <RealReachability.h>
 #import <MJRefresh.h>
 #import "VideoColectAPI.h"
+#import "VideoListCell.h"
+#import "VideoDetailVC.h"
+#import "ListHomeVC.h"
+#import "ShareFun.h"
 
 @interface VideoListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -33,7 +37,7 @@
     
     self.arr_content = [NSMutableArray array];
     
-    [_collectionView registerNib:[UINib nibWithNibName:@"ListCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"ListCollectionCellID"];
+    [_collectionView registerNib:[UINib nibWithNibName:@"VideoListCell" bundle:nil] forCellWithReuseIdentifier:@"VideoListCellID"];
     [self initRefresh];
     
     self.index = 0;
@@ -155,7 +159,12 @@
 //返回视图的具体事例，我们的数据关联就是放在这里
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ListCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ListCollectionCellID" forIndexPath:indexPath];
+    VideoListCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoListCellID" forIndexPath:indexPath];
+    
+    if (_arr_content && _arr_content.count > 0) {
+        VideoColectListModel *model = _arr_content[indexPath.row];
+        cell.model = model;
+    }
     
     return cell;
 }
@@ -168,6 +177,17 @@
     NSLog(@"选中 : %ld--%ld",(long)indexPath.section,(long)indexPath.item);
     
     
+    
+    if (_arr_content && _arr_content.count > 0) {
+        
+        VideoColectListModel *model = _arr_content[indexPath.row];
+        
+        ListHomeVC *vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+    
+        VideoDetailVC * t_vc = [[VideoDetailVC alloc] init];
+        t_vc.path = model.path;
+        [vc_target.navigationController pushViewController:t_vc animated:YES];
+    }
     
 }
 
@@ -183,26 +203,26 @@
 // cell 尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    float width=(self.view.bounds.size.width-30)/2;
-    return CGSizeMake(width, 135);
+    float width=(self.view.bounds.size.width-6)/2;
+    return CGSizeMake(width, 153);
 }
 
 // 装载内容 cell 的内边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 8, 10, 8);
+    return UIEdgeInsetsMake(10, 0, 10, 0);
 }
 
 //最小行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10.0f;
+    return 5.0f;
 }
 
 //item最小间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 10.0f;
+    return 5.0f;
 }
 
 

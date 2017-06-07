@@ -11,13 +11,13 @@
 @interface VideoColectListModel : NSObject
 
 @property (nonatomic,copy) NSString * videoColectId ; //主键
-@property (nonatomic,copy) NSString * collectTime ; //采集时间
+@property (nonatomic,strong) NSNumber * collectTime ; //采集时间
 @property (nonatomic,copy) NSString * longitude ; //经度
 @property (nonatomic,copy) NSString * latitude; //纬度
 @property (nonatomic,copy) NSString * address ; //路名
 @property (nonatomic,copy) NSString * memo; //备注
 @property (nonatomic,copy) NSString * path ; //视频文件路径
 @property (nonatomic,copy) NSString * previewUrl; //预览图
-@property (nonatomic,copy) NSString * videoLength ; //视频长度
+@property (nonatomic,strong) NSNumber * videoLength ; //视频长度
 
 @end

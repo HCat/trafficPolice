@@ -298,6 +298,18 @@
     return target;
 }
 
++ (UIViewController *)findViewController:(UIView *)sourceView withClass:(Class)classVC{
+    id target=sourceView;
+    while (target) {
+        target = ((UIResponder *)target).nextResponder;
+        if ([target isKindOfClass:classVC]) {
+            break;
+        }
+    }
+    return target;
+
+}
+
 #pragma mark - 根据UIImageData获取UIImage是什么格式的
 
 + (NSString *)typeForImageData:(NSData *)data {
