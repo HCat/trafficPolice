@@ -93,6 +93,15 @@
 
 #pragma mark - buttonAction
 
+-(void)handleBtnBackClicked{
+    if (self.currentRecord) {
+         [ArtVideoUtil deleteVideo:self.currentRecord.videoAbsolutePath];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
 #pragma mark - 视频点击播放事件
 - (IBAction)handleBtnVideoPlayClicked:(id)sender {
     

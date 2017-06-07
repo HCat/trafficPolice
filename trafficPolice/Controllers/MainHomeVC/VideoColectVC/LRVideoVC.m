@@ -17,6 +17,7 @@
 #import "ArtVideoModel.h"
 
 #import "ArtVideoUtil.h"
+#import "UIButton+Block.h"
 
 #define DataOutputType 1 //代表是通过AVAssetWriter导出视频
 
@@ -598,6 +599,7 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
     if(!_btn_send){
         _btn_send = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btn_send setImage:[UIImage imageNamed:@"camera_send"] forState:UIControlStateNormal];
+        [_btn_send setEnlargeEdgeWithTop:25.f right:25.f bottom:25.f left:25.f];
         [_btn_send addTarget:self action:@selector(handleBtnSendClicked:) forControlEvents:UIControlEventTouchUpInside];
         _btn_send.alpha = 0.;
         [self.view addSubview:_btn_send];
@@ -610,6 +612,7 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
     if(!_btn_cancel){
         _btn_cancel = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btn_cancel setImage:[UIImage imageNamed:@"camera_close"] forState:UIControlStateNormal];
+        [_btn_cancel setEnlargeEdgeWithTop:25.f right:25.f bottom:25.f left:25.f];
         [_btn_cancel addTarget:self action:@selector(handleBtnCancelClicked:) forControlEvents:UIControlEventTouchUpInside];
         _btn_cancel.alpha = 0.;
         [self.view addSubview:_btn_cancel];
@@ -622,6 +625,7 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
     if(!_btn_back){
         _btn_back = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btn_back setImage:[UIImage imageNamed:@"camera_close"] forState:UIControlStateNormal];
+        [_btn_back setEnlargeEdgeWithTop:25.f right:25.f bottom:25.f left:25.f];
         [_btn_back addTarget:self action:@selector(handleBtnBackClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_btn_back];
     }
