@@ -7,6 +7,7 @@
 //
 
 #import "LRBaseRequest.h"
+#import "ShareFun.h"
 
 @implementation LRBaseRequest
 
@@ -105,9 +106,10 @@
         
        
     
-    }else{
+    }else if (self.responseModel.code == CODE_TOKENTIMEOUT){
         
-    
+        [ShowHUD showError:@"登录超时或者token失效" duration:1.2f inView:self.v_showHud config:nil];
+        [ShareFun LoginOut];
     }
     
 }
@@ -121,8 +123,16 @@
         LxDBAnyVar(self.error.localizedDescription);
     }
     
-    [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%d",self.responseStatusCode] duration:1.2f inView:self.v_showHud config:nil];
     
+    if (self.responseStatusCode == CODE_TOKENTIMEOUT){
+        
+        [ShowHUD showError:@"登录超时或者token失效" duration:1.2f inView:self.v_showHud config:nil];
+        [ShareFun LoginOut];
+        
+    }else{
+        [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%d",self.responseStatusCode] duration:1.2f inView:self.v_showHud config:nil];
+    }
+
 }
 
 + (void)setupRequestFilters:(NSDictionary *)arguments{

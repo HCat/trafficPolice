@@ -78,4 +78,9 @@
 + (BOOL)isPermissionForIllegalList;         //违章和违停权限
 + (BOOL)isPermissionForVideoCollectList;    //视频录入权限
 
+//注销需要执行的操作
+
++ (void)LoginOut;
+
+
 @end

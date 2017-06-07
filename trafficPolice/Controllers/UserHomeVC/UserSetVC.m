@@ -184,15 +184,7 @@
 
 - (IBAction)UserLoginOutAction:(id)sender {
     
-    [LRBaseRequest clearRequestFilters];
-    [ShareValue sharedDefault].token = nil;
-    [ShareValue sharedDefault].phone = nil;
-    [UserModel setUserModel:nil];
-    
-    ApplicationDelegate.vc_tabBar = nil;
-    LoginHomeVC *t_vc = [LoginHomeVC new];
-    UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:t_vc];
-    ApplicationDelegate.window.rootViewController = t_nav;
+    [ShareFun LoginOut];
     
 }
 

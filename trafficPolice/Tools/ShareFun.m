@@ -14,6 +14,7 @@
 
 #import "FastAccidentAPI.h"
 #import "CommonAPI.h"
+#import "LoginHomeVC.h"
 
 
 @implementation ShareFun
@@ -512,7 +513,7 @@
 
 }
 
-
+#pragma mark - 获取路名通用值
 + (void)getCommonRoad{
 
     CommonGetRoadManger *manger = [[CommonGetRoadManger alloc] init];
@@ -527,6 +528,21 @@
         
     }];
 
+}
+
+//注销需要执行的操作
+
++ (void)LoginOut{
+    
+    [LRBaseRequest clearRequestFilters];
+    [ShareValue sharedDefault].token = nil;
+    [ShareValue sharedDefault].phone = nil;
+    [UserModel setUserModel:nil];
+    
+    ApplicationDelegate.vc_tabBar = nil;
+    LoginHomeVC *t_vc = [LoginHomeVC new];
+    UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:t_vc];
+    ApplicationDelegate.window.rootViewController = t_nav;
 
 }
 
