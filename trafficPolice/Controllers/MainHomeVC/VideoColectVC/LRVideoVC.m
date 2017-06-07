@@ -652,7 +652,7 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
 - (void)handleBtnSendClicked:(id)sender{
 
     if (self.recordComplete) {
-        self.recordComplete(self.currentRecord.videoAbsolutePath,self.currentRecord.thumAbsolutePath);
+        self.recordComplete(self.currentRecord);
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

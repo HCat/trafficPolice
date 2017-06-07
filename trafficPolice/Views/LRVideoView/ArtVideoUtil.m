@@ -79,9 +79,12 @@
 
 + (ArtVideoModel *)createNewVideo {
     NSDate *currentDate = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone]; // 获得系统的时区
+    NSTimeInterval time = [zone secondsFromGMTForDate:currentDate];// 以秒为单位返回当前时间与系统格林尼治时间的差
+    NSDate *dateNow = [currentDate dateByAddingTimeInterval:time];// 然后把差的时间加上,就是当前系统准确的时间
     NSDateFormatter *formate = [[NSDateFormatter alloc] init];
     formate.dateFormat = @"yyyy-MM-dd_HH:mm:ss";
-    NSString *videoName = [[formate stringFromDate:currentDate] MD5String];
+    NSString *videoName = [[formate stringFromDate:dateNow] MD5String];
     NSString *videoPath = [self getVideoPath];
     
     ArtVideoModel *model = [[ArtVideoModel alloc] init];
@@ -91,7 +94,7 @@
     model.videoAbsolutePath = [videoPath stringByAppendingPathComponent:model.videoRelativePath];
     model.thumAbsolutePath = [videoPath stringByAppendingPathComponent:model.thumRelativePath];
     
-    model.recordTime = currentDate;
+    model.recordTime = dateNow;
     return model;
 }
 

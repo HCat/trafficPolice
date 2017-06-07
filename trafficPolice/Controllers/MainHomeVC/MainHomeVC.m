@@ -47,6 +47,7 @@
         
     };
     
+    [[LocationHelper sharedDefault] startLocation];
 
 }
 

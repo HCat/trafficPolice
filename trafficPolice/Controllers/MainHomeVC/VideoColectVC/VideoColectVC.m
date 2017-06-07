@@ -13,6 +13,9 @@
 #import "LRVideoVC.h"
 #import "LRPlayVC.h"
 
+#import "ArtVideoModel.h"
+#import "ArtVideoUtil.h"
+
 @interface VideoColectVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_InputVideo;
@@ -24,25 +27,16 @@
 @property (strong,nonatomic) VideoColectSaveParam *param;
 @property (nonatomic,assign) BOOL isCanCommit;
 
-@property (nonatomic,copy) NSString *videoUrl;
-@property (nonatomic,copy) NSString *thumUrl;
-
 @property (weak, nonatomic) IBOutlet UIView *v_video;
 @property (weak, nonatomic) IBOutlet UIButton *btn_video;
+
+
+@property (nonatomic,strong) ArtVideoModel *currentRecord;
 
 
 @end
 
 @implementation VideoColectVC
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    if (self = [super initWithCoder:aDecoder]) {
-        
-    }
-    return self;
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,7 +74,6 @@
     _tf_address.leftViewMode = UITextFieldViewModeAlways;
     _tf_address.leftView = leftview;
     
-    
 }
 
 #pragma mark - set && get 
@@ -96,24 +89,20 @@
         _btn_commit.enabled = NO;
         [_btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
     }
-
-
-
 }
 
 #pragma mark - buttonAction
 
-
+#pragma mark - 视频点击播放事件
 - (IBAction)handleBtnVideoPlayClicked:(id)sender {
     
     LRPlayVC *t_vc = [[LRPlayVC alloc] init];
-    t_vc.videoUrl = self.videoUrl;
+    t_vc.videoUrl = self.currentRecord.videoAbsolutePath;
     WS(weakSelf);
     t_vc.deleteBlock = ^{
         SW(strongSelf, weakSelf);
         strongSelf.v_video.hidden =YES;
-        strongSelf.videoUrl = nil;
-        strongSelf.thumUrl = nil;
+        strongSelf.currentRecord = nil;
         strongSelf.isCanCommit = NO;
     };
     [self.navigationController pushViewController:t_vc animated:YES];
@@ -126,12 +115,11 @@
     
     WS(weakSelf);
     LRVideoVC *t_videoVC = [[LRVideoVC alloc] init];
-    t_videoVC.recordComplete = ^(NSString *aVideoUrl, NSString *aThumUrl) {
+    t_videoVC.recordComplete = ^(ArtVideoModel *currentRecord) {
         SW(strongSelf, weakSelf);
-        strongSelf.videoUrl = aVideoUrl;
-        strongSelf.thumUrl = aThumUrl;
+        strongSelf.currentRecord = currentRecord;
         strongSelf.v_video.hidden = NO;
-        [strongSelf.btn_video setImage:[UIImage imageWithContentsOfFile:self.thumUrl] forState:UIControlStateNormal];
+        [strongSelf.btn_video setImage:[UIImage imageWithContentsOfFile:strongSelf.currentRecord.thumAbsolutePath] forState:UIControlStateNormal];
         strongSelf.isCanCommit = YES;
     };
     [self presentViewController:t_videoVC
@@ -152,18 +140,38 @@
 - (IBAction)handleBtnCommitClicked:(id)sender {
     
     VideoColectSaveManger *manger = [[VideoColectSaveManger alloc] init];
-    manger.param = _param;
     
+    if (self.currentRecord && self.currentRecord.videoAbsolutePath.length > 0) {
+        if ([ArtVideoUtil existVideo]) {
+            self.currentRecord.fileData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.currentRecord.videoAbsolutePath]];
+            self.currentRecord.fileName = self.currentRecord.videoRelativePath;
+            self.currentRecord.name  = @"file";
+            self.currentRecord.mimeType = @"video/mpeg";
+            self.param.file = self.currentRecord;
+            ImageFileInfo *imageInfo = [[ImageFileInfo alloc] initWithImage:[UIImage imageWithContentsOfFile:self.currentRecord.thumAbsolutePath] withName:@"preview"];
+            self.param.preview = imageInfo;
+            self.param.videoLength = @([ArtVideoUtil getVideoLength:[NSURL fileURLWithPath:self.currentRecord.videoAbsolutePath]]);
+        }
+    }else{
+        return;
+    }
+    
+    manger.param = _param;
+    manger.successMessage = @"提交成功";
+    manger.failMessage = @"提交失败";
+
     ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中..." inView:ApplicationDelegate.window config:nil];
     
     WS(weakSelf);
     [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         [hud hide];
         SW(strongSelf, weakSelf);
-        
-        
-        
-        
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            
+            [ArtVideoUtil deleteVideo:strongSelf.currentRecord.videoAbsolutePath];
+            [strongSelf.navigationController popViewControllerAnimated:YES];
+        }
+    
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [hud hide];
     }];
@@ -175,7 +183,6 @@
 #pragma mark - 重新定位之后的通知
 
 -(void)locationChange{
-    //这里待优化
     _tf_address.text = [LocationHelper sharedDefault].address;
     _param.latitude = @([LocationHelper sharedDefault].latitude);
     _param.longitude = @([LocationHelper sharedDefault].longitude);
@@ -197,14 +204,5 @@
 
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

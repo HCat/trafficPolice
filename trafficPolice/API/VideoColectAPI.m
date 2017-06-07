@@ -7,6 +7,7 @@
 //
 
 #import "VideoColectAPI.h"
+#import <AFNetworking.h>
 
 #pragma mark - 警情反馈采集增加API
 
@@ -45,7 +46,9 @@
     
     return ^(id<AFMultipartFormData> formData) {
         
-       [formData appendPartWithFileData:filesImage.fileData name:filesImage.name fileName:filesImage.fileName mimeType:filesImage.mimeType];
+       [formData appendPartWithFileData:self.param.file.fileData name:self.param.file.name fileName:self.param.file.fileName mimeType:self.param.file.mimeType];
+        
+       [formData appendPartWithFileData:self.param.preview.fileData name:self.param.preview.name fileName:self.param.preview.fileName mimeType:self.param.preview.mimeType];
     };
 }
 

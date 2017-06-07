@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "ArtVideoModel.h"
 
 @interface LRVideoVC : BaseViewController
 
 @property (nonatomic, assign) BOOL savePhotoAlbum;
 
-@property (nonatomic, copy) void(^recordComplete)(NSString * aVideoUrl,NSString *aThumUrl);
+@property (nonatomic, copy) void(^recordComplete)(ArtVideoModel *currentRecord);
 
 @end

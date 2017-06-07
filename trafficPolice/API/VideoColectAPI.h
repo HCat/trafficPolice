@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LRBaseRequest.h"
 #import "VideoColectListModel.h"
+#import "ImageFileInfo.h"
+#import "ArtVideoModel.h"
 
 #pragma mark - 警情反馈采集增加API
 
@@ -18,8 +20,8 @@
 @property (nonatomic,strong) NSNumber *latitude; //纬度
 @property (nonatomic,copy) NSString  *address; //详细地址 定位自动获取(不可修改)
 @property (nonatomic,copy) NSString  *memo; //地址备注
-@property (nonatomic,copy) NSString  * file;                    //视频文件 文件格式
-@property (nonatomic,copy) NSString  * preview;  //预览图 文件格式
+@property (nonatomic,strong) ArtVideoModel  * file;                    //视频文件 文件格式
+@property (nonatomic,strong) ImageFileInfo  * preview;  //预览图 文件格式
 @property (nonatomic,strong) NSNumber * videoLength; //视频长度 整型，单位：秒
 
 @end

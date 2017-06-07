@@ -64,8 +64,6 @@
 - (void)requestCompleteFilter{
     [super requestCompleteFilter];
     
-    
-    
     self.responseModel = [LRBaseResponse modelWithDictionary:self.responseJSONObject];
     
     if (_isLog) {
