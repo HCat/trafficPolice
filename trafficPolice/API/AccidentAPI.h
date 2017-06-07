@@ -140,7 +140,7 @@
 
 @interface AccidentListPagingReponse : NSObject
 
-@property (nonatomic,copy) NSArray *list;       //包含AccidentListModel对象
+@property (nonatomic,copy) NSArray<AccidentListModel *> *list;       //包含AccidentListModel对象
 @property (nonatomic,assign) NSInteger total;   //总数
 
 

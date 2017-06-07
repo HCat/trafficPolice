@@ -147,6 +147,7 @@
     if (self.placeholderView) {
         [self.placeholderView removeFromSuperview];
         self.placeholderView.hidden = YES;
+        self.placeholderView = nil;
         
     }
 }

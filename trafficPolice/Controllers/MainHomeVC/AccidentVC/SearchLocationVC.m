@@ -109,7 +109,6 @@
             strongSelf.tb_content.isNetAvailable = YES;
             [strongSelf.tb_content reloadData];
         }
-
     }];
 
 }

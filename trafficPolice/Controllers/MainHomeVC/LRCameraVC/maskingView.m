@@ -49,7 +49,7 @@
         if(_type == 1){
             myRect =CGRectMake(ScreenWidth/2-(ScreenWidth*3/10),ScreenHeight/2-(ScreenHeight/4),ScreenWidth*3/5, ScreenHeight/2);
         }else if (_type == 2){
-            myRect =CGRectMake(ScreenWidth/2-(ScreenWidth*3/10),ScreenHeight/2-(ScreenHeight*2/6),ScreenWidth*3/5, ScreenHeight * 2/3);
+            myRect =CGRectMake(ScreenWidth/2-(ScreenWidth*2/6),ScreenHeight/2-(ScreenHeight*2/6),ScreenWidth*2/3, ScreenHeight * 2/3);
         }
         
         [self setNeedsDisplay];
@@ -72,7 +72,6 @@
             weakSelf.isClearnBorder = NO;
         });
         
-        
     }
 
 }
@@ -87,7 +86,7 @@
         myRect =CGRectMake(ScreenWidth/2-(ScreenWidth * 4/10),ScreenHeight/2-(ScreenHeight/10),ScreenWidth*4/5, ScreenHeight/5);
        
     }else if (_type == 2){
-        myRect =CGRectMake(ScreenWidth/2-(ScreenWidth * 4/10),ScreenHeight/2-(ScreenHeight/6),ScreenWidth * 4/5, ScreenHeight/3);
+        myRect =CGRectMake(ScreenWidth/2-(ScreenWidth * 5/12),ScreenHeight/2-(ScreenHeight/6),ScreenWidth * 5/6, ScreenHeight/3);
     }
     
     

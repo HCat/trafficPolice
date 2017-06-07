@@ -249,10 +249,27 @@
     return current;
 }
 
+//#pragma mark - 时间戳转换成时间 
+//
+//+ (NSString *)timestampGetTime:(NSNumber *)time{
+//
+//    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:[time doubleValue] / 1000];
+//    NSLog(@"date:%@",[detaildate description]);
+//    //实例化一个NSDateFormatter对象
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    //设定时间格式,这里可以设置成自己需要的格式
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    
+//    NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+//    
+//    return currentDateStr;
+//
+//}
+
 
 #pragma mark - 获取时间挫转换成时间：格式为yyyy-MM-dd HH:mm:ss
 
-+ (NSString *)timeWithTimeIntervalString:(NSString *)timeString
++ (NSString *)timeWithTimeInterval:(NSNumber *)timeString
 {
     // 格式化时间
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];

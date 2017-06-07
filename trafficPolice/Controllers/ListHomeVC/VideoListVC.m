@@ -1,38 +1,69 @@
 //
-//  ListCollectionVC.m
+//  VideoListVC.m
 //  trafficPolice
 //
-//  Created by hcat-89 on 2017/5/11.
+//  Created by hcat on 2017/6/7.
 //  Copyright © 2017年 Degal. All rights reserved.
 //
 
-#import "ListCollectionVC.h"
+#import "VideoListVC.h"
 #import "ListCollectionCell.h"
+#import "UICollectionView+Lr_Placeholder.h"
+#import <RealReachability.h>
 #import <MJRefresh.h>
+#import "VideoColectAPI.h"
 
-@interface ListCollectionVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface VideoListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionFlowLayer;
+
+@property (nonatomic,strong) NSMutableArray *arr_content;
+
+@property (nonatomic,assign) NSInteger index; //加载更多数据索引
 
 @end
 
-@implementation ListCollectionVC
+@implementation VideoListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _collectionView.isNeedPlaceholderView = YES;
+    _collectionView.firstReload = YES;
+    
+    self.arr_content = [NSMutableArray array];
+    
     [_collectionView registerNib:[UINib nibWithNibName:@"ListCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"ListCollectionCellID"];
     [self initRefresh];
+    
+    self.index = 0;
     [self.collectionView.mj_header beginRefreshing];
     
-    // Do any additional setup after loading the view from its nib.
+    WS(weakSelf);
+    
+    //点击重新加载之后的处理
+    [_collectionView setReloadBlock:^{
+        SW(strongSelf, weakSelf);
+        strongSelf.collectionView.isNetAvailable = NO;
+        strongSelf.index = 0;
+        [strongSelf.collectionView.mj_header beginRefreshing];
+    }];
+    
+    //网络断开之后重新连接之后的处理
+    self.networkChangeBlock = ^{
+        SW(strongSelf, weakSelf);
+        strongSelf.collectionView.isNetAvailable = NO;
+        strongSelf.index = 0;
+        [strongSelf.collectionView.mj_header beginRefreshing];
+    };
+
 }
 
 #pragma mark - 创建下拉刷新，以及上拉加载更多
 
 - (void)initRefresh{
     
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     [header setTitle:@"下拉查询" forState:MJRefreshStateIdle];
     [header setTitle:@"松手开始查询" forState:MJRefreshStatePulling];
     [header setTitle:@"查询中..." forState:MJRefreshStateRefreshing];
@@ -43,38 +74,70 @@
     self.collectionView.mj_header = header;
     
     
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
     [footer setTitle:@"" forState:MJRefreshStateIdle];
     [footer setTitle:@"加载更多..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"— 没有更多内容了 —" forState:MJRefreshStateNoMoreData];
     
     footer.stateLabel.font = [UIFont systemFontOfSize:15];
+    footer.stateLabel.textColor = UIColorFromRGB(0xa6a6a6);
     self.collectionView.mj_footer = footer;
     self.collectionView.mj_footer.automaticallyHidden = YES;
-
+    
 }
 
 #pragma mark - 加载新数据
 
-- (void)loadNewData{
+- (void)loadData{
     
-    [self.collectionView.mj_header endRefreshing];
+    WS(weakSelf);
     
+    if (_index == 0) {
+        if (_arr_content && _arr_content.count > 0) {
+            [_arr_content removeAllObjects];
+        }
+    }
+    
+    VideoColectListPagingParam *param = [[VideoColectListPagingParam alloc] init];
+    param.start = _index;
+    param.length = 10;
+    VideoColectListPagingManger *manger = [[VideoColectListPagingManger alloc] init];
+    manger.param = param;
+    manger.isNeedShowHud = NO;
+    
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        [strongSelf.collectionView.mj_header endRefreshing];
+        [strongSelf.collectionView.mj_footer endRefreshing];
+        
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            
+            [strongSelf.arr_content addObjectsFromArray:manger.videoColectListPagingReponse.list];
+            if (strongSelf.arr_content.count == manger.videoColectListPagingReponse.total) {
+                [strongSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+            }else{
+                strongSelf.index += 1;
+            }
+            [strongSelf.collectionView reloadData];
+        }else{
+            NSString *t_errString = [NSString stringWithFormat:@"网络错误:code:%d msg:%@",manger.responseModel.code,manger.responseModel.msg];
+            [ShowHUD showError:t_errString duration:1.5 inView:strongSelf.view config:nil];
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf,weakSelf);
+        [strongSelf.collectionView.mj_header endRefreshing];
+        [strongSelf.collectionView.mj_footer endRefreshing];
+        
+        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+        if (status == RealStatusNotReachable) {
+            strongSelf.collectionView.isNetAvailable = YES;
+            [strongSelf.collectionView reloadData];
+        }
+    }];
     
 }
-
-#pragma mark - 加载更多数据
-
-- (void)loadMoreData{
-    
-    [self.collectionView.mj_footer endRefreshing];
-    // [self.tb_content.mj_footer endRefreshingWithNoMoreData];
-    
-    
-}
-
-
 
 #pragma mark - UICollectionView Data Source
 
@@ -87,7 +150,7 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    return 40;
+    return _arr_content.count;
 }
 //返回视图的具体事例，我们的数据关联就是放在这里
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -143,7 +206,7 @@
 }
 
 
-#pragma mark -
+#pragma mark - dealloc
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -152,8 +215,8 @@
 
 - (void)dealloc{
 
-
-
+    LxPrintf(@"VideoListVC dealloc");
+    
 }
 
 /*

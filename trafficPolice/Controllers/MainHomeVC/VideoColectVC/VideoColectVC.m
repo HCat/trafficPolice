@@ -198,6 +198,14 @@
     _param.address = [LocationHelper sharedDefault].address;
 }
 
+#pragma mark - 实时监听UITextView内容的变化
+//只能监听键盘输入时的变化(setText: 方式无法监听),如果想修复可以参考http://www.jianshu.com/p/75355acdd058
+- (void)textViewDidChange:(FSTextView *)textView{
+    
+    _param.memo = textView.formatText;
+    
+}
+
 
 #pragma mark - dealloc
 

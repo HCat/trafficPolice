@@ -7,11 +7,11 @@
 //
 
 #import "ListHomeVC.h"
-#import "ListBaseVC.h"
-#import "ListCollectionVC.h"
+
 #import "ShareFun.h"
-
-
+#import "AccidentListVC.h"
+#import "IllegalListVC.h"
+#import "VideoListVC.h"
 
 
 @interface ListHomeVC ()
@@ -47,9 +47,11 @@
     NSMutableArray *t_arr = [NSMutableArray array];
     
     if ([ShareFun isPermissionForAccidentList]) {
-        ListBaseVC *vc_first = [ListBaseVC new];
+        AccidentListVC *vc_first = [AccidentListVC new];
+        vc_first.accidentType = AccidentTypeAccident;
         vc_first.title = @"事故";
-        ListBaseVC *vc_second = [ListBaseVC new];
+        AccidentListVC *vc_second = [AccidentListVC new];
+        vc_second.accidentType = AccidentTypeFastAccident;
         vc_second.title = @"快处";
         [t_arr addObject:vc_first];
         [t_arr addObject:vc_second];
@@ -57,9 +59,11 @@
     
     if ([ShareFun isPermissionForIllegalList]) {
         
-        ListBaseVC *vc_third = [ListBaseVC new];
+        IllegalListVC *vc_third = [IllegalListVC new];
+        vc_third.illegalType = IllegalTypePark;
         vc_third.title = @"违停";
-        ListBaseVC *vc_foured = [ListBaseVC new];
+        IllegalListVC *vc_foured = [IllegalListVC new];
+        vc_foured.illegalType = IllegalTypeThrough;
         vc_foured.title = @"闯禁令";
         [t_arr addObject:vc_third];
         [t_arr addObject:vc_foured];
@@ -67,7 +71,7 @@
 
     if ([ShareFun isPermissionForVideoCollectList]) {
         
-        ListCollectionVC *vc_firved = [ListCollectionVC new];
+        VideoListVC *vc_firved = [VideoListVC new];
         vc_firved.title = @"视频";
         [t_arr addObject:vc_firved];
     }

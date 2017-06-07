@@ -12,8 +12,6 @@
 		C7621D0C1EC413A300980058 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D0B1EC413A300980058 /* NSObject+Swizzling.m */; };
 		C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D0E1EC4192C00980058 /* UIButton+NoRepeatClick.m */; };
 		C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D121EC43CD400980058 /* LRPageMenu.m */; };
-		C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D151EC43F0C00980058 /* ListBaseVC.m */; };
-		C7621D181EC43F0C00980058 /* ListBaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7621D161EC43F0C00980058 /* ListBaseVC.xib */; };
 		C7621D1B1EC44D2800980058 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = C7621D1A1EC44D2800980058 /* UINavigationBar+Awesome.m */; };
 		C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138A91EC2C29300A124B7 /* ImagePlayerView.m */; };
 		C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C78138AE1EC2E79E00A124B7 /* MainHomeCell.m */; };
@@ -45,6 +43,10 @@
 		C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E0DC221EC1AF48008ED063 /* UserHomeVC.m */; };
 		C7E0DC251EC1AF48008ED063 /* UserHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7E0DC231EC1AF48008ED063 /* UserHomeVC.xib */; };
 		CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */; };
+		CE0E990D1EE7AE56009D25B4 /* AccidentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E990B1EE7AE56009D25B4 /* AccidentCell.m */; };
+		CE0E990E1EE7AE56009D25B4 /* AccidentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0E990C1EE7AE56009D25B4 /* AccidentCell.xib */; };
+		CE0E99121EE7B148009D25B4 /* AccidentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E99101EE7B148009D25B4 /* AccidentListVC.m */; };
+		CE0E99131EE7B148009D25B4 /* AccidentListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0E99111EE7B148009D25B4 /* AccidentListVC.xib */; };
 		CE321A911ED6804B00F842E4 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE321A901ED6804A00F842E4 /* LocationHelper.m */; };
 		CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */; };
 		CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */; };
@@ -182,10 +184,14 @@
 		CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8834D31ED1E62800666CEE /* VideoColectAPI.m */; };
 		CE92B2961ED577F600563749 /* BottomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE92B2951ED577F600563749 /* BottomPickerView.m */; };
 		CE92B2981ED5780400563749 /* BottomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE92B2971ED5780400563749 /* BottomPickerView.xib */; };
-		CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51551EC49C48004A7611 /* ListTableCell.m */; };
-		CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51561EC49C48004A7611 /* ListTableCell.xib */; };
-		CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */; };
-		CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */; };
+		CE9B37791EE7CBA700CA7417 /* FHHFPSIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9B37761EE7CBA700CA7417 /* FHHFPSIndicator.m */; };
+		CE9B377A1EE7CBA700CA7417 /* UIWindow+FHH.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9B37781EE7CBA700CA7417 /* UIWindow+FHH.m */; };
+		CE9B377E1EE7F35600CA7417 /* IllegalListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9B377C1EE7F35600CA7417 /* IllegalListVC.m */; };
+		CE9B377F1EE7F35600CA7417 /* IllegalListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9B377D1EE7F35600CA7417 /* IllegalListVC.xib */; };
+		CE9B37831EE7F4C600CA7417 /* IllegalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9B37811EE7F4C600CA7417 /* IllegalCell.m */; };
+		CE9B37841EE7F4C600CA7417 /* IllegalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9B37821EE7F4C600CA7417 /* IllegalCell.xib */; };
+		CE9B37881EE800FD00CA7417 /* VideoListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9B37861EE800FD00CA7417 /* VideoListVC.m */; };
+		CE9B37891EE800FD00CA7417 /* VideoListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9B37871EE800FD00CA7417 /* VideoListVC.xib */; };
 		CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */; };
 		CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */; };
 		CEAF130C1ED9E3D4004A8E73 /* CountAccidentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF130B1ED9E3D4004A8E73 /* CountAccidentHelper.m */; };
@@ -206,9 +212,6 @@
 		C7621D0E1EC4192C00980058 /* UIButton+NoRepeatClick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+NoRepeatClick.m"; sourceTree = "<group>"; };
 		C7621D111EC43CD400980058 /* LRPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRPageMenu.h; sourceTree = "<group>"; };
 		C7621D121EC43CD400980058 /* LRPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRPageMenu.m; sourceTree = "<group>"; };
-		C7621D141EC43F0C00980058 /* ListBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListBaseVC.h; sourceTree = "<group>"; };
-		C7621D151EC43F0C00980058 /* ListBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListBaseVC.m; sourceTree = "<group>"; };
-		C7621D161EC43F0C00980058 /* ListBaseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListBaseVC.xib; sourceTree = "<group>"; };
 		C7621D191EC44D2800980058 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		C7621D1A1EC44D2800980058 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		C78138A81EC2C29300A124B7 /* ImagePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayerView.h; sourceTree = "<group>"; };
@@ -264,6 +267,12 @@
 		C7E0DC261EC1B9E7008ED063 /* UtilsMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
 		CE08F7211ED7FAAF00D481DF /* ImageFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFileInfo.h; sourceTree = "<group>"; };
 		CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFileInfo.m; sourceTree = "<group>"; };
+		CE0E990A1EE7AE56009D25B4 /* AccidentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentCell.h; sourceTree = "<group>"; };
+		CE0E990B1EE7AE56009D25B4 /* AccidentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentCell.m; sourceTree = "<group>"; };
+		CE0E990C1EE7AE56009D25B4 /* AccidentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentCell.xib; sourceTree = "<group>"; };
+		CE0E990F1EE7B148009D25B4 /* AccidentListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentListVC.h; sourceTree = "<group>"; };
+		CE0E99101EE7B148009D25B4 /* AccidentListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentListVC.m; sourceTree = "<group>"; };
+		CE0E99111EE7B148009D25B4 /* AccidentListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentListVC.xib; sourceTree = "<group>"; };
 		CE321A8F1ED6804A00F842E4 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
 		CE321A901ED6804A00F842E4 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
 		CE343EC91ECA8DC100C8E31B /* UITableView+Lr_Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Lr_Placeholder.h"; sourceTree = "<group>"; };
@@ -505,12 +514,19 @@
 		CE92B2941ED577F600563749 /* BottomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomPickerView.h; sourceTree = "<group>"; };
 		CE92B2951ED577F600563749 /* BottomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomPickerView.m; sourceTree = "<group>"; };
 		CE92B2971ED5780400563749 /* BottomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomPickerView.xib; sourceTree = "<group>"; };
-		CE9C51541EC49C48004A7611 /* ListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableCell.h; sourceTree = "<group>"; };
-		CE9C51551EC49C48004A7611 /* ListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableCell.m; sourceTree = "<group>"; };
-		CE9C51561EC49C48004A7611 /* ListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableCell.xib; sourceTree = "<group>"; };
-		CE9C515E1EC4B6E0004A7611 /* ListCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionVC.h; sourceTree = "<group>"; };
-		CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionVC.m; sourceTree = "<group>"; };
-		CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionVC.xib; sourceTree = "<group>"; };
+		CE9B37751EE7CBA700CA7417 /* FHHFPSIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHHFPSIndicator.h; sourceTree = "<group>"; };
+		CE9B37761EE7CBA700CA7417 /* FHHFPSIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHHFPSIndicator.m; sourceTree = "<group>"; };
+		CE9B37771EE7CBA700CA7417 /* UIWindow+FHH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+FHH.h"; sourceTree = "<group>"; };
+		CE9B37781EE7CBA700CA7417 /* UIWindow+FHH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+FHH.m"; sourceTree = "<group>"; };
+		CE9B377B1EE7F35600CA7417 /* IllegalListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalListVC.h; sourceTree = "<group>"; };
+		CE9B377C1EE7F35600CA7417 /* IllegalListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalListVC.m; sourceTree = "<group>"; };
+		CE9B377D1EE7F35600CA7417 /* IllegalListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalListVC.xib; sourceTree = "<group>"; };
+		CE9B37801EE7F4C600CA7417 /* IllegalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalCell.h; sourceTree = "<group>"; };
+		CE9B37811EE7F4C600CA7417 /* IllegalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalCell.m; sourceTree = "<group>"; };
+		CE9B37821EE7F4C600CA7417 /* IllegalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalCell.xib; sourceTree = "<group>"; };
+		CE9B37851EE800FD00CA7417 /* VideoListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListVC.h; sourceTree = "<group>"; };
+		CE9B37861EE800FD00CA7417 /* VideoListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListVC.m; sourceTree = "<group>"; };
+		CE9B37871EE800FD00CA7417 /* VideoListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoListVC.xib; sourceTree = "<group>"; };
 		CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionCell.h; sourceTree = "<group>"; };
 		CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionCell.m; sourceTree = "<group>"; };
 		CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionCell.xib; sourceTree = "<group>"; };
@@ -698,6 +714,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE9B37741EE7CBA700CA7417 /* FHHFPSIndicator */,
 				CE7CF0311EE19EFA00E91080 /* SRAlertView */,
 				CE5ACBF81EE0345400B60089 /* LLPhotoBrowser */,
 				CE6F9C271ED92C2100ADDA23 /* LSStatusBarHUD */,
@@ -834,12 +851,15 @@
 				C7E0DC1C1EC1AF2D008ED063 /* ListHomeVC.h */,
 				C7E0DC1D1EC1AF2D008ED063 /* ListHomeVC.m */,
 				C7E0DC1E1EC1AF2D008ED063 /* ListHomeVC.xib */,
-				C7621D141EC43F0C00980058 /* ListBaseVC.h */,
-				C7621D151EC43F0C00980058 /* ListBaseVC.m */,
-				C7621D161EC43F0C00980058 /* ListBaseVC.xib */,
-				CE9C515E1EC4B6E0004A7611 /* ListCollectionVC.h */,
-				CE9C515F1EC4B6E0004A7611 /* ListCollectionVC.m */,
-				CE9C51601EC4B6E0004A7611 /* ListCollectionVC.xib */,
+				CE0E990F1EE7B148009D25B4 /* AccidentListVC.h */,
+				CE0E99101EE7B148009D25B4 /* AccidentListVC.m */,
+				CE0E99111EE7B148009D25B4 /* AccidentListVC.xib */,
+				CE9B377B1EE7F35600CA7417 /* IllegalListVC.h */,
+				CE9B377C1EE7F35600CA7417 /* IllegalListVC.m */,
+				CE9B377D1EE7F35600CA7417 /* IllegalListVC.xib */,
+				CE9B37851EE800FD00CA7417 /* VideoListVC.h */,
+				CE9B37861EE800FD00CA7417 /* VideoListVC.m */,
+				CE9B37871EE800FD00CA7417 /* VideoListVC.xib */,
 			);
 			path = ListHomeVC;
 			sourceTree = "<group>";
@@ -1257,15 +1277,29 @@
 			path = IllegalParkVC;
 			sourceTree = "<group>";
 		};
+		CE9B37741EE7CBA700CA7417 /* FHHFPSIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				CE9B37751EE7CBA700CA7417 /* FHHFPSIndicator.h */,
+				CE9B37761EE7CBA700CA7417 /* FHHFPSIndicator.m */,
+				CE9B37771EE7CBA700CA7417 /* UIWindow+FHH.h */,
+				CE9B37781EE7CBA700CA7417 /* UIWindow+FHH.m */,
+			);
+			path = FHHFPSIndicator;
+			sourceTree = "<group>";
+		};
 		CE9C51531EC49C2C004A7611 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
-				CE9C51541EC49C48004A7611 /* ListTableCell.h */,
-				CE9C51551EC49C48004A7611 /* ListTableCell.m */,
-				CE9C51561EC49C48004A7611 /* ListTableCell.xib */,
 				CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */,
 				CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */,
 				CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */,
+				CE0E990A1EE7AE56009D25B4 /* AccidentCell.h */,
+				CE0E990B1EE7AE56009D25B4 /* AccidentCell.m */,
+				CE0E990C1EE7AE56009D25B4 /* AccidentCell.xib */,
+				CE9B37801EE7F4C600CA7417 /* IllegalCell.h */,
+				CE9B37811EE7F4C600CA7417 /* IllegalCell.m */,
+				CE9B37821EE7F4C600CA7417 /* IllegalCell.xib */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -1356,31 +1390,33 @@
 				CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */,
 				C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */,
 				CE5786401ED4088700B4CC9F /* btn_original_circle.png in Resources */,
+				CE9B37891EE800FD00CA7417 /* VideoListVC.xib in Resources */,
 				CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */,
 				CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */,
 				CE7F14EB1EDEA11100C7AEDA /* IllegalParkAddFootView.xib in Resources */,
 				CE7F14E61EDEA0F900C7AEDA /* IllegalParkAddHeadView.xib in Resources */,
+				CE0E99131EE7B148009D25B4 /* AccidentListVC.xib in Resources */,
 				C7E0DC121EC1AD55008ED063 /* PhoneLoginVC.xib in Resources */,
 				CE57864B1ED4088700B4CC9F /* navBackBtn@2x.png in Resources */,
 				CE3A6C971EC9822A00D7D9D5 /* XBMeHeaderView.xib in Resources */,
-				C7621D181EC43F0C00980058 /* ListBaseVC.xib in Resources */,
 				C79C99491EC5959000258CF1 /* UserReusableView.xib in Resources */,
 				CE5786411ED4088700B4CC9F /* btn_original_circle@2x.png in Resources */,
 				CEF0D1AE1ED9C19100C78905 /* SearchLocationVC.xib in Resources */,
 				CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */,
-				CE9C51621EC4B6E0004A7611 /* ListCollectionVC.xib in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
 				CE7F14E11EDE9B3900C7AEDA /* IllegalParkVC.xib in Resources */,
 				CE57863E1ED4088700B4CC9F /* btn_circle@2x.png in Resources */,
 				CE5786461ED4088700B4CC9F /* btn_unselected.png in Resources */,
+				CE0E990E1EE7AE56009D25B4 /* AccidentCell.xib in Resources */,
 				CE6C04DC1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib in Resources */,
+				CE9B37841EE7F4C600CA7417 /* IllegalCell.xib in Resources */,
 				CE5786431ED4088700B4CC9F /* btn_selected.png in Resources */,
 				CE5786471ED4088700B4CC9F /* btn_unselected@2x.png in Resources */,
-				CE9C51581EC49C48004A7611 /* ListTableCell.xib in Resources */,
 				CE92B2981ED5780400563749 /* BottomPickerView.xib in Resources */,
 				CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */,
 				C79C994E1EC595AE00258CF1 /* UserHomeCell.xib in Resources */,
 				CE57864A1ED4088700B4CC9F /* lock.png in Resources */,
+				CE9B377F1EE7F35600CA7417 /* IllegalListVC.xib in Resources */,
 				CE5786441ED4088700B4CC9F /* btn_selected@2x.png in Resources */,
 				C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */,
 				CE5786481ED4088700B4CC9F /* btn_unselected@3x.png in Resources */,
@@ -1475,6 +1511,7 @@
 				CE4C93EC1ECE986F00BE06F0 /* AccidentListModel.m in Sources */,
 				C7E0DC111EC1AD55008ED063 /* PhoneLoginVC.m in Sources */,
 				CE4C93EF1ECE98E100BE06F0 /* AccidentDetailModel.m in Sources */,
+				CE9B37791EE7CBA700CA7417 /* FHHFPSIndicator.m in Sources */,
 				CE4F7DD81EE6AF08007E40E2 /* LRPlayVC.m in Sources */,
 				CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */,
 				CE5D30EB1EDB17330092F143 /* PartyModel.m in Sources */,
@@ -1500,7 +1537,6 @@
 				CE542ED71ECC942900971B23 /* CertificateView.m in Sources */,
 				CE3A6C941EC9822A00D7D9D5 /* XBSettingItemModel.m in Sources */,
 				CE4F7DCE1EE67FA6007E40E2 /* ArtVideoModel.m in Sources */,
-				CE9C51611EC4B6E0004A7611 /* ListCollectionVC.m in Sources */,
 				CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */,
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.mm in Sources */,
@@ -1524,10 +1560,12 @@
 				CEF0D1AD1ED9C19100C78905 /* SearchLocationVC.m in Sources */,
 				CE57865D1ED4088700B4CC9F /* ZLShowGifViewController.m in Sources */,
 				CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */,
+				CE9B377A1EE7CBA700CA7417 /* UIWindow+FHH.m in Sources */,
 				CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */,
 				CE4F7DC31EE6775B007E40E2 /* LRVideoVC.m in Sources */,
 				CE57866B1ED4229E00B4CC9F /* AccidentAddFootView.m in Sources */,
 				CE57865A1ED4088700B4CC9F /* ZLPhotoModel.m in Sources */,
+				CE9B37881EE800FD00CA7417 /* VideoListVC.m in Sources */,
 				CE5786571ED4088700B4CC9F /* ZLPhotoBrowser.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,
 				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
@@ -1544,13 +1582,13 @@
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,
 				C7E0DC1A1EC1AF18008ED063 /* MainHomeVC.m in Sources */,
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
+				CE9B377E1EE7F35600CA7417 /* IllegalListVC.m in Sources */,
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
 				CE43C1601ECDF13F00309507 /* CommonAPI.m in Sources */,
 				C7E0DBF71EC1A1C9008ED063 /* AKTabBar.m in Sources */,
 				CE7CFF171EDF137C00B74ABB /* maskingView.m in Sources */,
-				C7621D171EC43F0C00980058 /* ListBaseVC.m in Sources */,
+				CE0E990D1EE7AE56009D25B4 /* AccidentCell.m in Sources */,
 				CE5786641ED40EBA00B4CC9F /* AccidentVC.m in Sources */,
-				CE9C51571EC49C48004A7611 /* ListTableCell.m in Sources */,
 				CE7F14EF1EDEC70200C7AEDA /* IllegalParkCell.m in Sources */,
 				CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
@@ -1575,9 +1613,11 @@
 				CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */,
 				CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
+				CE0E99121EE7B148009D25B4 /* AccidentListVC.m in Sources */,
 				CE5786521ED4088700B4CC9F /* ToastUtils.m in Sources */,
 				CE5ACC011EE0346600B60089 /* LLPhotoBrowser.m in Sources */,
 				CE57865B1ED4088700B4CC9F /* ZLProgressHUD.m in Sources */,
+				CE9B37831EE7F4C600CA7417 /* IllegalCell.m in Sources */,
 				CE5786541ED4088700B4CC9F /* ZLCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
