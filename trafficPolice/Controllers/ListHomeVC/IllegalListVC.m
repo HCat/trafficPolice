@@ -247,7 +247,7 @@
 
 - (void)dealloc{
     
-    LxPrintf(@"AccidentListVC dealloc");
+    LxPrintf(@"IllegalList dealloc");
     
 }
 @end

@@ -46,6 +46,10 @@
 		CE05AEF31EE826D20021F87F /* VideoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE05AEF11EE826D20021F87F /* VideoListCell.xib */; };
 		CE05AEF71EE82EC50021F87F /* VideoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05AEF51EE82EC50021F87F /* VideoDetailVC.m */; };
 		CE05AEF81EE82EC50021F87F /* VideoDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE05AEF61EE82EC50021F87F /* VideoDetailVC.xib */; };
+		CE05AEFC1EE847050021F87F /* FeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05AEFA1EE847050021F87F /* FeedbackVC.m */; };
+		CE05AEFD1EE847050021F87F /* FeedbackVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE05AEFB1EE847050021F87F /* FeedbackVC.xib */; };
+		CE05AF011EE84DF70021F87F /* AboutAppVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05AEFF1EE84DF70021F87F /* AboutAppVC.m */; };
+		CE05AF021EE84DF70021F87F /* AboutAppVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE05AF001EE84DF70021F87F /* AboutAppVC.xib */; };
 		CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */; };
 		CE0E990D1EE7AE56009D25B4 /* AccidentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E990B1EE7AE56009D25B4 /* AccidentCell.m */; };
 		CE0E990E1EE7AE56009D25B4 /* AccidentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0E990C1EE7AE56009D25B4 /* AccidentCell.xib */; };
@@ -275,6 +279,12 @@
 		CE05AEF41EE82EC50021F87F /* VideoDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDetailVC.h; sourceTree = "<group>"; };
 		CE05AEF51EE82EC50021F87F /* VideoDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDetailVC.m; sourceTree = "<group>"; };
 		CE05AEF61EE82EC50021F87F /* VideoDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoDetailVC.xib; sourceTree = "<group>"; };
+		CE05AEF91EE847050021F87F /* FeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackVC.h; sourceTree = "<group>"; };
+		CE05AEFA1EE847050021F87F /* FeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackVC.m; sourceTree = "<group>"; };
+		CE05AEFB1EE847050021F87F /* FeedbackVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackVC.xib; sourceTree = "<group>"; };
+		CE05AEFE1EE84DF70021F87F /* AboutAppVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutAppVC.h; sourceTree = "<group>"; };
+		CE05AEFF1EE84DF70021F87F /* AboutAppVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutAppVC.m; sourceTree = "<group>"; };
+		CE05AF001EE84DF70021F87F /* AboutAppVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppVC.xib; sourceTree = "<group>"; };
 		CE08F7211ED7FAAF00D481DF /* ImageFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFileInfo.h; sourceTree = "<group>"; };
 		CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFileInfo.m; sourceTree = "<group>"; };
 		CE0E990A1EE7AE56009D25B4 /* AccidentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentCell.h; sourceTree = "<group>"; };
@@ -886,6 +896,12 @@
 				CE3A6CA51EC9A97300D7D9D5 /* UserSetVC.h */,
 				CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */,
 				CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */,
+				CE05AEF91EE847050021F87F /* FeedbackVC.h */,
+				CE05AEFA1EE847050021F87F /* FeedbackVC.m */,
+				CE05AEFB1EE847050021F87F /* FeedbackVC.xib */,
+				CE05AEFE1EE84DF70021F87F /* AboutAppVC.h */,
+				CE05AEFF1EE84DF70021F87F /* AboutAppVC.m */,
+				CE05AF001EE84DF70021F87F /* AboutAppVC.xib */,
 			);
 			path = UserHomeVC;
 			sourceTree = "<group>";
@@ -1415,9 +1431,11 @@
 				CE0E99131EE7B148009D25B4 /* AccidentListVC.xib in Resources */,
 				C7E0DC121EC1AD55008ED063 /* PhoneLoginVC.xib in Resources */,
 				CE57864B1ED4088700B4CC9F /* navBackBtn@2x.png in Resources */,
+				CE05AF021EE84DF70021F87F /* AboutAppVC.xib in Resources */,
 				CE3A6C971EC9822A00D7D9D5 /* XBMeHeaderView.xib in Resources */,
 				C79C99491EC5959000258CF1 /* UserReusableView.xib in Resources */,
 				CE5786411ED4088700B4CC9F /* btn_original_circle@2x.png in Resources */,
+				CE05AEFD1EE847050021F87F /* FeedbackVC.xib in Resources */,
 				CEF0D1AE1ED9C19100C78905 /* SearchLocationVC.xib in Resources */,
 				CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
@@ -1512,6 +1530,7 @@
 				CE5ACC001EE0346600B60089 /* LLPhoto.m in Sources */,
 				C7E0DBF61EC1A1C9008ED063 /* AKTab.m in Sources */,
 				CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */,
+				CE05AEFC1EE847050021F87F /* FeedbackVC.m in Sources */,
 				C7E0DC021EC1A5F8008ED063 /* BaseViewController.m in Sources */,
 				CE57866F1ED42E7B00B4CC9F /* UIButton+Block.m in Sources */,
 				CE8834D11ED1E0EA00666CEE /* IllegalThroughSecDetailModel.m in Sources */,
@@ -1592,6 +1611,7 @@
 				CE47633A1ED5D52500F29968 /* FSTextView.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
 				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,
+				CE05AF011EE84DF70021F87F /* AboutAppVC.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
 				CE6C04E61EE5710D0053F4D8 /* VideoColectVC.m in Sources */,
 				CE4F7DCA1EE67F50007E40E2 /* ArtAnimationRecordView.m in Sources */,

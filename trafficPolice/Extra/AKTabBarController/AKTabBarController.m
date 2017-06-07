@@ -459,4 +459,10 @@ typedef enum {
     visible = NO;
 }
 
+- (void)dealloc{
+    
+    LxPrintf(@"AKTabBarController dealloc");
+
+}
+
 @end

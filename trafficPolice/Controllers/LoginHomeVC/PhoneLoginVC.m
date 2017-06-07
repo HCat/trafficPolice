@@ -21,10 +21,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *tf_phone;
 @property (weak, nonatomic) IBOutlet UITextField *tf_code;
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_commit;
 
 @property (nonatomic,copy) NSString *acId; //获取验证码得到的短信ID
 
-
+@property (nonatomic,assign) BOOL isCanCommit;
 
 @end
 
@@ -33,6 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"短信验证";
+    self.isCanCommit = NO;
+    
     [self showLeftBarButtonItemWithImage:@"icon_back" target:self action:@selector(handleBtnBackClicked)];
     
     _tf_phone.text = _phone;
@@ -82,11 +85,31 @@
     
     };
     
+    //事故信息里面添加对UITextField的监听
+    [self addChangeForEventEditingChanged:self.tf_phone];
+    //事故信息里面添加对UITextField的监听
+    [self addChangeForEventEditingChanged:self.tf_code];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
     
+}
+
+#pragma mark - set && get 
+
+#pragma mark - set && get
+
+-(void)setIsCanCommit:(BOOL)isCanCommit{
+    _isCanCommit = isCanCommit;
+    if (_isCanCommit == NO) {
+        _btn_commit.enabled = NO;
+        [_btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
+    }else{
+        _btn_commit.enabled = YES;
+        [_btn_commit setBackgroundColor:UIColorFromRGB(0x4281E8)];
+    }
 }
 
 
@@ -154,14 +177,31 @@
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [hud hide];
         
-        
     }];
     
+}
 
-    
-    
+#pragma mark - 添加监听Textfield的变化，用于给参数实时赋值
+
+- (void)addChangeForEventEditingChanged:(UITextField *)textField{
+    [textField addTarget:self action:@selector(passConTextChange:) forControlEvents:UIControlEventEditingChanged];
+}
+
+#pragma mark - 实时监听UITextField内容的变化
+
+-(void)passConTextChange:(id)sender{
+    UITextField* textField = (UITextField*)sender;
+    LxDBAnyVar(textField.text);
+
+    if (_tf_phone.text.length > 0 && _tf_code.text.length > 0) {
+        self.isCanCommit = YES;
+    }else{
+        self.isCanCommit = NO;
+    }
     
 }
+
+
 
 #pragma mark -
 

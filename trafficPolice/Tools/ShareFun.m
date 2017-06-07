@@ -310,6 +310,38 @@
 
 }
 
+
+#pragma mark - 获取缓存目录
++ (NSString *)getCacheSubPath:(NSString *)dirName {
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    return [documentPath stringByAppendingPathComponent:dirName];
+}
+
+#pragma mark - 单个文件的大小
++ (long long) fileSizeAtPath:(NSString*) filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
+
+#pragma mark - 遍历文件夹获得文件夹大小，返回多少M
+
++ (float ) folderSizeAtPath:(NSString*) folderPath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:folderPath]) return 0;
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+    NSString* fileName;
+    long long folderSize = 0;
+    while ((fileName = [childFilesEnumerator nextObject]) != nil){
+        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    LxDBAnyVar(folderSize/(1024.0*1024.0));
+    return folderSize/(1024.0*1024.0);
+}
+
 #pragma mark - 根据UIImageData获取UIImage是什么格式的
 
 + (NSString *)typeForImageData:(NSData *)data {
@@ -394,9 +426,6 @@
     }
     return newImage;
 }
-
-
-
 
 #pragma mark - 获取事故权限
 

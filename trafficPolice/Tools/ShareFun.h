@@ -39,11 +39,20 @@
 //通过UIView获取UIViewController
 + (UIViewController *)findViewController:(UIView *)sourceView withClass:(Class)classVC;
 
+
+
 //获取当前时间，格式是 yyyy-MM-dd HH:mm:ss
 + (NSString *)getCurrentTime;
-
 + (NSString *)timeWithTimeInterval:(NSNumber *)timeString;
 
+
+//获取缓存目录
++ (NSString *)getCacheSubPath:(NSString *)dirName;
+
+//单个文件的大小
++ (long long) fileSizeAtPath:(NSString*) filePath;
+//遍历文件夹获得文件夹大小，返回多少M
++ (float ) folderSizeAtPath:(NSString*) folderPath;
 
 //根据UIImageData获取UIImage是什么格式的
 + (NSString *)typeForImageData:(NSData *)data;

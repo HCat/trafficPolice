@@ -11,10 +11,21 @@
 #import "XBSettingCell.h"
 #import "XBSettingItemModel.h"
 #import "XBSettingSectionModel.h"
+#import "UserModel.h"
+#import "ShareFun.h"
+#import "FeedbackVC.h"
+#import "AboutAppVC.h"
+#import "LRBaseRequest.h"
+#import "AppDelegate.h"
+#import "LoginHomeVC.h"
 
 @interface UserSetVC ()
 
+@property (nonatomic,copy) NSString * userName;
+@property (nonatomic,copy) NSString * phoneNummer;
+
 @property (nonatomic,strong) NSArray  *sectionArray; /**< section模型数组*/
+@property (weak, nonatomic) IBOutlet UITableView *tb_content;
 
 @end
 
@@ -24,8 +35,8 @@
     [super viewDidLoad];
     self.title = @"设置";
     self.view.backgroundColor = UIColorFromRGB(0xf2f2f2);
-    self.userName = @"hlr";
-    self.phoneNummer = @"13960888888";
+    self.userName = [UserModel getUserModel].realName;
+    self.phoneNummer = [UserModel getUserModel].phone;
     [self setupSections];
 }
 
@@ -33,6 +44,7 @@
 - (void)setupSections
 {
     //************************************section1
+    WS(weakSelf);
     XBSettingItemModel *item1 = [[XBSettingItemModel alloc]init];
     item1.funcName = @"用户名";
     item1.executeCode = ^{
@@ -47,23 +59,54 @@
     item2.detailText = self.phoneNummer;
     item2.accessoryType = XBSettingAccessoryTypeNone;
     
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    float folderSize = [ShareFun folderSizeAtPath:documentPath];
+    
     XBSettingItemModel *item3 = [[XBSettingItemModel alloc]init];
     item3.funcName = @"清除缓存";
-    item3.detailText = @"0kB";
+    item3.detailText = [NSString stringWithFormat:@"%.2fM", folderSize];
+    
+    item3.executeCode = ^{
+        LxPrintf(@"清除缓存");
+        SW(strongSelf, weakSelf);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            NSLog(@"%@", cachPath);
+                       
+            NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
+            NSLog(@"files :%lu",(unsigned long)[files count]);
+            for (NSString *p in files) {
+                NSError *error;
+                NSString *path = [cachPath stringByAppendingPathComponent:p];
+                if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+                }
+            }
+            
+            [strongSelf performSelectorOnMainThread:@selector(clearCacheSuccess) withObject:nil waitUntilDone:YES];
+        });
+        
+    };
+    
     item3.accessoryType = XBSettingAccessoryTypeNone;
     
     XBSettingItemModel *item4 = [[XBSettingItemModel alloc]init];
     item4.funcName = @"意见反馈";
     item4.executeCode = ^{
-        NSLog(@"意见反馈");
-        
+        LxPrintf(@"意见反馈");
+        SW(strongSelf, weakSelf);
+        FeedbackVC *t_vc = [[FeedbackVC alloc] init];
+        [strongSelf.navigationController pushViewController:t_vc animated:YES];
     };
     item4.accessoryType = XBSettingAccessoryTypeDisclosureIndicator;
     
     XBSettingItemModel *item5 = [[XBSettingItemModel alloc]init];
     item5.funcName = @"关于";
     item5.executeCode = ^{
-        NSLog(@"关于");
+        LxPrintf(@"关于");
+        SW(strongSelf, weakSelf);
+        AboutAppVC *t_vc = [[AboutAppVC alloc] init];
+        [strongSelf.navigationController pushViewController:t_vc animated:YES];
         
     };
     item5.accessoryType = XBSettingAccessoryTypeDisclosureIndicator;
@@ -76,6 +119,19 @@
     self.sectionArray = @[section1];
 }
 
+-(void)clearCacheSuccess
+{
+    LxPrintf(@"清理成功");
+    XBSettingSectionModel *sectionModel = self.sectionArray[0];
+    XBSettingItemModel *itemModel = sectionModel.itemArray[2];
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    float t_folderSize = [ShareFun folderSizeAtPath:documentPath];
+    itemModel.detailText = [NSString stringWithFormat:@"%.2fM", t_folderSize];
+    [_tb_content reloadData];
+    
+    [ShowHUD showSuccess:@"缓存清理成功" duration:1.5f inView:self.view config:nil];
+    
+}
 
 #pragma mark - Table view data source
 
@@ -124,9 +180,19 @@
     }
 }
 
+#pragma mark - 注销按钮事件
+
 - (IBAction)UserLoginOutAction:(id)sender {
     
+    [LRBaseRequest clearRequestFilters];
+    [ShareValue sharedDefault].token = nil;
+    [ShareValue sharedDefault].phone = nil;
+    [UserModel setUserModel:nil];
     
+    ApplicationDelegate.vc_tabBar = nil;
+    LoginHomeVC *t_vc = [LoginHomeVC new];
+    UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:t_vc];
+    ApplicationDelegate.window.rootViewController = t_nav;
     
 }
 
@@ -141,6 +207,7 @@
 
 - (void)dealloc{
     
+    LxPrintf(@"UserSetVC dealloc");
     
 }
 
