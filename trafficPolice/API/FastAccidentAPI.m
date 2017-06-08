@@ -142,10 +142,10 @@
 }
 
 //返回参数
-- (FastAccidentDetailModel *)fastAccidentDetailModel{
+- (AccidentDetailModel *)fastAccidentDetailModel{
     
     if (self.responseModel.data) {
-        return [FastAccidentDetailModel modelWithDictionary:self.responseModel.data];
+        return [AccidentDetailModel modelWithDictionary:self.responseModel.data];
     }
     
     return nil;

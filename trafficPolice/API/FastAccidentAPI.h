@@ -83,10 +83,10 @@ AccidentSaveParam来当返回参数，具体详情请查看AccidentSaveParam对�
 @interface FastAccidentDetailManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, strong) NSString *fastaccidentId;
+@property (nonatomic, strong) NSNumber *fastaccidentId;
 
 /****** 返回数据 ******/
-@property (nonatomic, strong) FastAccidentDetailModel *accidentDetailModel;
+@property (nonatomic, strong) AccidentDetailModel *fastAccidentDetailModel;
 
 
 @end

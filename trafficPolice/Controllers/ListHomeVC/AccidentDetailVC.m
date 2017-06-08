@@ -11,6 +11,7 @@
 #import <RealReachability.h>
 #import "UITableView+Lr_Placeholder.h"
 #import "AccidentAPI.h"
+#import "FastAccidentAPI.h"
 #import "AccidentImageCell.h"
 #import "AccidentMessageCell.h"
 #import "AccidentPartyCell.h"
@@ -19,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tb_content;
 @property (nonatomic,strong) AccidentDetailModel *model;
+@property(nonatomic,strong)AccidentPartyCell *partycell;
 
 @end
 
@@ -36,7 +38,7 @@
     [_tb_content setSeparatorInset:UIEdgeInsetsZero];
     [_tb_content setLayoutMargins:UIEdgeInsetsZero];
     _tb_content.allowsSelection = NO;
-    
+
     WS(weakSelf);
     //点击重新加载之后的处理
     [_tb_content setReloadBlock:^{
@@ -52,7 +54,12 @@
         [strongSelf loadAccidentDetail];
     };
 
-    [self loadAccidentDetail];
+    if (_accidentType == AccidentTypeAccident) {
+        [self loadAccidentDetail];
+    }else if (_accidentType == AccidentTypeFastAccident){
+        [self loadAccidentFastDetail];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -91,6 +98,33 @@
 
 }
 
+- (void)loadAccidentFastDetail{
+
+    WS(weakSelf);
+    FastAccidentDetailManger *manger = [[FastAccidentDetailManger alloc] init];
+    manger.fastaccidentId = _accidentId;
+    
+    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"加载中..." inView:self.view config:nil];
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+        SW(strongSelf, weakSelf);
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            strongSelf.model = manger.fastAccidentDetailModel;
+            [strongSelf.tb_content reloadData];
+        }
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [hud hide];
+        SW(strongSelf,weakSelf);
+        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+        if (status == RealStatusNotReachable) {
+            strongSelf.model = nil;
+            strongSelf.tb_content.isNetAvailable = YES;
+            [strongSelf.tb_content reloadData];
+        }
+        
+    }];
+
+}
 
 
 #pragma mark - UITableViewDelegate
@@ -112,13 +146,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         AccidentImageCell *cell = (AccidentImageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-        return cell.frame.size.height;
+        return [cell heightWithimages];
     }else if (indexPath.row == 1){
         AccidentMessageCell *cell = (AccidentMessageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-        return cell.frame.size.height;
+        return [cell heightWithAccident];
     }else if (indexPath.row == 2){
         AccidentPartyCell *cell = (AccidentPartyCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-        return cell.frame.size.height;
+        return [cell heightWithAccident];
     }
     return 105;
 }
@@ -132,6 +166,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"AccidentImageCellID"];
         }
         
+        
         if (_model) {
             NSMutableArray *t_arr = [NSMutableArray array];
             if (_model.picList && _model.picList.count > 0) {
@@ -141,10 +176,6 @@
                 cell.arr_images = t_arr;
             }
         }
-        
-        CGRect frame = cell.frame;
-        frame.size.height = [cell heightWithimages];
-        cell.frame = frame;
     
         return cell;
         
@@ -161,39 +192,36 @@
                 cell.accident = _model.accident;
             }
         }
-
-        CGRect frame = cell.frame;
-        frame.size.height = [cell heightWithAccident];
-        cell.frame = frame;
         
         return cell;
     
     }else if(indexPath.row == 2){
         
-        AccidentPartyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AccidentPartyCellID"];
-        if (!cell) {
+        if (!_partycell) {
             [tableView registerNib:[UINib nibWithNibName:@"AccidentPartyCell" bundle:nil] forCellReuseIdentifier:@"AccidentPartyCellID"];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"AccidentPartyCellID"];
+            self.partycell = [tableView dequeueReusableCellWithIdentifier:@"AccidentPartyCellID"];
         }
         
+        _partycell.accidentType = _accidentType;
         if (_model) {
             if (_model.accident ) {
-                cell.accident = _model.accident;
+                _partycell.accident = _model.accident;
                 WS(weakSelf);
-                cell.block = ^{
+                _partycell.block = ^() {
                     SW(strongSelf, weakSelf);
-                    [strongSelf.tb_content reloadData];
+                    [strongSelf.tb_content beginUpdates];
+                    [strongSelf.tb_content endUpdates];
+                    
+                    [strongSelf.tb_content scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
                     
                 };
             }
+            
+            _partycell.accidentVo = _model.accidentVo;
         }
         
         
-        CGRect frame = cell.frame;
-        frame.size.height = [cell heightWithAccident];
-        cell.frame = frame;
-        
-        return cell;
+        return _partycell;
         
     }
 
@@ -201,7 +229,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [cell setSeparatorInset:UIEdgeInsetsZero];
+    if (indexPath.row == 2) {
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, ScreenWidth, 0, 0)];
+    }else{
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
     [cell setLayoutMargins:UIEdgeInsetsZero];
 }
 
@@ -210,7 +243,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
-
 
 #pragma mark - dealloc
 

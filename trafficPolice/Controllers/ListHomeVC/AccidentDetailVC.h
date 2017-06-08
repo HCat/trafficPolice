@@ -11,5 +11,6 @@
 @interface AccidentDetailVC : HideTabSuperVC
 
 @property (nonatomic,strong) NSNumber *accidentId;
+@property (nonatomic,assign)AccidentType accidentType; //类型
 
 @end

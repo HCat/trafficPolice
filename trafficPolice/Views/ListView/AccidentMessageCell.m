@@ -117,7 +117,7 @@
     [self.contentView addSubview:t_content];
 
     [t_content autoAlignAxis:ALAxisHorizontal toSameAxisOfView:t_title ];
-    [t_content autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:t_title withOffset:20.f];
+    [t_content autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:t_title withOffset:15.f];
     
     [_arr_lables addObject:t_title];
 }
