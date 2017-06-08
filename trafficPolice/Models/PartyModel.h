@@ -36,6 +36,7 @@
 @property(nonatomic,copy) NSString *partyResponsibility;
 
 @property(nonatomic,assign) AccidentType accidentType; //用于判断是快处还是事故录入
+@property (nonatomic, strong) AccidentGetCodesResponse *codes; //
 
 //初始化
 //

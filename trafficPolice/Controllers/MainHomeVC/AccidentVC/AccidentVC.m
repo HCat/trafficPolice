@@ -47,35 +47,15 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     self.isFirstLoad = YES;
     self.isObserver = NO;
     
-    WS(weakSelf);
+    [[ShareValue sharedDefault] accidentCodes];
+
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        SW(strongSelf, weakSelf);
-        if (strongSelf.accidentType == AccidentTypeAccident) {
-            [ShareFun getAccidentCodes];
-        }else if (strongSelf.accidentType == AccidentTypeFastAccident){
-            [ShareFun getFastAccidentCodes];
-        }
-        
-    });
+    
     
     //断网之后重新连接网络该做的事情
 
     self.networkChangeBlock = ^{
-        SW(strongSelf, weakSelf);
-        if (strongSelf.accidentType == AccidentTypeAccident) {
-            if ([ShareValue sharedDefault].accidentCodes == nil) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [ShareFun getAccidentCodes];
-                });
-            }
-        }else if (strongSelf.accidentType == AccidentTypeFastAccident){
-            if ([ShareValue sharedDefault].fastAccidentCodes == nil) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [ShareFun getFastAccidentCodes];
-                });
-            }
-        }
+        [[ShareValue sharedDefault] accidentCodes];
 
     };
     

@@ -494,25 +494,6 @@
 
 }
 
-
-#pragma mark - 获取快处事故通用值
-
-+ (void)getFastAccidentCodes{
-
-    FastAccidentGetCodesManger *manger = [FastAccidentGetCodesManger new];
-    manger.isNeedShowHud = NO;
-    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        
-        if (manger.responseModel.code == CODE_SUCCESS) {
-            [ShareValue sharedDefault].fastAccidentCodes = manger.fastAccidentGetCodesResponse;
-        }
-        
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        
-    }];
-
-}
-
 #pragma mark - 获取路名通用值
 + (void)getCommonRoad{
 

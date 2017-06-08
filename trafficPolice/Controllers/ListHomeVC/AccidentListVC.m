@@ -14,6 +14,9 @@
 
 #import "AccidentAPI.h"
 #import "FastAccidentAPI.h"
+#import "AccidentDetailVC.h"
+#import "ListHomeVC.h"
+#import "ShareFun.h"
 
 @interface AccidentListVC ()
 
@@ -203,12 +206,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _arr_content.count;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 105;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -235,6 +236,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (_arr_content && _arr_content.count > 0) {
+        
+        ListHomeVC *vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+        
+        AccidentListModel *t_model = _arr_content[indexPath.row];
+        AccidentDetailVC *t_vc = [[AccidentDetailVC alloc] init];
+        t_vc.accidentId = t_model.accidentId;
+        [vc_target.navigationController pushViewController:t_vc animated:YES];
+    }
 }
 
 

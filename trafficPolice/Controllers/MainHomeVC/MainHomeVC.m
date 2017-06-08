@@ -38,6 +38,9 @@
     [self initCycleView];
     [self getImgPlay];
     
+    //这里获取事故通用值
+    [[ShareValue sharedDefault] accidentCodes];
+    
     WS(weakSelf);
     
     //断网之后重新连接网络该做的事情
@@ -81,7 +84,6 @@
             
         }];
     }
-    
 
 }
 

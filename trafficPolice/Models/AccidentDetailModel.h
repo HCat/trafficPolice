@@ -12,18 +12,18 @@
 
 @interface AccidentVoModel : NSObject
 
-@property (nonatomic,copy) NSString * ptaIsZkCl;        //甲方是否暂扣车辆 0否1是
-@property (nonatomic,copy) NSString * ptaIsZkXsz;       //甲方是否暂扣行驶证 0否1是
-@property (nonatomic,copy) NSString * ptaIsZkJsz;       //甲方是否暂扣驾驶证 0否1是
-@property (nonatomic,copy) NSString * ptaIsZkSfz;       //甲方是否暂扣身份证 0否1是
-@property (nonatomic,copy) NSString * ptbIsZkCl;        //乙方是否暂扣车辆 0否1是
-@property (nonatomic,copy) NSString * ptbIsZkXsz;       //乙方是否暂扣行驶证 0否1是
-@property (nonatomic,copy) NSString * ptbIsZkJsz;       //乙方是否暂扣驾驶证 0否1是
-@property (nonatomic,copy) NSString * ptbIsZkSfz;       //乙方是否暂扣身份证 0否1是
-@property (nonatomic,copy) NSString * ptcIsZkCl;        //丙方是否暂扣车辆 0否1是
-@property (nonatomic,copy) NSString * ptcIsZkXsz;       //丙方是否暂扣行驶证 0否1是
-@property (nonatomic,copy) NSString * ptcIsZkJsz;       //丙方是否暂扣驾驶证 0否1是
-@property (nonatomic,copy) NSString * ptcIsZkSfz;       //丙方是否暂扣身份证 0否1是
+@property (nonatomic,strong) NSNumber * ptaIsZkCl;        //甲方是否暂扣车辆 0否1是
+@property (nonatomic,strong) NSNumber * ptaIsZkXsz;       //甲方是否暂扣行驶证 0否1是
+@property (nonatomic,strong) NSNumber * ptaIsZkJsz;       //甲方是否暂扣驾驶证 0否1是
+@property (nonatomic,strong) NSNumber * ptaIsZkSfz;       //甲方是否暂扣身份证 0否1是
+@property (nonatomic,strong) NSNumber * ptbIsZkCl;        //乙方是否暂扣车辆 0否1是
+@property (nonatomic,strong) NSNumber * ptbIsZkXsz;       //乙方是否暂扣行驶证 0否1是
+@property (nonatomic,strong) NSNumber * ptbIsZkJsz;       //乙方是否暂扣驾驶证 0否1是
+@property (nonatomic,strong) NSNumber * ptbIsZkSfz;       //乙方是否暂扣身份证 0否1是
+@property (nonatomic,strong) NSNumber * ptcIsZkCl;        //丙方是否暂扣车辆 0否1是
+@property (nonatomic,strong) NSNumber * ptcIsZkXsz;       //丙方是否暂扣行驶证 0否1是
+@property (nonatomic,strong) NSNumber * ptcIsZkJsz;       //丙方是否暂扣驾驶证 0否1是
+@property (nonatomic,strong) NSNumber * ptcIsZkSfz;       //丙方是否暂扣身份证 0否1是
 
 @end
 

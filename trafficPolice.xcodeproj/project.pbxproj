@@ -155,6 +155,14 @@
 		CE5ACBFF1EE0346600B60089 /* LLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5ACBFA1EE0346600B60089 /* LLCollectionViewCell.m */; };
 		CE5ACC001EE0346600B60089 /* LLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5ACBFC1EE0346600B60089 /* LLPhoto.m */; };
 		CE5ACC011EE0346600B60089 /* LLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5ACBFE1EE0346600B60089 /* LLPhotoBrowser.m */; };
+		CE5AF6BF1EE8E6F60022CCD0 /* AccidentDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5AF6BD1EE8E6F60022CCD0 /* AccidentDetailVC.m */; };
+		CE5AF6C01EE8E6F60022CCD0 /* AccidentDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5AF6BE1EE8E6F60022CCD0 /* AccidentDetailVC.xib */; };
+		CE5AF6C41EE8F4950022CCD0 /* AccidentImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5AF6C21EE8F4950022CCD0 /* AccidentImageCell.m */; };
+		CE5AF6C51EE8F4950022CCD0 /* AccidentImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5AF6C31EE8F4950022CCD0 /* AccidentImageCell.xib */; };
+		CE5AF6CA1EE932660022CCD0 /* AccidentMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5AF6C81EE932660022CCD0 /* AccidentMessageCell.m */; };
+		CE5AF6CB1EE932660022CCD0 /* AccidentMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5AF6C91EE932660022CCD0 /* AccidentMessageCell.xib */; };
+		CE5AF6CF1EE96AD20022CCD0 /* AccidentPartyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5AF6CD1EE96AD20022CCD0 /* AccidentPartyCell.m */; };
+		CE5AF6D01EE96AD20022CCD0 /* AccidentPartyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5AF6CE1EE96AD20022CCD0 /* AccidentPartyCell.xib */; };
 		CE5D30EB1EDB17330092F143 /* PartyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D30EA1EDB17330092F143 /* PartyModel.m */; };
 		CE5D30EE1EDB1B810092F143 /* PartyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D30ED1EDB1B810092F143 /* PartyFactory.m */; };
 		CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */; };
@@ -467,6 +475,18 @@
 		CE5ACBFC1EE0346600B60089 /* LLPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhoto.m; sourceTree = "<group>"; };
 		CE5ACBFD1EE0346600B60089 /* LLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPhotoBrowser.h; sourceTree = "<group>"; };
 		CE5ACBFE1EE0346600B60089 /* LLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPhotoBrowser.m; sourceTree = "<group>"; };
+		CE5AF6BC1EE8E6F60022CCD0 /* AccidentDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentDetailVC.h; sourceTree = "<group>"; };
+		CE5AF6BD1EE8E6F60022CCD0 /* AccidentDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentDetailVC.m; sourceTree = "<group>"; };
+		CE5AF6BE1EE8E6F60022CCD0 /* AccidentDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentDetailVC.xib; sourceTree = "<group>"; };
+		CE5AF6C11EE8F4950022CCD0 /* AccidentImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentImageCell.h; sourceTree = "<group>"; };
+		CE5AF6C21EE8F4950022CCD0 /* AccidentImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentImageCell.m; sourceTree = "<group>"; };
+		CE5AF6C31EE8F4950022CCD0 /* AccidentImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentImageCell.xib; sourceTree = "<group>"; };
+		CE5AF6C71EE932660022CCD0 /* AccidentMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentMessageCell.h; sourceTree = "<group>"; };
+		CE5AF6C81EE932660022CCD0 /* AccidentMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentMessageCell.m; sourceTree = "<group>"; };
+		CE5AF6C91EE932660022CCD0 /* AccidentMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentMessageCell.xib; sourceTree = "<group>"; };
+		CE5AF6CC1EE96AD20022CCD0 /* AccidentPartyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentPartyCell.h; sourceTree = "<group>"; };
+		CE5AF6CD1EE96AD20022CCD0 /* AccidentPartyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentPartyCell.m; sourceTree = "<group>"; };
+		CE5AF6CE1EE96AD20022CCD0 /* AccidentPartyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentPartyCell.xib; sourceTree = "<group>"; };
 		CE5D30E91EDB17330092F143 /* PartyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyModel.h; sourceTree = "<group>"; };
 		CE5D30EA1EDB17330092F143 /* PartyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyModel.m; sourceTree = "<group>"; };
 		CE5D30EC1EDB1B810092F143 /* PartyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartyFactory.h; sourceTree = "<group>"; };
@@ -874,6 +894,9 @@
 				CE0E990F1EE7B148009D25B4 /* AccidentListVC.h */,
 				CE0E99101EE7B148009D25B4 /* AccidentListVC.m */,
 				CE0E99111EE7B148009D25B4 /* AccidentListVC.xib */,
+				CE5AF6BC1EE8E6F60022CCD0 /* AccidentDetailVC.h */,
+				CE5AF6BD1EE8E6F60022CCD0 /* AccidentDetailVC.m */,
+				CE5AF6BE1EE8E6F60022CCD0 /* AccidentDetailVC.xib */,
 				CE9B377B1EE7F35600CA7417 /* IllegalListVC.h */,
 				CE9B377C1EE7F35600CA7417 /* IllegalListVC.m */,
 				CE9B377D1EE7F35600CA7417 /* IllegalListVC.xib */,
@@ -1213,6 +1236,22 @@
 			path = LLPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		CE5AF6C61EE8F49A0022CCD0 /* accidentDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				CE5AF6C11EE8F4950022CCD0 /* AccidentImageCell.h */,
+				CE5AF6C21EE8F4950022CCD0 /* AccidentImageCell.m */,
+				CE5AF6C31EE8F4950022CCD0 /* AccidentImageCell.xib */,
+				CE5AF6C71EE932660022CCD0 /* AccidentMessageCell.h */,
+				CE5AF6C81EE932660022CCD0 /* AccidentMessageCell.m */,
+				CE5AF6C91EE932660022CCD0 /* AccidentMessageCell.xib */,
+				CE5AF6CC1EE96AD20022CCD0 /* AccidentPartyCell.h */,
+				CE5AF6CD1EE96AD20022CCD0 /* AccidentPartyCell.m */,
+				CE5AF6CE1EE96AD20022CCD0 /* AccidentPartyCell.xib */,
+			);
+			name = accidentDetailView;
+			sourceTree = "<group>";
+		};
 		CE60BE0D1ED71ECD00C328A1 /* LRCameraVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1320,6 +1359,7 @@
 		CE9C51531EC49C2C004A7611 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				CE5AF6C61EE8F49A0022CCD0 /* accidentDetailView */,
 				CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */,
 				CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */,
 				CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */,
@@ -1425,13 +1465,16 @@
 				CE5786401ED4088700B4CC9F /* btn_original_circle.png in Resources */,
 				CE9B37891EE800FD00CA7417 /* VideoListVC.xib in Resources */,
 				CE542ED91ECC943C00971B23 /* CertificateView.xib in Resources */,
+				CE5AF6CB1EE932660022CCD0 /* AccidentMessageCell.xib in Resources */,
 				CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */,
 				CE7F14EB1EDEA11100C7AEDA /* IllegalParkAddFootView.xib in Resources */,
 				CE7F14E61EDEA0F900C7AEDA /* IllegalParkAddHeadView.xib in Resources */,
 				CE0E99131EE7B148009D25B4 /* AccidentListVC.xib in Resources */,
+				CE5AF6C51EE8F4950022CCD0 /* AccidentImageCell.xib in Resources */,
 				C7E0DC121EC1AD55008ED063 /* PhoneLoginVC.xib in Resources */,
 				CE57864B1ED4088700B4CC9F /* navBackBtn@2x.png in Resources */,
 				CE05AF021EE84DF70021F87F /* AboutAppVC.xib in Resources */,
+				CE5AF6C01EE8E6F60022CCD0 /* AccidentDetailVC.xib in Resources */,
 				CE3A6C971EC9822A00D7D9D5 /* XBMeHeaderView.xib in Resources */,
 				C79C99491EC5959000258CF1 /* UserReusableView.xib in Resources */,
 				CE5786411ED4088700B4CC9F /* btn_original_circle@2x.png in Resources */,
@@ -1453,6 +1496,7 @@
 				CE57864A1ED4088700B4CC9F /* lock.png in Resources */,
 				CE9B377F1EE7F35600CA7417 /* IllegalListVC.xib in Resources */,
 				CE5786441ED4088700B4CC9F /* btn_selected@2x.png in Resources */,
+				CE5AF6D01EE96AD20022CCD0 /* AccidentPartyCell.xib in Resources */,
 				C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */,
 				CE5786481ED4088700B4CC9F /* btn_unselected@3x.png in Resources */,
 				CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */,
@@ -1527,6 +1571,7 @@
 			files = (
 				CE5ACBFF1EE0346600B60089 /* LLCollectionViewCell.m in Sources */,
 				CE05AEF71EE82EC50021F87F /* VideoDetailVC.m in Sources */,
+				CE5AF6BF1EE8E6F60022CCD0 /* AccidentDetailVC.m in Sources */,
 				CE5ACC001EE0346600B60089 /* LLPhoto.m in Sources */,
 				C7E0DBF61EC1A1C9008ED063 /* AKTab.m in Sources */,
 				CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */,
@@ -1541,6 +1586,7 @@
 				CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */,
 				CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */,
 				CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */,
+				CE5AF6CF1EE96AD20022CCD0 /* AccidentPartyCell.m in Sources */,
 				CE3A6CA31EC9A87400D7D9D5 /* HideTabSuperVC.m in Sources */,
 				CE7F14EA1EDEA11100C7AEDA /* IllegalParkAddFootView.m in Sources */,
 				CE5D30EE1EDB1B810092F143 /* PartyFactory.m in Sources */,
@@ -1584,6 +1630,7 @@
 				CE4F7DD41EE69A61007E40E2 /* NSString+ALi.m in Sources */,
 				CE321A911ED6804B00F842E4 /* LocationHelper.m in Sources */,
 				C7E0DBFC1EC1A1C9008ED063 /* UIViewController+AKTabBarController.m in Sources */,
+				CE5AF6CA1EE932660022CCD0 /* AccidentMessageCell.m in Sources */,
 				CEAF130C1ED9E3D4004A8E73 /* CountAccidentHelper.m in Sources */,
 				CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */,
 				CE5786581ED4088700B4CC9F /* ZLPhotoBrowserCell.m in Sources */,
@@ -1608,6 +1655,7 @@
 				CE5786571ED4088700B4CC9F /* ZLPhotoBrowser.m in Sources */,
 				CE3A6C981EC9822A00D7D9D5 /* XBSettingCell.m in Sources */,
 				CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */,
+				CE5AF6C41EE8F4950022CCD0 /* AccidentImageCell.m in Sources */,
 				CE47633A1ED5D52500F29968 /* FSTextView.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
 				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,

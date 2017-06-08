@@ -35,15 +35,12 @@
     _tf_search.leftViewMode = UITextFieldViewModeAlways;
     
     if (_arr_content == nil) {
-        if (_searchType == SearchLocationTypeAccident) {
-             [self getAccidentCodes];
-        }else if(_searchType == SearchLocationTypeFastAccident){
-             [self getFastAccidentCodes];
-        
-        }else if (_searchType == SearchLocationTypeIllegal){
-             [self getRoadName];
-        
+        if (_searchType == SearchLocationTypeIllegal){
+            [self getRoadName];
+        }else{
+            [self getAccidentCodes];
         }
+        
     }
    
     WS(weakSelf);
@@ -55,13 +52,13 @@
             strongSelf.arr_content = nil;
         }
         strongSelf.tb_content.isNetAvailable = NO;
-        if (strongSelf.searchType == SearchLocationTypeAccident) {
-            [strongSelf getAccidentCodes];
-        }else if(strongSelf.searchType == SearchLocationTypeFastAccident){
-            [strongSelf getFastAccidentCodes];
-        }else if (strongSelf.searchType == SearchLocationTypeIllegal){
+        
+        if (_searchType == SearchLocationTypeIllegal){
             [strongSelf getRoadName];
+        }else{
+            [strongSelf getAccidentCodes];
         }
+        
     };
     
     self.tb_content.reloadBlock = ^{
@@ -70,12 +67,11 @@
             strongSelf.arr_content = nil;
         }
         strongSelf.tb_content.isNetAvailable = NO;
-        if (strongSelf.searchType == SearchLocationTypeAccident) {
-            [strongSelf getAccidentCodes];
-        }else if(strongSelf.searchType == SearchLocationTypeFastAccident){
-            [strongSelf getFastAccidentCodes];
-        }else if (strongSelf.searchType == SearchLocationTypeIllegal){
+        
+        if (_searchType == SearchLocationTypeIllegal){
             [strongSelf getRoadName];
+        }else{
+            [strongSelf getAccidentCodes];
         }
     };
     
@@ -113,36 +109,7 @@
 
 }
 
-#pragma mark - 获取快处事故通用值
-- (void)getFastAccidentCodes{
-    
-    WS(weakSelf);
-    FastAccidentGetCodesManger *manger = [FastAccidentGetCodesManger new];
-
-    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:self.view config:nil];
-    
-    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [hud hide];
-        SW(strongSelf,weakSelf);
-        if (manger.responseModel.code == CODE_SUCCESS) {
-            [ShareValue sharedDefault].fastAccidentCodes = manger.fastAccidentGetCodesResponse;
-            strongSelf.arr_content = [ShareValue sharedDefault].fastAccidentCodes.road;
-            strongSelf.arr_temp = [ShareValue sharedDefault].fastAccidentCodes.road;
-            [strongSelf.tb_content reloadData];
-        }
-        
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [hud hide];
-        SW(strongSelf,weakSelf);
-        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-        if (status == RealStatusNotReachable) {
-            strongSelf.tb_content.isNetAvailable = YES;
-            [strongSelf.tb_content reloadData];
-        }
-        
-    }];
-    
-}
+#pragma mark - 获取道路通用值
 
 - (void)getRoadName{
 

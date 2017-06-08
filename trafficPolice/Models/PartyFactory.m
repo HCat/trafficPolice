@@ -15,6 +15,8 @@
 @property(nonatomic,strong)PartyModel *partyB; //乙方
 @property(nonatomic,strong)PartyModel *partyC; //丙方
 
+@property (nonatomic, strong) AccidentGetCodesResponse *codes;
+
 @end
 
 
@@ -27,6 +29,16 @@
     }
     return self;
 }
+
+#pragma mark - set && get 
+
+- (AccidentGetCodesResponse *)codes{
+    
+    _codes = [ShareValue sharedDefault].accidentCodes;
+    
+    return _codes;
+}
+
 
 #pragma mark - 
 
@@ -139,14 +151,9 @@
 #pragma mark - 通过道路名称获取得到道路ID
 - (void)setRoadId:(NSString *)roadName{
 
-    if (_accidentType == AccidentTypeAccident) {
-        NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:roadName WithArray:[ShareValue sharedDefault].accidentCodes.road];
-        _param.roadId = @(IdNo);
-    }else if(_accidentType == AccidentTypeFastAccident){
-        NSInteger IdNo = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelName:roadName WithArray:[ShareValue sharedDefault].fastAccidentCodes.road];
-        _param.roadId = @(IdNo);
-    }
-   
+    NSInteger IdNo = [self.codes searchNameWithModelName:roadName WithArray:self.codes.road];
+    _param.roadId = @(IdNo);
+    
 }
 
 #pragma mark - 添加到证件图片到数组中用于上传用的

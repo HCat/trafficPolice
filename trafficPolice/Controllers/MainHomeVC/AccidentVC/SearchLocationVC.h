@@ -14,7 +14,6 @@
 
 typedef NS_ENUM(NSInteger,SearchLocationType){
     SearchLocationTypeAccident,
-    SearchLocationTypeFastAccident,
     SearchLocationTypeIllegal
 };
 

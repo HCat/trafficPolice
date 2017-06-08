@@ -37,8 +37,6 @@ LRSingletonH(Default)
 
 @property (nonatomic, strong) AccidentGetCodesResponse *accidentCodes; //事故通用值，用于匹配ID.必须保存(不得不吐槽接口)
 
-@property (nonatomic, strong) AccidentGetCodesResponse * fastAccidentCodes; //快处事故通用值，用于匹配ID.必须保存(不得不吐槽接口)
-
 @property (nonatomic, copy) NSArray <CommonGetRoadModel *> * roadModels; //道路通用值，用于匹配ID.必须保存(不得不吐槽接口)
 
 

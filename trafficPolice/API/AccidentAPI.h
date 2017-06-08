@@ -28,8 +28,8 @@
 @property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *vehicle;            //车辆类型
 @property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *insuranceCompany;   //保险公司
 @property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *responsibility;     //事故责任
-@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *roadType;           //事故地点类型
-@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *driverDirect;       //行驶状态
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *roadType;           //事故地点类型  是Type
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *driverDirect;       //行驶状态 是Type
 
 - (NSString *)searchNameWithModelId:(NSInteger)modelId WithArray:(NSArray <AccidentGetCodesModel *>*)items;
 - (NSString *)searchNameWithModelType:(NSInteger)modelType WithArray:(NSArray <AccidentGetCodesModel *>*)items;
@@ -163,7 +163,7 @@
 @interface AccidentDetailManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, strong) NSString *accidentId; //事故ID
+@property (nonatomic, strong) NSNumber *accidentId; //事故ID
 
 /****** 返回数据 ******/
 @property (nonatomic, strong) AccidentDetailModel *accidentDetailModel;

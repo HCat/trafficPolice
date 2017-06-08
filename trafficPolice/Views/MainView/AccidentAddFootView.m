@@ -93,7 +93,7 @@
 
 @property(nonatomic,strong) PartyFactory *partyFactory;//当事人信息的管理类
 
-
+@property (nonatomic, strong) AccidentGetCodesResponse *codes; //
 
 @end
 
@@ -137,6 +137,7 @@
     self.isCanCommit = NO;
     
 }
+
 
 #pragma mark - 配置视图页面
 
@@ -222,6 +223,13 @@
 }
 
 #pragma mark - set && get
+
+- (AccidentGetCodesResponse *)codes{
+
+    _codes = [ShareValue sharedDefault].accidentCodes;
+
+    return _codes;
+}
 
 - (void)setAccidentType:(AccidentType)accidentType{
 
@@ -437,13 +445,8 @@
                 
                 strongSelf.partyFactory.partModel.partyCarNummber = camera.commonIdentifyResponse.carNo;
                 
-                if (strongSelf.accidentType == AccidentTypeAccident) {
-                    NSInteger IdNo = [[ShareValue sharedDefault].accidentCodes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:[ShareValue sharedDefault].accidentCodes.vehicle];
-                    strongSelf.partyFactory.partModel.partyVehicleId = @(IdNo);
-                }else if (strongSelf.accidentType == AccidentTypeFastAccident){
-                    NSInteger IdNo = [[ShareValue sharedDefault].fastAccidentCodes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:[ShareValue sharedDefault].fastAccidentCodes.vehicle];
-                    strongSelf.partyFactory.partModel.partyVehicleId = @(IdNo);
-                }
+                NSInteger IdNo = [strongSelf.codes searchNameWithModelName:camera.commonIdentifyResponse.vehicleType WithArray:strongSelf.codes.vehicle];
+                strongSelf.partyFactory.partModel.partyVehicleId = @(IdNo);
                
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     ImageFileInfo *imageFileInfo = camera.imageInfo;
@@ -478,14 +481,7 @@
 - (IBAction)handleBtnAccidentCausesClicked:(id)sender {
     WS(weakSelf);
     
-    NSArray *t_arr = nil;
-    if (self.accidentType == AccidentTypeAccident) {
-        t_arr = [ShareValue sharedDefault].accidentCodes.behaviour;
-    }else if (self.accidentType == AccidentTypeFastAccident){
-        t_arr = [ShareValue sharedDefault].fastAccidentCodes.behaviour;
-    }
-    
-    [self showBottomPickViewWithTitle:@"事故成因" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"事故成因" items:self.codes.behaviour block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_accidentCauses.text = title;
@@ -503,16 +499,11 @@
     
     AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:self];
     SearchLocationVC *t_searchLocationvc = [SearchLocationVC new];
-    if (_accidentType == AccidentTypeAccident) {
-        t_searchLocationvc.arr_content = [ShareValue sharedDefault].accidentCodes.road;
-        t_searchLocationvc.arr_temp = [ShareValue sharedDefault].accidentCodes.road;
-        t_searchLocationvc.searchType = SearchLocationTypeAccident;
-    }else if (_accidentType == AccidentTypeFastAccident){
-        t_searchLocationvc.arr_content = [ShareValue sharedDefault].fastAccidentCodes.road;
-        t_searchLocationvc.arr_temp = [ShareValue sharedDefault].fastAccidentCodes.road;
-        t_searchLocationvc.searchType = SearchLocationTypeFastAccident;
-    }
-    
+    t_searchLocationvc.searchType = SearchLocationTypeAccident;
+    t_searchLocationvc.arr_content = self.codes.road;
+    t_searchLocationvc.arr_temp = self.codes.road;
+   
+   
     WS(weakSelf);
     t_searchLocationvc.searchLocationBlock = ^(AccidentGetCodesModel *model) {
         SW(strongSelf, weakSelf);
@@ -553,14 +544,7 @@
     
     WS(weakSelf);
     
-    NSArray *t_arr = nil;
-    if (self.accidentType == AccidentTypeAccident) {
-        t_arr = [ShareValue sharedDefault].accidentCodes.roadType;
-    }else if (self.accidentType == AccidentTypeFastAccident){
-        t_arr = [ShareValue sharedDefault].fastAccidentCodes.roadType;
-    }
-
-    [self showBottomPickViewWithTitle:@"道路类型" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"道路类型" items:self.codes.roadType block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         SW(strongSelf, weakSelf);
         strongSelf.tf_roadType.text = title;
         strongSelf.partyFactory.param.roadType  = @(itemType);
@@ -578,14 +562,7 @@
     
     WS(weakSelf);
     
-    NSArray *t_arr = nil;
-    if (self.accidentType == AccidentTypeAccident) {
-        t_arr = [ShareValue sharedDefault].accidentCodes.vehicle;
-    }else if (self.accidentType == AccidentTypeFastAccident){
-        t_arr = [ShareValue sharedDefault].fastAccidentCodes.vehicle;
-    }
-    
-    [self showBottomPickViewWithTitle:@"车辆类型" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"车辆类型" items:self.codes.vehicle block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         SW(strongSelf, weakSelf);
         strongSelf.tf_carType.text = title;
         strongSelf.partyFactory.partModel.partyVehicleId =  @(itemId);
@@ -603,14 +580,7 @@
     
     WS(weakSelf);
     
-    NSArray *t_arr = nil;
-    if (self.accidentType == AccidentTypeAccident) {
-        t_arr = [ShareValue sharedDefault].accidentCodes.driverDirect;
-    }else if (self.accidentType == AccidentTypeFastAccident){
-        t_arr = [ShareValue sharedDefault].fastAccidentCodes.driverDirect;
-    }
-    
-    [self showBottomPickViewWithTitle:@"行驶状态" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"行驶状态" items:self.codes.driverDirect block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_drivingState.text = title;
@@ -626,14 +596,7 @@
 - (IBAction)handleBtnIllegalBehaviorClicked:(id)sender {
     WS(weakSelf);
     
-    NSArray *t_arr = nil;
-    if (_accidentType == AccidentTypeAccident) {
-        t_arr = [ShareValue sharedDefault].accidentCodes.behaviour;
-    }else if (_accidentType == AccidentTypeFastAccident){
-        t_arr = [ShareValue sharedDefault].fastAccidentCodes.behaviour;
-    }
-    
-    [self showBottomPickViewWithTitle:@"违法行为" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"违法行为" items:self.codes.behaviour block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_illegalBehavior.text = title;
@@ -649,14 +612,7 @@
 - (IBAction)handleBtnInsuranceCompanyClicked:(id)sender {
     WS(weakSelf);
     
-    NSArray *t_arr = nil;
-    if (_accidentType == AccidentTypeAccident) {
-        t_arr = [ShareValue sharedDefault].accidentCodes.insuranceCompany;
-    }else if (_accidentType == AccidentTypeFastAccident){
-        t_arr = [ShareValue sharedDefault].fastAccidentCodes.insuranceCompany;
-    }
-
-    [self showBottomPickViewWithTitle:@"保险公司" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"保险公司" items:self.codes.insuranceCompany block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_insuranceCompany.text = title;
@@ -672,14 +628,7 @@
 - (IBAction)handleBtnResponsibilityClicked:(id)sender {
     WS(weakSelf);
     
-    NSArray *t_arr = nil;
-    if (_accidentType == AccidentTypeAccident) {
-        t_arr = [ShareValue sharedDefault].accidentCodes.responsibility;
-    }else if (_accidentType == AccidentTypeFastAccident){
-        t_arr = [ShareValue sharedDefault].fastAccidentCodes.responsibility;
-    }
-    
-    [self showBottomPickViewWithTitle:@"事故责任" items:t_arr block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"事故责任" items:self.codes.responsibility block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_responsibility.text = title;
