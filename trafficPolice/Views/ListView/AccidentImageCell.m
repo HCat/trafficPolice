@@ -98,6 +98,9 @@
                 [btn_after autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:btn_before withOffset:10.0];
                 
                 [arr_v autoAlignViewsToAxis:ALAxisHorizontal];
+            }else if ([arr_v count] == 3 ){
+                [arr_v autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:10.0 insetSpacing:YES matchedSizes:YES];
+            
             }
             
             [arr_v removeAllObjects];
@@ -123,9 +126,21 @@
     
     NSInteger tag = [(UIButton *)sender tag];
     
-     AccidentDetailVC *vc_target = (AccidentDetailVC *)[ShareFun findViewController:self withClass:[AccidentDetailVC class]];
     
-    LLPhotoBrowser *photoBrowser = [[LLPhotoBrowser alloc] initWithImages:_arr_images currentIndex:tag];
+    NSMutableArray *t_arr = [NSMutableArray array];
+    
+    if (_arr_view && _arr_view.count > 0) {
+        for (int i = 0; i < _arr_view.count; i++) {
+            UIButton *btn = _arr_view[i];
+            
+            [t_arr addObject:btn.imageView.image];
+        }
+        
+    }
+    
+    AccidentDetailVC *vc_target = (AccidentDetailVC *)[ShareFun findViewController:self withClass:[AccidentDetailVC class]];
+    
+    LLPhotoBrowser *photoBrowser = [[LLPhotoBrowser alloc] initWithImages:t_arr currentIndex:tag];
     photoBrowser.isShowDeleteBtn = NO;
     [vc_target presentViewController:photoBrowser animated:YES completion:nil];
 

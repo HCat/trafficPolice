@@ -29,7 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"事故详情";
+    if (_accidentType == AccidentTypeAccident) {
+        self.title = @"事故详情";
+    }else if(_accidentType == AccidentTypeFastAccident){
+        self.title = @"快处事故详情";
+    }
+    
     
     _tb_content.isNeedPlaceholderView = YES;
     _tb_content.firstReload = YES;
@@ -44,14 +49,24 @@
     [_tb_content setReloadBlock:^{
         SW(strongSelf, weakSelf);
         strongSelf.tb_content.isNetAvailable = NO;
-        [strongSelf loadAccidentDetail];
+        
+        if (strongSelf.accidentType == AccidentTypeAccident) {
+            [strongSelf loadAccidentDetail];
+        }else if (strongSelf.accidentType == AccidentTypeFastAccident){
+            [strongSelf loadAccidentFastDetail];
+        }
+        
     }];
     
     //网络断开之后重新连接之后的处理
     self.networkChangeBlock = ^{
         SW(strongSelf, weakSelf);
         strongSelf.tb_content.isNetAvailable = NO;
-        [strongSelf loadAccidentDetail];
+        if (strongSelf.accidentType == AccidentTypeAccident) {
+            [strongSelf loadAccidentDetail];
+        }else if (strongSelf.accidentType == AccidentTypeFastAccident){
+            [strongSelf loadAccidentFastDetail];
+        }
     };
 
     if (_accidentType == AccidentTypeAccident) {

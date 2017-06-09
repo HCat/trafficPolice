@@ -249,9 +249,21 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         if(indexPath.row == 0){
             cell.lb_title.text = @"车牌近照";
         }else if(indexPath.row == 1){
-            cell.lb_title.text = @"违停照片";
+            
+            if (_illegalType == IllegalTypePark) {
+                cell.lb_title.text = @"违停照片";
+            }else if(_illegalType == IllegalTypeThrough){
+                cell.lb_title.text = @"闯禁令照片";
+            }
+            
         }else {
-            cell.lb_title.text = [NSString stringWithFormat:@"违停照片%d",indexPath.row - 1];
+            
+            if (_illegalType == IllegalTypePark) {
+                cell.lb_title.text = [NSString stringWithFormat:@"违停照片%d",indexPath.row];
+            }else if(_illegalType == IllegalTypeThrough){
+                cell.lb_title.text = [NSString stringWithFormat:@"闯禁令照片%d",indexPath.row];
+            }
+        
         }
     
         //判断是否拥有图片，如果拥有则显示图片，如果没有则显示@“updataPhoto.png”的图片
@@ -296,12 +308,9 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         
     }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
         
-        if (!self.footView) {
-             self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
-            _footView.btn_commit.enabled = NO;
-            [_footView.btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
-            [_footView setDelegate:(id<IllegalParkAddFootViewDelegate>)self];
-        }
+
+        self.footView = [_collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footId forIndexPath:indexPath];
+        [_footView setDelegate:(id<IllegalParkAddFootViewDelegate>)self];
     
         return _footView;
         
@@ -325,7 +334,12 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 SW(strongSelf, weakSelf);
                 
                 if (camera.type == 5) {
-                    [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"违停照片_%d",indexPath.row - 1]];
+                    if (_illegalType == IllegalTypePark) {
+                        [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"违停照片%d",indexPath.row]];
+                    }else if(_illegalType == IllegalTypeThrough){
+                        [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"闯禁令照片%d",indexPath.row]];
+                    }
+                    
                     [strongSelf.collectionView reloadData];
                     
                 }
@@ -372,8 +386,17 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                     SW(strongSelf, weakSelf);
                     if (camera.type == 5) {
                         //替换违停照片的图片
-                        [self replaceUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:@"违停照片" replaceIndex:1];
-                        [strongSelf.collectionView reloadData];
+                        
+                        if (_illegalType == IllegalTypePark) {
+                            [self replaceUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:@"违停照片" replaceIndex:1];
+                            [strongSelf.collectionView reloadData];
+                        }else if(_illegalType == IllegalTypeThrough){
+                            [self replaceUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:@"闯禁令照片" replaceIndex:1];
+                            [strongSelf.collectionView reloadData];
+                        }
+
+                        
+                        
     
                     }
                 }

@@ -10,7 +10,7 @@
 
 @interface IllegalParkListModel : NSObject
 
-@property (nonatomic,copy) NSString * illegalParkId ; //主键
+@property (nonatomic,strong) NSNumber * illegalParkId ; //主键
 @property (nonatomic,strong) NSNumber * collectTime ; //采集时间
 @property (nonatomic,copy) NSString * roadName ; //路名
 @property (nonatomic,copy) NSString * carNo; //车牌号

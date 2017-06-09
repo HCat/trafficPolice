@@ -15,6 +15,10 @@
 #import "IllegalThroughAPI.h"
 #import "IllegalCell.h"
 
+#import "ShareFun.h"
+#import "ListHomeVC.h"
+#import "IllegalDetailVC.h"
+
 
 @interface IllegalListVC ()
 
@@ -235,6 +239,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (_arr_content && _arr_content.count > 0) {
+        
+        ListHomeVC *vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+        
+        IllegalParkListModel *t_model = _arr_content[indexPath.row];
+        IllegalDetailVC *t_vc = [[IllegalDetailVC alloc] init];
+        t_vc.illegalType = _illegalType;
+        t_vc.illegalId = t_model.illegalParkId;
+        [vc_target.navigationController pushViewController:t_vc animated:YES];
+    }
+    
+    
+    
+    
 }
 
 

@@ -210,6 +210,10 @@
 		CE9B37891EE800FD00CA7417 /* VideoListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9B37871EE800FD00CA7417 /* VideoListVC.xib */; };
 		CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */; };
 		CE9C51671EC4BA65004A7611 /* ListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */; };
+		CEA01A3C1EEA7BFF00748A9F /* IllegalDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01A3A1EEA7BFF00748A9F /* IllegalDetailVC.m */; };
+		CEA01A3D1EEA7BFF00748A9F /* IllegalDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA01A3B1EEA7BFF00748A9F /* IllegalDetailVC.xib */; };
+		CEA01A421EEA7DC400748A9F /* IllegalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01A401EEA7DC400748A9F /* IllegalImageCell.m */; };
+		CEA01A431EEA7DC400748A9F /* IllegalImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA01A411EEA7DC400748A9F /* IllegalImageCell.xib */; };
 		CEAF130C1ED9E3D4004A8E73 /* CountAccidentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAF130B1ED9E3D4004A8E73 /* CountAccidentHelper.m */; };
 		CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE29491ECC3F3300075BA2 /* NSString+Range.m */; };
 		CEF0D1AD1ED9C19100C78905 /* SearchLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1AB1ED9C19100C78905 /* SearchLocationVC.m */; };
@@ -570,6 +574,12 @@
 		CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionCell.h; sourceTree = "<group>"; };
 		CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionCell.m; sourceTree = "<group>"; };
 		CE9C51651EC4BA65004A7611 /* ListCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionCell.xib; sourceTree = "<group>"; };
+		CEA01A391EEA7BFF00748A9F /* IllegalDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalDetailVC.h; sourceTree = "<group>"; };
+		CEA01A3A1EEA7BFF00748A9F /* IllegalDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalDetailVC.m; sourceTree = "<group>"; };
+		CEA01A3B1EEA7BFF00748A9F /* IllegalDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalDetailVC.xib; sourceTree = "<group>"; };
+		CEA01A3F1EEA7DC400748A9F /* IllegalImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalImageCell.h; sourceTree = "<group>"; };
+		CEA01A401EEA7DC400748A9F /* IllegalImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalImageCell.m; sourceTree = "<group>"; };
+		CEA01A411EEA7DC400748A9F /* IllegalImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalImageCell.xib; sourceTree = "<group>"; };
 		CEAF130A1ED9E3D4004A8E73 /* CountAccidentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountAccidentHelper.h; sourceTree = "<group>"; };
 		CEAF130B1ED9E3D4004A8E73 /* CountAccidentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountAccidentHelper.m; sourceTree = "<group>"; };
 		CECE29481ECC3F3300075BA2 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
@@ -900,6 +910,9 @@
 				CE9B377B1EE7F35600CA7417 /* IllegalListVC.h */,
 				CE9B377C1EE7F35600CA7417 /* IllegalListVC.m */,
 				CE9B377D1EE7F35600CA7417 /* IllegalListVC.xib */,
+				CEA01A391EEA7BFF00748A9F /* IllegalDetailVC.h */,
+				CEA01A3A1EEA7BFF00748A9F /* IllegalDetailVC.m */,
+				CEA01A3B1EEA7BFF00748A9F /* IllegalDetailVC.xib */,
 				CE9B37851EE800FD00CA7417 /* VideoListVC.h */,
 				CE9B37861EE800FD00CA7417 /* VideoListVC.m */,
 				CE9B37871EE800FD00CA7417 /* VideoListVC.xib */,
@@ -1359,6 +1372,7 @@
 		CE9C51531EC49C2C004A7611 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				CEA01A3E1EEA7C9700748A9F /* IllegalDetailView */,
 				CE5AF6C61EE8F49A0022CCD0 /* accidentDetailView */,
 				CE9C51631EC4BA65004A7611 /* ListCollectionCell.h */,
 				CE9C51641EC4BA65004A7611 /* ListCollectionCell.m */,
@@ -1374,6 +1388,16 @@
 				CE05AEF11EE826D20021F87F /* VideoListCell.xib */,
 			);
 			path = ListView;
+			sourceTree = "<group>";
+		};
+		CEA01A3E1EEA7C9700748A9F /* IllegalDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				CEA01A3F1EEA7DC400748A9F /* IllegalImageCell.h */,
+				CEA01A401EEA7DC400748A9F /* IllegalImageCell.m */,
+				CEA01A411EEA7DC400748A9F /* IllegalImageCell.xib */,
+			);
+			name = IllegalDetailView;
 			sourceTree = "<group>";
 		};
 		DDA5B09086610B74175F0DDB /* Pods */ = {
@@ -1451,6 +1475,7 @@
 				CE4F7DC41EE6775B007E40E2 /* LRVideoVC.xib in Resources */,
 				CE60BE121ED71EF400C328A1 /* LRCameraVC.xib in Resources */,
 				CE05AEF31EE826D20021F87F /* VideoListCell.xib in Resources */,
+				CEA01A431EEA7DC400748A9F /* IllegalImageCell.xib in Resources */,
 				CE5786651ED40EBA00B4CC9F /* AccidentVC.xib in Resources */,
 				CE57864F1ED4088700B4CC9F /* ZLPhotoBrowser.bundle in Resources */,
 				CE5786501ED4088700B4CC9F /* ZLPhotoBrowserCell.xib in Resources */,
@@ -1460,6 +1485,7 @@
 				CE5786511ED4088700B4CC9F /* ZLThumbnailViewController.xib in Resources */,
 				CE57864E1ED4088700B4CC9F /* ZLPhotoActionSheet.xib in Resources */,
 				CE5786491ED4088700B4CC9F /* defaultphoto.png in Resources */,
+				CEA01A3D1EEA7BFF00748A9F /* IllegalDetailVC.xib in Resources */,
 				CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */,
 				C7E0DB941EC15DBA008ED063 /* Assets.xcassets in Resources */,
 				CE5786401ED4088700B4CC9F /* btn_original_circle.png in Resources */,
@@ -1615,6 +1641,7 @@
 				CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */,
 				CE435F061ECDA73B00F85B38 /* SAMKeychain.m in Sources */,
 				CE3A6C931EC9822A00D7D9D5 /* UIView+XBExtension.m in Sources */,
+				CEA01A421EEA7DC400748A9F /* IllegalImageCell.m in Sources */,
 				CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */,
 				CE7CF0381EE19EFB00E91080 /* SRAlertView.m in Sources */,
 				CE7F14E51EDEA0F900C7AEDA /* IllegalParkAddHeadView.m in Sources */,
@@ -1659,6 +1686,7 @@
 				CE47633A1ED5D52500F29968 /* FSTextView.m in Sources */,
 				C7E0DBFA1EC1A1C9008ED063 /* AKTabBarView.m in Sources */,
 				CE5786551ED4088700B4CC9F /* ZLNoAuthorityViewController.m in Sources */,
+				CEA01A3C1EEA7BFF00748A9F /* IllegalDetailVC.m in Sources */,
 				CE05AF011EE84DF70021F87F /* AboutAppVC.m in Sources */,
 				C79C994D1EC595AE00258CF1 /* UserHomeCell.m in Sources */,
 				CE6C04E61EE5710D0053F4D8 /* VideoColectVC.m in Sources */,

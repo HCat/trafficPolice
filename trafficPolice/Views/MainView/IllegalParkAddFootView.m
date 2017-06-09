@@ -12,6 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _btn_commit.enabled = NO;
+    [_btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
+
     // Initialization code
 }
 

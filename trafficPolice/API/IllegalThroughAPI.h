@@ -134,10 +134,10 @@ code:999 无采集记录,不用任何提示
 @interface IllegalThroughDetailManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, copy) NSString *illegalThroughId;
+@property (nonatomic, strong) NSNumber *illegalThroughId;
 
 /****** 返回数据 ******/
-@property (nonatomic, strong) IllegalParkDetailModel *accidentDetailModel;
+@property (nonatomic, strong) IllegalParkDetailModel *illegalDetailModel;
 
 @end
 

@@ -115,7 +115,7 @@
 }
 
 //返回参数
-- (IllegalParkDetailModel *)accidentDetailModel{
+- (IllegalParkDetailModel *)illegalDetailModel{
     
     if (self.responseModel.data) {
         return [IllegalParkDetailModel modelWithDictionary:self.responseModel.data];

@@ -11,7 +11,7 @@
 @implementation IllegalParkListModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"id" : @"illegalParkId",
+    return @{@"illegalParkId" : @"id",
              };
 }
 

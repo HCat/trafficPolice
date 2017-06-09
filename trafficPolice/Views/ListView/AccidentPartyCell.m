@@ -25,10 +25,6 @@
 @property (nonatomic,strong) NSMutableArray * arr_lables_b;
 @property (nonatomic,strong) NSMutableArray * arr_lables_c;
 
-@property (nonatomic,strong) NSMutableArray * arr_tag_a;
-@property (nonatomic,strong) NSMutableArray * arr_tag_b;
-@property (nonatomic,strong) NSMutableArray * arr_tag_c;
-
 @property(nonatomic,strong) AccidentGetCodesResponse *codes;
 
 @property(nonatomic,assign) NSUInteger indexSelected;
@@ -48,9 +44,6 @@
     self.arr_lables_a = [NSMutableArray array];
     self.arr_lables_b = [NSMutableArray array];
     self.arr_lables_c = [NSMutableArray array];
-    self.arr_tag_a = [NSMutableArray array];
-    self.arr_tag_b = [NSMutableArray array];
-    self.arr_tag_c = [NSMutableArray array];
     self.v_a = [UIView newAutoLayoutView];
     self.v_b = [UIView newAutoLayoutView];
     self.v_c = [UIView newAutoLayoutView];
@@ -125,198 +118,77 @@
         
             /**************************/
             if (accidentVo.ptaIsZkCl && accidentVo.ptaIsZkCl.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣车辆:"  WithArr:_arr_tag_a inView:_v_a];
+                [self buildLableWithTitle:@"是否暂扣车辆:"  WithArr:_arr_lables_a inView:_v_a];
             }
             
             if (accidentVo.ptaIsZkXsz && accidentVo.ptaIsZkXsz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣行驶证:"  WithArr:_arr_tag_a inView:_v_a];
+                [self buildLableWithTitle:@"是否暂扣行驶证:"  WithArr:_arr_lables_a inView:_v_a];
             }
             
             if (accidentVo.ptaIsZkJsz && accidentVo.ptaIsZkJsz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣驾驶证:"  WithArr:_arr_tag_a inView:_v_a];
+                [self buildLableWithTitle:@"是否暂扣驾驶证:"  WithArr:_arr_lables_a inView:_v_a];
             }
             
             if (accidentVo.ptaIsZkSfz && accidentVo.ptaIsZkSfz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣身份证:"  WithArr:_arr_tag_a inView:_v_a];
+                [self buildLableWithTitle:@"是否暂扣身份证:"  WithArr:_arr_lables_a inView:_v_a];
             }
             
-            if (_arr_tag_a && _arr_tag_a.count > 0) {
-                
-                [[_arr_tag_a firstObject] autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
-                if (_arr_lables_a && _arr_lables_a.count > 0) {
-                    [[_arr_tag_a firstObject] autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_a lastObject] withOffset:18.f];
-                }else{
-                    [[_arr_tag_a firstObject] autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
-                }
-                
-                UILabel *previousView = nil;
-                for (UILabel *view in _arr_tag_a) {
-                    if (previousView) {
-                        [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
-                        [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
-                    }
-                    previousView = view;
-                }
-
-            }
+            [self addLayoutInViews:_arr_lables_a];
             
             /**************************/
             if (accidentVo.ptbIsZkCl && accidentVo.ptbIsZkCl.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣车辆:"  WithArr:_arr_tag_b inView:_v_b];
+                [self buildLableWithTitle:@"是否暂扣车辆:"  WithArr:_arr_lables_b inView:_v_b];
             }
             
             if (accidentVo.ptbIsZkXsz && accidentVo.ptbIsZkXsz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣行驶证:"  WithArr:_arr_tag_b inView:_v_b];
+                [self buildLableWithTitle:@"是否暂扣行驶证:"  WithArr:_arr_lables_b inView:_v_b];
             }
             
             if (accidentVo.ptbIsZkJsz && accidentVo.ptbIsZkJsz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣驾驶证:"  WithArr:_arr_tag_b inView:_v_b];
+                [self buildLableWithTitle:@"是否暂扣驾驶证:"  WithArr:_arr_lables_b inView:_v_b];
             }
             
             if (accidentVo.ptbIsZkSfz && accidentVo.ptbIsZkSfz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣身份证:"  WithArr:_arr_tag_b inView:_v_b];
+                [self buildLableWithTitle:@"是否暂扣身份证:"  WithArr:_arr_lables_b inView:_v_b];
             }
             
-            if (_arr_tag_b && _arr_tag_b.count > 0) {
-                
-                [[_arr_tag_b firstObject] autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
-                if (_arr_lables_b && _arr_lables_b.count > 0) {
-                    [[_arr_tag_b firstObject] autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_b lastObject] withOffset:18.f];
-                }else{
-                    [[_arr_tag_b firstObject] autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
-                }
-                
-                UILabel *previousView = nil;
-                for (UILabel *view in _arr_tag_b) {
-                    if (previousView) {
-                        [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
-                        [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
-                    }
-                    previousView = view;
-                }
-                
-            }
+            
+            [self addLayoutInViews:_arr_lables_b];
+            
+            
             
             /**************************/
             if (accidentVo.ptcIsZkCl && accidentVo.ptcIsZkCl.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣车辆:"  WithArr:_arr_tag_c inView:_v_c];
+                [self buildLableWithTitle:@"是否暂扣车辆:"  WithArr:_arr_lables_c inView:_v_c];
             }
             
             if (accidentVo.ptcIsZkXsz && accidentVo.ptcIsZkXsz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣行驶证:"  WithArr:_arr_tag_c inView:_v_c];
+                [self buildLableWithTitle:@"是否暂扣行驶证:"  WithArr:_arr_lables_c inView:_v_c];
             }
             
             if (accidentVo.ptcIsZkJsz && accidentVo.ptcIsZkJsz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣驾驶证:"  WithArr:_arr_tag_c inView:_v_c];
+                [self buildLableWithTitle:@"是否暂扣驾驶证:"  WithArr:_arr_lables_c inView:_v_c];
             }
             
             if (accidentVo.ptcIsZkSfz && accidentVo.ptcIsZkSfz.integerValue == 1) {
-                [self buildLableWithTitle:@"是否暂扣身份证:"  WithArr:_arr_tag_a inView:_v_c];
-            }
-            
-            if (_arr_tag_c && _arr_tag_c.count > 0) {
-                
-                [[_arr_tag_c firstObject] autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
-                if (_arr_lables_c && _arr_lables_c.count > 0) {
-                    [[_arr_tag_c firstObject] autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_c lastObject] withOffset:18.f];
-                }else{
-                    [[_arr_tag_c firstObject] autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
-                }
-                
-                UILabel *previousView = nil;
-                for (UILabel *view in _arr_tag_c) {
-                    if (previousView) {
-                        [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
-                        [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
-                    }
-                    previousView = view;
-                }
+                [self buildLableWithTitle:@"是否暂扣身份证:"  WithArr:_arr_lables_c inView:_v_c];
                 
             }
             
+            [self addLayoutInViews:_arr_lables_c];
             
-            /************************************/
+            /**************************/
+            
             if (_accident.ptaDescribe) {
-                UILabel * t_title = [UILabel newAutoLayoutView];
-                t_title.font = [UIFont systemFontOfSize:14.f];
-                t_title.textColor = UIColorFromRGB(0x444444);
-                t_title.text = @"简 述:";
-                [_v_a addSubview:t_title];
-                
-                if (_arr_tag_a && _arr_tag_a.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_tag_a lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_tag_a lastObject]];
-                }else if (_arr_lables_a && _arr_lables_a.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_a lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_lables_a lastObject]];
-                }
-                
-                UITextView *t_tv = [UITextView newAutoLayoutView];
-                t_tv.text = _accident.ptaDescribe;
-                [t_tv setEditable:NO];
-                t_tv.layer.cornerRadius = 5.0f;
-                [t_tv setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
-                [_v_a addSubview:t_tv];
-                [t_tv autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:t_title withOffset:10.f];
-                [t_tv autoSetDimension:ALDimensionHeight toSize:99.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:13.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:13.f];
-                
+                [self buildTextViewWithText:_accident.ptaDescribe BottomInArr:_arr_lables_a InView:_v_a];
             }
             
             if (_accident.ptbDescribe) {
-                UILabel * t_title = [UILabel newAutoLayoutView];
-                t_title.font = [UIFont systemFontOfSize:14.f];
-                t_title.textColor = UIColorFromRGB(0x444444);
-                t_title.text = @"简 述:";
-                [_v_b addSubview:t_title];
-                if (_arr_tag_b && _arr_tag_b.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_tag_b lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_tag_b lastObject]];
-                }else if (_arr_lables_b && _arr_lables_b.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_b lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_lables_b lastObject]];
-                }
-                
-                UITextView *t_tv = [UITextView newAutoLayoutView];
-                t_tv.text = _accident.ptbDescribe;
-                [t_tv setEditable:NO];
-                t_tv.layer.cornerRadius = 5.0f;
-                [t_tv setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
-                [_v_b addSubview:t_tv];
-                [t_tv autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:t_title withOffset:10.f];
-                [t_tv autoSetDimension:ALDimensionHeight toSize:99.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:13.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:13.f];
-                
+                [self buildTextViewWithText:_accident.ptbDescribe BottomInArr:_arr_lables_b InView:_v_b];
             }
             
             if (_accident.ptcDescribe) {
-                UILabel * t_title = [UILabel newAutoLayoutView];
-                t_title.font = [UIFont systemFontOfSize:14.f];
-                t_title.textColor = UIColorFromRGB(0x444444);
-                t_title.text = @"简 述:";
-                [_v_c addSubview:t_title];
-                
-                if (_arr_tag_c && _arr_tag_c.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_tag_c lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_tag_c lastObject]];
-                }else if (_arr_lables_c && _arr_lables_c.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_c lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_lables_c lastObject]];
-                }
-                
-                UITextView *t_tv = [UITextView newAutoLayoutView];
-                t_tv.text = _accident.ptcDescribe;
-                [t_tv setEditable:NO];
-                t_tv.layer.cornerRadius = 5.0f;
-                [t_tv setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
-                [_v_c addSubview:t_tv];
-                [t_tv autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:t_title withOffset:10.f];
-                [t_tv autoSetDimension:ALDimensionHeight toSize:99.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:13.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:13.f];
-                
+                [self buildTextViewWithText:_accident.ptcDescribe BottomInArr:_arr_lables_c InView:_v_c];
             }
             
             [self setNeedsUpdateConstraints];
@@ -330,81 +202,24 @@
             if (_isDone) {
                 return;
             }
-        
+            
+            /************************************/
+            
+            [self addLayoutInViews:_arr_lables_a];
+            [self addLayoutInViews:_arr_lables_b];
+            [self addLayoutInViews:_arr_lables_c];
+            
             /************************************/
             if (_accident.ptaDescribe) {
-                UILabel * t_title = [UILabel newAutoLayoutView];
-                t_title.font = [UIFont systemFontOfSize:14.f];
-                t_title.textColor = UIColorFromRGB(0x444444);
-                t_title.text = @"简 述:";
-                [_v_a addSubview:t_title];
-                
-                if (_arr_lables_a && _arr_lables_a.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_a lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_lables_a lastObject]];
-                }
-                
-                UITextView *t_tv = [UITextView newAutoLayoutView];
-                t_tv.text = _accident.ptaDescribe;
-                [t_tv setEditable:NO];
-                t_tv.layer.cornerRadius = 5.0f;
-                [t_tv setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
-                [_v_a addSubview:t_tv];
-                [t_tv autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:t_title withOffset:10.f];
-                [t_tv autoSetDimension:ALDimensionHeight toSize:99.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:13.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:13.f];
-                
+                [self buildTextViewWithText:_accident.ptaDescribe BottomInArr:_arr_lables_a InView:_v_a];
             }
             
             if (_accident.ptbDescribe) {
-                UILabel * t_title = [UILabel newAutoLayoutView];
-                t_title.font = [UIFont systemFontOfSize:14.f];
-                t_title.textColor = UIColorFromRGB(0x444444);
-                t_title.text = @"简 述:";
-                [_v_b addSubview:t_title];
-                if (_arr_lables_b && _arr_lables_b.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_b lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_lables_b lastObject]];
-                }
-                
-                UITextView *t_tv = [UITextView newAutoLayoutView];
-                t_tv.text = _accident.ptbDescribe;
-                [t_tv setEditable:NO];
-                t_tv.layer.cornerRadius = 5.0f;
-                [t_tv setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
-                [_v_b addSubview:t_tv];
-                [t_tv autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:t_title withOffset:10.f];
-                [t_tv autoSetDimension:ALDimensionHeight toSize:99.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:13.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:13.f];
-                
+                [self buildTextViewWithText:_accident.ptbDescribe BottomInArr:_arr_lables_b InView:_v_b];
             }
             
             if (_accident.ptcDescribe) {
-                UILabel * t_title = [UILabel newAutoLayoutView];
-                t_title.font = [UIFont systemFontOfSize:14.f];
-                t_title.textColor = UIColorFromRGB(0x444444);
-                t_title.text = @"简 述:";
-                [_v_c addSubview:t_title];
-                
-                if (_arr_lables_c && _arr_lables_c.count > 0) {
-                    [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[_arr_lables_c lastObject] withOffset:18.f];
-                    [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[_arr_lables_c lastObject]];
-                }
-                
-                UITextView *t_tv = [UITextView newAutoLayoutView];
-                t_tv.text = _accident.ptcDescribe;
-                [t_tv setEditable:NO];
-                t_tv.font = [UIFont systemFontOfSize:14.f];
-                t_tv.layer.cornerRadius = 5.0f;
-                [t_tv setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
-                [_v_c addSubview:t_tv];
-                [t_tv autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:t_title withOffset:10.f];
-                [t_tv autoSetDimension:ALDimensionHeight toSize:99.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:13.f];
-                [t_tv autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:13.f];
-                
+                [self buildTextViewWithText:_accident.ptcDescribe BottomInArr:_arr_lables_c InView:_v_c];
             }
             
             [self setNeedsUpdateConstraints];
@@ -432,6 +247,8 @@
             [self buildPartyA:_accident];
             [self buildPartyB:_accident];
             [self buildPartyC:_accident];
+            
+            
             
         }
     }
@@ -492,24 +309,6 @@
         }
     }
     
-    [[_arr_lables_a firstObject] autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
-    [[_arr_lables_a firstObject] autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
-    UILabel *previousView = nil;
-    for (UILabel *view in _arr_lables_a) {
-        if (previousView) {
-            [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
-            [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
-        }
-        previousView = view;
-    }
-    
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-    
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    
-    
 }
 
 
@@ -566,24 +365,6 @@
         }
     }
     
-    [[_arr_lables_b firstObject] autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
-    [[_arr_lables_b firstObject] autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
-    UILabel *previousView = nil;
-    for (UILabel *view in _arr_lables_b) {
-        if (previousView) {
-            [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
-            [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
-        }
-        previousView = view;
-    }
-    
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-    
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    
-    
 }
 
 - (void)buildPartyC:(AccidentModel *)accident{
@@ -639,24 +420,7 @@
             [self buildLableWithTitle:@"责 任:" AndText:t_str WithArr:_arr_lables_c inView:_v_c];
         }
     }
-    
-    [[_arr_lables_c firstObject] autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
-    [[_arr_lables_c firstObject] autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
-    UILabel *previousView = nil;
-    for (UILabel *view in _arr_lables_c) {
-        if (previousView) {
-            [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
-            [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
-        }
-        previousView = view;
-    }
-    
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-    
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    
+
 }
 
 #pragma mark -
@@ -700,6 +464,54 @@
     [arr addObject:t_title];
 }
 
+- (void)buildTextViewWithText:(NSString *)text BottomInArr:(NSMutableArray *)arr InView:(UIView *)view{
+
+
+    UILabel * t_title = [UILabel newAutoLayoutView];
+    t_title.font = [UIFont systemFontOfSize:14.f];
+    t_title.textColor = UIColorFromRGB(0x444444);
+    t_title.text = @"简 述:";
+    [view addSubview:t_title];
+    
+    if (arr && arr.count > 0) {
+        [t_title autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:[arr lastObject] withOffset:18.f];
+        [t_title autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:[arr lastObject]];
+    }else{
+        [t_title autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
+        [t_title autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
+    }
+    
+    UITextView *t_tv = [UITextView newAutoLayoutView];
+    t_tv.text = text;
+    t_tv.textColor = UIColorFromRGB(0x444444);
+    [t_tv setEditable:NO];
+    t_tv.font = [UIFont systemFontOfSize:14.f];
+    t_tv.layer.cornerRadius = 5.0f;
+    [t_tv setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
+    [view addSubview:t_tv];
+    [t_tv autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:t_title withOffset:10.f];
+    [t_tv autoSetDimension:ALDimensionHeight toSize:99.f];
+    [t_tv autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:13.f];
+    [t_tv autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:13.f];
+    
+}
+
+- (void)addLayoutInViews:(NSMutableArray *)arr{
+    
+    if (arr && arr.count > 0) {
+        
+        [[arr firstObject] autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:13.f];
+        [[arr firstObject] autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0.f];
+        UIView * previousView = nil;
+        for (UIView *view in arr) {
+            if (previousView) {
+                [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
+                [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
+            }
+            previousView = view;
+        }
+    }
+}
 
 #pragma mark - 分段控件选中之后的处理
 
@@ -758,23 +570,21 @@
             
             UILabel *t_lb = (UILabel *)_arr_lables_a[0];
             
-            if (_arr_tag_a && _arr_tag_a.count > 0) {
-                if (_accident.ptaDescribe && _accident.ptaDescribe.length > 0) {
-                    return 84 + 15 + _arr_lables_a.count * (t_lb.frame.size.height + 18) + _arr_tag_a.count * (t_lb.frame.size.height + 18)+ t_lb.frame.size.height + 18 + 10 + 99 ;
-                }else{
-                    return 84 + 15 + _arr_lables_a.count * (t_lb.frame.size.height + 18) + _arr_tag_a.count * (t_lb.frame.size.height + 18);
-                }
+            if (_accident.ptaDescribe && _accident.ptaDescribe.length > 0) {
+                return 84 + 15 + _arr_lables_a.count * (t_lb.frame.size.height + 18) + t_lb.frame.size.height + 10 + 99 + 10;
                 
             }else{
+                return 84 + 15 + _arr_lables_a.count * (t_lb.frame.size.height + 18);
                 
-                if (_accident.ptaDescribe && _accident.ptaDescribe.length > 0) {
-                    return 84 + 15 + _arr_lables_a.count * (t_lb.frame.size.height + 18) + t_lb.frame.size.height + 18 + 10 + 99 ;
-
-                }else{
-                    return 84 + 15 + _arr_lables_a.count * (t_lb.frame.size.height + 18);
-
-                }
+            }
             
+        }else{
+            
+            if (_accident.ptaDescribe && _accident.ptaDescribe.length > 0) {
+                //segenControl底部距离顶部高度 + 15间距 + label高度 + textView和简述间隔 + textView高度 + textView到底部
+                return 84 + 15 + 17 + 10 + 99  + 10;
+            }else{
+                return 84 + 15;
             }
             
         }
@@ -785,51 +595,44 @@
             
             UILabel *t_lb = (UILabel *)_arr_lables_b[0];
             
-            if (_arr_tag_b && _arr_tag_b.count > 0) {
-                if (_accident.ptbDescribe && _accident.ptbDescribe.length > 0) {
-                    return 84 + 15 + _arr_lables_b.count * (t_lb.frame.size.height + 18) + _arr_tag_b.count * (t_lb.frame.size.height + 18)+ t_lb.frame.size.height + 18 + 10 + 99 ;
-                }else{
-                    return 84 + 15 + _arr_lables_b.count * (t_lb.frame.size.height + 18) + _arr_tag_b.count * (t_lb.frame.size.height + 18);
-                }
-                
+            if (_accident.ptbDescribe && _accident.ptbDescribe.length > 0) {
+                return 84 + 15 + _arr_lables_b.count * (t_lb.frame.size.height + 18) + t_lb.frame.size.height + 10 + 99 + 10;
             }else{
-                
-                if (_accident.ptbDescribe && _accident.ptbDescribe.length > 0) {
-                    return 84 + 15 + _arr_lables_b.count * (t_lb.frame.size.height + 18) + t_lb.frame.size.height + 18 + 10 + 99;
-                    
-                }else{
-                    return 84 + 15 + _arr_lables_b.count * (t_lb.frame.size.height + 18);
-                    
-                }
-                
+                return 84 + 15 + _arr_lables_b.count * (t_lb.frame.size.height + 18);
             }
             
-           
+        }else{
+        
+            if (_accident.ptbDescribe && _accident.ptbDescribe.length > 0) {
+                //segenControl底部距离顶部高度 + 15间距 + label高度 + textView和简述间隔 + textView高度 + textView到底部
+                return 84 + 15 + 17 + 10 + 99  + 10;
+            }else{
+                return 84 + 15;
+            }
+            
         }
+    
     }else if (_indexSelected == 2){
         
         if (_arr_lables_c && _arr_lables_c.count > 0) {
             
             UILabel *t_lb = (UILabel *)_arr_lables_c[0];
             
-            if (_arr_tag_c && _arr_tag_c.count > 0) {
-                if (_accident.ptcDescribe && _accident.ptcDescribe.length > 0) {
-                    return 84 + 15 + _arr_lables_c.count * (t_lb.frame.size.height + 18) + _arr_tag_c.count * (t_lb.frame.size.height + 18)+ t_lb.frame.size.height + 18 + 10 + 99 ;
-                }else{
-                    return 84 + 15 + _arr_lables_c.count * (t_lb.frame.size.height + 18) + _arr_tag_c.count * (t_lb.frame.size.height + 18);
-                }
-                
+            if (_accident.ptcDescribe && _accident.ptcDescribe.length > 0) {
+                return 84 + 15 + _arr_lables_c.count * (t_lb.frame.size.height + 18) + t_lb.frame.size.height + 10 + 99 + 10;
             }else{
-                
-                if (_accident.ptcDescribe && _accident.ptcDescribe.length > 0) {
-                    return 84 + 15 + _arr_lables_c.count * (t_lb.frame.size.height + 18) + t_lb.frame.size.height + 18 + 10 + 99 ;
-                    
-                }else{
-                    return 84 + 15 + _arr_lables_c.count * (t_lb.frame.size.height + 18);
-                    
-                }
-                
+                return 84 + 15 + _arr_lables_c.count * (t_lb.frame.size.height + 18);
             }
+            
+        }else{
+            
+            if (_accident.ptcDescribe && _accident.ptcDescribe.length > 0) {
+                //segenControl底部距离顶部高度 + 15间距 + label高度 + textView和简述间隔 + textView高度 + textView到底部
+                return 84 + 15 + 17 + 10 + 99  + 10;
+            }else{
+                return 84 + 15;
+            }
+        
         }
 
     }
