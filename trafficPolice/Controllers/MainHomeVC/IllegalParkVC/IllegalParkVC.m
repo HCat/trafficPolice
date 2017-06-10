@@ -81,9 +81,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     //断网之后重新连接网络事件
     WS(weakSelf);
     self.networkChangeBlock = ^{
-        if ([ShareValue sharedDefault].roadModels == nil) {
-            [weakSelf getCommonRoad];
-        }
+        [weakSelf getCommonRoad];
     };
     
 }
@@ -818,18 +816,36 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 
                 if ([t_str isEqualToString:[deleteImage objectForKey:@"remarks"]]) {
                     
-                    if ([t_str isEqualToString:@"车牌近照"] || [t_str isEqualToString:@"违停照片"]) {
-                        
-                        [strongSelf.arr_upImages replaceObjectAtIndex:i withObject:[NSNull null]];
-                        
-                        [strongSelf.collectionView reloadData];
-                        
-                    }else{
-                        
-                        [strongSelf.arr_upImages removeObject:t_dic];
-                        
-                        [strongSelf.collectionView reloadData];
+                    
+                    if (strongSelf.illegalType == IllegalTypePark) {
+                        if ([t_str isEqualToString:@"车牌近照"] || [t_str isEqualToString:@"违停照片"]) {
+                            
+                            [strongSelf.arr_upImages replaceObjectAtIndex:i withObject:[NSNull null]];
+                            
+                            [strongSelf.collectionView reloadData];
+                            
+                        }else{
+                            
+                            [strongSelf.arr_upImages removeObject:t_dic];
+                            
+                            [strongSelf.collectionView reloadData];
+                        }
+                    }else if (strongSelf.illegalType == IllegalTypeThrough){
+                        if ([t_str isEqualToString:@"车牌近照"] || [t_str isEqualToString:@"闯禁令照片"]) {
+                            
+                            [strongSelf.arr_upImages replaceObjectAtIndex:i withObject:[NSNull null]];
+                            
+                            [strongSelf.collectionView reloadData];
+                            
+                        }else{
+                            
+                            [strongSelf.arr_upImages removeObject:t_dic];
+                            
+                            [strongSelf.collectionView reloadData];
+                        }
+                    
                     }
+            
                     
                     //替换之后做是否可以上传判断
                     if (strongSelf.headView.isCanCommit == YES && ![strongSelf.arr_upImages[0] isKindOfClass:[NSNull class]] && ![strongSelf.arr_upImages[1] isKindOfClass:[NSNull class]]) {

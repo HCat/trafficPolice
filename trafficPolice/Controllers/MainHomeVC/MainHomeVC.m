@@ -40,6 +40,8 @@
     
     //这里获取事故通用值
     [[ShareValue sharedDefault] accidentCodes];
+    //这里获取道路通用值通用值
+    [[ShareValue sharedDefault] roadModels];
     
     WS(weakSelf);
     

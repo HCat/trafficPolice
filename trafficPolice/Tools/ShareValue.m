@@ -64,5 +64,28 @@ LRSingletonM(Default)
 
 }
 
+- (NSArray <CommonGetRoadModel *>*)roadModels{
+
+    
+    if (!_roadModels) {
+        
+        WS(weakSelf);
+        CommonGetRoadManger *manger = [[CommonGetRoadManger alloc] init];
+        manger.isNeedShowHud = NO;
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            SW(strongSelf, weakSelf);
+            if (manger.responseModel.code == CODE_SUCCESS) {
+                strongSelf.roadModels = manger.commonGetRoadResponse;
+            }
+            
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+        }];
+    }
+    
+    return _roadModels;
+
+}
+
 
 @end

@@ -86,7 +86,7 @@
 @interface IllegalParkReportAbnormalManger:LRBaseRequest
 
 /****** 请求数据 ******/
-@property (nonatomic, copy) NSString *illegalParkId;
+@property (nonatomic, strong) NSNumber *illegalParkId;
 
 /****** 返回数据 ******/
 //无返回数据

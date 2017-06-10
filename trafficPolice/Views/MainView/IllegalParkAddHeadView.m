@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *tf_addressRemarks; //地址备注
 @property (nonatomic,assign,readwrite) BOOL isCanCommit;
 
+@property(nonatomic,strong) NSArray *codes;
+
 @end
 
 @implementation IllegalParkAddHeadView
@@ -47,6 +49,16 @@
     [self addChangeForEventEditingChanged:_tf_carNumber];
     [self addChangeForEventEditingChanged:_tf_address];
     [self addChangeForEventEditingChanged:_tf_addressRemarks];
+    
+}
+
+#pragma mark - set && get 
+
+- (NSArray *)codes{
+    
+    _codes = [ShareValue sharedDefault].roadModels;
+    
+    return _codes;
     
 }
 
@@ -101,8 +113,8 @@
     IllegalParkVC *t_vc = (IllegalParkVC *)[ShareFun findViewController:self];
     SearchLocationVC *t_searchLocationvc = [SearchLocationVC new];
     t_searchLocationvc.searchType = SearchLocationTypeIllegal;
-    t_searchLocationvc.arr_content = [ShareValue sharedDefault].roadModels;
-    t_searchLocationvc.arr_temp = [ShareValue sharedDefault].roadModels;
+    t_searchLocationvc.arr_content = _codes;
+    t_searchLocationvc.arr_temp = _codes;
     
     t_searchLocationvc.getRoadBlock = ^(CommonGetRoadModel *model) {
         SW(strongSelf, weakSelf);
@@ -129,17 +141,7 @@
     self.param.longitude = @([LocationHelper sharedDefault].longitude);
     self.param.latitude = @([LocationHelper sharedDefault].latitude);
     
-    if ([ShareValue sharedDefault].roadModels && [ShareValue sharedDefault].roadModels.count > 0) {
-        for(CommonGetRoadModel *model in [ShareValue sharedDefault].roadModels){
-            if ([model.getRoadName isEqualToString:[LocationHelper sharedDefault].streetName]) {
-                _param.roadId = model.getRoadId;
-                break;
-            }
-        }
-    }
-    if (!_param.roadId) {
-        _param.roadId = @0;
-    }
+    [self getRoadId];
     
     _param.roadName = [LocationHelper sharedDefault].streetName;
     _param.address = [LocationHelper sharedDefault].address;
@@ -227,8 +229,8 @@
 
 - (void)getRoadId{
 
-    if ([ShareValue sharedDefault].roadModels && [ShareValue sharedDefault].roadModels.count > 0) {
-        for(CommonGetRoadModel *model in [ShareValue sharedDefault].roadModels){
+    if (_codes && _codes.count > 0) {
+        for(CommonGetRoadModel *model in _codes){
             if ([model.getRoadName isEqualToString:_tf_roadSection.text]) {
                 _param.roadId = model.getRoadId;
                 break;

@@ -10,11 +10,14 @@
 
 #import "UITableView+Lr_Placeholder.h"
 #import <RealReachability.h>
+#import <PureLayout.h>
 
 #import "IllegalParkAPI.h"
 #import "IllegalThroughAPI.h"
 
 #import "IllegalImageCell.h"
+#import "IllegalMessageCell.h"
+#import "IllegalFootCell.h"
 
 
 @interface IllegalDetailVC ()
@@ -38,7 +41,7 @@
     _tb_content.isNeedPlaceholderView = YES;
     _tb_content.firstReload = YES;
     _tb_content.allowsSelection = NO;
-
+    
     [self setNetworking];
     
 }
@@ -150,7 +153,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (_model) {
-        return 1;
+        if ([_model.illegalCollect.state isEqualToNumber:@1] ) {
+            return 3;
+        }else{
+            return 2;
+        }
+        
     }else{
         return 0;
     }
@@ -161,7 +169,14 @@
     if (indexPath.row == 0) {
         IllegalImageCell *cell = (IllegalImageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
         return [cell heightWithimages];
+    }else if (indexPath.row == 1) {
+        IllegalMessageCell *cell = (IllegalMessageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+        return [cell heightWithIllegal];
+    }else if (indexPath.row == 2) {
+        return 75;
     }
+    
+    
     return 0;
 }
 
@@ -184,7 +199,61 @@
         
         return cell;
         
+    }else if (indexPath.row == 1){
+        IllegalMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IllegalMessageCellID"];
+        if (!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"IllegalMessageCell" bundle:nil] forCellReuseIdentifier:@"IllegalMessageCellID"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"IllegalMessageCellID"];
+        }
+        
+        
+        if (_model) {
+            
+            if (_model.illegalCollect) {
+                cell.illegalCollect = _model.illegalCollect;
+            }
+        }
+        
+        return cell;
+
+    }else if (indexPath.row == 2){
+        IllegalFootCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IllegalFootCellID"];
+        if (!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"IllegalFootCell" bundle:nil] forCellReuseIdentifier:@"IllegalFootCellID"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"IllegalFootCellID"];
+        }
+        
+        WS(weakSelf);
+        cell.illegalUpAbnormalBlock = ^{
+            SW(strongSelf, weakSelf);
+            IllegalParkReportAbnormalManger *manger = [[IllegalParkReportAbnormalManger alloc] init];
+            manger.illegalParkId = strongSelf.illegalId;
+            manger.successMessage = @"上报成功";
+            manger.failMessage = @"上报失败";
+            manger.v_showHud = strongSelf.view;
+            
+            ShowHUD * hud = [ShowHUD showWhiteLoadingWithText:@"上报异常中..." inView:strongSelf.view config:nil];
+            
+            [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                [hud hide];
+                
+                if (manger.responseModel.code == CODE_SUCCESS) {
+                    strongSelf.model.illegalCollect.state = @8;
+                    strongSelf.model.illegalCollect.stateName  = @"异常处理中";
+                    [strongSelf.tb_content reloadData];
+                }
+            
+            } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                [hud hide];
+    
+            }];
+            
+       };
+        
+        return cell;
+        
     }
+
     
     return nil;
 }
@@ -193,6 +262,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+}
+
+#pragma mark - scrollViewDelegate
+//用于滚动到顶部的时候使得tableView不能再继续下拉
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    if (scrollView == self.tb_content){
+        if (scrollView.contentOffset.y < 0) {
+            CGPoint position = CGPointMake(0, 0);
+            [scrollView setContentOffset:position animated:NO];
+            return;
+        }
+    }
 }
 
 

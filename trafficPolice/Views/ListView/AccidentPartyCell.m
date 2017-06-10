@@ -179,15 +179,15 @@
             
             /**************************/
             
-            if (_accident.ptaDescribe) {
+            if (_accident.ptaDescribe && _accident.ptaDescribe.length > 0) {
                 [self buildTextViewWithText:_accident.ptaDescribe BottomInArr:_arr_lables_a InView:_v_a];
             }
             
-            if (_accident.ptbDescribe) {
+            if (_accident.ptbDescribe && _accident.ptbDescribe.length > 0) {
                 [self buildTextViewWithText:_accident.ptbDescribe BottomInArr:_arr_lables_b InView:_v_b];
             }
             
-            if (_accident.ptcDescribe) {
+            if (_accident.ptcDescribe &&_accident.ptcDescribe.length > 0) {
                 [self buildTextViewWithText:_accident.ptcDescribe BottomInArr:_arr_lables_c InView:_v_c];
             }
             
@@ -210,15 +210,15 @@
             [self addLayoutInViews:_arr_lables_c];
             
             /************************************/
-            if (_accident.ptaDescribe) {
+            if (_accident.ptaDescribe && _accident.ptaDescribe.length > 0) {
                 [self buildTextViewWithText:_accident.ptaDescribe BottomInArr:_arr_lables_a InView:_v_a];
             }
             
-            if (_accident.ptbDescribe) {
+            if (_accident.ptbDescribe && _accident.ptbDescribe.length > 0) {
                 [self buildTextViewWithText:_accident.ptbDescribe BottomInArr:_arr_lables_b InView:_v_b];
             }
             
-            if (_accident.ptcDescribe) {
+            if (_accident.ptcDescribe && _accident.ptcDescribe.length > 0) {
                 [self buildTextViewWithText:_accident.ptcDescribe BottomInArr:_arr_lables_c InView:_v_c];
             }
             

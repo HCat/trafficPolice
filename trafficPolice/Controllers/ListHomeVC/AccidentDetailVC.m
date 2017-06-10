@@ -259,6 +259,19 @@
     
 }
 
+#pragma mark - scrollViewDelegate
+//用于滚动到顶部的时候使得tableView不能再继续下拉
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    if (scrollView == self.tb_content){
+        if (scrollView.contentOffset.y < 0) {
+            CGPoint position = CGPointMake(0, 0);
+            [scrollView setContentOffset:position animated:NO];
+            return;
+        }
+    }
+}
+
 #pragma mark - dealloc
 
 - (void)didReceiveMemoryWarning {

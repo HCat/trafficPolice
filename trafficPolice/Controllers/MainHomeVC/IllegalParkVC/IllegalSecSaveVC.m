@@ -267,7 +267,7 @@ static NSString *const footId = @"IllegalSecSavFootViewID";
                     SW(strongSelf, weakSelf);
                     
                     if (camera.type == 5) {
-                        [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"二次采集照片_%d",indexPath.row]];
+                        [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"二次采集照%d",indexPath.row+1]];
                         [strongSelf.collectionView reloadData];
                         
                     }
