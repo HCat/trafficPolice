@@ -177,6 +177,8 @@
         SW(strongSelf, weakSelf);
         if (manger.responseModel.code == CODE_SUCCESS) {
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_VIDEO_SUCCESS object:nil];
+            
             [ArtVideoUtil deleteVideo:strongSelf.currentRecord.videoAbsolutePath];
             [strongSelf.navigationController popViewControllerAnimated:YES];
         }
@@ -216,7 +218,7 @@
 
 - (void)dealloc{
 
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
     LxPrintf(@"VideoColectVC dealloc");
 
 }

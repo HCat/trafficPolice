@@ -32,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoSuccess:) name:NOTIFICATION_VIDEO_SUCCESS object:nil];
+    
     _collectionView.isNeedPlaceholderView = YES;
     _collectionView.firstReload = YES;
     
@@ -225,6 +227,12 @@
     return 5.0f;
 }
 
+#pragma mark -notification
+
+- (void)videoSuccess:(NSNotification *)notification{
+    [_collectionView.mj_header beginRefreshing];
+}
+
 
 #pragma mark - dealloc
 
@@ -234,7 +242,7 @@
 }
 
 - (void)dealloc{
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_VIDEO_SUCCESS object:nil];
     LxPrintf(@"VideoListVC dealloc");
     
 }

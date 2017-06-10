@@ -704,6 +704,9 @@
             
             SW(strongSelf, weakSelf);
             if (manger.responseModel.code == CODE_SUCCESS) {
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ACCIDENT_SUCCESS object:nil];
+                
                 AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:strongSelf];
                 [t_vc.navigationController popViewControllerAnimated:YES];
                 
@@ -725,6 +728,9 @@
             
             SW(strongSelf, weakSelf);
             if (manger.responseModel.code == CODE_SUCCESS) {
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FASTACCIDENT_SUCCESS object:nil];
+                
                 AccidentVC *t_vc = (AccidentVC *)[ShareFun findViewController:strongSelf];
                 [t_vc.navigationController popViewControllerAnimated:YES];
                 

@@ -573,6 +573,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 strongSelf.headView.param = strongSelf.param;
                 [strongSelf.headView handleBeforeCommit];
                 
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ILLEGALPARK_SUCCESS object:nil];
+                
             }else if (manger.responseModel.code == CODE_FAILED){
                 
                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:nil];
@@ -614,6 +616,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 
                 strongSelf.headView.param = strongSelf.param;
                 [strongSelf.headView handleBeforeCommit];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ILLEGALTHROUGH_SUCCESS object:nil];
                 
             }else if (manger.responseModel.code == 110){
             

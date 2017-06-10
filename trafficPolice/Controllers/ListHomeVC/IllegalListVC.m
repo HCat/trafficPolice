@@ -35,6 +35,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (_illegalType == IllegalTypePark) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(illegalSuccess:) name:NOTIFICATION_ILLEGALPARK_SUCCESS object:nil];
+    }else if (_illegalType == IllegalTypeThrough){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(illegalSuccess:) name:NOTIFICATION_ILLEGALTHROUGH_SUCCESS object:nil];
+    }
+    
     _tb_content.isNeedPlaceholderView = YES;
     _tb_content.firstReload = YES;
     //隐藏多余行的分割线
@@ -251,11 +257,15 @@
         [vc_target.navigationController pushViewController:t_vc animated:YES];
     }
     
-    
-    
-    
 }
 
+#pragma mark - Notification
+
+- (void)illegalSuccess:(NSNotification *)notification{
+
+    [_tb_content.mj_header beginRefreshing];
+
+}
 
 #pragma mark - dealloc
 
@@ -265,6 +275,12 @@
 }
 
 - (void)dealloc{
+    
+    if (_illegalType == IllegalTypePark) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_ILLEGALPARK_SUCCESS object:nil];
+    }else if (_illegalType == IllegalTypeThrough){
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_ILLEGALTHROUGH_SUCCESS object:nil];
+    }
     
     LxPrintf(@"IllegalList dealloc");
     

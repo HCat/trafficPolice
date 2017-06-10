@@ -310,6 +310,8 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 
 - (void)dealloc{
     
+    LxPrintf(@"AccidentVC dealloc");
+    
     @try {
         [_footView removeObserver:self forKeyPath:@"isShowMoreAccidentInfo"];
         [_footView removeObserver:self forKeyPath:@"isShowMoreInfo"];

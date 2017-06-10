@@ -33,6 +33,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    if (_accidentType == AccidentTypeAccident) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accidentSuccess:) name:NOTIFICATION_ACCIDENT_SUCCESS object:nil];
+    }else if (_accidentType == AccidentTypeFastAccident){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accidentSuccess:) name:NOTIFICATION_FASTACCIDENT_SUCCESS object:nil];
+    }
+    
     _tb_content.isNeedPlaceholderView = YES;
     _tb_content.firstReload = YES;
     //隐藏多余行的分割线
@@ -249,6 +256,11 @@
     }
 }
 
+#pragma mark - Notication
+
+- (void)accidentSuccess:(NSNotification *)notification{
+     [_tb_content.mj_header beginRefreshing];
+}
 
 #pragma mark - dealloc
 
@@ -259,6 +271,12 @@
 
 - (void)dealloc{
     
+    if (_accidentType == AccidentTypeAccident) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_ACCIDENT_SUCCESS object:nil];
+    }else if (_accidentType == AccidentTypeFastAccident){
+         [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FASTACCIDENT_SUCCESS object:nil];
+    }
+
     LxPrintf(@"AccidentListVC dealloc");
     
 }
