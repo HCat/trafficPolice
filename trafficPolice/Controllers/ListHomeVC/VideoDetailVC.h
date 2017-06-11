@@ -7,8 +7,9 @@
 //
 
 #import "HideTabSuperVC.h"
+#import "NJKWebViewProgress.h"
 
-@interface VideoDetailVC : HideTabSuperVC
+@interface VideoDetailVC : HideTabSuperVC<UIWebViewDelegate, NJKWebViewProgressDelegate>
 
 @property (nonatomic,copy) NSString *path;
 

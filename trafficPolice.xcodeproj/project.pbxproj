@@ -59,6 +59,8 @@
 		CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ECA1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m */; };
 		CE343ED21ECA9DB900C8E31B /* LRPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */; };
 		CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE343ED41ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m */; };
+		CE3916AE1EED8C06006B06FE /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3916AB1EED8C06006B06FE /* NJKWebViewProgress.m */; };
+		CE3916AF1EED8C06006B06FE /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3916AD1EED8C06006B06FE /* NJKWebViewProgressView.m */; };
 		CE39E00A1ECF154400F284C1 /* FastAccidentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E0091ECF154400F284C1 /* FastAccidentAPI.m */; };
 		CE39E00D1ECF2B0200F284C1 /* FastAccidentDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E00C1ECF2B0200F284C1 /* FastAccidentDetailModel.m */; };
 		CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE39E00F1ECF2B8000F284C1 /* AccidentPicListModel.m */; };
@@ -322,6 +324,10 @@
 		CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRPlaceholderView.m; sourceTree = "<group>"; };
 		CE343ED31ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Lr_Placeholder.h"; sourceTree = "<group>"; };
 		CE343ED41ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Lr_Placeholder.m"; sourceTree = "<group>"; };
+		CE3916AA1EED8C06006B06FE /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		CE3916AB1EED8C06006B06FE /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		CE3916AC1EED8C06006B06FE /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		CE3916AD1EED8C06006B06FE /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		CE39E0081ECF154300F284C1 /* FastAccidentAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccidentAPI.h; sourceTree = "<group>"; };
 		CE39E0091ECF154400F284C1 /* FastAccidentAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAccidentAPI.m; sourceTree = "<group>"; };
 		CE39E00B1ECF2B0200F284C1 /* FastAccidentDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAccidentDetailModel.h; sourceTree = "<group>"; };
@@ -788,6 +794,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE3916A91EED8C06006B06FE /* NJKWebViewProgress */,
 				CE3C454F1EECF5F000E59465 /* TTGTagCollectionView */,
 				CE9B37741EE7CBA700CA7417 /* FHHFPSIndicator */,
 				CE7CF0311EE19EFA00E91080 /* SRAlertView */,
@@ -991,6 +998,17 @@
 				CE343ED11ECA9DB900C8E31B /* LRPlaceholderView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CE3916A91EED8C06006B06FE /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				CE3916AA1EED8C06006B06FE /* NJKWebViewProgress.h */,
+				CE3916AB1EED8C06006B06FE /* NJKWebViewProgress.m */,
+				CE3916AC1EED8C06006B06FE /* NJKWebViewProgressView.h */,
+				CE3916AD1EED8C06006B06FE /* NJKWebViewProgressView.m */,
+			);
+			path = NJKWebViewProgress;
 			sourceTree = "<group>";
 		};
 		CE3A6C821EC9822A00D7D9D5 /* XBSettingController */ = {
@@ -1658,6 +1676,7 @@
 				CE3A6C951EC9822A00D7D9D5 /* XBSettingSectionModel.m in Sources */,
 				C7E0DC1F1EC1AF2D008ED063 /* ListHomeVC.m in Sources */,
 				CE8834CB1ED1D67700666CEE /* IllegalCollectModel.m in Sources */,
+				CE3916AE1EED8C06006B06FE /* NJKWebViewProgress.m in Sources */,
 				CE3A6CA81EC9A97300D7D9D5 /* UserSetVC.m in Sources */,
 				CE4CFE001ECB4D2700E59524 /* ShareValue.m in Sources */,
 				CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */,
@@ -1683,6 +1702,7 @@
 				CE57863D1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				CE57865E1ED4088700B4CC9F /* ZLShowVideoViewController.m in Sources */,
 				CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */,
+				CE3916AF1EED8C06006B06FE /* NJKWebViewProgressView.m in Sources */,
 				CE7F14E01EDE9B3900C7AEDA /* IllegalParkVC.m in Sources */,
 				CE57865C1ED4088700B4CC9F /* ZLShowBigImgViewController.m in Sources */,
 				CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */,
