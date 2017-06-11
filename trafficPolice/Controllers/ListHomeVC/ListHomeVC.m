@@ -12,6 +12,7 @@
 #import "AccidentListVC.h"
 #import "IllegalListVC.h"
 #import "VideoListVC.h"
+#import "SearchListVC.h"
 
 
 @interface ListHomeVC ()
@@ -92,6 +93,18 @@
     [self.view addSubview:_pageMenu.view];
     
 }
+
+#pragma mark - buttonActions
+
+
+- (IBAction)handleBtnSearchClicked:(id)sender {
+    
+    SearchListVC *t_vc = [SearchListVC new];
+    [self.navigationController pushViewController:t_vc animated:YES];
+    
+}
+
+
 
 
 #pragma mark - AKTabBar Method

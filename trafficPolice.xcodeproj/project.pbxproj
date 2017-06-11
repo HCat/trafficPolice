@@ -74,6 +74,11 @@
 		CE3A6CA41EC9A87400D7D9D5 /* ShowTabSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA21EC9A87400D7D9D5 /* ShowTabSuperVC.m */; };
 		CE3A6CA81EC9A97300D7D9D5 /* UserSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */; };
 		CE3A6CA91EC9A97300D7D9D5 /* UserSetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */; };
+		CE3C45401EECA89E00E59465 /* SearchListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3C453E1EECA89E00E59465 /* SearchListVC.m */; };
+		CE3C45411EECA89E00E59465 /* SearchListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3C453F1EECA89E00E59465 /* SearchListVC.xib */; };
+		CE3C45541EECF5F000E59465 /* TTGTagCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3C45511EECF5F000E59465 /* TTGTagCollectionView.m */; };
+		CE3C45551EECF5F000E59465 /* TTGTextTagCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3C45531EECF5F000E59465 /* TTGTextTagCollectionView.m */; };
+		CE3C45581EED025100E59465 /* SearchTagHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3C45571EED025100E59465 /* SearchTagHelper.m */; };
 		CE3E7E861ED1E7E800BBB5C0 /* VideoColectListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */; };
 		CE435EF21ECD7DFE00F85B38 /* LRBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EF11ECD7DFE00F85B38 /* LRBaseRequest.m */; };
 		CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE435EF51ECD848E00F85B38 /* LoginAPI.m */; };
@@ -346,6 +351,15 @@
 		CE3A6CA51EC9A97300D7D9D5 /* UserSetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetVC.h; sourceTree = "<group>"; };
 		CE3A6CA61EC9A97300D7D9D5 /* UserSetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetVC.m; sourceTree = "<group>"; };
 		CE3A6CA71EC9A97300D7D9D5 /* UserSetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSetVC.xib; sourceTree = "<group>"; };
+		CE3C453D1EECA89E00E59465 /* SearchListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListVC.h; sourceTree = "<group>"; };
+		CE3C453E1EECA89E00E59465 /* SearchListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListVC.m; sourceTree = "<group>"; };
+		CE3C453F1EECA89E00E59465 /* SearchListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchListVC.xib; sourceTree = "<group>"; };
+		CE3C45501EECF5F000E59465 /* TTGTagCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGTagCollectionView.h; sourceTree = "<group>"; };
+		CE3C45511EECF5F000E59465 /* TTGTagCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGTagCollectionView.m; sourceTree = "<group>"; };
+		CE3C45521EECF5F000E59465 /* TTGTextTagCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGTextTagCollectionView.h; sourceTree = "<group>"; };
+		CE3C45531EECF5F000E59465 /* TTGTextTagCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGTextTagCollectionView.m; sourceTree = "<group>"; };
+		CE3C45561EED025100E59465 /* SearchTagHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTagHelper.h; sourceTree = "<group>"; };
+		CE3C45571EED025100E59465 /* SearchTagHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTagHelper.m; sourceTree = "<group>"; };
 		CE3E7E841ED1E7E800BBB5C0 /* VideoColectListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoColectListModel.h; sourceTree = "<group>"; };
 		CE3E7E851ED1E7E800BBB5C0 /* VideoColectListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoColectListModel.m; sourceTree = "<group>"; };
 		CE435EF01ECD7DFE00F85B38 /* LRBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRBaseRequest.h; sourceTree = "<group>"; };
@@ -774,6 +788,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE3C454F1EECF5F000E59465 /* TTGTagCollectionView */,
 				CE9B37741EE7CBA700CA7417 /* FHHFPSIndicator */,
 				CE7CF0311EE19EFA00E91080 /* SRAlertView */,
 				CE5ACBF81EE0345400B60089 /* LLPhotoBrowser */,
@@ -846,6 +861,8 @@
 				CE321A901ED6804A00F842E4 /* LocationHelper.m */,
 				CEAF130A1ED9E3D4004A8E73 /* CountAccidentHelper.h */,
 				CEAF130B1ED9E3D4004A8E73 /* CountAccidentHelper.m */,
+				CE3C45561EED025100E59465 /* SearchTagHelper.h */,
+				CE3C45571EED025100E59465 /* SearchTagHelper.m */,
 				CE343ECF1ECA9DAC00C8E31B /* Views */,
 				C7E0DBF41EC1A1C9008ED063 /* Controllers */,
 			);
@@ -911,6 +928,9 @@
 				C7E0DC1C1EC1AF2D008ED063 /* ListHomeVC.h */,
 				C7E0DC1D1EC1AF2D008ED063 /* ListHomeVC.m */,
 				C7E0DC1E1EC1AF2D008ED063 /* ListHomeVC.xib */,
+				CE3C453D1EECA89E00E59465 /* SearchListVC.h */,
+				CE3C453E1EECA89E00E59465 /* SearchListVC.m */,
+				CE3C453F1EECA89E00E59465 /* SearchListVC.xib */,
 				CE0E990F1EE7B148009D25B4 /* AccidentListVC.h */,
 				CE0E99101EE7B148009D25B4 /* AccidentListVC.m */,
 				CE0E99111EE7B148009D25B4 /* AccidentListVC.xib */,
@@ -1022,6 +1042,17 @@
 				CE3A6C921EC9822A00D7D9D5 /* XBSettingCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CE3C454F1EECF5F000E59465 /* TTGTagCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				CE3C45501EECF5F000E59465 /* TTGTagCollectionView.h */,
+				CE3C45511EECF5F000E59465 /* TTGTagCollectionView.m */,
+				CE3C45521EECF5F000E59465 /* TTGTextTagCollectionView.h */,
+				CE3C45531EECF5F000E59465 /* TTGTextTagCollectionView.m */,
+			);
+			path = TTGTagCollectionView;
 			sourceTree = "<group>";
 		};
 		CE435EEF1ECD7DA800F85B38 /* BaseNetwork */ = {
@@ -1542,6 +1573,7 @@
 				CE5786441ED4088700B4CC9F /* btn_selected@2x.png in Resources */,
 				CE5AF6D01EE96AD20022CCD0 /* AccidentPartyCell.xib in Resources */,
 				C7E0DC201EC1AF2D008ED063 /* ListHomeVC.xib in Resources */,
+				CE3C45411EECA89E00E59465 /* SearchListVC.xib in Resources */,
 				CE5786481ED4088700B4CC9F /* btn_unselected@3x.png in Resources */,
 				CE5786771ED436C200B4CC9F /* AccidentAddHeadView.xib in Resources */,
 				CE4F7DD91EE6AF08007E40E2 /* LRPlayVC.xib in Resources */,
@@ -1633,6 +1665,7 @@
 				CE5AF6CF1EE96AD20022CCD0 /* AccidentPartyCell.m in Sources */,
 				CE3A6CA31EC9A87400D7D9D5 /* HideTabSuperVC.m in Sources */,
 				CE7F14EA1EDEA11100C7AEDA /* IllegalParkAddFootView.m in Sources */,
+				CE3C45551EECF5F000E59465 /* TTGTextTagCollectionView.m in Sources */,
 				CE5D30EE1EDB1B810092F143 /* PartyFactory.m in Sources */,
 				CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */,
 				CE43C15D1ECDE84700309507 /* YTKUrlArgumentsFilter.m in Sources */,
@@ -1654,6 +1687,7 @@
 				CE57865C1ED4088700B4CC9F /* ZLShowBigImgViewController.m in Sources */,
 				CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */,
 				CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */,
+				CE3C45401EECA89E00E59465 /* SearchListVC.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
 				CE92B2961ED577F600563749 /* BottomPickerView.m in Sources */,
 				CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */,
@@ -1715,6 +1749,7 @@
 				CE7CF0371EE19EFA00E91080 /* FXBlurView.m in Sources */,
 				CE435EF61ECD848E00F85B38 /* LoginAPI.m in Sources */,
 				C7D690981EC3038500E9A6B3 /* LRRippleButton.m in Sources */,
+				CE3C45581EED025100E59465 /* SearchTagHelper.m in Sources */,
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,
 				C7E0DC1A1EC1AF18008ED063 /* MainHomeVC.m in Sources */,
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
@@ -1727,6 +1762,7 @@
 				CE5786641ED40EBA00B4CC9F /* AccidentVC.m in Sources */,
 				CE7F14EF1EDEC70200C7AEDA /* IllegalParkCell.m in Sources */,
 				CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */,
+				CE3C45541EECF5F000E59465 /* TTGTagCollectionView.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
 				CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
