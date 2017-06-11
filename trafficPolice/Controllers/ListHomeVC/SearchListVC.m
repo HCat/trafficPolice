@@ -13,6 +13,12 @@
 #import "SearchTagHelper.h"
 #import "UIButton+Block.h"
 
+#import "LRPageMenu.h"
+#import "ShareFun.h"
+#import "AccidentListVC.h"
+#import "IllegalListVC.h"
+#import "VideoListVC.h"
+
 @interface SearchListVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_search;
@@ -29,8 +35,11 @@
 
 @property (nonatomic, strong) TTGTextTagCollectionView *tagView;
 
+@property (nonatomic,strong) LRPageMenu *pageMenu;
+
 @property (nonatomic,strong) NSArray *arr_tags;
 
+@property (nonatomic,assign) NSInteger index; //记录选中在哪个index
 
 @end
 
@@ -48,9 +57,10 @@
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
-    
     [_btn_search setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
-   
+    
+    self.index = 0;
+    
     [self initTagView];
 }
 
@@ -127,6 +137,64 @@
 }
 
 
+- (void)initPageMenu{
+    
+    NSMutableArray *t_arr = [NSMutableArray array];
+    
+    if ([ShareFun isPermissionForAccidentList]) {
+        AccidentListVC *vc_first = [AccidentListVC new];
+        vc_first.accidentType = AccidentTypeAccident;
+        vc_first.str_search = _tf_search.text;
+        vc_first.title = @"事故";
+        AccidentListVC *vc_second = [AccidentListVC new];
+        vc_second.accidentType = AccidentTypeFastAccident;
+        vc_second.str_search = _tf_search.text;
+        vc_second.title = @"快处";
+        [t_arr addObject:vc_first];
+        [t_arr addObject:vc_second];
+    }
+    
+    if ([ShareFun isPermissionForIllegalList]) {
+        
+        IllegalListVC *vc_third = [IllegalListVC new];
+        vc_third.illegalType = IllegalTypePark;
+        vc_third.str_search = _tf_search.text;
+        vc_third.title = @"违停";
+        IllegalListVC *vc_foured = [IllegalListVC new];
+        vc_foured.illegalType = IllegalTypeThrough;
+        vc_foured.str_search = _tf_search.text;
+        vc_foured.title = @"闯禁令";
+        [t_arr addObject:vc_third];
+        [t_arr addObject:vc_foured];
+    }
+    
+    if ([ShareFun isPermissionForVideoCollectList]) {
+        
+        VideoListVC *vc_firved = [VideoListVC new];
+        vc_firved.str_search = _tf_search.text;
+        vc_firved.title = @"视频";
+        [t_arr addObject:vc_firved];
+    }
+    
+    NSArray *arr_controllers = [NSArray arrayWithArray:t_arr];
+    NSDictionary *dic_options = @{LRPageMenuOptionUseMenuLikeSegmentedControl:@(YES),
+                                  LRPageMenuOptionSelectedTitleColor:UIColorFromRGB(0x4281e8),
+                                  LRPageMenuOptionUnselectedTitleColor:UIColorFromRGB(0x444444),
+                                  LRPageMenuOptionSelectionIndicatorColor:UIColorFromRGB(0x4281e8),
+                                  LRPageMenuOptionScrollMenuBackgroundColor:[UIColor whiteColor],
+                                  LRPageMenuOptionSelectionIndicatorWidth:@(80),
+                                  LRPageMenuOptionBottomMenuHairlineColor:[UIColor clearColor],
+                                  LRPageMenuOptionSelectedTitleFont:[UIFont systemFontOfSize:15.f],
+                                  LRPageMenuOptionUnselectedTitleFont:[UIFont systemFontOfSize:14.f],
+                                  };
+    _pageMenu = [[LRPageMenu alloc] initWithViewControllers:arr_controllers frame:CGRectMake(0.0, 44.0, ScreenWidth, self.view.frame.size.height-44) options:dic_options];
+    
+    [_pageMenu moveToPage:_index withAnimation:NO];
+    
+    [self.view addSubview:_pageMenu.view];
+    
+}
+
 #pragma mark - buttonMethods
 
 - (IBAction)handleBtnDelHistoryClicked:(id)sender {
@@ -147,8 +215,12 @@
     _v_history.hidden = YES;
     [_tf_search resignFirstResponder];
     
-    
-    
+    if (_pageMenu) {
+        self.index = _pageMenu.currentPageIndex;
+        [_pageMenu.view removeFromSuperview];
+        _pageMenu = nil;
+    }
+    [self initPageMenu];
     
     //这里插入搜索缓存
     
@@ -179,6 +251,11 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
    
     _v_history.hidden = NO;
+    if (_pageMenu) {
+        self.index = _pageMenu.currentPageIndex;
+        [_pageMenu.view removeFromSuperview];
+        _pageMenu = nil;
+    }
     
 
 }
@@ -188,7 +265,12 @@
     _v_history.hidden = YES;
     [textField resignFirstResponder];
     
-    
+    if (_pageMenu) {
+        self.index = _pageMenu.currentPageIndex;
+        [_pageMenu.view removeFromSuperview];
+        _pageMenu = nil;
+    }
+    [self initPageMenu];
     
 
     NSArray *t_arr = [SearchTagHelper readTagArray];
@@ -224,6 +306,12 @@
     [_tf_search resignFirstResponder];
     _tf_search.text = tagText;
     
+    if (_pageMenu) {
+        self.index = _pageMenu.currentPageIndex;
+        [_pageMenu.view removeFromSuperview];
+        _pageMenu = nil;
+    }
+    [self initPageMenu];
     
 }
 

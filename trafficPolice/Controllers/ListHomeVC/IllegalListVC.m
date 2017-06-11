@@ -18,6 +18,7 @@
 #import "ShareFun.h"
 #import "ListHomeVC.h"
 #import "IllegalDetailVC.h"
+#import "SearchListVC.h"
 
 
 @interface IllegalListVC ()
@@ -42,6 +43,9 @@
     }
     
     _tb_content.isNeedPlaceholderView = YES;
+    if (_str_search) {
+        _tb_content.str_placeholder = @"暂无搜索内容";
+    }
     _tb_content.firstReload = YES;
     //隐藏多余行的分割线
     _tb_content.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -125,6 +129,9 @@
         IllegalParkListPagingParam *param = [[IllegalParkListPagingParam alloc] init];
         param.start = _index;
         param.length = 10;
+        if (_str_search) {
+            param.search = _str_search;
+        }
         IllegalParkListPagingManger *manger = [[IllegalParkListPagingManger alloc] init];
         manger.param = param;
         manger.isNeedShowHud = NO;
@@ -165,6 +172,10 @@
         IllegalThroughListPagingParam *param = [[IllegalThroughListPagingParam alloc] init];
         param.start = _index;
         param.length = 10;
+        if (_str_search) {
+            param.search = _str_search;
+        }
+        
         IllegalThroughListPagingManger *manger = [[IllegalThroughListPagingManger alloc] init];
         manger.param = param;
         manger.isNeedShowHud = NO;
@@ -248,7 +259,13 @@
     
     if (_arr_content && _arr_content.count > 0) {
         
-        ListHomeVC *vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+        UIViewController *vc_target = nil;
+        //搜索时候的跳转
+        if (_str_search) {
+            vc_target = (SearchListVC *)[ShareFun findViewController:self.view withClass:[SearchListVC class]];
+        }else{
+            vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+        }
         
         IllegalParkListModel *t_model = _arr_content[indexPath.row];
         IllegalDetailVC *t_vc = [[IllegalDetailVC alloc] init];

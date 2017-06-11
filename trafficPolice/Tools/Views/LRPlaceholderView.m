@@ -33,12 +33,18 @@
             
             [_reloadButton setImage:[UIImage imageNamed:@"icon_tablePlaceholder_error"] forState:UIControlStateNormal];
             [_reloadButton setTitle:@"网络异常，点击重试!" forState:UIControlStateNormal];
-            
+            [_reloadButton.titleLabel setFont:[UIFont systemFontOfSize:15.f]];
             [_reloadButton addTarget:self action:@selector(reloadClick:) forControlEvents:UIControlEventTouchUpInside];
         }else{
             
             [_reloadButton setImage:[UIImage imageNamed:@"icon_tablePlaceholder_null"] forState:UIControlStateNormal];
-            [_reloadButton setTitle:@"暂时没有任何内容" forState:UIControlStateNormal];
+            if (_str_placeholder) {
+                [_reloadButton setTitle:_str_placeholder forState:UIControlStateNormal];
+            }else{
+                [_reloadButton setTitle:@"暂时没有任何内容" forState:UIControlStateNormal];
+            }
+            [_reloadButton.titleLabel setFont:[UIFont systemFontOfSize:15.f]];
+            
         }
        
         [_reloadButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];

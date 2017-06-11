@@ -11,5 +11,5 @@
 @interface AccidentListVC : BaseViewController
 
 @property(nonatomic,assign) AccidentType accidentType;
-
+@property(nonatomic,copy) NSString *str_search;
 @end

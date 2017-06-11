@@ -334,11 +334,14 @@
         if (contentSize.height < 235) {
             _scrollView.frame = (CGRect){CGPointZero, contentSize};
             _containerView.frame = (CGRect){CGPointZero, contentSize};
+            self.frame = (CGRect){CGPointZero, contentSize};
         }else{
             _scrollView.frame = CGRectMake(0, 0, contentSize.width, 235);
             _containerView.frame = CGRectMake(0, 0, contentSize.width, 235);
+            self.frame = CGRectMake(0, 0, contentSize.width, 235);
         }
-
+        
+        
         if ([self.delegate respondsToSelector:@selector(tagCollectionView:updateContentSize:)]) {
             [self.delegate tagCollectionView:self updateContentSize:contentSize];
         }

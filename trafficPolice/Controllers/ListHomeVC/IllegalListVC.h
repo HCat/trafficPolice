@@ -11,5 +11,6 @@
 @interface IllegalListVC : BaseViewController
 
 @property (nonatomic,assign) IllegalType illegalType; //违法类型
+@property(nonatomic,copy) NSString *str_search;
 
 @end

@@ -12,4 +12,5 @@
 
 @property (nonatomic, copy) void(^reloadClickBlock)(void);
 @property (nonatomic, assign) BOOL isNetvailable;
+@property (nonatomic, copy) NSString *str_placeholder;
 @end

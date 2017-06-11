@@ -17,6 +17,7 @@
 #import "AccidentDetailVC.h"
 #import "ListHomeVC.h"
 #import "ShareFun.h"
+#import "SearchListVC.h"
 
 @interface AccidentListVC ()
 
@@ -41,6 +42,9 @@
     }
     
     _tb_content.isNeedPlaceholderView = YES;
+    if (_str_search) {
+        _tb_content.str_placeholder = @"暂无搜索内容";
+    }
     _tb_content.firstReload = YES;
     //隐藏多余行的分割线
     _tb_content.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -125,6 +129,9 @@
         AccidentListPagingParam *param = [[AccidentListPagingParam alloc] init];
         param.start = _index;
         param.length = 10;
+        if (_str_search) {
+            param.search = _str_search;
+        }
         AccidentListPagingManger *manger = [[AccidentListPagingManger alloc] init];
         manger.param = param;
         manger.isNeedShowHud = NO;
@@ -165,6 +172,9 @@
         FastAccidentListPagingParam *param = [[FastAccidentListPagingParam alloc] init];
         param.start = _index;
         param.length = 10;
+        if (_str_search) {
+            param.search = _str_search;
+        }
         FastAccidentListPagingManger *manger = [[FastAccidentListPagingManger alloc] init];
         manger.param = param;
         manger.isNeedShowHud = NO;
@@ -246,7 +256,15 @@
     
     if (_arr_content && _arr_content.count > 0) {
         
-        ListHomeVC *vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+        
+        
+        UIViewController *vc_target = nil;
+        //搜索时候的跳转
+        if (_str_search) {
+             vc_target = (SearchListVC *)[ShareFun findViewController:self.view withClass:[SearchListVC class]];
+        }else{
+            vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+        }
         
         AccidentListModel *t_model = _arr_content[indexPath.row];
         AccidentDetailVC *t_vc = [[AccidentDetailVC alloc] init];

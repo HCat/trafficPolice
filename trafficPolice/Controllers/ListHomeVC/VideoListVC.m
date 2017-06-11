@@ -16,6 +16,7 @@
 #import "VideoDetailVC.h"
 #import "ListHomeVC.h"
 #import "ShareFun.h"
+#import "SearchListVC.h"
 
 @interface VideoListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -182,10 +183,15 @@
     
     if (_arr_content && _arr_content.count > 0) {
         
-        VideoColectListModel *model = _arr_content[indexPath.row];
+        UIViewController *vc_target = nil;
+        //搜索时候的跳转
+        if (_str_search) {
+            vc_target = (SearchListVC *)[ShareFun findViewController:self.view withClass:[SearchListVC class]];
+        }else{
+            vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
+        }
         
-        ListHomeVC *vc_target = (ListHomeVC *)[ShareFun findViewController:self.view withClass:[ListHomeVC class]];
-    
+        VideoColectListModel *model = _arr_content[indexPath.row];
         VideoDetailVC * t_vc = [[VideoDetailVC alloc] init];
         t_vc.path = model.path;
         [vc_target.navigationController pushViewController:t_vc animated:YES];
