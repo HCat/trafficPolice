@@ -46,7 +46,7 @@
                 UIView *t_v  = _arr_view[i];
                 UIButton *t_button = [t_v viewWithTag:i + 100];
                 UILabel *t_lb = [t_v viewWithTag:i + 1000];
-                [t_button sd_setImageWithURL:[NSURL URLWithString:picModel.imgUrl] forState:UIControlStateNormal];
+                [t_button sd_setImageWithURL:[NSURL URLWithString:picModel.imgUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_imageLoading.png"]];
                 t_lb.text = picModel.picName;
             }
             
@@ -63,7 +63,8 @@
                 [self.contentView addSubview:t_v];
                 
                 UIButton * t_button = [UIButton newAutoLayoutView];
-                [t_button sd_setImageWithURL:[NSURL URLWithString:picModel.imgUrl] forState:UIControlStateNormal];
+                [t_button sd_setImageWithURL:[NSURL URLWithString:picModel.imgUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_imageLoading.png"]];
+                [t_button setBackgroundColor:UIColorFromRGB(0xf2f2f2)];
                 t_button.tag = i + 100;
                 t_button.layer.cornerRadius = 5.0f;
                 t_button.layer.masksToBounds = YES;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,9 +20,13 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gQv-wm-w1r">
                         <rect key="frame" x="8" y="8" width="149" height="100"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="ldu-81-Fvh"/>
                         </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_playVideo" translatesAutoresizingMaskIntoConstraints="NO" id="4B1-wT-tPe">
+                        <rect key="frame" x="8" y="8" width="149" height="100"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="晋江万达广场" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mF6-ES-EuO">
                         <rect key="frame" x="8" y="113" width="149" height="16"/>
@@ -46,16 +50,20 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="SsH-Pd-EQw" secondAttribute="bottom" constant="3" id="2mk-Cy-wwL"/>
+                <constraint firstItem="4B1-wT-tPe" firstAttribute="bottom" secondItem="gQv-wm-w1r" secondAttribute="bottom" id="2oR-6i-IpC"/>
+                <constraint firstItem="4B1-wT-tPe" firstAttribute="top" secondItem="gQv-wm-w1r" secondAttribute="top" id="9kC-gZ-qXe"/>
                 <constraint firstItem="gQv-wm-w1r" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Ajc-a9-jpg"/>
                 <constraint firstItem="SsH-Pd-EQw" firstAttribute="trailing" secondItem="mF6-ES-EuO" secondAttribute="trailing" id="MHA-Wc-CeE"/>
                 <constraint firstItem="gQv-wm-w1r" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="OGq-Ed-gJZ"/>
                 <constraint firstItem="SsH-Pd-EQw" firstAttribute="top" secondItem="mF6-ES-EuO" secondAttribute="bottom" constant="5" id="Ogg-hw-vli"/>
                 <constraint firstItem="b7v-vl-dQ1" firstAttribute="trailing" secondItem="gQv-wm-w1r" secondAttribute="trailing" constant="-2" id="Q9v-cs-INS"/>
+                <constraint firstItem="4B1-wT-tPe" firstAttribute="trailing" secondItem="gQv-wm-w1r" secondAttribute="trailing" id="ays-9m-mwq"/>
                 <constraint firstItem="SsH-Pd-EQw" firstAttribute="leading" secondItem="mF6-ES-EuO" secondAttribute="leading" id="bZn-Vi-Cwq"/>
                 <constraint firstItem="mF6-ES-EuO" firstAttribute="trailing" secondItem="gQv-wm-w1r" secondAttribute="trailing" id="hyd-WE-cBW"/>
                 <constraint firstAttribute="trailing" secondItem="gQv-wm-w1r" secondAttribute="trailing" constant="8" id="rJ0-eO-zxJ"/>
                 <constraint firstItem="mF6-ES-EuO" firstAttribute="leading" secondItem="gQv-wm-w1r" secondAttribute="leading" id="s64-cb-oNJ"/>
                 <constraint firstItem="b7v-vl-dQ1" firstAttribute="bottom" secondItem="gQv-wm-w1r" secondAttribute="bottom" constant="-2" id="t2d-OF-C8g"/>
+                <constraint firstItem="4B1-wT-tPe" firstAttribute="leading" secondItem="gQv-wm-w1r" secondAttribute="leading" id="tAr-cx-lc6"/>
                 <constraint firstItem="mF6-ES-EuO" firstAttribute="top" secondItem="gQv-wm-w1r" secondAttribute="bottom" constant="5" id="vkf-gG-Ytt"/>
             </constraints>
             <size key="customSize" width="165" height="153"/>
@@ -68,4 +76,7 @@
             <point key="canvasLocation" x="82.5" y="103.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="icon_playVideo" width="50" height="50"/>
+    </resources>
 </document>

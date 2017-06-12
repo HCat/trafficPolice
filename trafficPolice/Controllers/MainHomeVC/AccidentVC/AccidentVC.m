@@ -18,12 +18,16 @@
 @interface AccidentVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (nonatomic,strong)  NSArray *arr_photos;
 @property (nonatomic, strong) NSMutableArray<UIImage *> *lastSelectPhotos;
 @property (nonatomic, strong) NSMutableArray<PHAsset *> *lastSelectAssets;
+
 @property (nonatomic, strong) AccidentAddFootView *footView;
+
 @property (nonatomic,assign) BOOL isFirstLoad; //判断collectionView是不是第一次load
-@property (nonatomic,assign) BOOL isObserver; //判断是否添加了监听
+
+@property (nonatomic,assign) BOOL isObserver; //判断是否添加了kvo监听,如果添加了不需要重复添加
 @end
 
 @implementation AccidentVC
@@ -31,6 +35,7 @@
 static NSString *const cellId = @"ZLCollectionCell";
 static NSString *const footId = @"AccidentAddFootViewID";
 static NSString *const headId = @"AccidentAddHeadViewID";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -185,17 +190,6 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 
 #pragma mark - UICollectionView Delegate method
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-// 点击高亮
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    
-}
 
 //选中某个 item 触发
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

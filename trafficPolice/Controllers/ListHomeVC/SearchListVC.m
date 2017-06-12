@@ -119,7 +119,7 @@
     
     [_tagView setDelegate:(id<TTGTextTagCollectionViewDelegate>)self];
     
-    _tagView.showsVerticalScrollIndicator = NO;
+    //_tagView.showsVerticalScrollIndicator = NO;
    
     [self.view layoutIfNeeded];
     

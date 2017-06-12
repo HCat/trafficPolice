@@ -13,10 +13,12 @@
 @interface VideoListCell()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageV_preview;
+
 @property (weak, nonatomic) IBOutlet UILabel *lb_length;
 @property (weak, nonatomic) IBOutlet UILabel *lb_address;
-
 @property (weak, nonatomic) IBOutlet UILabel *lb_time;
+
+
 
 @end
 

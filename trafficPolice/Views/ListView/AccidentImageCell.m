@@ -42,7 +42,7 @@
                 NSString *pic_url  = _arr_images[i];
                 
                 UIButton *t_button  = _arr_view[i];
-                [t_button sd_setImageWithURL:[NSURL URLWithString:pic_url] forState:UIControlStateNormal];
+                [t_button sd_setImageWithURL:[NSURL URLWithString:pic_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_imageLoading.png"]];
             }
         
         }else{
@@ -54,7 +54,8 @@
                 NSString *pic_url  = _arr_images[i];
         
                 UIButton *t_button = [UIButton newAutoLayoutView];
-                [t_button sd_setImageWithURL:[NSURL URLWithString:pic_url] forState:UIControlStateNormal];
+                [t_button sd_setImageWithURL:[NSURL URLWithString:pic_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_imageLoading.png"]];
+                [t_button setBackgroundColor:UIColorFromRGB(0xf2f2f2)];
                 t_button.tag = i;
                 t_button.layer.cornerRadius = 5.0f;
                 t_button.layer.masksToBounds = YES;
