@@ -54,9 +54,6 @@ static NSString *const headId = @"AccidentAddHeadViewID";
     
     [[ShareValue sharedDefault] accidentCodes];
 
-    
-    
-    
     //断网之后重新连接网络该做的事情
 
     self.networkChangeBlock = ^{

@@ -31,7 +31,6 @@
 #import "FastAccidentAPI.h"
 
 
-
 @interface AccidentAddFootView()<UITextViewDelegate>
 
 //分段控件，分别为甲方，乙方，丙方
@@ -40,22 +39,22 @@
  //事故信息里面的更多信息按钮
 @property (weak, nonatomic) IBOutlet UIButton *btn_moreAccidentInfo;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layout_accidentInfo;
+
 //点击事故信息更多信息将要显示或者隐藏的UILabel 和 UIView
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *lb_moreAccidentInfos;
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *v_moreAccidentInfos;
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *v_moreAccidentInfos;
 
 //当事人信息里面的更多信息按钮
 @property (weak, nonatomic) IBOutlet UIButton *btn_moreInfo;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layout_moreinfo;
+
 //点击当事人信息更多信息将要显示或者隐藏的UILabel 和 UIView
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *lb_moreInfos;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btn_moreInfos;
 
-
 //快处事件的UI处理
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layout_InsuranceCompany;
 @property (weak, nonatomic) IBOutlet UILabel *lb_illegalBehavior;
-@property (weak, nonatomic) IBOutlet UIView *v_illegalBehavior;
 
 
 //事故信息里面用到的textField
@@ -111,6 +110,7 @@
 
 
 - (void)awakeFromNib {
+    
     [super awakeFromNib];
     //默认设置是否显示更多信息，这里预先设置是为了调用UICollectionView可以刷新下数据
     //这里待优化
@@ -137,7 +137,6 @@
     self.isCanCommit = NO;
     
 }
-
 
 #pragma mark - 配置视图页面
 
@@ -181,6 +180,31 @@
     [self addChangeForEventEditingChanged:self.tf_identityCard];
     [self addChangeForEventEditingChanged:self.tf_carNumber];
     [self addChangeForEventEditingChanged:self.tf_phone];
+    
+    //配置点击UITextField
+    [self setUpClickUITextField:self.tf_accidentCauses];
+    [self setUpClickUITextField:self.tf_location];
+    [self setUpClickUITextField:self.tf_injuriesNumber];
+    [self setUpClickUITextField:self.tf_roadType];
+    
+    [self setUpClickUITextField:self.tf_carType];
+    [self setUpClickUITextField:self.tf_drivingState];
+    [self setUpClickUITextField:self.tf_illegalBehavior];
+    [self setUpClickUITextField:self.tf_insuranceCompany];
+    [self setUpClickUITextField:self.tf_responsibility];
+    
+    //配置通用UITextField
+    [self setUpCommonUITextField:self.tf_accidentTime];
+    [self setUpCommonUITextField:self.tf_accidentAddress];
+    [self setUpCommonUITextField:self.tf_weather];
+    
+    [self setUpCommonUITextField:self.tf_name];
+    [self setUpCommonUITextField:self.tf_identityCard];
+    [self setUpCommonUITextField:self.tf_carNumber];
+    [self setUpCommonUITextField:self.tf_phone];
+    
+    
+    
     
     //配置FSTextView
     [self.tv_describe setDelegate:(id<UITextViewDelegate> _Nullable)self];
@@ -247,7 +271,7 @@
         _layout_moreinfo.constant = 10.f;
         [self layoutIfNeeded];
         self.lb_illegalBehavior.hidden = YES;
-        self.v_illegalBehavior.hidden = YES;
+        self.tf_illegalBehavior.hidden = YES;
         
     }
     
@@ -809,6 +833,57 @@
 
 #pragma mark - 实时监听UITextField内容的变化
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if (textField == _tf_accidentCauses) {
+        [self handleBtnAccidentCausesClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_location) {
+        [self handleBtnChoiceLocationClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_injuriesNumber) {
+        [self handleBtnInjuryNumberClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_roadType) {
+        [self handleBtnRoadTypeClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_carType) {
+        [self handleBtnCarTypeClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_drivingState) {
+        [self handleBtnTrafficStateClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_illegalBehavior) {
+        [self handleBtnIllegalBehaviorClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_insuranceCompany) {
+        [self handleBtnInsuranceCompanyClicked:nil];
+        return NO;
+    }
+    
+    if (textField == _tf_responsibility) {
+        [self handleBtnResponsibilityClicked:nil];
+        return NO;
+    }
+    
+    return YES;
+}
+
+
 -(void)passConTextChange:(id)sender{
     UITextField* textField = (UITextField*)sender;
     LxDBAnyVar(textField.text);
@@ -893,6 +968,32 @@
     self.btn_temporaryIdentityCard.selected = [self.partyFactory.partModel.partyIsZkSfz boolValue];
     self.tv_describe.text = self.partyFactory.partModel.partyDescribe;
 }
+
+#pragma mark - 配置UITextField
+
+- (void)setUpClickUITextField:(UITextField *)textField{
+
+    textField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, 0)];
+    //设置显示模式为永远显示(默认不显示)
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 5)];
+    imageView.image = [UIImage imageNamed:@"三角形.png"];
+    imageView.contentMode = UIViewContentModeCenter;
+    textField.rightView = imageView;
+    textField.rightViewMode = UITextFieldViewModeAlways;
+    [textField setDelegate:(id<UITextFieldDelegate> _Nullable)self];
+
+}
+
+- (void)setUpCommonUITextField:(UITextField *)textField{
+    
+    textField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, 0)];
+    //设置显示模式为永远显示(默认不显示)
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    
+}
+
 
 #pragma mark - dealloc
 - (void)dealloc{
