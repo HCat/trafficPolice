@@ -376,37 +376,45 @@
     
 }
 
-#pragma mark - 压缩图片
+#pragma mark - 压缩图片 
+//第一种方法：scaleFromImage 这种方式
 + (UIImage *)scaleFromImage:(UIImage *)image{
     
     if (!image){
         return nil;
     }
-    NSData *data =UIImagePNGRepresentation(image);
+    NSData *data =UIImageJPEGRepresentation(image,1.f);
     CGFloat dataSize = data.length/1024;
     CGFloat width  = image.size.width;
     CGFloat height = image.size.height;
     CGSize size;
     
     
-    if (dataSize<=50)//小于50k
-    {
+//    if (dataSize<=50)//小于50k
+//    {
+//        return image;
+//    }else if (dataSize<=100)//小于100k
+//    {
+//        size = CGSizeMake(width/1.f, height/1.f);
+//    }
+//    else if (dataSize<=200)//小于200k
+//    {
+//        size = CGSizeMake(width/2.f, height/2.f);
+//    }
+//    else if (dataSize<=500)//小于500k
+//    {
+//        size = CGSizeMake(width/2.f, height/2.f);
+//    }
+    if (dataSize<=500) {
         return image;
-    }else if (dataSize<=100)//小于100k
-    {
-        size = CGSizeMake(width/1.f, height/1.f);
-    }
-    else if (dataSize<=200)//小于200k
-    {
-        size = CGSizeMake(width/2.f, height/2.f);
-    }
-    else if (dataSize<=500)//小于500k
-    {
-        size = CGSizeMake(width/2.f, height/2.f);
     }
     else if (dataSize<=1000)//小于1M
     {
-        size = CGSizeMake(width/2.f, height/2.f);
+        size = CGSizeMake(width/1.f, height/1.f);
+    }
+    else if (dataSize<=1500)//小于1.5M
+    {
+        size = CGSizeMake(width*2/3.f, height*2/3.f);
     }
     else if (dataSize<=2000)//小于2M
     {
@@ -417,15 +425,88 @@
         size = CGSizeMake(width/2.f, height/2.f);
     }
     LxPrintf(@"%f,%f",size.width,size.height);
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
-    UIImage *newImage =UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    if (!newImage){
-        return image;
+//    UIGraphicsBeginImageContext(size);
+//    [image drawInRect:CGRectMake(0,0, size.width, size.height)];
+//    UIImage *newImage =UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    if (!newImage){
+//        return image;
+//    }
+    return [self imageCompressForSize:image targetSize:CGSizeMake(size.width, size.height)];
+}
+
+//等比例压缩
++ (UIImage *) imageCompressForSize:(UIImage *)sourceImage targetSize:(CGSize)size{
+    UIImage *newImage = nil;
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = size.width;
+    CGFloat targetHeight = size.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0, 0.0);
+    if(CGSizeEqualToSize(imageSize, size) == NO){
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        if(widthFactor > heightFactor){
+            scaleFactor = widthFactor;
+        }        else{
+            scaleFactor = heightFactor;
+        }
+        scaledWidth = width * scaleFactor;
+        scaledHeight = height * scaleFactor;
+        if(widthFactor > heightFactor){
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        }else if(widthFactor < heightFactor){
+            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
     }
+    
+    UIGraphicsBeginImageContext(size);
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width = scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    [sourceImage drawInRect:thumbnailRect];
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    if(newImage == nil){
+        NSLog(@"scale image fail");
+    }
+    
+    UIGraphicsEndImageContext();
     return newImage;
+    
+}
+
+
+/**
+ *  压缩图片到指定文件大小
+ *
+ *  @param image 目标图片
+ *  @param size  目标大小（最大值）
+ *
+ *  @return 返回的图片文件
+ */
++ (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size{
+    NSData * data = UIImageJPEGRepresentation(image, 1.0);
+    CGFloat dataKBytes = data.length/1000.0;
+    CGFloat maxQuality = 0.9f;
+    CGFloat lastData = dataKBytes;
+    while (dataKBytes > size && maxQuality > 0.01f) {
+        maxQuality = maxQuality - 0.01f;
+        data = UIImageJPEGRepresentation(image, maxQuality);
+        dataKBytes = data.length / 1000.0;
+        if (lastData == dataKBytes) {
+            break;
+        }else{
+            lastData = dataKBytes;
+        }
+    }
+    return data;
 }
 
 #pragma mark - 获取事故权限

@@ -59,6 +59,8 @@
 
 #pragma mark - 压缩图片
 + (UIImage *)scaleFromImage:(UIImage *)image;
++ (UIImage *) imageCompressForSize:(UIImage *)sourceImage targetSize:(CGSize)size;
++ (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size;
 
 #pragma mark - 业务相关，待删除
 

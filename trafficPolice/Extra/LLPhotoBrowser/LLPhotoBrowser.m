@@ -9,6 +9,7 @@
 #import "LLPhotoBrowser.h"
 #import "LLCollectionViewCell.h"
 #import "UIButton+Block.h"
+#import "UIButton+NoRepeatClick.h"
 #import "ImageFileInfo.h"
 
 @interface LLPhotoBrowser ()<UICollectionViewDelegate,UICollectionViewDataSource,LLPhotoDelegate,UICollectionViewDelegateFlowLayout>{
@@ -105,6 +106,7 @@
     [_navigationBar addSubview:backBtn];
     
     UIButton *trachBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    trachBtn.isIgnore = YES;
     trachBtn.frame = CGRectMake(CGRectGetMaxX(_navigationBar.frame)-32, CGRectGetMidY(_navigationBar.frame)-9, 18, 18);
     [trachBtn setImage:[UIImage imageNamed:@"icon_trash_alt"] forState:UIControlStateNormal];
     [trachBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

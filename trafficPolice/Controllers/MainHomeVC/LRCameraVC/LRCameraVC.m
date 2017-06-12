@@ -46,6 +46,8 @@
     
     [_btn_photoAlbum setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
     [_btn_flash setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
+    [_btn_close setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
+
     
     if(_type == 1) {
         
@@ -309,34 +311,49 @@
     }
     
     if (_type != 5) {
+        WS(weakSelf);
         //获取的照片转换成ImageFileInfo对象来得到图片信息，并且赋值name用于服务端需要的key中
-        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_file];
-        self.image = self.imageInfo.image;
-        //请求数据获取证件信息
-        [self getIdentifyRequest];
-        
+        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"图片压缩中..." inView:self.view config:nil];
+        dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            SW(strongSelf, weakSelf);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                strongSelf.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_file];
+                strongSelf.image = self.imageInfo.image;
+                //请求数据获取证件信息
+                [hud hide];
+                [strongSelf getIdentifyRequest];
+            
+            });
+        });
+
     }else{
         TICK
         
+        WS(weakSelf);
+        //获取的照片转换成ImageFileInfo对象来得到图片信息，并且赋值name用于服务端需要的key中
         ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"图片压缩中..." inView:self.view config:nil];
-        self.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_files];
-        self.image = self.imageInfo.image;
-        
-        TOCK
-        
-        if (self.fininshCaptureBlock) {
-            self.fininshCaptureBlock(self);
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:^{
-            [hud hide];
-        }];
-        
-      
+        dispatch_async(dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            SW(strongSelf, weakSelf);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                strongSelf.imageInfo = [[ImageFileInfo alloc] initWithImage:image withName:key_files];
+                strongSelf.image = strongSelf.imageInfo.image;
+                
+                TOCK
+                
+                if (strongSelf.fininshCaptureBlock) {
+                    strongSelf.fininshCaptureBlock(strongSelf);
+                }
+                
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [hud hide];
+                }];
+                
+            });
+        });
+
     }
 
-    
-    
 }
 
 
@@ -348,6 +365,7 @@
 }
 
 - (void)dealloc{
+    LxPrintf(@"LRCameraVC dealloc");
 
     [_camera stop];
     _camera = nil;
