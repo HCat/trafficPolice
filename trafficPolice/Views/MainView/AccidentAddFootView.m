@@ -706,7 +706,7 @@
     }
     
     //如果roadId不为0，则不需要传roadName
-    if (_partyFactory.param.roadId != 0) {
+    if (![_partyFactory.param.roadId isEqualToNumber:@0]) {
         _partyFactory.param.roadName = nil;
     }
     
@@ -728,6 +728,15 @@
             
             SW(strongSelf, weakSelf);
             if (manger.responseModel.code == CODE_SUCCESS) {
+                
+                if ([strongSelf.partyFactory.param.roadId isEqualToNumber:@0]) {
+                    
+                    [ShareValue sharedDefault].accidentCodes = nil;
+                    [[ShareValue sharedDefault] accidentCodes];
+                    [ShareValue sharedDefault].roadModels = nil;
+                    [[ShareValue sharedDefault] roadModels];
+                    
+                }
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ACCIDENT_SUCCESS object:nil];
                 
@@ -752,6 +761,15 @@
             
             SW(strongSelf, weakSelf);
             if (manger.responseModel.code == CODE_SUCCESS) {
+                
+                if ([strongSelf.partyFactory.param.roadId isEqualToNumber:@0]) {
+                    
+                    [ShareValue sharedDefault].accidentCodes = nil;
+                    [[ShareValue sharedDefault] accidentCodes];
+                    [ShareValue sharedDefault].roadModels = nil;
+                    [[ShareValue sharedDefault] roadModels];
+                    
+                }
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FASTACCIDENT_SUCCESS object:nil];
                 

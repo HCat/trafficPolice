@@ -532,7 +532,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         
     }
     
-    if ([_param.roadId integerValue] != 0) {
+    if (![_param.roadId isEqualToNumber:@0]) {
         _param.roadName = nil;
     }
     
@@ -557,6 +557,9 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             
             //异步请求通用路名ID,这里需要请求的原因是当传入的roadID为0的情况下，需要重新去服务器里面拉取路名来匹配
             if ([strongSelf.param.roadId isEqualToNumber:@0]) {
+                [ShareValue sharedDefault].accidentCodes = nil;
+                [[ShareValue sharedDefault] accidentCodes];
+                [ShareValue sharedDefault].roadModels = nil;
                 [strongSelf getCommonRoad];
             }
             
@@ -601,6 +604,9 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             
             //异步请求通用路名ID,这里需要请求的原因是当传入的roadID为0的情况下，需要重新去服务器里面拉取路名来匹配
             if ([strongSelf.param.roadId isEqualToNumber:@0]) {
+               [ShareValue sharedDefault].accidentCodes = nil;
+               [[ShareValue sharedDefault] accidentCodes];
+               [ShareValue sharedDefault].roadModels = nil;
                [strongSelf getCommonRoad];
             }
             

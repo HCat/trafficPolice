@@ -35,6 +35,7 @@
     _tf_search.leftViewMode = UITextFieldViewModeAlways;
     
     if (_arr_content == nil) {
+        
         if (_searchType == SearchLocationTypeIllegal){
             [self getRoadName];
         }else{

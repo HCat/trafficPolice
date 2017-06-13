@@ -113,8 +113,8 @@
     IllegalParkVC *t_vc = (IllegalParkVC *)[ShareFun findViewController:self];
     SearchLocationVC *t_searchLocationvc = [SearchLocationVC new];
     t_searchLocationvc.searchType = SearchLocationTypeIllegal;
-    t_searchLocationvc.arr_content = _codes;
-    t_searchLocationvc.arr_temp = _codes;
+    t_searchLocationvc.arr_content = self.codes;
+    t_searchLocationvc.arr_temp = self.codes;
     
     t_searchLocationvc.getRoadBlock = ^(CommonGetRoadModel *model) {
         SW(strongSelf, weakSelf);
@@ -241,8 +241,8 @@
 
 - (void)getRoadId{
 
-    if (_codes && _codes.count > 0) {
-        for(CommonGetRoadModel *model in _codes){
+    if (self.codes && self.codes.count > 0) {
+        for(CommonGetRoadModel *model in self.codes){
             if ([model.getRoadName isEqualToString:_tf_roadSection.text]) {
                 _param.roadId = model.getRoadId;
                 break;
