@@ -63,6 +63,7 @@
 }
 
 - (void)requestCompleteFilter{
+    
     [super requestCompleteFilter];
     
     self.responseModel = [LRBaseResponse modelWithDictionary:self.responseJSONObject];
@@ -81,7 +82,9 @@
     if (self.responseModel.code == CODE_FAILED){
         //处理网络请求失败情况
         if (_isNeedShowHud) {
+            
             if (_failMessage) {
+                
                 if (_failMessage.length != 0) {
                     [ShowHUD showError:_failMessage duration:1.2f inView:self.v_showHud config:nil];
                 }
@@ -94,9 +97,13 @@
     }else if (self.responseModel.code == CODE_SUCCESS){
         //处理网络请求成功情况
         if (_isNeedShowHud) {
+            
             if (_successMessage) {
+                
                 if (_successMessage.length != 0) {
+                    
                     [ShowHUD showSuccess:_successMessage duration:1.2f inView:self.v_showHud config:nil];
+                    
                 }
                 
             }else{
