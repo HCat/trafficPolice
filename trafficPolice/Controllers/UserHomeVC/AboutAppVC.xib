@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,9 +57,8 @@
                         <constraint firstItem="u5a-X1-89A" firstAttribute="centerX" secondItem="NNI-NV-4gy" secondAttribute="centerX" id="iqg-aU-InN"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aI-FT-xEd">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aI-FT-xEd">
                     <rect key="frame" x="16" y="202" width="288" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.25882352939999997" green="0.50588235290000005" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="检测更新"/>
                     <userDefinedRuntimeAttributes>
@@ -75,7 +74,10 @@
             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="a39-SQ-HhO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3PH-Vd-wSr"/>
+                <constraint firstAttribute="trailing" secondItem="8aI-FT-xEd" secondAttribute="trailing" constant="16" id="7PS-1o-LgH"/>
                 <constraint firstItem="a39-SQ-HhO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9lU-1d-d7x"/>
+                <constraint firstItem="8aI-FT-xEd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="fIT-qY-u2k"/>
+                <constraint firstItem="8aI-FT-xEd" firstAttribute="top" secondItem="a39-SQ-HhO" secondAttribute="bottom" constant="21" id="h7e-l6-YI8"/>
                 <constraint firstAttribute="trailing" secondItem="a39-SQ-HhO" secondAttribute="trailing" id="i0g-2C-dnq"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

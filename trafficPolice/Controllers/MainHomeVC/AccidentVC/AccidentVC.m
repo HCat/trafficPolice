@@ -100,7 +100,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
         strongSelf.lastSelectAssets = assets.mutableCopy;
         strongSelf.lastSelectPhotos = images.mutableCopy;
         [strongSelf.collectionView reloadData];
-        NSLog(@"image:%@", images);
+        LxPrintf(@"image:%@", images);
     }];
     [actionSheet setSelectGifBlock:^(UIImage * _Nonnull gif, PHAsset * _Nonnull asset) {
     }];
@@ -308,7 +308,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
         [_footView removeObserver:self forKeyPath:@"isShowMoreInfo"];
     }
     @catch (NSException *exception) {
-        NSLog(@"多次删除了");
+        LxPrintf(@"多次删除了");
     }
 
 }

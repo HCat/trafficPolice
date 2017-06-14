@@ -229,7 +229,7 @@
             
         }else {
             
-            NSLog(@"An error has occured: %@", error);
+            LxPrintf(@"An error has occured: %@", error);
             
         }
     } exactSeenImage:YES];

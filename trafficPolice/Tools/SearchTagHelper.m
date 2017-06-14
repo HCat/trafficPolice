@@ -47,7 +47,7 @@
     //读取数组NSArray类型的数据
     NSArray * myArray = [userDefaultes arrayForKey:USERDEFAULT_KEY_SEARCHTAG];
     NSArray* reversedArray = [[myArray reverseObjectEnumerator] allObjects];
-    NSLog(@"reversedArray======%@",reversedArray);
+    LxPrintf(@"reversedArray======%@",reversedArray);
     return reversedArray;
 }
 

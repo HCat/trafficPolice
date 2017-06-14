@@ -132,7 +132,7 @@
 //        [strongSelf requestUserInfoByToken:accessToken andOpenid:openID];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error %@",error.localizedFailureReason);
+        LxPrintf(@"error %@",error.localizedFailureReason);
     }];
     
 }

@@ -508,11 +508,11 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-        NSLog(@"现在是竖屏");
+        LxPrintf(@"现在是竖屏");
         [_collectionView reloadData];
     }
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        NSLog(@"现在是横屏");
+        LxPrintf(@"现在是横屏");
         [_collectionView reloadData];
     }
 }
@@ -889,7 +889,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         [_headView removeObserver:self forKeyPath:@"isCanCommit"];
     }
     @catch (NSException *exception) {
-        NSLog(@"多次删除了");
+        LxPrintf(@"多次删除了");
     }
     
     LxPrintf(@"IllegalParkVC dealloc");

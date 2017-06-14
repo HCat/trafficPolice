@@ -226,6 +226,12 @@
 		CEC50ABB1EEBC61F00ECA43A /* IllegalMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC50AB91EEBC61F00ECA43A /* IllegalMessageCell.xib */; };
 		CEC50ABF1EEC0CAC00ECA43A /* IllegalFootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50ABD1EEC0CAC00ECA43A /* IllegalFootCell.m */; };
 		CEC50AC01EEC0CAC00ECA43A /* IllegalFootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC50ABE1EEC0CAC00ECA43A /* IllegalFootCell.xib */; };
+		CECC91EA1EF10249003CED99 /* SuperLogger.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CECC91E01EF10249003CED99 /* SuperLogger.bundle */; };
+		CECC91EB1EF10249003CED99 /* SuperLogerListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECC91E21EF10249003CED99 /* SuperLogerListView.m */; };
+		CECC91EC1EF10249003CED99 /* SuperLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CECC91E41EF10249003CED99 /* SuperLogger.m */; };
+		CECC91ED1EF10249003CED99 /* SuperLoggerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = CECC91E61EF10249003CED99 /* SuperLoggerFunctions.m */; };
+		CECC91EE1EF10249003CED99 /* SuperLoggerPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = CECC91E81EF10249003CED99 /* SuperLoggerPreviewView.m */; };
+		CECC91F01EF1041D003CED99 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CECC91EF1EF1041D003CED99 /* MessageUI.framework */; };
 		CECE294A1ECC3F3300075BA2 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE29491ECC3F3300075BA2 /* NSString+Range.m */; };
 		CEF0D1AD1ED9C19100C78905 /* SearchLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF0D1AB1ED9C19100C78905 /* SearchLocationVC.m */; };
 		CEF0D1AE1ED9C19100C78905 /* SearchLocationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF0D1AC1ED9C19100C78905 /* SearchLocationVC.xib */; };
@@ -612,6 +618,16 @@
 		CEC50ABC1EEC0CAC00ECA43A /* IllegalFootCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalFootCell.h; sourceTree = "<group>"; };
 		CEC50ABD1EEC0CAC00ECA43A /* IllegalFootCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalFootCell.m; sourceTree = "<group>"; };
 		CEC50ABE1EEC0CAC00ECA43A /* IllegalFootCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalFootCell.xib; sourceTree = "<group>"; };
+		CECC91E01EF10249003CED99 /* SuperLogger.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SuperLogger.bundle; sourceTree = "<group>"; };
+		CECC91E11EF10249003CED99 /* SuperLogerListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperLogerListView.h; sourceTree = "<group>"; };
+		CECC91E21EF10249003CED99 /* SuperLogerListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperLogerListView.m; sourceTree = "<group>"; };
+		CECC91E31EF10249003CED99 /* SuperLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperLogger.h; sourceTree = "<group>"; };
+		CECC91E41EF10249003CED99 /* SuperLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperLogger.m; sourceTree = "<group>"; };
+		CECC91E51EF10249003CED99 /* SuperLoggerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperLoggerFunctions.h; sourceTree = "<group>"; };
+		CECC91E61EF10249003CED99 /* SuperLoggerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperLoggerFunctions.m; sourceTree = "<group>"; };
+		CECC91E71EF10249003CED99 /* SuperLoggerPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperLoggerPreviewView.h; sourceTree = "<group>"; };
+		CECC91E81EF10249003CED99 /* SuperLoggerPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperLoggerPreviewView.m; sourceTree = "<group>"; };
+		CECC91EF1EF1041D003CED99 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CECE29481ECC3F3300075BA2 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
 		CECE29491ECC3F3300075BA2 /* NSString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Range.m"; sourceTree = "<group>"; };
 		CEF0D1AA1ED9C19100C78905 /* SearchLocationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationVC.h; sourceTree = "<group>"; };
@@ -624,6 +640,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECC91F01EF1041D003CED99 /* MessageUI.framework in Frameworks */,
 				CE5495C51ED66F0B00B19111 /* libcrypto.a in Frameworks */,
 				CE5495C61ED66F0B00B19111 /* libssl.a in Frameworks */,
 				CE5786671ED41AF500B4CC9F /* Photos.framework in Frameworks */,
@@ -794,6 +811,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CECC91DD1EF10249003CED99 /* SuperLogger */,
 				CE3916A91EED8C06006B06FE /* NJKWebViewProgress */,
 				CE3C454F1EECF5F000E59465 /* TTGTagCollectionView */,
 				CE9B37741EE7CBA700CA7417 /* FHHFPSIndicator */,
@@ -982,6 +1000,7 @@
 		CA950E019092A6EE264A0A75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CECC91EF1EF1041D003CED99 /* MessageUI.framework */,
 				CE5495C31ED66F0B00B19111 /* libcrypto.a */,
 				CE5495C41ED66F0B00B19111 /* libssl.a */,
 				CE5786661ED41AF500B4CC9F /* Photos.framework */,
@@ -1465,6 +1484,30 @@
 			name = IllegalDetailView;
 			sourceTree = "<group>";
 		};
+		CECC91DD1EF10249003CED99 /* SuperLogger */ = {
+			isa = PBXGroup;
+			children = (
+				CECC91DF1EF10249003CED99 /* Resources */,
+				CECC91E11EF10249003CED99 /* SuperLogerListView.h */,
+				CECC91E21EF10249003CED99 /* SuperLogerListView.m */,
+				CECC91E31EF10249003CED99 /* SuperLogger.h */,
+				CECC91E41EF10249003CED99 /* SuperLogger.m */,
+				CECC91E51EF10249003CED99 /* SuperLoggerFunctions.h */,
+				CECC91E61EF10249003CED99 /* SuperLoggerFunctions.m */,
+				CECC91E71EF10249003CED99 /* SuperLoggerPreviewView.h */,
+				CECC91E81EF10249003CED99 /* SuperLoggerPreviewView.m */,
+			);
+			path = SuperLogger;
+			sourceTree = "<group>";
+		};
+		CECC91DF1EF10249003CED99 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CECC91E01EF10249003CED99 /* SuperLogger.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		DDA5B09086610B74175F0DDB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1572,6 +1615,7 @@
 				CE5786411ED4088700B4CC9F /* btn_original_circle@2x.png in Resources */,
 				CE05AEFD1EE847050021F87F /* FeedbackVC.xib in Resources */,
 				CEF0D1AE1ED9C19100C78905 /* SearchLocationVC.xib in Resources */,
+				CECC91EA1EF10249003CED99 /* SuperLogger.bundle in Resources */,
 				CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
 				CE7F14E11EDE9B3900C7AEDA /* IllegalParkVC.xib in Resources */,
@@ -1669,6 +1713,8 @@
 				CE5ACC001EE0346600B60089 /* LLPhoto.m in Sources */,
 				C7E0DBF61EC1A1C9008ED063 /* AKTab.m in Sources */,
 				CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */,
+				CECC91EB1EF10249003CED99 /* SuperLogerListView.m in Sources */,
+				CECC91EE1EF10249003CED99 /* SuperLoggerPreviewView.m in Sources */,
 				CE05AEFC1EE847050021F87F /* FeedbackVC.m in Sources */,
 				C7E0DC021EC1A5F8008ED063 /* BaseViewController.m in Sources */,
 				CE57866F1ED42E7B00B4CC9F /* UIButton+Block.m in Sources */,
@@ -1744,7 +1790,9 @@
 				CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */,
 				CEF0D1AD1ED9C19100C78905 /* SearchLocationVC.m in Sources */,
 				CE57865D1ED4088700B4CC9F /* ZLShowGifViewController.m in Sources */,
+				CECC91ED1EF10249003CED99 /* SuperLoggerFunctions.m in Sources */,
 				CE7EED831ED1C42A00478777 /* IllegalParkAPI.m in Sources */,
+				CECC91EC1EF10249003CED99 /* SuperLogger.m in Sources */,
 				CEC50ABA1EEBC61F00ECA43A /* IllegalMessageCell.m in Sources */,
 				CE9B377A1EE7CBA700CA7417 /* UIWindow+FHH.m in Sources */,
 				CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */,
@@ -1914,6 +1962,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = XYWLXM32EU;
+				ENABLE_BITCODE = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/trafficPolice.pch";
 				INFOPLIST_FILE = trafficPolice/Info.plist;
@@ -1935,6 +1984,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = XYWLXM32EU;
+				ENABLE_BITCODE = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/trafficPolice.pch";
 				INFOPLIST_FILE = trafficPolice/Info.plist;

@@ -43,11 +43,11 @@ LRSingletonM(Default)
     BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
     if(flag)
     {
-        NSLog(@"反geo检索发送成功");
+        LxPrintf(@"反geo检索发送成功");
     }
     else
     {
-        NSLog(@"反geo检索发送失败");
+        LxPrintf(@"反geo检索发送失败");
         ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
             if (status != RealStatusNotReachable) {
                 [self performSelector:@selector(startReverseGeocode) withObject:nil afterDelay:1.5];
@@ -66,7 +66,7 @@ LRSingletonM(Default)
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
     
-    NSLog(@"heading is %@",userLocation.heading);
+    LxPrintf(@"heading is %@",userLocation.heading);
 }
 
 /**
@@ -89,7 +89,7 @@ LRSingletonM(Default)
  */
 - (void)didStopLocatingUser
 {
-    NSLog(@"stop locate");
+    LxPrintf(@"stop locate");
 }
 
 /**
@@ -98,7 +98,7 @@ LRSingletonM(Default)
  */
 - (void)didFailToLocateUserWithError:(NSError *)error
 {
-    NSLog(@"location error");
+    LxPrintf(@"location error");
     
 }
 

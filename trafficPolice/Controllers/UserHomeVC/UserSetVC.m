@@ -18,6 +18,7 @@
 #import "LRBaseRequest.h"
 #import "AppDelegate.h"
 #import "LoginHomeVC.h"
+#import "SuperLogger.h"
 
 @interface UserSetVC ()
 
@@ -38,6 +39,10 @@
     self.userName = [UserModel getUserModel].realName;
     self.phoneNummer = [UserModel getUserModel].phone;
     [self setupSections];
+    
+    UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showLog)];
+    tapGesture.numberOfTapsRequired = 10;
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 #pragma - mark setup
@@ -48,7 +53,7 @@
     XBSettingItemModel *item1 = [[XBSettingItemModel alloc]init];
     item1.funcName = @"用户名";
     item1.executeCode = ^{
-        NSLog(@"用户名");
+        LxPrintf(@"用户名");
         
     };
     item1.detailText = self.userName;
@@ -71,10 +76,10 @@
         SW(strongSelf, weakSelf);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-            NSLog(@"%@", cachPath);
+            LxPrintf(@"%@", cachPath);
                        
             NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
-            NSLog(@"files :%lu",(unsigned long)[files count]);
+            LxPrintf(@"files :%lu",(unsigned long)[files count]);
             for (NSString *p in files) {
                 NSError *error;
                 NSString *path = [cachPath stringByAppendingPathComponent:p];
@@ -188,6 +193,12 @@
     
 }
 
+
+#pragma mark - 显示日志重定向列表
+
+- (void)showLog{
+    [self presentViewController:[[SuperLogger sharedInstance] getListView] animated:YES completion:nil];
+}
 
 
 #pragma mark - dealloc

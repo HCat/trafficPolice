@@ -201,7 +201,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"释放");
+    LxPrintf(@"LLPhoto dealloc");
 }
 
 @end

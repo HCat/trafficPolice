@@ -27,6 +27,8 @@
 #import "FHHFPSIndicator.h"
 #endif
 
+#import "SuperLogger.h"
+
 
 
 @interface AppDelegate ()<WXApiDelegate>
@@ -70,6 +72,18 @@ BMKMapManager* _mapManager;
     [[FHHFPSIndicator sharedFPSIndicator] show];
     //        [FHHFPSIndicator sharedFPSIndicator].fpsLabelPosition = FPSIndicatorPositionTopRight;
     #endif
+    
+    //日子重定向用于记录崩溃日志
+    SuperLogger *logger = [SuperLogger sharedInstance];
+    // Start NSLogToDocument
+    [logger redirectNSLogToDocumentFolder];
+    // Set Email info
+    logger.mailTitle = @"移动采集日志信息";
+    logger.mailContect = @"移动采集日志信息";
+    logger.mailRecipients = @[@"qgwzhuanglr@163.com"];
+    //每次进来清除一周前的日志
+    NSDate *five = [[NSDate date]dateByAddingTimeInterval:-60*60*24*7];
+    [[SuperLogger sharedInstance] cleanLogsBefore:five deleteStarts:YES];
     
     
     return YES;
@@ -156,14 +170,14 @@ BMKMapManager* _mapManager;
      *如果需要使用GCJ02坐标，需要设置CoordinateType为：BMK_COORDTYPE_COMMON.
      */
     if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK:BMK_COORDTYPE_BD09LL]) {
-        NSLog(@"经纬度类型设置成功");
+        LxPrintf(@"经纬度类型设置成功");
     } else {
-        NSLog(@"经纬度类型设置失败");
+        LxPrintf(@"经纬度类型设置失败");
     }
     
     BOOL ret = [_mapManager start:BAIDUMAP_APP_KEY generalDelegate:self];
     if (!ret) {
-        NSLog(@"manager start failed!");
+        LxPrintf(@"manager start failed!");
     }
 
 }
@@ -239,7 +253,7 @@ BMKMapManager* _mapManager;
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WX_LOGIN_SUCCESS object:nil userInfo:dict];
             }
         }else{ //失败
-            NSLog(@"error %@",resp.errStr);
+            LxPrintf(@"error %@",resp.errStr);
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:[NSString stringWithFormat:@"reason : %@",resp.errStr] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
             [alert show];
         }
@@ -263,7 +277,7 @@ BMKMapManager* _mapManager;
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HAVENETWORK_SUCCESS object:nil];
             BOOL ret = [_mapManager start:BAIDUMAP_APP_KEY generalDelegate:self];
             if (!ret) {
-                NSLog(@"manager start failed!");
+                LxPrintf(@"manager start failed!");
             }
             [[LocationHelper sharedDefault] startLocation];
         }

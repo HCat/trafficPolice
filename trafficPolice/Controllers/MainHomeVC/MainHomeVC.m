@@ -212,7 +212,7 @@
     
     if (self.arr_imageSource) {
         CommonGetImgPlayModel *model = self.arr_imageSource[index];
-        NSLog(@"did tap index = %d url:%@", (int)index, model.getImgPlayUrl);
+        LxPrintf(@"did tap index = %d url:%@", (int)index, model.getImgPlayUrl);
     }
 }
 
