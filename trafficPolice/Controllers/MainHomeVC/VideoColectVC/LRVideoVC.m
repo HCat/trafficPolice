@@ -123,16 +123,17 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
         make.trailing.equalTo(self.view).offset(-30);
         
     }];
+    [self.btn_back mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.btn_record);
+        make.leading.equalTo(self.view).offset(30);
+    }];
+
     
     [self.btn_cancel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.btn_record);
         make.leading.equalTo(self.view).offset(30);
     }];
     
-    [self.btn_back mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.btn_record);
-        make.leading.equalTo(self.view).offset(30);
-            }];
     
     WS(weakSelf);
     self.btn_record.startRecord = ^(){
@@ -408,6 +409,9 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
 - (void)showBtn
 {
     self.btn_back.hidden = NO;
+    self.btn_cancel.hidden = YES;
+    [self.view bringSubviewToFront:self.btn_back];
+    [self.view sendSubviewToBack:self.btn_cancel];
     self.lb_tip.hidden = NO;
     self.lb_tip.alpha = 1.0;
     [UIView animateWithDuration:0.2 delay:2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -419,6 +423,7 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
 
 - (void)hideBtn {
     self.btn_back.hidden = YES;
+    self.btn_cancel.hidden = NO;
     self.lb_tip.hidden = YES;
 }
 
@@ -430,7 +435,8 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
         self.btn_cancel.alpha = 1.;
         self.btn_record.alpha = 0.;
     } completion:^(BOOL finished) {
-        
+        [self.view bringSubviewToFront:self.btn_cancel];
+        [self.view sendSubviewToBack:self.btn_back];
     }];
 }
 
@@ -441,6 +447,10 @@ AVCaptureAudioDataOutputSampleBufferDelegate>
         self.btn_send.alpha = 0.;
         self.btn_cancel.alpha = 0.;
         self.btn_record.alpha = 1.;
+    } completion:^(BOOL finished) {
+        [self.view bringSubviewToFront:self.btn_back];
+        [self.view sendSubviewToBack:self.btn_cancel];
+
     }];
 }
 
