@@ -236,7 +236,7 @@
 //请求参数
 - (nullable id)requestArgument
 {
-    return @{@"carNo":_carNo};
+    return @{@"carNo":_carNo,@"state":_state};
 }
 
 //返回参数
@@ -265,7 +265,7 @@
 //请求参数
 - (nullable id)requestArgument
 {
-    return @{@"telNum":_telNum};
+    return @{@"telNum":_telNum,@"state":_state};
 }
 
 //返回参数
@@ -294,7 +294,7 @@
 //请求参数
 - (nullable id)requestArgument
 {
-    return @{@"idNo":_idNo};
+    return @{@"idNo":_idNo,@"state":_state};
 }
 
 //返回参数

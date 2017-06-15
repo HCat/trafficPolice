@@ -11,8 +11,19 @@
 #import "AccidentAPI.h"
 #import "AlertView.h"
 
+@interface CountAccidentHelper()
+
+
+
+
+@end
+
+
 @implementation CountAccidentHelper
 LRSingletonM(Default)
+
+
+
 
 - (void)setCarNo:(NSString *)carNo{
 
@@ -25,6 +36,7 @@ LRSingletonM(Default)
             AccidentCountByCarNoManger *manger = [AccidentCountByCarNoManger new];
             
             manger.carNo = _carNo;
+            manger.state = _state;
             manger.isNeedShowHud = NO;
             
             [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -68,6 +80,7 @@ LRSingletonM(Default)
             AccidentCountByidNoManger *manger = [AccidentCountByidNoManger new];
             
             manger.idNo = _idNo;
+            manger.state = _state;
             manger.isNeedShowHud = NO;
             
             [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -109,6 +122,7 @@ LRSingletonM(Default)
             AccidentCountByTelNumManger *manger = [AccidentCountByTelNumManger new];
             
             manger.telNum = _telNum;
+            manger.state = _state;
             manger.isNeedShowHud = NO;
             
             [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {

@@ -129,6 +129,13 @@
     
     //重新定位下
     [[LocationHelper sharedDefault] startLocation];
+    
+    if (_accidentType == AccidentTypeAccident) {
+    
+        [CountAccidentHelper sharedDefault].state = @1;
+    }else if (_accidentType == AccidentTypeFastAccident){
+        [CountAccidentHelper sharedDefault].state = @9;
+    }
 
     //获取当前事故时间
     _tf_accidentTime.text = [ShareFun getCurrentTime];

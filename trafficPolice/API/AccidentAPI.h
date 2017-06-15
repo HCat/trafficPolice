@@ -177,6 +177,7 @@
 
 /****** 请求数据 ******/
 @property (nonatomic, strong) NSString *carNo;  //车牌号
+@property (nonatomic, strong) NSNumber *state; //查询事故数的state
 
 /****** 返回数据 ******/
 @property (nonatomic, strong) AccidentCountModel *accidentCountModel;
@@ -191,6 +192,7 @@
 
 /****** 请求数据 ******/
 @property (nonatomic, strong) NSString *telNum;  //车牌号
+@property (nonatomic, strong) NSNumber *state; //查询事故数的state
 
 /****** 返回数据 ******/
 @property (nonatomic, strong) AccidentCountModel *accidentCountModel;
@@ -203,6 +205,7 @@
 
 /****** 请求数据 ******/
 @property (nonatomic, strong) NSString *idNo;  //车牌号
+@property (nonatomic, strong) NSNumber *state; //查询事故数的state
 
 /****** 返回数据 ******/
 @property (nonatomic, strong) AccidentCountModel *accidentCountModel;
