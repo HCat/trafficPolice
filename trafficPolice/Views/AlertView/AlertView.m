@@ -120,7 +120,9 @@
 }
 
 - (UIView*)contentView {
+    
     if (!_contentView) {
+        
         _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 260,  150)];
         _contentView.backgroundColor = [UIColor whiteColor];
         _contentView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
@@ -134,7 +136,9 @@
         CGRect frame = _contentView.frame;
         frame.size.height = CGRectGetMinY(_lb_content.frame) + CGRectGetHeight(_lb_content.frame) +30;
         _contentView.frame = frame;
+        
     }
+    
     return _contentView;
 }
 
@@ -154,7 +158,7 @@
 - (UILabel *)lb_content{
     
     if (!_lb_content) {
-        _lb_content = [[UILabel alloc] initWithFrame:CGRectMake(24, CGRectGetMaxY(_lb_title.frame), CGRectGetWidth(_contentView.frame) - 48, 150)];
+        self.lb_content = [[UILabel alloc] initWithFrame:CGRectMake(24, CGRectGetMaxY(_lb_title.frame), CGRectGetWidth(_contentView.frame) - 48, 150)];
         _lb_content.backgroundColor = [UIColor clearColor];
         _lb_content.textColor = UIColorFromRGB(0x444444);
         _lb_content.font = [UIFont systemFontOfSize:14.f];
@@ -182,13 +186,13 @@
 - (UIButton *)btn_quit{
 
     if(!_btn_quit){
+        
         _btn_quit = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_contentView.frame)-12-20, 10, 20, 20)];
         //[_btn_quit setTitle:@"x" forState:UIControlStateNormal];
         [_btn_quit setImage:[UIImage imageNamed:@"icon_dacha"] forState:UIControlStateNormal];
         [_btn_quit addTarget:self action:@selector(handleBtnDismissClick:) forControlEvents:UIControlEventTouchUpInside];
         [_btn_quit setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateNormal];
         
-    
     }
 
     return _btn_quit;

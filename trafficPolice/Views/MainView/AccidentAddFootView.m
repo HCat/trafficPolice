@@ -717,6 +717,8 @@
         _partyFactory.param.roadName = nil;
     }
     
+   
+    
     [_partyFactory configParamInCertFilesAndCertRemarks];
     
     LxDBObjectAsJson(_partyFactory.param);

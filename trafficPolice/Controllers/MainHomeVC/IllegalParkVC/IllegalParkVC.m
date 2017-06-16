@@ -131,10 +131,11 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
          */
         SW(strongSelf, weakSelf);
         LxPrintf(@"%ld",(long)manger.responseModel.code);
+            
         if (manger.responseModel.code == 0) {
             
-            [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:^(AlertViewActionType actionType) {
-                if (actionType == AlertViewActionTypeLeft) {
+            [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:nil rightTitle:@"确定" block:^(AlertViewActionType actionType) {
+                if (actionType == AlertViewActionTypeRight) {
                     NSNumber * illegalThroughId = manger.responseModel.data[@"id"];
                     IllegalSecSaveVC *t_vc = [[IllegalSecSaveVC alloc] init];
                     t_vc.illegalThroughId = illegalThroughId;
@@ -154,9 +155,9 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             
         }else if (manger.responseModel.code == 13){
             
-            [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"重新录入" rightTitle:@"取消" block:^(AlertViewActionType actionType) {
+            [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"取消" rightTitle:@"重新录入" block:^(AlertViewActionType actionType) {
                 
-                if (actionType == AlertViewActionTypeLeft) {
+                if (actionType == AlertViewActionTypeRight) {
                     
                     if (strongSelf.headView.isCanCommit == YES && ![strongSelf.arr_upImages[0] isKindOfClass:[NSNull class]] && ![strongSelf.arr_upImages[1] isKindOfClass:[NSNull class]]) {
                         strongSelf.isCanCommit = YES;
@@ -168,7 +169,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                         [strongSelf handleCommitClicked];
                     }
                     
-                }else if (actionType == AlertViewActionTypeRight){
+                }else if (actionType == AlertViewActionTypeLeft){
                 
                     [strongSelf.navigationController popViewControllerAnimated:YES];
                 
@@ -179,7 +180,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
         
         }else if (manger.responseModel.code == 110){
         
-           [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:nil];
+           [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:nil rightTitle:@"确定" block:nil];
             
         }else if (manger.responseModel.code == 999){
             //不做处理
@@ -580,7 +581,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 
             }else if (manger.responseModel.code == CODE_FAILED){
                 
-               [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:nil];
+               [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:nil rightTitle:@"确定" block:nil];
             }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -627,9 +628,9 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 
             }else if (manger.responseModel.code == 110){
             
-                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:^(AlertViewActionType actionType) {
+                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:nil rightTitle:@"确定" block:^(AlertViewActionType actionType) {
                     
-                    if (actionType == AlertViewActionTypeLeft) {
+                    if (actionType == AlertViewActionTypeRight) {
                         NSNumber * illegalThroughId = manger.responseModel.data[@"id"];
                         IllegalSecSaveVC *t_vc = [[IllegalSecSaveVC alloc] init];
                         t_vc.illegalThroughId = illegalThroughId;
@@ -649,7 +650,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                
             }else if (manger.responseModel.code == 100){
             
-                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:@"确定" rightTitle:nil block:nil];
+                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:nil rightTitle:@"确定" block:nil];
                
             }
             

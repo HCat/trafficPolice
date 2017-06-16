@@ -51,6 +51,7 @@
  * 验证身份证
  **/
 + (BOOL)validateIDCardNumber:(NSString *)value {
+    value = [value uppercaseString];
     
     value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     

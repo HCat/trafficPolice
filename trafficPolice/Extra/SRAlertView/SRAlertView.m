@@ -46,12 +46,12 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
 
 #define kAlertViewW             275.0f
 #define kAlertViewTitleH        20.0f
-#define kAlertViewBtnH          50.0f
+#define kAlertViewBtnH          30.0f
 #define kAlertViewMessageMinH   75.0f
 
-#define kTitleFont      [UIFont boldSystemFontOfSize:SCREEN_ADJUST(18)];
-#define kMessageFont    [UIFont systemFontOfSize:SCREEN_ADJUST(16)];
-#define kBtnTitleFont   [UIFont systemFontOfSize:SCREEN_ADJUST(17)];
+#define kTitleFont      [UIFont systemFontOfSize:15];
+#define kMessageFont    [UIFont systemFontOfSize:14];
+#define kBtnTitleFont   [UIFont systemFontOfSize:14];
 
 @interface SRAlertView ()
 
@@ -227,25 +227,27 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
         _messageLabel;
     })];
     
-    _alertView.frame  = CGRectMake(0, 0, kAlertViewW, CGRectGetMaxY(_messageLabel.frame) + kAlertViewBtnH + verticalMargin);
+    _alertView.frame  = CGRectMake(0, 0, kAlertViewW, CGRectGetMaxY(_messageLabel.frame) + kAlertViewBtnH + 30 +verticalMargin);
     _alertView.center = self.center;
     
-    CGFloat btnY = _alertView.frame.size.height - kAlertViewBtnH;
+    CGFloat btnY = _alertView.frame.size.height - kAlertViewBtnH - 30;
     if (_leftActionTitle) {
         [_alertView addSubview:({
             _leftAction = [UIButton buttonWithType:UIButtonTypeCustom];
             _leftAction.tag = AlertViewActionTypeLeft;
             _leftAction.titleLabel.font = kBtnTitleFont;
+            _leftAction.layer.cornerRadius = 5.0f;
+            _leftAction.layer.masksToBounds = YES;
             [_leftAction setTitle:_leftActionTitle forState:UIControlStateNormal];
-            [_leftAction setTitleColor:kBtnNormalTitleColor forState:UIControlStateNormal];
-            [_leftAction setTitleColor:kBtnHighlightedTitleColor forState:UIControlStateHighlighted];
-            [_leftAction setBackgroundImage:[self imageWithColor:kBtnHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+            [_leftAction setTitleColor:UIColorFromRGB(0xaaaaaa) forState:UIControlStateNormal];
+            //[_leftAction setTitleColor:kBtnHighlightedTitleColor forState:UIControlStateHighlighted];
+            [_leftAction setBackgroundImage:[self imageWithColor:UIColorFromRGB(0xf0f0f0)] forState:UIControlStateNormal];
             [_leftAction addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
             [_alertView addSubview:_leftAction];
             if (_rightActionTitle) {
-                _leftAction.frame = CGRectMake(0, btnY, kAlertViewW * 0.5, kAlertViewBtnH);
+                _leftAction.frame = CGRectMake(25, btnY, kAlertViewW * 0.5 - 50, kAlertViewBtnH);
             } else {
-                _leftAction.frame = CGRectMake(0, btnY, kAlertViewW, kAlertViewBtnH);
+                _leftAction.frame = CGRectMake(kAlertViewW * 0.25, btnY, kAlertViewW * 0.5, kAlertViewBtnH);
             }
             _leftAction;
         })];
@@ -256,37 +258,39 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
             _rightAction = [UIButton buttonWithType:UIButtonTypeCustom];
             _rightAction.tag = AlertViewActionTypeRight;
             _rightAction.titleLabel.font = kBtnTitleFont;
+            _rightAction.layer.cornerRadius = 5.0f;
+            _rightAction.layer.masksToBounds = YES;
             [_rightAction setTitle:_rightActionTitle forState:UIControlStateNormal];
-            [_rightAction setTitleColor:kBtnNormalTitleColor forState:UIControlStateNormal];
+            [_rightAction setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
             [_rightAction setTitleColor:kBtnHighlightedTitleColor forState:UIControlStateHighlighted];
-            [_rightAction setBackgroundImage:[self imageWithColor:kBtnHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+            [_rightAction setBackgroundImage:[self imageWithColor:UIColorFromRGB(0x4b75e1)] forState:UIControlStateNormal];
             [_rightAction addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
             [_alertView addSubview:_rightAction];
             if (_leftActionTitle) {
-                _rightAction.frame = CGRectMake(kAlertViewW * 0.5, btnY, kAlertViewW * 0.5, kAlertViewBtnH);
+                _rightAction.frame = CGRectMake(kAlertViewW * 0.5+25, btnY, kAlertViewW * 0.5-50, kAlertViewBtnH);
             } else {
-                _rightAction.frame = CGRectMake(0, btnY, kAlertViewW, kAlertViewBtnH);
+                _rightAction.frame = CGRectMake(kAlertViewW * 0.25, btnY, kAlertViewW * 0.5, kAlertViewBtnH);
             }
             _rightAction;
         })];
     }
     
-    if (_leftActionTitle && _rightActionTitle) {
-        UIView *line1 = [[UIView alloc] init];
-        line1.frame = CGRectMake(0, btnY, kAlertViewW, 1);
-        line1.backgroundColor = kLineBackgroundColor;
-        [_alertView addSubview:line1];
-        
-        UIView *line2 = [[UIView alloc] init];
-        line2.frame = CGRectMake(kAlertViewW * 0.5, btnY, 1, kAlertViewBtnH);
-        line2.backgroundColor = kLineBackgroundColor;
-        [_alertView addSubview:line2];
-    } else {
-        UIView *line = [[UIView alloc] init];
-        line.frame = CGRectMake(0, btnY, kAlertViewW, 1);
-        line.backgroundColor = kLineBackgroundColor;
-        [_alertView addSubview:line];
-    }
+//    if (_leftActionTitle && _rightActionTitle) {
+//        UIView *line1 = [[UIView alloc] init];
+//        line1.frame = CGRectMake(0, btnY, kAlertViewW, 1);
+//        line1.backgroundColor = kLineBackgroundColor;
+//        [_alertView addSubview:line1];
+//        
+//        UIView *line2 = [[UIView alloc] init];
+//        line2.frame = CGRectMake(kAlertViewW * 0.5, btnY, 1, kAlertViewBtnH);
+//        line2.backgroundColor = kLineBackgroundColor;
+//        [_alertView addSubview:line2];
+//    } else {
+//        UIView *line = [[UIView alloc] init];
+//        line.frame = CGRectMake(0, btnY, kAlertViewW, 1);
+//        line.backgroundColor = kLineBackgroundColor;
+//        [_alertView addSubview:line];
+//    }
 }
 
 #pragma mark - Actions

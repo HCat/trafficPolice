@@ -61,6 +61,9 @@
 
 
 - (void)setPartyIdNummber:(NSString *)partyIdNummber{
+    
+    
+    partyIdNummber = [partyIdNummber uppercaseString];
     _partyIdNummber = partyIdNummber;
     
     if (self.type == 0) {

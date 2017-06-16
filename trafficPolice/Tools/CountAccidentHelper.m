@@ -71,6 +71,7 @@ LRSingletonM(Default)
 
 - (void)setIdNo:(NSString *)idNo{
     
+    idNo = [idNo uppercaseString];
     _idNo = idNo;
     
     if (_idNo) {
@@ -93,7 +94,7 @@ LRSingletonM(Default)
                         
                         if (accidentCountModel.accidentWeek > 2 || accidentCountModel.accidentYear > 3) {
                             
-                            NSString *t_string = [NSString stringWithFormat:@"该车辆近一个月内发生过%d起交通事故,近一年内发生过%d起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
+                            NSString *t_string = [NSString stringWithFormat:@"该身份证近一个月内发生过%d起交通事故,近一年内发生过%d起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
                         
                             [AlertView showWindowWithTitle:@"提示" contents:t_string];
                             
@@ -134,7 +135,7 @@ LRSingletonM(Default)
                     if (accidentCountModel) {
                         
                         if (accidentCountModel.accidentWeek > 2 || accidentCountModel.accidentYear > 3) {
-                            NSString *t_string = [NSString stringWithFormat:@"该车辆近一个月内发生过%d起交通事故,近一年内发生过%d起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
+                            NSString *t_string = [NSString stringWithFormat:@"该手机号近一个月内发生过%d起交通事故,近一年内发生过%d起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
                             
                             [AlertView showWindowWithTitle:@"提示" contents:t_string];
                             
