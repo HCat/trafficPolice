@@ -435,8 +435,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     point.y = MAX(contentFrame.origin.y, point.y);
     
     //The delta between where we first tapped, and where our finger is now
-    CGFloat xDelta = ceilf(point.x - self.panOriginPoint.x);
-    CGFloat yDelta = ceilf(point.y - self.panOriginPoint.y);
+    CGFloat xDelta = floorf(point.x - self.panOriginPoint.x);
+    CGFloat yDelta = floorf(point.y - self.panOriginPoint.y);
     
     //Current aspect ratio of the crop box in case we need to clamp it
     CGFloat aspectRatio = (originFrame.size.width / originFrame.size.height);
@@ -941,13 +941,13 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     //clamp the cropping region to the inset boundaries of the screen
     CGRect contentFrame = self.contentBounds;
-    CGFloat xOrigin = ceilf(contentFrame.origin.x);
+    CGFloat xOrigin = floorf(contentFrame.origin.x);
     CGFloat xDelta = cropBoxFrame.origin.x - xOrigin;
     cropBoxFrame.origin.x = floorf(MAX(cropBoxFrame.origin.x, xOrigin));
     if (xDelta < -FLT_EPSILON) //If we clamp the x value, ensure we compensate for the subsequent delta generated in the width (Or else, the box will keep growing)
         cropBoxFrame.size.width += xDelta;
     
-    CGFloat yOrigin = ceilf(contentFrame.origin.y);
+    CGFloat yOrigin = floorf(contentFrame.origin.y);
     CGFloat yDelta = cropBoxFrame.origin.y - yOrigin;
     cropBoxFrame.origin.y = floorf(MAX(cropBoxFrame.origin.y, yOrigin));
     if (yDelta < -FLT_EPSILON)
@@ -1223,8 +1223,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     cropFrame.size.width = ceilf(cropFrame.size.width * scale);
     cropFrame.size.height = ceilf(cropFrame.size.height * scale);
-    cropFrame.origin.x = contentRect.origin.x + ceilf((contentRect.size.width - cropFrame.size.width) * 0.5f);
-    cropFrame.origin.y = contentRect.origin.y + ceilf((contentRect.size.height - cropFrame.size.height) * 0.5f);
+    cropFrame.origin.x = contentRect.origin.x + floorf((contentRect.size.width - cropFrame.size.width) * 0.5f);
+    cropFrame.origin.y = contentRect.origin.y + floorf((contentRect.size.height - cropFrame.size.height) * 0.5f);
     
     //Work out the point on the scroll content that the focusPoint is aiming at
     CGPoint contentTargetPoint = CGPointZero;
