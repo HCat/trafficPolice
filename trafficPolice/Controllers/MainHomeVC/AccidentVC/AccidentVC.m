@@ -97,9 +97,7 @@ static NSString *const headId = @"AccidentAddHeadViewID";
         [self.navigationController popViewControllerAnimated:YES];
     
     }
-    
-    
-    
+
 }
 
 

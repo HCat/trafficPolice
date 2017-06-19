@@ -16,6 +16,8 @@
 #import "ArtVideoModel.h"
 #import "ArtVideoUtil.h"
 
+#import "SRAlertView.h"
+
 @interface VideoColectVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_InputVideo;
@@ -76,7 +78,47 @@
     
 }
 
-#pragma mark - set && get 
+#pragma mark -
+
+-(void)handleBtnBackClicked{
+    
+    if (_param.memo || self.currentRecord) {
+        
+        WS(weakSelf);
+        SRAlertView *alertView = [[SRAlertView alloc] initWithTitle:@"温馨提示"
+                                                            message:@"当前已编辑，是否退出编辑"
+                                                    leftActionTitle:@"取消"
+                                                   rightActionTitle:@"退出"
+                                                     animationStyle:AlertViewAnimationNone
+                                                       selectAction:^(AlertViewActionType actionType) {
+                                                           if (actionType == AlertViewActionTypeLeft) {
+                                                               
+                                                               
+                                                           } else if(actionType == AlertViewActionTypeRight) {
+                                                               if (weakSelf.currentRecord) {
+                                                                   [ArtVideoUtil deleteVideo:weakSelf.currentRecord.videoAbsolutePath];
+                                                               }
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                        
+                                                           }
+                                                       }];
+        alertView.blurCurrentBackgroundView = NO;
+        alertView.actionWhenHighlightedBackgroundColor = UIColorFromRGB(0x4281E8);
+        [alertView show];
+        
+        
+    }else{
+        if (self.currentRecord) {
+            [ArtVideoUtil deleteVideo:self.currentRecord.videoAbsolutePath];
+        }
+
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
+}
+
+#pragma mark - set && get
 
 - (void)setIsCanCommit:(BOOL)isCanCommit{
 
@@ -89,16 +131,6 @@
         _btn_commit.enabled = NO;
         [_btn_commit setBackgroundColor:UIColorFromRGB(0xe6e6e6)];
     }
-}
-
-#pragma mark - buttonAction
-
--(void)handleBtnBackClicked{
-    if (self.currentRecord) {
-         [ArtVideoUtil deleteVideo:self.currentRecord.videoAbsolutePath];
-    }
-    [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 

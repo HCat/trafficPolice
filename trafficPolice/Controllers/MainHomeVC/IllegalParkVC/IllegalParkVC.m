@@ -90,6 +90,39 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     [super viewWillAppear:animated];
 }
 
+#pragma mark - 
+
+-(void)handleBtnBackClicked{
+    
+    if (_headView.param.addressRemark || _headView.param.carNo || (_arr_upImages.count > 0 && ![self.arr_upImages[0] isKindOfClass:[NSNull class]] && ![self.arr_upImages[1] isKindOfClass:[NSNull class]])) {
+        
+        WS(weakSelf);
+        SRAlertView *alertView = [[SRAlertView alloc] initWithTitle:@"温馨提示"
+                                                            message:@"当前已编辑，是否退出编辑"
+                                                    leftActionTitle:@"取消"
+                                                   rightActionTitle:@"退出"
+                                                     animationStyle:AlertViewAnimationNone
+                                                       selectAction:^(AlertViewActionType actionType) {
+                                                           if (actionType == AlertViewActionTypeLeft) {
+                                                               
+                                                               
+                                                           } else if(actionType == AlertViewActionTypeRight) {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                           }
+                                                       }];
+        alertView.blurCurrentBackgroundView = NO;
+        alertView.actionWhenHighlightedBackgroundColor = UIColorFromRGB(0x4281E8);
+        [alertView show];
+        
+        
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
+}
+
+
 #pragma mark - set && get 
 
 - (void)setIsCanCommit:(BOOL)isCanCommit{
