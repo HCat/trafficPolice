@@ -19,6 +19,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @class SRAlertView;
 
 typedef NS_ENUM(NSInteger, AlertViewActionType) {
@@ -45,6 +47,9 @@ typedef NS_ENUM(NSInteger, AlertViewAnimationStyle) {
 typedef void(^AlertViewDidSelectAction)(AlertViewActionType actionType);
 
 @interface SRAlertView : UIView
+
+
+@property (nonatomic, strong) UIWindow *keyWindow;
 
 /**
  The Animation style to show alert.

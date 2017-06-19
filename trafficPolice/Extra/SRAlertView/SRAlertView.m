@@ -33,8 +33,8 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
 
 #pragma mark - Use Color
 
-#define kTitleLabelColor                UICOLOR_FROM_HEX_ALPHA(0x000000, 1.0)
-#define kMessageLabelColor              UICOLOR_FROM_HEX_ALPHA(0x313131, 1.0)
+#define kTitleLabelColor                UICOLOR_FROM_HEX_ALPHA(0x444444, 1.0)
+#define kMessageLabelColor              UICOLOR_FROM_HEX_ALPHA(0x444444, 1.0)
 
 #define kBtnNormalTitleColor            UICOLOR_FROM_HEX_ALPHA(0x4A4A4A, 1.0)
 #define kBtnHighlightedTitleColor       UICOLOR_FROM_HEX_ALPHA(0x4A4A4A, 1.0)
@@ -221,7 +221,7 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
             _messageLabel.textAlignment = NSTextAlignmentCenter;
         }
         [_messageLabel sizeToFit];
-        CGFloat messageLabH = expectSize.height < kAlertViewMessageMinH ? kAlertViewMessageMinH : expectSize.height;
+        CGFloat messageLabH = expectSize.height;
         _messageLabel.frame = CGRectMake(messageLabelSpacing, CGRectGetMaxY(_titleLabel.frame) + verticalMargin,
                                          kAlertViewW - messageLabelSpacing * 2, messageLabH);
         _messageLabel;
@@ -245,7 +245,7 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
             [_leftAction addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
             [_alertView addSubview:_leftAction];
             if (_rightActionTitle) {
-                _leftAction.frame = CGRectMake(25, btnY, kAlertViewW * 0.5 - 50, kAlertViewBtnH);
+                _leftAction.frame = CGRectMake(25, btnY, kAlertViewW * 0.5 - 35, kAlertViewBtnH);
             } else {
                 _leftAction.frame = CGRectMake(kAlertViewW * 0.25, btnY, kAlertViewW * 0.5, kAlertViewBtnH);
             }
@@ -262,12 +262,12 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
             _rightAction.layer.masksToBounds = YES;
             [_rightAction setTitle:_rightActionTitle forState:UIControlStateNormal];
             [_rightAction setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
-            [_rightAction setTitleColor:kBtnHighlightedTitleColor forState:UIControlStateHighlighted];
+            //[_rightAction setTitleColor:kBtnHighlightedTitleColor forState:UIControlStateHighlighted];
             [_rightAction setBackgroundImage:[self imageWithColor:UIColorFromRGB(0x4b75e1)] forState:UIControlStateNormal];
             [_rightAction addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
             [_alertView addSubview:_rightAction];
             if (_leftActionTitle) {
-                _rightAction.frame = CGRectMake(kAlertViewW * 0.5+25, btnY, kAlertViewW * 0.5-50, kAlertViewBtnH);
+                _rightAction.frame = CGRectMake(kAlertViewW * 0.5+15, btnY, kAlertViewW * 0.5-35, kAlertViewBtnH);
             } else {
                 _rightAction.frame = CGRectMake(kAlertViewW * 0.25, btnY, kAlertViewW * 0.5, kAlertViewBtnH);
             }
@@ -311,14 +311,21 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
 
 - (void)show {
     
+
     if (!_blurCurrentBackgroundView) {
         [self coverView];
     } else {
         [self blurView];
     }
     
+    
+    self.keyWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    self.keyWindow.backgroundColor = [UIColor clearColor];
+    self.keyWindow.windowLevel = UIWindowLevelAlert+100000000;
+    [self.keyWindow makeKeyAndVisible];
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     
+
     if (!_blurCurrentBackgroundView) {
         [UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1.0
                             options:UIViewAnimationOptionCurveEaseIn
@@ -408,6 +415,9 @@ blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0]
         [_blurView removeFromSuperview];
         [self removeFromSuperview];
     }
+    
+    [self.keyWindow resignKeyWindow];
+    [[UIApplication sharedApplication].delegate.window makeKeyWindow];
 }
 
 #pragma mark - Other

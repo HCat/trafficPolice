@@ -13,6 +13,7 @@
 #import "ZLPhotoModel.h"
 #import "AccidentAPI.h"
 #import "ShareFun.h"
+#import "SRAlertView.h"
 
 
 @interface AccidentVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -66,6 +67,41 @@ static NSString *const headId = @"AccidentAddHeadViewID";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
+
+#pragma mark - 
+
+-(void)handleBtnBackClicked{
+    
+    if (_footView.partyFactory.param.address || _footView.partyFactory.param.causesType || _footView.partyFactory.param.injuredNum || _footView.partyFactory.param.roadType || _footView.partyFactory.param.ptaName || _footView.partyFactory.param.ptaIdNo || _footView.partyFactory.param.ptaVehicleId || _footView.partyFactory.param.ptaCarNo || _footView.partyFactory.param.ptaPhone || _footView.partyFactory.param.ptaInsuranceCompanyId || _footView.partyFactory.param.ptaResponsibilityId || _footView.partyFactory.param.ptaDirect || _footView.partyFactory.param.ptaBehaviourId || _footView.partyFactory.param.ptbName || _footView.partyFactory.param.ptbIdNo || _footView.partyFactory.param.ptbVehicleId || _footView.partyFactory.param.ptbCarNo || _footView.partyFactory.param.ptbPhone || _footView.partyFactory.param.ptbInsuranceCompanyId || _footView.partyFactory.param.ptbResponsibilityId || _footView.partyFactory.param.ptbDirect || _footView.partyFactory.param.ptbBehaviourId || _footView.partyFactory.param.ptcName || _footView.partyFactory.param.ptcIdNo || _footView.partyFactory.param.ptcVehicleId || _footView.partyFactory.param.ptcCarNo || _footView.partyFactory.param.ptcPhone || _footView.partyFactory.param.ptcInsuranceCompanyId || _footView.partyFactory.param.ptcResponsibilityId || _footView.partyFactory.param.ptcDirect || _footView.partyFactory.param.ptcBehaviourId || _arr_photos.count > 0) {
+        
+        WS(weakSelf);
+        SRAlertView *alertView = [[SRAlertView alloc] initWithTitle:@"温馨提示"
+                                                            message:@"当前已编辑，是否退出编辑"
+                                                    leftActionTitle:@"取消"
+                                                   rightActionTitle:@"退出"
+                                                     animationStyle:AlertViewAnimationNone
+                                                       selectAction:^(AlertViewActionType actionType) {
+                                                           if (actionType == AlertViewActionTypeLeft) {
+                                                               
+                                                              
+                                                           } else if(actionType == AlertViewActionTypeRight) {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                           }
+                                                       }];
+        alertView.blurCurrentBackgroundView = NO;
+        alertView.actionWhenHighlightedBackgroundColor = UIColorFromRGB(0x4281E8);
+        [alertView show];
+        
+        
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    
+    }
+    
+    
+    
+}
+
 
 #pragma mark - initActionSheet
 

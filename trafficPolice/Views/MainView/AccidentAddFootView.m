@@ -26,7 +26,7 @@
 #import "UIButton+Block.h"
 #import "CountAccidentHelper.h"
 
-#import "PartyFactory.h"
+#import "SRAlertView.h"
 
 #import "FastAccidentAPI.h"
 
@@ -90,7 +90,7 @@
 
 @property(nonatomic,assign) BOOL isCanCommit;
 
-@property(nonatomic,strong) PartyFactory *partyFactory;//当事人信息的管理类
+
 
 @property (nonatomic, strong) AccidentGetCodesResponse *codes; //
 
@@ -706,7 +706,7 @@
 #pragma mark - 提交按钮事件
 
 - (IBAction)handleBtnUploadClicked:(id)sender {
-    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    
     
     if ([_partyFactory validateNumber] == NO) {
         return;
@@ -717,13 +717,48 @@
         _partyFactory.param.roadName = nil;
     }
     
-   
-    
     [_partyFactory configParamInCertFilesAndCertRemarks];
     
     LxDBObjectAsJson(_partyFactory.param);
-    WS(weakSelf);
     
+    if (self.partyFactory.param.ptbName || self.partyFactory.param.ptbIdNo || self.partyFactory.param.ptbVehicleId || self.partyFactory.param.ptbCarNo || self.partyFactory.param.ptbPhone || self.partyFactory.param.ptbInsuranceCompanyId || self.partyFactory.param.ptbResponsibilityId || self.partyFactory.param.ptbDirect || self.partyFactory.param.ptbBehaviourId) {
+        
+        [self updateAccident];
+        
+    }else{
+        
+        WS(weakSelf);
+        SRAlertView *alertView = [[SRAlertView alloc] initWithTitle:@"温馨提示"
+                                                            message:@"乙方信息未录入，是否提交"
+                                                    leftActionTitle:@"取消"
+                                                   rightActionTitle:@"提交"
+                                                     animationStyle:AlertViewAnimationNone
+                                                       selectAction:^(AlertViewActionType actionType) {
+                                                           
+                                                           SW(strongSelf, weakSelf);
+                                                           if (actionType == AlertViewActionTypeLeft) {
+                                                               
+                                                               
+                                                           } else if(actionType == AlertViewActionTypeRight) {
+                                                               [strongSelf updateAccident];
+                                                           }
+                                                       }];
+        alertView.blurCurrentBackgroundView = NO;
+        alertView.actionWhenHighlightedBackgroundColor = UIColorFromRGB(0x4281E8);
+        [alertView show];
+        
+    }
+    
+
+}
+
+- (void)updateAccident{
+    
+    
+    WS(weakSelf);
+
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+
     if (_accidentType == AccidentTypeAccident) {
         
         AccidentSaveManger *manger = [[AccidentSaveManger alloc] init];
@@ -758,7 +793,7 @@
         }];
         
     }else if (_accidentType == AccidentTypeFastAccident){
-    
+        
         FastAccidentSaveManger *manger = [[FastAccidentSaveManger alloc] init];
         manger.param = self.partyFactory.param;
         manger.successMessage = @"提交成功";
@@ -789,9 +824,10 @@
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
             [hud hide];
         }];
-    
+        
     }
-    
+
+
 }
 
 #pragma mark - 添加监听Textfield的变化，用于给参数实时赋值
