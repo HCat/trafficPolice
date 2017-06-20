@@ -8,6 +8,7 @@
 
 #import "LRBaseRequest.h"
 #import "ShareFun.h"
+#import <MBProgressHUD.h>
 
 @implementation LRBaseRequest
 
@@ -115,8 +116,13 @@
     
     }else if (self.responseModel.code == CODE_TOKENTIMEOUT){
         
-        [ShowHUD showError:@"登录超时或者token失效" duration:1.2f inView:self.v_showHud config:nil];
         [ShareFun LoginOut];
+        
+        MBProgressHUD *hud = [MBProgressHUD HUDForView:[UIApplication sharedApplication].keyWindow];
+        if (!hud) {
+            [ShowHUD showError:self.responseModel.msg duration:1.2f inView:[UIApplication sharedApplication].keyWindow config:nil];
+        }
+        
     }
     
 }
