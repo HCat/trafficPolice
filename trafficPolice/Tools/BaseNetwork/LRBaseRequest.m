@@ -112,17 +112,6 @@
             }
         }
         
-       
-    
-    }else if (self.responseModel.code == CODE_TOKENTIMEOUT){
-        
-        [ShareFun LoginOut];
-        
-        MBProgressHUD *hud = [MBProgressHUD HUDForView:[UIApplication sharedApplication].keyWindow];
-        if (!hud) {
-            [ShowHUD showError:self.responseModel.msg duration:1.2f inView:[UIApplication sharedApplication].keyWindow config:nil];
-        }
-        
     }
     
 }
@@ -131,18 +120,24 @@
     [super requestFailedFilter];
     
     if (_isLog) {
+        
         LxDBAnyVar(self.description);
         LxDBAnyVar(self.responseStatusCode);
         LxDBAnyVar(self.error.localizedDescription);
+        
     }
-    
     
     if (self.responseStatusCode == CODE_TOKENTIMEOUT){
         
-        [ShowHUD showError:@"登录超时或者token失效" duration:1.2f inView:self.v_showHud config:nil];
         [ShareFun LoginOut];
         
+        MBProgressHUD *hud = [MBProgressHUD HUDForView:[UIApplication sharedApplication].keyWindow];
+        if (!hud) {
+            [ShowHUD showError:self.responseModel.msg duration:1.2f inView:[UIApplication sharedApplication].keyWindow config:nil];
+        }
+        
     }else{
+        
         [ShowHUD showError:[NSString stringWithFormat:@"网络请求错误:code-%d",self.responseStatusCode] duration:1.2f inView:self.v_showHud config:nil];
     }
 
