@@ -625,6 +625,7 @@
                 <constraint firstItem="xe4-M5-Fow" firstAttribute="width" secondItem="18w-hh-Ud3" secondAttribute="width" id="Htg-mD-UTH"/>
                 <constraint firstItem="GmA-XO-24e" firstAttribute="centerY" secondItem="vpZ-t7-bOL" secondAttribute="centerY" id="HxV-jz-wMO"/>
                 <constraint firstItem="Eah-rc-pbK" firstAttribute="width" secondItem="18w-hh-Ud3" secondAttribute="width" id="I1H-dd-2B6"/>
+                <constraint firstItem="Eah-rc-pbK" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="89" id="IvA-b8-Dv4"/>
                 <constraint firstItem="Wk6-Gk-zAZ" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="Ji2-nK-sNL"/>
                 <constraint firstItem="Kt6-VJ-E1I" firstAttribute="height" secondItem="18w-hh-Ud3" secondAttribute="height" id="KK3-gu-Wm3"/>
                 <constraint firstItem="n7b-dp-Khg" firstAttribute="height" secondItem="18w-hh-Ud3" secondAttribute="height" id="KdX-MZ-0yz"/>
@@ -704,7 +705,6 @@
                 <constraint firstItem="18w-hh-Ud3" firstAttribute="leading" secondItem="t2R-V9-2Vf" secondAttribute="trailing" constant="7" id="oAg-CD-H7r"/>
                 <constraint firstItem="esv-Qi-xWU" firstAttribute="leading" secondItem="CDs-Zp-hwh" secondAttribute="leading" id="oDt-P7-hOe"/>
                 <constraint firstItem="mgq-9g-3gH" firstAttribute="top" secondItem="qy7-GX-Cxp" secondAttribute="bottom" constant="57.5" id="oMb-FI-wUf"/>
-                <constraint firstItem="Eah-rc-pbK" firstAttribute="top" secondItem="18w-hh-Ud3" secondAttribute="bottom" constant="14" id="oNt-2L-c34"/>
                 <constraint firstItem="zLp-Yg-giU" firstAttribute="top" secondItem="Kt6-VJ-E1I" secondAttribute="bottom" constant="17" id="oas-UA-O6e"/>
                 <constraint firstItem="NgA-NE-W2q" firstAttribute="top" secondItem="qy7-GX-Cxp" secondAttribute="bottom" constant="14" id="ocL-4a-CRh"/>
                 <constraint firstItem="NgA-NE-W2q" firstAttribute="height" secondItem="18w-hh-Ud3" secondAttribute="height" id="oqd-14-Eac"/>
@@ -739,8 +739,10 @@
                 <outlet property="btn_temporaryIdentityCard" destination="esv-Qi-xWU" id="Iqd-6c-btY"/>
                 <outlet property="btn_temporarylib" destination="9uV-Ei-TMB" id="scf-7U-I45"/>
                 <outlet property="layout_InsuranceCompany" destination="oMb-FI-wUf" id="Ei0-0m-ZmH"/>
+                <outlet property="layout_accidentCauses" destination="IvA-b8-Dv4" id="V0e-IL-TO1"/>
                 <outlet property="layout_accidentInfo" destination="7gO-Bj-cNL" id="fy6-sK-MSo"/>
                 <outlet property="layout_moreinfo" destination="6Xu-7D-pmM" id="f6r-49-CNA"/>
+                <outlet property="lb_accidentCauses" destination="t2R-V9-2Vf" id="FJL-vH-352"/>
                 <outlet property="lb_illegalBehavior" destination="y8u-4H-0dK" id="QqH-bu-ACV"/>
                 <outlet property="lb_textCount" destination="V6M-uJ-uFc" id="tIE-0C-qrL"/>
                 <outlet property="segmentedControl" destination="6dg-Vg-Oef" id="AK6-j0-cU3"/>

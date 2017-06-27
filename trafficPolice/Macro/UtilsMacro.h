@@ -9,12 +9,10 @@
 
 #pragma mark -Redefine
 
+#define ITUNESAPPID @"1252501276"
 
 #define WS(__KEY)  __weak typeof(self)__KEY = self
 #define SW(__SW,__WS)  __strong typeof(__WS)__SW = __WS
-
-
-
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)

@@ -20,8 +20,10 @@
 #import <YTKNetwork.h>
 #import "LRBaseRequest.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
-#import "RealReachability.h"
 #import "LSStatusBarHUD.h"
+
+#import "Reachability.h"
+
 
 #if defined(DEBUG) || defined(_DEBUG)
 #import "FHHFPSIndicator.h"
@@ -29,11 +31,10 @@
 
 #import "SuperLogger.h"
 
-
-
 @interface AppDelegate ()<WXApiDelegate>
 
 @property(nonatomic,strong) LoginHomeVC *vc_login;
+@property(nonatomic,assign) NSInteger previousStatus;
 
 @end
 
@@ -85,7 +86,7 @@ BMKMapManager* _mapManager;
     NSDate *five = [[NSDate date]dateByAddingTimeInterval:-60*60*24*7];
     [[SuperLogger sharedInstance] cleanLogsBefore:five deleteStarts:YES];
     
-    
+
     return YES;
     
 }
@@ -103,15 +104,14 @@ BMKMapManager* _mapManager;
         [UINavigationBar appearance].translucent = NO;
     }
     
-    [GLobalRealReachability startNotifier];
-    
-    //配置网络改变监听
+    self.previousStatus = -1; //没有状态
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(networkChanged:)
-                                                 name:kRealReachabilityChangedNotification
+                                                 name:kReachabilityChangedNotification
                                                object:nil];
     
-    
+    [reach startNotifier];
     
     //配置统一的网络基地址
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
@@ -181,7 +181,6 @@ BMKMapManager* _mapManager;
     }
 
 }
-
 
 
 #pragma mark - public Methods
@@ -254,8 +253,17 @@ BMKMapManager* _mapManager;
             }
         }else{ //失败
             LxPrintf(@"error %@",resp.errStr);
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:[NSString stringWithFormat:@"reason : %@",resp.errStr] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            [alert show];
+            if (!resp.errStr) {
+                
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"登录失败，授权被取消" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                [alert show];
+               
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:[NSString stringWithFormat:@"reason : %@",resp.errStr] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                [alert show];
+            
+            }
+            
         }
     }
 }
@@ -264,16 +272,24 @@ BMKMapManager* _mapManager;
 
 - (void)networkChanged:(NSNotification *)notification
 {
-    RealReachability *reachability = (RealReachability *)notification.object;
-    ReachabilityStatus status = [reachability currentReachabilityStatus];
-    ReachabilityStatus previousStatus = [reachability previousReachabilityStatus];
-    LxPrintf(@"networkChanged, currentStatus:%@, previousStatus:%@", @(status), @(previousStatus));
     
-    if (status == RealStatusNotReachable){
+    Reachability *reachability = (Reachability *)notification.object;
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    if (_previousStatus == -1) {
+        _previousStatus = status;
+    }else{
+        if (status == _previousStatus) {
+            return;
+        }
+    }
+    
+    LxPrintf(@"networkChanged, currentStatus:%@, previousStatus:%@", @(status), @(_previousStatus));
+
+    if (status == NotReachable){
         LxPrintf(@"Network unreachable!");
         [LSStatusBarHUD showMessageAndImage:@"当前无网络,请检查网络是否正常"];
     }else{
-        if (previousStatus == RealStatusNotReachable || previousStatus == RealStatusUnknown) {
+        if (_previousStatus == NotReachable ) {
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HAVENETWORK_SUCCESS object:nil];
             BOOL ret = [_mapManager start:BAIDUMAP_APP_KEY generalDelegate:self];
             if (!ret) {
@@ -283,28 +299,7 @@ BMKMapManager* _mapManager;
         }
     }
     
-    if (status == RealStatusViaWiFi){
-        LxPrintf(@"Network wifi! Free!");
-    }
-    if (status == RealStatusViaWWAN){
-        LxPrintf(@"Network WWAN! In charge!");
-    }
-    WWANAccessType accessType = [GLobalRealReachability currentWWANtype];
-    if (status == RealStatusViaWWAN){
-        
-        if (accessType == WWANType2G){
-            LxPrintf(@"RealReachabilityStatus2G");
-        }
-        else if (accessType == WWANType3G){
-            LxPrintf(@"RealReachabilityStatus3G");
-        }
-        else if (accessType == WWANType4G){
-            LxPrintf(@"RealReachabilityStatus4G");
-        }
-        else{
-            LxPrintf(@"Unknown RealReachability WWAN Status, might be iOS6");
-        }
-    }
+    _previousStatus = status;
     
 }
 

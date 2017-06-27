@@ -17,6 +17,12 @@
 
 @interface ListHomeVC ()
 
+@property (weak, nonatomic) IBOutlet UIView *v_search;
+
+@property (weak, nonatomic) IBOutlet UIView *v_permission;
+
+@property (nonatomic,strong) NSArray *arr_menus;
+
 @end
 
 @implementation ListHomeVC
@@ -24,6 +30,7 @@
 - (instancetype)init{
     
     if (self = [super init]) {
+        
         [self initPageMenu];
     }
     
@@ -36,6 +43,15 @@
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"列表", nil);
+    
+    if (self.arr_menus.count == 0) {
+        self.v_permission.hidden = NO;
+        self.v_search.hidden = YES;
+
+    }else{
+        self.v_permission.hidden = YES;
+        self.v_search.hidden = NO;
+    }
     
     
 }
@@ -75,6 +91,13 @@
         VideoListVC *vc_firved = [VideoListVC new];
         vc_firved.title = @"视频";
         [t_arr addObject:vc_firved];
+    }
+    
+    self.arr_menus = t_arr;
+    
+    if (t_arr.count == 0) {
+
+        return;
     }
    
     NSArray *arr_controllers = [NSArray arrayWithArray:t_arr];

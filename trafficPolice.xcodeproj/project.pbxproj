@@ -115,6 +115,8 @@
 		CE542EDD1ECC9F2400971B23 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE542EDC1ECC9F2400971B23 /* AlertView.m */; };
 		CE5495C51ED66F0B00B19111 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5495C31ED66F0B00B19111 /* libcrypto.a */; };
 		CE5495C61ED66F0B00B19111 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5495C41ED66F0B00B19111 /* libssl.a */; };
+		CE55A7C61F02586D00E66291 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CE55A7C51F02586D00E66291 /* Reachability.m */; };
+		CE55A7C81F02589600E66291 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE55A7C71F02589600E66291 /* SystemConfiguration.framework */; };
 		CE57863D1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57860A1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m */; };
 		CE57863E1ED4088700B4CC9F /* btn_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57860C1ED4088700B4CC9F /* btn_circle@2x.png */; };
 		CE57863F1ED4088700B4CC9F /* btn_circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57860D1ED4088700B4CC9F /* btn_circle@3x.png */; };
@@ -187,6 +189,7 @@
 		CE6E52D71ED2B59A002C4603 /* ShowHUDUntil.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6E52D51ED2B59A002C4603 /* ShowHUDUntil.bundle */; };
 		CE6F9C2C1ED92C2100ADDA23 /* LSStatusBarHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6F9C281ED92C2100ADDA23 /* LSStatusBarHUD.bundle */; };
 		CE6F9C2D1ED92C2100ADDA23 /* LSStatusBarHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */; };
+		CE7123641F00BDFB002151FB /* HSUpdateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7123631F00BDFB002151FB /* HSUpdateApp.m */; };
 		CE7CF0371EE19EFA00E91080 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7CF0341EE19EFA00E91080 /* FXBlurView.m */; };
 		CE7CF0381EE19EFB00E91080 /* SRAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7CF0361EE19EFA00E91080 /* SRAlertView.m */; };
 		CE7CFF171EDF137C00B74ABB /* maskingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7CFF161EDF137C00B74ABB /* maskingView.m */; };
@@ -438,6 +441,9 @@
 		CE542EDC1ECC9F2400971B23 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		CE5495C31ED66F0B00B19111 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
 		CE5495C41ED66F0B00B19111 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libssl.a; sourceTree = "<group>"; };
+		CE55A7C41F02586D00E66291 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		CE55A7C51F02586D00E66291 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CE55A7C71F02589600E66291 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE5786091ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ZLPhotoBrowser.h"; sourceTree = "<group>"; };
 		CE57860A1ED4088700B4CC9F /* NSBundle+ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ZLPhotoBrowser.m"; sourceTree = "<group>"; };
 		CE57860C1ED4088700B4CC9F /* btn_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_circle@2x.png"; sourceTree = "<group>"; };
@@ -553,6 +559,8 @@
 		CE6F9C291ED92C2100ADDA23 /* LSStatusBarHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUD.h; sourceTree = "<group>"; };
 		CE6F9C2A1ED92C2100ADDA23 /* LSStatusBarHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSStatusBarHUD.m; sourceTree = "<group>"; };
 		CE6F9C2B1ED92C2100ADDA23 /* LSStatusBarHUDConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStatusBarHUDConst.h; sourceTree = "<group>"; };
+		CE7123621F00BDFB002151FB /* HSUpdateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUpdateApp.h; sourceTree = "<group>"; };
+		CE7123631F00BDFB002151FB /* HSUpdateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUpdateApp.m; sourceTree = "<group>"; };
 		CE7CF0331EE19EFA00E91080 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		CE7CF0341EE19EFA00E91080 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		CE7CF0351EE19EFA00E91080 /* SRAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAlertView.h; sourceTree = "<group>"; };
@@ -640,6 +648,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE55A7C81F02589600E66291 /* SystemConfiguration.framework in Frameworks */,
 				CECC91F01EF1041D003CED99 /* MessageUI.framework in Frameworks */,
 				CE5495C51ED66F0B00B19111 /* libcrypto.a in Frameworks */,
 				CE5495C61ED66F0B00B19111 /* libssl.a in Frameworks */,
@@ -811,6 +820,8 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE55A7C31F02586100E66291 /* Reachability */,
+				CE7123611F00BDF0002151FB /* HSUpdateApp */,
 				CECC91DD1EF10249003CED99 /* SuperLogger */,
 				CE3916A91EED8C06006B06FE /* NJKWebViewProgress */,
 				CE3C454F1EECF5F000E59465 /* TTGTagCollectionView */,
@@ -1000,6 +1011,7 @@
 		CA950E019092A6EE264A0A75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE55A7C71F02589600E66291 /* SystemConfiguration.framework */,
 				CECC91EF1EF1041D003CED99 /* MessageUI.framework */,
 				CE5495C31ED66F0B00B19111 /* libcrypto.a */,
 				CE5495C41ED66F0B00B19111 /* libssl.a */,
@@ -1235,6 +1247,15 @@
 			path = AlertView;
 			sourceTree = "<group>";
 		};
+		CE55A7C31F02586100E66291 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				CE55A7C41F02586D00E66291 /* Reachability.h */,
+				CE55A7C51F02586D00E66291 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		CE5786081ED4088700B4CC9F /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1402,6 +1423,15 @@
 				CE6F9C2B1ED92C2100ADDA23 /* LSStatusBarHUDConst.h */,
 			);
 			path = LSStatusBarHUD;
+			sourceTree = "<group>";
+		};
+		CE7123611F00BDF0002151FB /* HSUpdateApp */ = {
+			isa = PBXGroup;
+			children = (
+				CE7123621F00BDFB002151FB /* HSUpdateApp.h */,
+				CE7123631F00BDFB002151FB /* HSUpdateApp.m */,
+			);
+			path = HSUpdateApp;
 			sourceTree = "<group>";
 		};
 		CE7CF0311EE19EFA00E91080 /* SRAlertView */ = {
@@ -1778,6 +1808,7 @@
 				CE5AF6CA1EE932660022CCD0 /* AccidentMessageCell.m in Sources */,
 				CEAF130C1ED9E3D4004A8E73 /* CountAccidentHelper.m in Sources */,
 				CE4CFE031ECB57B900E59524 /* NSTimer+UnRetain.m in Sources */,
+				CE7123641F00BDFB002151FB /* HSUpdateApp.m in Sources */,
 				CE5786581ED4088700B4CC9F /* ZLPhotoBrowserCell.m in Sources */,
 				CE4CFE071ECB599C00E59524 /* LRCountDownButton.m in Sources */,
 				CE3A6C961EC9822A00D7D9D5 /* XBMeHeaderView.m in Sources */,
@@ -1786,6 +1817,7 @@
 				CE542ED41ECC93D900971B23 /* BottomView.m in Sources */,
 				CE39E00D1ECF2B0200F284C1 /* FastAccidentDetailModel.m in Sources */,
 				C7621D131EC43CD400980058 /* LRPageMenu.m in Sources */,
+				CE55A7C61F02586D00E66291 /* Reachability.m in Sources */,
 				C78138B01EC2E79E00A124B7 /* MainHomeCell.m in Sources */,
 				CE43C15A1ECDDAB400309507 /* UserModel.m in Sources */,
 				CEF0D1AD1ED9C19100C78905 /* SearchLocationVC.m in Sources */,

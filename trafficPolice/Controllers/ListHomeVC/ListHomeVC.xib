@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListHomeVC">
             <connections>
+                <outlet property="v_permission" destination="aQt-L8-dfH" id="wqB-vI-xNq"/>
+                <outlet property="v_search" destination="qTc-f1-4g4" id="acS-E6-FH0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -69,12 +71,37 @@
                         <constraint firstAttribute="height" constant="44" id="xJN-Mx-dus"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQt-L8-dfH">
+                    <rect key="frame" x="73" y="224" width="228" height="155"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_tablePlaceholder_null" translatesAutoresizingMaskIntoConstraints="NO" id="vVz-rT-1CA">
+                            <rect key="frame" x="86" y="55" width="56" height="44"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您没有权限浏览哦!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJj-ft-zsf">
+                            <rect key="frame" x="42.5" y="107" width="143.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="yJj-ft-zsf" firstAttribute="centerX" secondItem="vVz-rT-1CA" secondAttribute="centerX" id="0PT-dJ-PLn"/>
+                        <constraint firstItem="vVz-rT-1CA" firstAttribute="centerX" secondItem="aQt-L8-dfH" secondAttribute="centerX" id="7aF-sy-v8F"/>
+                        <constraint firstItem="vVz-rT-1CA" firstAttribute="centerY" secondItem="aQt-L8-dfH" secondAttribute="centerY" id="Iwd-1F-nzG"/>
+                        <constraint firstAttribute="width" constant="228" id="YtM-lv-nVE"/>
+                        <constraint firstAttribute="height" constant="155" id="b2c-fO-8Lq"/>
+                        <constraint firstItem="yJj-ft-zsf" firstAttribute="top" secondItem="vVz-rT-1CA" secondAttribute="bottom" constant="8" id="vUH-zj-Ex9"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="qTc-f1-4g4" secondAttribute="trailing" id="9y8-NB-JZn"/>
                 <constraint firstItem="qTc-f1-4g4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QwD-Ay-fn5"/>
                 <constraint firstItem="qTc-f1-4g4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cuw-Sw-2yZ"/>
+                <constraint firstItem="aQt-L8-dfH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hte-lr-cbs"/>
+                <constraint firstItem="aQt-L8-dfH" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="qJ3-2L-0JP"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <point key="canvasLocation" x="32.5" y="55.5"/>
@@ -82,5 +109,6 @@
     </objects>
     <resources>
         <image name="icon_search" width="21" height="21"/>
+        <image name="icon_tablePlaceholder_null" width="56" height="44"/>
     </resources>
 </document>

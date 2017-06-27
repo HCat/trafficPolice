@@ -20,7 +20,9 @@
 
 
 #import "ShareFun.h"
+#import "UserModel.h"
 #import "CommonAPI.h"
+#import "FastAccidentAPI.h"
 
 #import "UIButton+NoRepeatClick.h"
 #import "UIButton+Block.h"
@@ -28,13 +30,18 @@
 
 #import "SRAlertView.h"
 
-#import "FastAccidentAPI.h"
+
 
 
 @interface AccidentAddFootView()<UITextViewDelegate>
 
 //分段控件，分别为甲方，乙方，丙方
 @property (weak, nonatomic) IBOutlet YUSegmentedControl *segmentedControl;
+
+@property (weak, nonatomic) IBOutlet UILabel *lb_accidentCauses;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layout_accidentCauses;
+
+
 
  //事故信息里面的更多信息按钮
 @property (weak, nonatomic) IBOutlet UIButton *btn_moreAccidentInfo;
@@ -89,6 +96,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_commit;
 
 @property(nonatomic,assign) BOOL isCanCommit;
+@property(nonatomic,assign) BOOL isUpLoading;
 
 
 
@@ -114,6 +122,7 @@
     [super awakeFromNib];
     //默认设置是否显示更多信息，这里预先设置是为了调用UICollectionView可以刷新下数据
     //这里待优化
+    self.isUpLoading = NO;
     
     self.partyFactory = [[PartyFactory alloc] init];
     //配置视图页面
@@ -121,6 +130,13 @@
     
     self.isShowMoreInfo = YES;
     self.isShowMoreAccidentInfo = YES;
+    
+    if ([UserModel getUserModel].isInsurance) {
+        self.lb_accidentCauses.hidden = YES;
+        self.tf_accidentCauses.hidden = YES;
+        self.layout_accidentCauses.constant = 45.f;
+        [self layoutIfNeeded];
+    }
     
     //异步请求即将用到数据
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -130,13 +146,6 @@
     //重新定位下
     [[LocationHelper sharedDefault] startLocation];
     
-    if (_accidentType == AccidentTypeAccident) {
-    
-        [CountAccidentHelper sharedDefault].state = @1;
-    }else if (_accidentType == AccidentTypeFastAccident){
-        [CountAccidentHelper sharedDefault].state = @9;
-    }
-
     //获取当前事故时间
     _tf_accidentTime.text = [ShareFun getCurrentTime];
     self.partyFactory.param.happenTimeStr = [ShareFun getCurrentTime];
@@ -153,6 +162,7 @@
     //详情请查看UIButton+NoRepeatClick
     self.btn_moreInfo.isIgnore = YES;
     self.btn_moreAccidentInfo.isIgnore = YES;
+    self.btn_commit.isIgnore = NO;
     
     //设置UITextField的Placeholder高亮来提示哪些是需要输入的
     _tf_accidentTime.attributedPlaceholder = [ShareFun highlightInString:@"请输入事故时间(必填)" withSubString:@"(必填)"];
@@ -266,6 +276,13 @@
 
     _accidentType = accidentType;
     _partyFactory.accidentType = _accidentType;
+    
+    if (_accidentType == AccidentTypeAccident) {
+        
+        [CountAccidentHelper sharedDefault].state = @1;
+    }else if (_accidentType == AccidentTypeFastAccident){
+        [CountAccidentHelper sharedDefault].state = @9;
+    }
     
     //快处事故的UI处理
     if (_accidentType == AccidentTypeFastAccident){
@@ -712,6 +729,11 @@
         return;
     }
     
+    
+    if (_isUpLoading) {
+        return;
+    }
+    
     //如果roadId不为0，则不需要传roadName
     if (![_partyFactory.param.roadId isEqualToNumber:@0]) {
         _partyFactory.param.roadName = nil;
@@ -754,6 +776,7 @@
 
 - (void)updateAccident{
     
+   
     
     WS(weakSelf);
 
@@ -766,11 +789,14 @@
         manger.successMessage = @"提交成功";
         manger.failMessage = @"提交失败";
         
+        self.isUpLoading = YES;
+        
         ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
         [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             [hud hide];
-            
             SW(strongSelf, weakSelf);
+            strongSelf.isUpLoading = NO;
+            
             if (manger.responseModel.code == CODE_SUCCESS) {
                 
                 if ([strongSelf.partyFactory.param.roadId isEqualToNumber:@0]) {
@@ -789,7 +815,9 @@
                 
             }
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            SW(strongSelf, weakSelf);
             [hud hide];
+            strongSelf.isUpLoading = NO;
         }];
         
     }else if (_accidentType == AccidentTypeFastAccident){
@@ -799,11 +827,12 @@
         manger.successMessage = @"提交成功";
         manger.failMessage = @"提交失败";
         
+        self.isUpLoading = YES;
         ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"提交中.." inView:window config:nil];
         [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             [hud hide];
-            
             SW(strongSelf, weakSelf);
+            strongSelf.isUpLoading = NO;
             if (manger.responseModel.code == CODE_SUCCESS) {
                 
                 if ([strongSelf.partyFactory.param.roadId isEqualToNumber:@0]) {
@@ -822,7 +851,9 @@
                 
             }
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            SW(strongSelf, weakSelf);
             [hud hide];
+            strongSelf.isUpLoading = NO;
         }];
         
     }

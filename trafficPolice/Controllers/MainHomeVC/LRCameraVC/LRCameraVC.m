@@ -35,6 +35,7 @@
 
 @property (weak, nonatomic) IBOutlet maskingView *v_masking;
 
+@property (weak, nonatomic) IBOutlet UILabel *lb_tip;
 
 
 @end
@@ -53,6 +54,7 @@
         
         _v_masking.type = 1;
         _btn_photoAlbum.hidden = YES;
+        _lb_tip.text = @"请扫描车牌号";
     
     }else if(_type == 5) {
         
@@ -63,11 +65,35 @@
         
     }else{
         _v_masking.type = 2;
+        
+        if (_type == 2) {
+            _lb_tip.text = @"请扫描身份证";
+        }else if (_type == 3){
+            _lb_tip.text = @"请扫描驾驶证";
+        }else if (_type == 4){
+            _lb_tip.text = @"请扫描行驶证";
+        }
+        
     }
 
     //初始化照相机，通过AVFoundation自定义的相机
     [self initializeCamera];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+
+    [super viewDidAppear:animated];
+    
+    _lb_tip.hidden = NO;
+    WS(weakSelf);
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+    
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        weakSelf.lb_tip.hidden = YES;
+    });
+    
+
 }
 
 

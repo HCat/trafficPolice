@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutAppVC">
             <connections>
+                <outlet property="btn_upApp" destination="8aI-FT-xEd" id="Mbe-3M-wsW"/>
                 <outlet property="imageV_icon" destination="NNI-NV-4gy" id="1Nf-6X-hb6"/>
                 <outlet property="lb_appName" destination="u5a-X1-89A" id="PT2-cT-ouo"/>
                 <outlet property="lb_appVersion" destination="Ols-mp-W1Y" id="Xaj-Z0-0Zg"/>

@@ -44,6 +44,7 @@
 
     self.navigationItem.title = _logFilename;
     self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
+    [self.navigationBar setBarTintColor:[UIColor blackColor]];
     [self.view addSubview:_navigationBar];
     [self.navigationBar pushNavigationItem:self.navigationItem animated:NO];
     UIBarButtonItem *backBtn=[[UIBarButtonItem alloc] initWithTitle: SLLocalizedString(@"SL_Back",@"Back") style:UIBarButtonItemStylePlain target:self action:@selector(done)];

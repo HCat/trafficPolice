@@ -8,6 +8,9 @@
 
 #import "AboutAppVC.h"
 
+#import "HSUpdateApp.h"
+#import "SRAlertView.h"
+
 @interface AboutAppVC ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageV_icon;
@@ -15,6 +18,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lb_appName;
 
 @property (weak, nonatomic) IBOutlet UILabel *lb_appVersion;
+
+@property (weak, nonatomic) IBOutlet UIButton *btn_upApp;
+
+@property (nonatomic,copy) NSString *storeVersion;
+@property (nonatomic,copy) NSString *openUrl;
 
 
 @end
@@ -24,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"关于";
+    
+    _btn_upApp.hidden = YES;
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     //CFShow((__bridge CFTypeRef)(infoDictionary));
@@ -48,13 +58,44 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //查询是否需要更新
+    __weak __typeof(&*self)weakSelf = self;
+    [HSUpdateApp hs_updateWithAPPID:ITUNESAPPID block:^(NSString *currentVersion, NSString *storeVersion, NSString *openUrl, BOOL isUpdate) {
+        if (isUpdate == YES) {
+            weakSelf.storeVersion = storeVersion;
+            weakSelf.openUrl = openUrl;
+            weakSelf.btn_upApp.hidden = NO;
+        }
+    }];
+    
+}
+
 #pragma mark - buttonMethods
 
 #pragma mark - 检测更新按钮事件
 - (IBAction)handleBtnUpAppClicked:(id)sender {
     
-    
-    
+    WS(weakSelf);
+    SRAlertView *alertView = [[SRAlertView alloc] initWithTitle:@"检查更新"
+                                                        message:[NSString stringWithFormat:@"检测到新版本(%@),是否更新?",_storeVersion]
+                                                leftActionTitle:@"取消"
+                                               rightActionTitle:@"更新"
+                                                 animationStyle:AlertViewAnimationNone
+                                                   selectAction:^(AlertViewActionType actionType) {
+                                                       if (actionType == AlertViewActionTypeLeft) {
+                                                           
+                                                           
+                                                       } else if(actionType == AlertViewActionTypeRight) {
+                                                           NSURL *url = [NSURL URLWithString:weakSelf.openUrl];
+                                                           [[UIApplication sharedApplication] openURL:url];
+                                                       }
+                                                   }];
+    alertView.blurCurrentBackgroundView = NO;
+    alertView.actionWhenHighlightedBackgroundColor = UIColorFromRGB(0x4281E8);
+    [alertView show];
+
 }
 
 

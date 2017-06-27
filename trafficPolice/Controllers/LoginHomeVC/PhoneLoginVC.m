@@ -40,7 +40,7 @@
     
     _tf_phone.text = _phone;
     
-    _btn_countDown.durationOfCountDown = 10;
+    _btn_countDown.durationOfCountDown = 60;
     _btn_countDown.originalBGColor = UIColorFromRGB(0x467AE3);
     _btn_countDown.processBGColor = UIColorFromRGB(0xe2e2e2);
     _btn_countDown.processFont = [UIFont systemFontOfSize:12.f];
@@ -77,6 +77,9 @@
                 [strongSelf.btn_countDown startCountDown];
                 strongSelf.acId = manger.acId;
                 
+            }else if(manger.responseModel.code == CODE_FAILED){
+                [strongSelf.btn_countDown endCountDown];
+            
             }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {

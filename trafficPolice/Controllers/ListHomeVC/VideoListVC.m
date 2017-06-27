@@ -9,7 +9,7 @@
 #import "VideoListVC.h"
 #import "ListCollectionCell.h"
 #import "UICollectionView+Lr_Placeholder.h"
-#import <RealReachability.h>
+#import "Reachability.h"
 #import <MJRefresh.h>
 #import "VideoColectAPI.h"
 #import "VideoListCell.h"
@@ -137,8 +137,12 @@
         [strongSelf.collectionView.mj_header endRefreshing];
         [strongSelf.collectionView.mj_footer endRefreshing];
         
-        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-        if (status == RealStatusNotReachable) {
+        Reachability *reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+        NetworkStatus status = [reach currentReachabilityStatus];
+        if (status == NotReachable) {
+            if (strongSelf.arr_content.count > 0) {
+                [strongSelf.arr_content removeAllObjects];
+            }
             strongSelf.collectionView.isNetAvailable = YES;
             [strongSelf.collectionView reloadData];
         }

@@ -9,7 +9,7 @@
 #import "IllegalDetailVC.h"
 
 #import "UITableView+Lr_Placeholder.h"
-#import <RealReachability.h>
+#import "Reachability.h"
 #import <PureLayout.h>
 
 #import "IllegalParkAPI.h"
@@ -102,8 +102,9 @@
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [hud hide];
         SW(strongSelf,weakSelf);
-        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-        if (status == RealStatusNotReachable) {
+        Reachability *reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+        NetworkStatus status = [reach currentReachabilityStatus];
+        if (status == NotReachable) {
             strongSelf.model = nil;
             strongSelf.tb_content.isNetAvailable = YES;
             [strongSelf.tb_content reloadData];
@@ -132,8 +133,9 @@
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [hud hide];
         SW(strongSelf,weakSelf);
-        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-        if (status == RealStatusNotReachable) {
+        Reachability *reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+        NetworkStatus status = [reach currentReachabilityStatus];
+        if (status == NotReachable) {
             strongSelf.model = nil;
             strongSelf.tb_content.isNetAvailable = YES;
             [strongSelf.tb_content reloadData];

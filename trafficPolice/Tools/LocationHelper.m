@@ -7,7 +7,7 @@
 //
 
 #import "LocationHelper.h"
-#import <RealReachability.h>
+#import "Reachability.h"
 
 @implementation LocationHelper
 
@@ -48,11 +48,12 @@ LRSingletonM(Default)
     else
     {
         LxPrintf(@"反geo检索发送失败");
-        ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-            if (status != RealStatusNotReachable) {
-                [self performSelector:@selector(startReverseGeocode) withObject:nil afterDelay:1.5];
+        Reachability *reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+        NetworkStatus status = [reach currentReachabilityStatus];
+        if (status != NotReachable) {
+            [self performSelector:@selector(startReverseGeocode) withObject:nil afterDelay:1.5];
                  //[self startReverseGeocode];
-            }
+        }
     
     }
 }

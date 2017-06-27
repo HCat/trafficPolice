@@ -17,7 +17,8 @@
 #import "IllegalParkVC.h"
 #import "VideoColectVC.h"
 
-
+#import "HSUpdateApp.h"
+#import "SRAlertView.h"
 
 @interface MainHomeVC ()<ImagePlayerViewDelegate,MainHomeCellDelegate>
 
@@ -54,6 +55,18 @@
     
     [[LocationHelper sharedDefault] startLocation];
 
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //查询是否需要更新
+    __weak __typeof(&*self)weakSelf = self;
+    [HSUpdateApp hs_updateWithAPPID:ITUNESAPPID block:^(NSString *currentVersion, NSString *storeVersion, NSString *openUrl, BOOL isUpdate) {
+        if (isUpdate == YES) {
+            [weakSelf showStoreVersion:storeVersion openUrl:openUrl];
+        }
+    }];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -308,6 +321,31 @@
             LxPrintf(@"其他");
         }
     }
+    
+}
+
+#pragma mark - 判断版本更新
+
+-(void)showStoreVersion:(NSString *)storeVersion openUrl:(NSString *)openUrl{
+    
+    WS(weakSelf);
+    SRAlertView *alertView = [[SRAlertView alloc] initWithTitle:@"版本有更新"
+                                                        message:[NSString stringWithFormat:@"检测到新版本(%@),是否更新?",storeVersion]
+                                                leftActionTitle:@"取消"
+                                               rightActionTitle:@"更新"
+                                                 animationStyle:AlertViewAnimationNone
+                                                   selectAction:^(AlertViewActionType actionType) {
+                                                       if (actionType == AlertViewActionTypeLeft) {
+                                                           
+                                                           
+                                                       } else if(actionType == AlertViewActionTypeRight) {
+                                                           NSURL *url = [NSURL URLWithString:openUrl];
+                                                           [[UIApplication sharedApplication] openURL:url];
+                                                       }
+                                                   }];
+    alertView.blurCurrentBackgroundView = NO;
+    alertView.actionWhenHighlightedBackgroundColor = UIColorFromRGB(0x4281E8);
+    [alertView show];
     
 }
 

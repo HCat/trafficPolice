@@ -8,7 +8,7 @@
 
 #import "AccidentListVC.h"
 #import <MJRefresh.h>
-#import <RealReachability.h>
+#import "Reachability.h"
 #import "UITableView+Lr_Placeholder.h"
 #import "AccidentCell.h"
 
@@ -160,8 +160,12 @@
             [strongSelf.tb_content.mj_header endRefreshing];
             [strongSelf.tb_content.mj_footer endRefreshing];
             
-            ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-            if (status == RealStatusNotReachable) {
+            Reachability *reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+            NetworkStatus status = [reach currentReachabilityStatus];
+            if (status == NotReachable) {
+                if (strongSelf.arr_content.count > 0) {
+                    [strongSelf.arr_content removeAllObjects];
+                }
                 strongSelf.tb_content.isNetAvailable = YES;
                 [strongSelf.tb_content reloadData];
             }
@@ -203,8 +207,12 @@
             [strongSelf.tb_content.mj_header endRefreshing];
             [strongSelf.tb_content.mj_footer endRefreshing];
             
-            ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
-            if (status == RealStatusNotReachable) {
+            Reachability *reach = [Reachability reachabilityWithHostname:@"www.baidu.com"];
+            NetworkStatus status = [reach currentReachabilityStatus];
+            if (status == NotReachable) {
+                if (strongSelf.arr_content.count > 0) {
+                    [strongSelf.arr_content removeAllObjects];
+                }
                 strongSelf.tb_content.isNetAvailable = YES;
                 [strongSelf.tb_content reloadData];
             }

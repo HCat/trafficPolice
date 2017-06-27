@@ -77,6 +77,8 @@
     
     WS(weakSelf);
     
+    ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"登录中.." inView:self.view config:nil];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];//请求
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -86,6 +88,15 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {  //获得access_token，然后根据access_token获取用户信息请求。
         SW(strongSelf, weakSelf);
+        
+        if (responseObject == nil) {
+            
+            [hud hide];
+            [ShowHUD showError:@"微信授权错误,请重试!" duration:1.5f inView:self.view config:nil];
+            
+            return ;
+            
+        }
         
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         LxDBAnyVar(dic);
@@ -104,8 +115,7 @@
         
         NSString* unionid=[dic valueForKey:@"unionid"];
         
-        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"登录中.." inView:self.view config:nil];
-    
+        
         LoginManger *t_loginManger = [[LoginManger alloc] init];
         t_loginManger.openId = unionid;
         [t_loginManger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -133,6 +143,7 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         LxPrintf(@"error %@",error.localizedFailureReason);
+        [hud hide];
     }];
     
 }
@@ -145,6 +156,15 @@
     [manager GET:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",token,openID] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (responseObject == nil) {
+            
+            [ShowHUD showError:@"微信授权错误,请重试!" duration:1.5f inView:self.view config:nil];
+            
+            return ;
+            
+        }
+        
         NSDictionary *dic = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         //开发人员拿到相关微信用户信息后， 需要与后台对接，进行登录
         LxPrintf(@"login success dic  ==== %@",dic);
