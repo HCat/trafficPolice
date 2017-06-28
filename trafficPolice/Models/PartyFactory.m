@@ -150,9 +150,13 @@
 
 #pragma mark - 通过道路名称获取得到道路ID
 - (void)setRoadId:(NSString *)roadName{
-
-    NSInteger IdNo = [self.codes searchNameWithModelName:roadName WithArray:self.codes.road];
-    _param.roadId = @(IdNo);
+    if (roadName) {
+        NSInteger IdNo = [self.codes searchNameWithModelName:roadName WithArray:self.codes.road];
+        _param.roadId = @(IdNo);
+    }else{
+        _param.roadId = nil;
+    }
+   
     
 }
 

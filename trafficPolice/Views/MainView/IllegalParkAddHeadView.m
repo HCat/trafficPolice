@@ -100,6 +100,16 @@
 
 #pragma mark - 重新定位按钮事件
 - (IBAction)handlebtnLocationClicked:(id)sender {
+    _tf_roadSection.text = nil;
+    _tf_address.text = nil;
+    
+    self.param.longitude = nil;
+    self.param.latitude = nil;
+    _param.roadId = nil;
+    _param.roadName = nil;
+    _param.address = nil;
+    
+    self.isCanCommit =  [self juegeCanCommit];
     
     [[LocationHelper sharedDefault] startLocation];
     

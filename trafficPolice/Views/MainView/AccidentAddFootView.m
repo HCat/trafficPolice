@@ -519,7 +519,10 @@
 #pragma mark - 重新定位按钮点击
 
 - (IBAction)handleBtnLocationClicked:(id)sender {
-    
+    _tf_location.text = nil;
+    [_partyFactory setRoadId:nil];
+    _partyFactory.param.roadName = nil;
+    self.isCanCommit =  [_partyFactory juegeCanCommit];
     [[LocationHelper sharedDefault] startLocation];
     
 }

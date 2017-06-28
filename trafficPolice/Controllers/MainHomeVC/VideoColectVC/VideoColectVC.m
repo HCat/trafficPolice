@@ -171,6 +171,10 @@
 
 #pragma mark -重新定位点击事件
 - (IBAction)handlebtnLocationClicked:(id)sender {
+    self.tf_address.text = nil;
+    _param.latitude = nil;
+    _param.longitude = nil;
+    _param.address = nil;
     [[LocationHelper sharedDefault] startLocation];
     
 }
