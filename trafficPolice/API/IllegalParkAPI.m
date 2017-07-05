@@ -147,3 +147,25 @@
 
 @end
 
+
+
+@implementation IllegalParkQueryRecordManger
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_ILLEGALPARK_QUERYRECORD;
+}
+
+//请求参数
+- (nullable id)requestArgument
+{
+    return @{@"carNo": _carNo,
+             @"roadId":_roadId};
+}
+
+//返回参数
+
+
+@end
+

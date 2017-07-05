@@ -73,8 +73,10 @@
 
 //获取列表权限
 
-+ (BOOL)isPermissionForAccidentList;        //事故和快处权限
-+ (BOOL)isPermissionForIllegalList;         //违章和违停权限
++ (BOOL)isPermissionForAccidentList;        //事故权限
++ (BOOL)isPermissionForFastAccidentList;    //快处权限
++ (BOOL)isPermissionForIllegalList;         //违章权限
++ (BOOL)isPermissionForThroughList;         //闯禁令权限
 + (BOOL)isPermissionForVideoCollectList;    //视频录入权限
 
 //注销需要执行的操作

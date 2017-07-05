@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *tf_roadSection; //选择路段
 @property (weak, nonatomic) IBOutlet UITextField *tf_address; //所在位置
 @property (weak, nonatomic) IBOutlet UITextField *tf_addressRemarks; //地址备注
+
+@property (nonatomic,assign) NSInteger length; //textField的长度，用于判断说如果执行两次相同长度的textField监听
 @property (nonatomic,assign,readwrite) BOOL isCanCommit;
 
 @property(nonatomic,strong) NSArray *codes;
@@ -184,8 +186,16 @@
     LxDBAnyVar(textField.text);
     NSInteger length =  textField.text.length;
     
+   
+    
+    
     if (textField == _tf_carNumber) {
         self.param.carNo = length > 0 ? _tf_carNumber.text : nil;
+        
+        if (_length == length) {
+            return;
+        }
+        
         if (self.delegate && [self.delegate respondsToSelector:@selector(listentCarNumber)]) {
             [self.delegate listentCarNumber];
         }
@@ -200,6 +210,7 @@
         
     }
     
+    self.length = length;
     self.isCanCommit = [self juegeCanCommit];
     
 }

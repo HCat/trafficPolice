@@ -525,6 +525,19 @@
     return NO;
 }
 
++ (BOOL)isPermissionForFastAccidentList{
+    
+    NSString *match = @"FASTACC_LIST";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@", match];
+    NSArray *results = [[UserModel getUserModel].menus filteredArrayUsingPredicate:predicate];
+    
+    if (results && results.count > 0) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark - 获取违停权限
 
 + (BOOL)isPermissionForIllegalList{
@@ -539,6 +552,20 @@
     
     return NO;
 
+}
+
++ (BOOL)isPermissionForThroughList{
+    
+    NSString *match = @"THROUGH_LIST";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@", match];
+    NSArray *results = [[UserModel getUserModel].menus filteredArrayUsingPredicate:predicate];
+    
+    if (results && results.count > 0) {
+        return YES;
+    }
+    
+    return NO;
+    
 }
 
 #pragma mark - 获取警情权限

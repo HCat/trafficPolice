@@ -87,7 +87,12 @@
         UILabel *previousView = nil;
         for (UILabel *view in _arr_lables) {
             if (previousView) {
-                [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
+                if ([view.text isEqualToString:@"状态:"]) {
+                    [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:25.f];
+                }else{
+                    [view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:previousView withOffset:18.f];
+                }
+                
                 [view autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:previousView];
             }
             previousView = view;
@@ -112,6 +117,7 @@
     [self.contentView addSubview:t_title];
     
     UILabel * t_content = [UILabel newAutoLayoutView];
+    [self.contentView addSubview:t_content];
     t_content.font = [UIFont systemFontOfSize:14.f];
     if ([t_title.text isEqualToString:@"车牌号码:"]) {
         t_content.textColor = UIColorFromRGB(0x4281E8);
@@ -121,12 +127,21 @@
         t_content.textColor = UIColorFromRGB(0x444444);
     }
     
-    
     t_content.text = text;
-    [self.contentView addSubview:t_content];
     
-    [t_content autoAlignAxis:ALAxisHorizontal toSameAxisOfView:t_title ];
+    t_content.textAlignment = NSTextAlignmentLeft;
+
+    if ([t_title.text isEqualToString:@"所在位置:"]) {
+        [t_content autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:t_title];
+    }else{
+        [t_content autoAlignAxis:ALAxisHorizontal toSameAxisOfView:t_title ];
+    }
+    
     [t_content autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:t_title withOffset:15.f];
+    if ([t_title.text isEqualToString:@"所在位置:"]) {
+        NSLayoutConstraint * t_constraint = [t_content autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:15.f relation:NSLayoutRelationGreaterThanOrEqual];
+        t_content.numberOfLines = 2;
+    }
     
     [_arr_lables addObject:t_title];
 }

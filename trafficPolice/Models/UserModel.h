@@ -26,6 +26,18 @@
 /******** menus ********
  有权限的菜单编码值，参考下面的编码值，数组类型
  菜单编码：
+ 
+ "ACCIDENT_LIST",
+ "FASTACC_LIST",
+ "FAST_ACCIDENT_ADD",
+ "ILLEGAL_LIST",
+ "ILLEGAL_PARKING",
+ "ILLEGAL_THROUGH",
+ "NORMAL_ACCIDENT_ADD",
+ "THROUGH_LIST",
+ "VIDEO_COLLECT",
+ "VIDEO_COLLECT_LIST"
+ 
  ACCIDENT_ADD 事故添加
  FAST_ACCIDENT_ADD 快处事故添加
  ACCIDENT_LIST 事故列表

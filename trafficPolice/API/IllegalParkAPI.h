@@ -91,6 +91,23 @@
 /****** 返回数据 ******/
 //无返回数据
 
+@end
+
+#pragma mark - 查询是否有违停记录API
+
+@interface IllegalParkQueryRecordManger:LRBaseRequest
+
+/****** 请求数据 ******/
+@property (nonatomic, copy) NSString * carNo;  //车牌号
+@property (nonatomic, strong) NSNumber * roadId; //道路ID
+
+/****** 返回数据 ******/
+
+/******
+ code:0 无记录
+ code:110 有记录
+
+ ******/
 
 @end
 

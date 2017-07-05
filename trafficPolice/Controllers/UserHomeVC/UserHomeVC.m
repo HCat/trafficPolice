@@ -43,15 +43,21 @@ static NSString *const headerId = @"UserReusableViewID";
         
         self.arr_data = [NSMutableArray array];
         
+    
         if ([ShareFun isPermissionForAccidentList]) {
-           
             [_arr_data addObject:@{@"image":@"事故列表.png",@"title":@"事故列表",@"associated":@"事故"}];
+        }
+        
+        if ([ShareFun isPermissionForFastAccidentList]) {
             [_arr_data addObject:@{@"image":@"快处列表",@"title":@"快处列表",@"associated":@"快处"}];
         }
         
         if ([ShareFun isPermissionForIllegalList]) {
-            
             [_arr_data addObject:@{@"image":@"违停列表",@"title":@"违停列表",@"associated":@"违停"}];
+        
+        }
+        
+        if ([ShareFun isPermissionForThroughList]) {
             [_arr_data addObject:@{@"image":@"闯禁令列表",@"title":@"闯禁令列表",@"associated":@"闯禁令"}];
         }
         

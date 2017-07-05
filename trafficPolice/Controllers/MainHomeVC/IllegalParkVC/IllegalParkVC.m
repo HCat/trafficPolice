@@ -173,12 +173,14 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                     IllegalSecSaveVC *t_vc = [[IllegalSecSaveVC alloc] init];
                     t_vc.illegalThroughId = illegalThroughId;
                     t_vc.saveSuccessBlock = ^{
+                        
                         [strongSelf.arr_upImages removeAllObjects];
                         [strongSelf.arr_upImages addObject:[NSNull null]];
                         [strongSelf.arr_upImages addObject:[NSNull null]];
                         
                         [strongSelf.collectionView reloadData];
                         
+                         strongSelf.param = [[IllegalParkSaveParam alloc] init];
                         strongSelf.headView.param = strongSelf.param;
                         [strongSelf.headView handleBeforeCommit];
                     };
@@ -224,6 +226,52 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             
         }];
     }
+
+}
+
+- (void)judgeNeedJudgeIllegalRecord:(NSString *)carNumber{
+    
+    if (carNumber && carNumber.length > 0 && [ShareFun validateCarNumber:carNumber]) {
+        
+        WS(weakSelf);
+        //获取roadId
+        [_headView getRoadId];
+        //这里待优化，如果说获取得到的roadId为0的情况的话
+        IllegalParkQueryRecordManger *manger = [[IllegalParkQueryRecordManger alloc] init];
+        manger.isNeedShowHud = NO;
+        manger.carNo = carNumber;
+        manger.roadId = _param.roadId;
+        
+        [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            SW(strongSelf, weakSelf);
+            LxPrintf(@"%ld",(long)manger.responseModel.code);
+            
+            if (manger.responseModel.code == 110) {
+                
+                [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:nil rightTitle:@"确定" block:^(AlertViewActionType actionType) {
+                    if (actionType == AlertViewActionTypeRight) {
+                        
+                        [strongSelf.arr_upImages removeAllObjects];
+                        [strongSelf.arr_upImages addObject:[NSNull null]];
+                        [strongSelf.arr_upImages addObject:[NSNull null]];
+                        
+                        [strongSelf.collectionView reloadData];
+                        
+                        strongSelf.param = [[IllegalParkSaveParam alloc] init];
+                        strongSelf.headView.param = strongSelf.param;
+                        [strongSelf.headView handleBeforeCommit];
+
+                    }
+                }];
+                
+            }
+        
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+        }];
+
+    }
+
 
 }
 
@@ -395,10 +443,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                         //识别之后所做的操作
                         [strongSelf.headView takePhotoToDiscernmentWithCarNumber:camera.commonIdentifyResponse.carNo];
                         
-                        if (_illegalType == IllegalTypeThrough) {
-                            [strongSelf judgeNeedSecondCollection:strongSelf.param.carNo];
-                        }
-                        
+                        [strongSelf listentCarNumber];
+                       
                         [strongSelf.collectionView reloadData];
                 
                     }
@@ -427,9 +473,6 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                             [strongSelf.collectionView reloadData];
                         }
 
-                        
-                        
-    
                     }
                 }
             }];
@@ -674,6 +717,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                             
                             [strongSelf.collectionView reloadData];
                             
+                            strongSelf.param = [[IllegalParkSaveParam alloc] init];
+                        
                             strongSelf.headView.param = strongSelf.param;
                             [strongSelf.headView handleBeforeCommit];
                         };
@@ -706,9 +751,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     [self replaceUpImageItemToUpImagesWithImageInfo:imageInfo remark:@"车牌近照" replaceIndex:0];
     [_collectionView reloadData];
     
-    if (_illegalType == IllegalTypeThrough) {
-        [self judgeNeedSecondCollection:self.param.carNo];
-    }
+    [self listentCarNumber];
     
 }
 
@@ -716,6 +759,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
 
     if (_illegalType == IllegalTypeThrough) {
         [self judgeNeedSecondCollection:self.param.carNo];
+    }else if(_illegalType == IllegalTypePark){
+        [self judgeNeedJudgeIllegalRecord:self.param.carNo];
     }
     
 

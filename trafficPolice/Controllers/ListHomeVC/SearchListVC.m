@@ -142,15 +142,19 @@
     NSMutableArray *t_arr = [NSMutableArray array];
     
     if ([ShareFun isPermissionForAccidentList]) {
+        
         AccidentListVC *vc_first = [AccidentListVC new];
         vc_first.accidentType = AccidentTypeAccident;
-        vc_first.str_search = _tf_search.text;
         vc_first.title = @"事故";
+        [t_arr addObject:vc_first];
+        
+    }
+    
+    if ([ShareFun isPermissionForFastAccidentList]) {
+        
         AccidentListVC *vc_second = [AccidentListVC new];
         vc_second.accidentType = AccidentTypeFastAccident;
-        vc_second.str_search = _tf_search.text;
         vc_second.title = @"快处";
-        [t_arr addObject:vc_first];
         [t_arr addObject:vc_second];
     }
     
@@ -158,13 +162,16 @@
         
         IllegalListVC *vc_third = [IllegalListVC new];
         vc_third.illegalType = IllegalTypePark;
-        vc_third.str_search = _tf_search.text;
         vc_third.title = @"违停";
+        [t_arr addObject:vc_third];
+        
+    }
+    
+    if ([ShareFun isPermissionForThroughList]) {
+        
         IllegalListVC *vc_foured = [IllegalListVC new];
         vc_foured.illegalType = IllegalTypeThrough;
-        vc_foured.str_search = _tf_search.text;
         vc_foured.title = @"闯禁令";
-        [t_arr addObject:vc_third];
         [t_arr addObject:vc_foured];
     }
     

@@ -77,13 +77,14 @@
                 [strongSelf.btn_countDown startCountDown];
                 strongSelf.acId = manger.acId;
                 
-            }else if(manger.responseModel.code == CODE_FAILED){
+            }else{
                 [strongSelf.btn_countDown endCountDown];
             
             }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
             [hud hide];
+            [strongSelf.btn_countDown endCountDown];
         }];
     
     };

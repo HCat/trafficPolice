@@ -47,12 +47,23 @@ LRSingletonM(Default)
                     
                     if (accidentCountModel) {
                         
-                        if (accidentCountModel.accidentWeek >= 2 || accidentCountModel.accidentYear >= 3) {
+                        if (accidentCountModel.accidentWeek >= 2 && accidentCountModel.accidentYear >= 3) {
                             
-                            NSString *t_string = [NSString stringWithFormat:@"该车辆近一个月内发生过%d起交通事故,近一年内发生过%d起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
+                            NSString *t_string = [NSString stringWithFormat:@"该车辆近一周内发生过%ld起交通事故,近一年内发生过%ld起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
                             
                             [AlertView showWindowWithTitle:@"提示" contents:t_string];
                             
+                        }else if (accidentCountModel.accidentWeek >= 2){
+                            
+                            NSString *t_string = [NSString stringWithFormat:@"该车辆近一周内发生过%ld起交通事故",accidentCountModel.accidentWeek];
+                            
+                            [AlertView showWindowWithTitle:@"提示" contents:t_string];
+                            
+                        }else if (accidentCountModel.accidentYear >= 3){
+                            
+                            NSString *t_string = [NSString stringWithFormat:@"该车辆近一年内发生过%ld起交通事故",accidentCountModel.accidentYear];
+                            
+                            [AlertView showWindowWithTitle:@"提示" contents:t_string];
                         }
                         
                     }
@@ -92,12 +103,21 @@ LRSingletonM(Default)
                     
                     if (accidentCountModel) {
                         
-                        if (accidentCountModel.accidentWeek >= 2 || accidentCountModel.accidentYear >= 3) {
+                        if (accidentCountModel.accidentWeek >= 2 && accidentCountModel.accidentYear >= 3) {
                             
-                            NSString *t_string = [NSString stringWithFormat:@"该身份证近一个月内发生过%d起交通事故,近一年内发生过%d起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
+                            NSString *t_string = [NSString stringWithFormat:@"该身份证近一周内发生过%ld起交通事故,近一年内发生过%ld起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
                         
                             [AlertView showWindowWithTitle:@"提示" contents:t_string];
                             
+                        }else if (accidentCountModel.accidentWeek >= 2){
+                            NSString *t_string = [NSString stringWithFormat:@"该身份证近一周内发生过%ld起交通事故",accidentCountModel.accidentWeek];
+                            
+                            [AlertView showWindowWithTitle:@"提示" contents:t_string];
+                            
+                        }else if (accidentCountModel.accidentYear >= 3){
+                            NSString *t_string = [NSString stringWithFormat:@"该身份证近一年内发生过%ld起交通事故",accidentCountModel.accidentYear];
+                            
+                            [AlertView showWindowWithTitle:@"提示" contents:t_string];
                         }
                         
                     }
@@ -134,13 +154,22 @@ LRSingletonM(Default)
                     
                     if (accidentCountModel) {
                         
-                        if (accidentCountModel.accidentWeek >= 2 || accidentCountModel.accidentYear >= 3) {
-                            NSString *t_string = [NSString stringWithFormat:@"该手机号近一个月内发生过%d起交通事故,近一年内发生过%d起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
+                        if (accidentCountModel.accidentWeek >= 2 && accidentCountModel.accidentYear >= 3) {
+                            NSString *t_string = [NSString stringWithFormat:@"该手机号近一周内发生过%ld起交通事故,近一年内发生过%ld起交通事故",accidentCountModel.accidentWeek,accidentCountModel.accidentYear];
                             
                             [AlertView showWindowWithTitle:@"提示" contents:t_string];
                             
+                        }else if (accidentCountModel.accidentWeek >= 2){
+                            NSString *t_string = [NSString stringWithFormat:@"该手机号近一周内发生过%ld起交通事故",accidentCountModel.accidentWeek];
+                            
+                            [AlertView showWindowWithTitle:@"提示" contents:t_string];
+                        
+                        }else if (accidentCountModel.accidentYear >= 3){
+                            NSString *t_string = [NSString stringWithFormat:@"该手机号近一年内发生过%ld起交通事故",accidentCountModel.accidentYear];
+                            
+                            [AlertView showWindowWithTitle:@"提示" contents:t_string];
                         }
-                       
+                    
                     }
                     
                 }

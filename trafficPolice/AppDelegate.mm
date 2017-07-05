@@ -33,7 +33,6 @@
 
 @interface AppDelegate ()<WXApiDelegate>
 
-@property(nonatomic,strong) LoginHomeVC *vc_login;
 @property(nonatomic,assign) NSInteger previousStatus;
 
 @end
@@ -61,8 +60,8 @@ BMKMapManager* _mapManager;
         self.window.rootViewController = self.vc_tabBar;
         
     }else{
-        self.vc_login = [LoginHomeVC new];
-        UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:_vc_login];
+        LoginHomeVC *vc_login = [LoginHomeVC new];
+        UINavigationController *t_nav = [[UINavigationController alloc] initWithRootViewController:vc_login];
         self.window.rootViewController = t_nav;
     }
 
