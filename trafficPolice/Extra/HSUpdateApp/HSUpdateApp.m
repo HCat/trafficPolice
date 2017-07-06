@@ -9,6 +9,7 @@
 #import "HSUpdateApp.h"
 
 @implementation HSUpdateApp
+
 +(void)hs_updateWithAPPID:(NSString *)appid block:(void(^)(NSString *currentVersion,NSString *storeVersion,NSString *openUrl, BOOL isUpdate))block{
     //1先获取当前工程项目版本号
     NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];

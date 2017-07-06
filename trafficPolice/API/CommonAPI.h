@@ -125,6 +125,20 @@
 
 @end
 
+#pragma mark - 查询是否需要游客登录API
+
+@interface CommonValidVisitorManger : LRBaseRequest
+
+/****** 请求数据 ******/
+/***请求参数中有token值，运用统一添加参数的办法添加到后面所有需要token参数的请求中,具体调用LRBaseRequest中的+ (void)setupRequestFilters:(NSDictionary *)arguments 方法***/
+
+/****** 返回数据 ******/
+//msg 0 不显示游客登录  1显示游客登录
+
+
+@end
+
+
 
 
 

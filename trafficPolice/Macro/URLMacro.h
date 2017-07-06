@@ -26,6 +26,7 @@
 #define URL_LOGIN_LOGIN @"app/login.json"                                       //登录
 #define URL_LOGIN_LOGINTAKECODE @"app/loginTakeCode.json"                       //登录发送验证码
 #define URL_LOGIN_LOGINCHECK @"app/loginCheck.json"                             //验证码登录
+#define URL_LOGIN_VISITOR @"app/loginVisitor.json"                              //游客登录
 
 
 
@@ -37,6 +38,7 @@
 #define URL_COMMON_GETIMGPLAY @"app/common/getImgPlay.json"                     //获取图片轮播图片
 #define URL_COMMON_VERSIONUPDATE @"app/common/versionUpdate.json"               //版本更新
 #define URL_COMMON_ADVICE @"app/common/advice.json"                             //投诉建议
+#define URL_COMMON_VALIDVISITOR @"app/common/validVisitor.json"                 //查询是否需要游客登录
 
 
 

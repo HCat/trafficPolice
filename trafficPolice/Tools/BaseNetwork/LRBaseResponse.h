@@ -12,6 +12,6 @@
 
 @property (nonatomic,assign)    NSInteger code;
 @property (nonatomic,copy)      NSString *msg;
-@property (nonatomic,strong)    NSDictionary *data;
+@property (nonatomic,strong)    id data;
 
 @end

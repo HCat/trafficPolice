@@ -174,15 +174,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                     t_vc.illegalThroughId = illegalThroughId;
                     t_vc.saveSuccessBlock = ^{
                         
-                        [strongSelf.arr_upImages removeAllObjects];
-                        [strongSelf.arr_upImages addObject:[NSNull null]];
-                        [strongSelf.arr_upImages addObject:[NSNull null]];
+                        [strongSelf handleBeforeCommit];
                         
-                        [strongSelf.collectionView reloadData];
-                        
-                         strongSelf.param = [[IllegalParkSaveParam alloc] init];
-                        strongSelf.headView.param = strongSelf.param;
-                        [strongSelf.headView handleBeforeCommit];
                     };
                     [strongSelf.navigationController pushViewController:t_vc animated:YES];
                 }
@@ -250,16 +243,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 
                 [strongSelf showAlertViewWithcontent:manger.responseModel.msg leftTitle:nil rightTitle:@"确定" block:^(AlertViewActionType actionType) {
                     if (actionType == AlertViewActionTypeRight) {
-                        
-                        [strongSelf.arr_upImages removeAllObjects];
-                        [strongSelf.arr_upImages addObject:[NSNull null]];
-                        [strongSelf.arr_upImages addObject:[NSNull null]];
-                        
-                        [strongSelf.collectionView reloadData];
-                        
-                        strongSelf.param = [[IllegalParkSaveParam alloc] init];
-                        strongSelf.headView.param = strongSelf.param;
-                        [strongSelf.headView handleBeforeCommit];
+                
+                        [strongSelf handleBeforeCommit];
 
                     }
                 }];
@@ -641,17 +626,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             }
             
             if (manger.responseModel.code == CODE_SUCCESS) {
-                
-                strongSelf.param = [[IllegalParkSaveParam alloc] init];
-                
-                [strongSelf.arr_upImages removeAllObjects];
-                [strongSelf.arr_upImages addObject:[NSNull null]];
-                [strongSelf.arr_upImages addObject:[NSNull null]];
-                
-                [strongSelf.collectionView reloadData];
-                
-                strongSelf.headView.param = strongSelf.param;
-                [strongSelf.headView handleBeforeCommit];
+        
+                [strongSelf handleBeforeCommit];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ILLEGALPARK_SUCCESS object:nil];
                 
@@ -689,16 +665,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             
             if (manger.responseModel.code == CODE_SUCCESS) {
                 
-                strongSelf.param = [[IllegalParkSaveParam alloc] init];
-                
-                [strongSelf.arr_upImages removeAllObjects];
-                [strongSelf.arr_upImages addObject:[NSNull null]];
-                [strongSelf.arr_upImages addObject:[NSNull null]];
-                
-                [strongSelf.collectionView reloadData];
-                
-                strongSelf.headView.param = strongSelf.param;
-                [strongSelf.headView handleBeforeCommit];
+                [strongSelf handleBeforeCommit];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ILLEGALTHROUGH_SUCCESS object:nil];
                 
@@ -711,16 +678,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                         IllegalSecSaveVC *t_vc = [[IllegalSecSaveVC alloc] init];
                         t_vc.illegalThroughId = illegalThroughId;
                         t_vc.saveSuccessBlock = ^{
-                            [strongSelf.arr_upImages removeAllObjects];
-                            [strongSelf.arr_upImages addObject:[NSNull null]];
-                            [strongSelf.arr_upImages addObject:[NSNull null]];
                             
-                            [strongSelf.collectionView reloadData];
-                            
-                            strongSelf.param = [[IllegalParkSaveParam alloc] init];
-                        
-                            strongSelf.headView.param = strongSelf.param;
-                            [strongSelf.headView handleBeforeCommit];
+                            [strongSelf handleBeforeCommit];
                         };
                         [strongSelf.navigationController pushViewController:t_vc animated:YES];
                     }
@@ -755,6 +714,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     
 }
 
+#pragma mark - IllegalParkAddHeadViewDelegate
+
 - (void)listentCarNumber{
 
     if (_illegalType == IllegalTypeThrough) {
@@ -762,8 +723,23 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
     }else if(_illegalType == IllegalTypePark){
         [self judgeNeedJudgeIllegalRecord:self.param.carNo];
     }
-    
 
+}
+
+#pragma mark - 上传之后页面处理
+
+- (void)handleBeforeCommit{
+
+    [_arr_upImages removeAllObjects];
+    [_arr_upImages addObject:[NSNull null]];
+    [_arr_upImages addObject:[NSNull null]];
+    
+    [_collectionView reloadData];
+    
+    self.param = [[IllegalParkSaveParam alloc] init];
+    
+    _headView.param = _param;
+    [_headView handleBeforeCommit];
 }
 
 #pragma mark - 管理上传图片

@@ -60,5 +60,15 @@
 
 @end
 
+#pragma mark - 游客登录API
+
+@interface LoginVisitorManger : LRBaseRequest
+
+/****** 返回数据 ******/
+@property (nonatomic, strong) UserModel *userModel; //用户
+
+@end
+
+
 
 

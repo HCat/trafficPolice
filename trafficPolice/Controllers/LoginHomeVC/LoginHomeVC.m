@@ -12,9 +12,14 @@
 #import <WXApi.h>
 #import "ShareFun.h"
 #import "LoginAPI.h"
+#import "CommonAPI.h"
+#import "AppDelegate.h"
 
 
 @interface LoginHomeVC ()
+
+@property (weak, nonatomic) IBOutlet UIButton *btn_Visitor;
+
 
 @end
 
@@ -24,6 +29,10 @@
     [super viewDidLoad];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinLoginSuccess:) name:NOTIFICATION_WX_LOGIN_SUCCESS object:nil];
+    
+    self.btn_Visitor.hidden = YES;
+    
+    [self judgeNeedShowVisitor];
     
 }
 
@@ -36,7 +45,6 @@
 
 - (IBAction)weixinLoginAction:(id)sender {
     
-
     if (![WXApi isWXAppInstalled]) {
         
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"请先安装微信" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
@@ -53,16 +61,62 @@
         [WXApi sendReq:req];
         
     }
+
+}
+
+- (IBAction)handleLoginOfVisitorAction:(id)sender {
+
+    LoginVisitorManger *manger = [LoginVisitorManger new];
+    manger.isNeedShowHud = NO;
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
     
-//    PhoneLoginVC *t_vc = [PhoneLoginVC new];
-//    [self.navigationController pushViewController:t_vc animated:YES];
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            //归档用户
+            [UserModel setUserModel:manger.userModel];
+            /*********** 存储token值用于后面的请求 ************/
+            [ShareValue sharedDefault].token = manger.userModel.token;
+            /*********** 全局为统一的Url添加token ************/
+            [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
+            
+            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1.5f *NSEC_PER_SEC);
+            dispatch_after(time, dispatch_get_main_queue(), ^{
+                /*********** 切换到首页界面 ************/
+                [ApplicationDelegate initAKTabBarController];
+                ApplicationDelegate.window.rootViewController = ApplicationDelegate.vc_tabBar;
+            });
+            
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+       
+        
+    }];
     
 }
 
-- (IBAction)quitAppAction:(id)sender {
+#pragma mark - 
+
+- (void)judgeNeedShowVisitor{
+    WS(weakSelf);
+
+    CommonValidVisitorManger *manger = [[CommonValidVisitorManger alloc] init];
+    manger.isNeedShowHud = NO;
+    [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        SW(strongSelf, weakSelf);
+        
+        if (manger.responseModel.code == CODE_SUCCESS) {
+            if ([manger.responseModel.data intValue] == 0) {
+                strongSelf.btn_Visitor.hidden = YES;
+            }else{
+                strongSelf.btn_Visitor.hidden = NO;
+            }
+        }
     
-    [ShareFun exitApplication];
-    
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        SW(strongSelf, weakSelf);
+        strongSelf.btn_Visitor.hidden = YES;
+    }];
 }
 
 #pragma mark - WeixinLoginSucessNotification
@@ -189,6 +243,7 @@
 - (void)dealloc{
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_WX_LOGIN_SUCCESS object:nil];
+    LxPrintf(@"LoginHomeVC dealloc");
 
 }
 

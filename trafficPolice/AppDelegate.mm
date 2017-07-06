@@ -54,6 +54,7 @@ BMKMapManager* _mapManager;
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
     if ([ShareValue sharedDefault].token) {
+        
         [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
         
         [self initAKTabBarController];

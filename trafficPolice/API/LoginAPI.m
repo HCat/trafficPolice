@@ -99,3 +99,30 @@
 
 @end
 
+#pragma mark - 游客登录API
+
+
+@implementation LoginVisitorManger
+
+
+//请求的url，不包括域名`域名通过YTKNetworkConfig配置`
+- (NSString *)requestUrl
+{
+    return URL_LOGIN_VISITOR;
+}
+
+//返回参数
+- (UserModel *)userModel{
+    
+    if (self.responseModel.data) {
+        //这里存储token值用于接下来的URL通用参数
+        [ShareValue sharedDefault].token = self.responseModel.data[@"token"];
+        return [UserModel modelWithDictionary:self.responseModel.data];
+    }
+    
+    return nil;
+}
+
+@end
+
+

@@ -12,7 +12,6 @@
 
 LRSingletonM(Default)
 
-
 - (void)setToken:(NSString *)token{
 
     [[NSUserDefaults standardUserDefaults] setObject:token forKey:USERDEFAULT_KEY_TOKEN];
