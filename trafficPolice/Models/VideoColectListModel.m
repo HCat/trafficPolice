@@ -11,7 +11,7 @@
 @implementation VideoColectListModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"id" : @"videoColectId",
+    return @{@"videoColectId" : @"id",
              };
 }
 

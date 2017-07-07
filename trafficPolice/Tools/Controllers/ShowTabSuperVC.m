@@ -8,9 +8,13 @@
 
 #import "ShowTabSuperVC.h"
 #import "AppDelegate.h"
+#import "UIButton+Block.h"
+#import "MessageVC.h"
 
 
 @interface ShowTabSuperVC ()
+
+@property(nonatomic,strong) UIButton *btn_right;
 
 @end
 
@@ -21,6 +25,7 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChange) name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification) name:NOTIFICATION_RECEIVENOTIFICATION_SUCCESS object:nil];
     }
     return self;
 }
@@ -29,6 +34,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.btn_right= [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn_right.backgroundColor = [UIColor clearColor];
+    _btn_right.frame = CGRectMake(0, 0, 22, 19);
+    
+    NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+    if (badge > 0) {
+        [_btn_right setImage:[UIImage imageNamed:@"icon_notification_h"] forState:UIControlStateNormal];
+    }else{
+        [_btn_right setImage:[UIImage imageNamed:@"icon_notification"] forState:UIControlStateNormal];
+    }
+    
+    [_btn_right setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+    [_btn_right setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    
+    [_btn_right addTarget:self action:@selector(pushNotificationVC:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_btn_right];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -36,12 +58,24 @@
     [super viewWillAppear:animated];
     [ApplicationDelegate showTabView];
     
-    
 }
 
 -(void)locationChange{
 
     [self showLocationInfo:[LocationHelper sharedDefault].city image:@"icon_location"];
+    
+}
+
+- (void)receiveNotification{
+    
+    NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+    if (badge > 0) {
+        [_btn_right setImage:[UIImage imageNamed:@"icon_notification_h"] forState:UIControlStateNormal];
+    }else{
+        [_btn_right setImage:[UIImage imageNamed:@"icon_notification"] forState:UIControlStateNormal];
+    }
+    [_btn_right setImage:[UIImage imageNamed:@"icon_notification_h"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_btn_right];
     
 }
 
@@ -87,6 +121,20 @@
     [[LocationHelper sharedDefault] startLocation];
 }
 
+- (void)pushNotificationVC:(id)sender{
+    
+    [JPUSHService resetBadge];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    [_btn_right setImage:[UIImage imageNamed:@"icon_notification"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_btn_right];
+
+    
+    MessageVC * vc = [[MessageVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -96,6 +144,8 @@
 - (void)dealloc{
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_CHANGELOCATION_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_RECEIVENOTIFICATION_SUCCESS object:nil];
+    
 }
 
 @end

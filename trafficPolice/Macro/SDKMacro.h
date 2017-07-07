@@ -15,5 +15,7 @@
 
 #define BAIDUMAP_APP_KEY @"y2e0Bip7eIAuOmgCYoGfghqUnXgKdj6k"
 
+#define JPUSH_APP_KEY @"ebfb8a34e25f3235f1c40ed4"
+#define JPUSH_APP_CHANNEL @"App Store"
 
 #endif /* SDKMacro_h */

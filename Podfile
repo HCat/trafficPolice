@@ -17,6 +17,7 @@ pod 'WechatOpenSDK'
 pod 'TOCropViewController'
 pod 'LLSimpleCamera'
 pod 'Masonry'
+pod 'JPush'
 
 
 end

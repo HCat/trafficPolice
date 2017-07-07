@@ -91,4 +91,12 @@
 #define URL_VIDEOCOLECT_DETAIL @"app/videoColect/detail.json"                   //	警情反馈详情
 
 
+#pragma mark - 消息相关API
+
+#define URL_IDENTIFY_LIST @"identify/identifyMsgList.json" //消息列表
+#define URL_IDENTIFY_MSGREAD @"identify/setMsgRead.json" //确认接收消息
+
+
+
+
 #endif /* URLMacro_h */

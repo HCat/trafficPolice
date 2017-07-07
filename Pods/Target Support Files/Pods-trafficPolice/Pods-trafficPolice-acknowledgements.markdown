@@ -133,6 +133,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+## JCore
+
+Copyright jpush.cn
+
+## JPush
+
+Copyright jpush.cn
+
 ## LKDBHelper
 
 Copyright (c) 2012 Jianghuai Li (https://github.com/li6185377)
