@@ -151,6 +151,7 @@
     param.acId = self.acId;
     param.authCode = _tf_code.text;
     param.equipmentId = [ShareFun getUniqueDeviceIdentifierAsString];
+    param.platform = @"ios";
     
     ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"登录中..." inView:self.view config:nil];
     

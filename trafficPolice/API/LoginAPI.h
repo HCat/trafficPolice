@@ -46,7 +46,7 @@
 @property (nonatomic,copy) NSString *acId;          //短信ID
 @property (nonatomic,copy) NSString *authCode;      //验证码
 @property (nonatomic,copy) NSString *equipmentId;   //设备ID
-
+@property (nonatomic,copy) NSString *platform;      //设备平台
 
 @end
 
