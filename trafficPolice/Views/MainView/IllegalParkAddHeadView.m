@@ -185,10 +185,7 @@
     UITextField* textField = (UITextField*)sender;
     LxDBAnyVar(textField.text);
     NSInteger length =  textField.text.length;
-    
-   
-    
-    
+
     if (textField == _tf_carNumber) {
         self.param.carNo = length > 0 ? _tf_carNumber.text : nil;
         

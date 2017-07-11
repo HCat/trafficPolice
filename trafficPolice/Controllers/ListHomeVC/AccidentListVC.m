@@ -55,7 +55,6 @@
     
     [self initRefresh];
     
-    self.index = 0;
     [_tb_content.mj_header beginRefreshing];
     
     WS(weakSelf);
@@ -89,7 +88,7 @@
 
 - (void)initRefresh{
     
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
     [header setTitle:@"下拉查询" forState:MJRefreshStateIdle];
     [header setTitle:@"松手开始查询" forState:MJRefreshStatePulling];
     [header setTitle:@"查询中..." forState:MJRefreshStateRefreshing];
@@ -114,6 +113,11 @@
 }
 
 #pragma mark - 加载新数据
+
+- (void)reloadData{
+    self.index = 0;
+    [self loadData];
+}
 
 - (void)loadData{
     

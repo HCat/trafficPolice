@@ -35,20 +35,37 @@ const CGFloat LRRippleInitialRaius = 20;
 #pragma mark - init
 - (void)initLRRippleButton{
     //模拟按钮点击效果
+    
+    UIButton * t_btn = [[UIButton alloc] initWithFrame:self.bounds];
+    [t_btn addTarget:self action:@selector(btnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [t_btn setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:t_btn];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapped:)];
     [self addGestureRecognizer:tap];
     
+    tap.cancelsTouchesInView = NO;
+    [tap setDelegate:(id<UIGestureRecognizerDelegate> _Nullable)self];
     self.clipsToBounds = YES;
 }
 
 #pragma mark - tapped
+
+- (void)btnTapped:(id)sender{
+
+    if (self.rippleBlock){
+        self.rippleBlock();
+    }
+    
+}
+
 - (void)tapped:(UITapGestureRecognizer *)tap{
     
     if (self.isIgnoreRipple) {
        
-        if (self.rippleBlock){
-            self.rippleBlock();
-        }
+//        if (self.rippleBlock){
+//            self.rippleBlock();
+//        }
         
     }else{
         
@@ -78,6 +95,13 @@ const CGFloat LRRippleInitialRaius = 20;
     }
     
     
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+   
+    
+    return YES;
 }
 
 #pragma mark - createRippleLayer && CAAnimationGroup
@@ -117,9 +141,9 @@ const CGFloat LRRippleInitialRaius = 20;
 
 #pragma mark - CAAnimationDelegate
 - (void)animationDidStart:(CAAnimation *)anim{
-    if (self.rippleBlock){
-        self.rippleBlock();
-    }
+//    if (self.rippleBlock){
+//        self.rippleBlock();
+//    }
 }
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag{

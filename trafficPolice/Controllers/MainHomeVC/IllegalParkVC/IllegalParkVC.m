@@ -696,9 +696,7 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
             [hud hide];
             
         }];
-    
-    
-    
+
     }
 
 }

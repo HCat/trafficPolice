@@ -86,8 +86,7 @@
     if (self.arr_imageSource == nil) {
         WS(weakSelf);
         CommonGetImgPlayManger *manger = [CommonGetImgPlayManger new];
-        manger.isLog = NO;
-        manger.v_showHud = self.view;
+        manger.isNeedShowHud = NO;
         [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             SW(strongSelf, weakSelf);
             if (manger.responseModel.code == CODE_SUCCESS) {
@@ -307,15 +306,18 @@
             IllegalParkVC *t_vc = [[IllegalParkVC alloc] init];
             t_vc.illegalType = IllegalTypePark;
             [self.navigationController pushViewController:t_vc animated:YES];
+            
         }else if ([cell.str_title isEqualToString:@"闯禁令采集"]) {
             LxPrintf(@"点击闯禁令采集");
             IllegalParkVC *t_vc = [[IllegalParkVC alloc] init];
             t_vc.illegalType = IllegalTypeThrough;
             [self.navigationController pushViewController:t_vc animated:YES];
+            
         }else if ([cell.str_title isEqualToString:@"视频录入"]) {
             LxPrintf(@"点击视频录入");
             VideoColectVC *t_vc = [[VideoColectVC alloc] init];
             [self.navigationController pushViewController:t_vc animated:YES];
+            
         }else{
             LxPrintf(@"其他");
         }

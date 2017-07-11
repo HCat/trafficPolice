@@ -68,22 +68,21 @@
         
         LoginTakeCodeManger *manger = [LoginTakeCodeManger new];
         manger.openId = [ShareValue sharedDefault].unionid;
-        ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:strongSelf.view config:nil];
-        
+        manger.isNeedShowHud = NO;
+        //ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"请求中..." inView:strongSelf.view config:nil];
+        [strongSelf.btn_countDown startCountDown];
         [manger startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-            [hud hide];
+            //[hud hide];
             
             if (manger.responseModel.code == CODE_SUCCESS) {
-                [strongSelf.btn_countDown startCountDown];
                 strongSelf.acId = manger.acId;
-                
             }else{
                 [strongSelf.btn_countDown endCountDown];
             
             }
             
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-            [hud hide];
+            //[hud hide];
             [strongSelf.btn_countDown endCountDown];
         }];
     
