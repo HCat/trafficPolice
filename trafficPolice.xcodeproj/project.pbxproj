@@ -182,6 +182,11 @@
 		CE5D30EE1EDB1B810092F143 /* PartyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5D30ED1EDB1B810092F143 /* PartyFactory.m */; };
 		CE60BE111ED71EF400C328A1 /* LRCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */; };
 		CE60BE121ED71EF400C328A1 /* LRCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */; };
+		CE62174D1F15B5380067FDBF /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6217461F15B5380067FDBF /* UITableView+FDIndexPathHeightCache.m */; };
+		CE62174E1F15B5380067FDBF /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6217481F15B5380067FDBF /* UITableView+FDKeyedHeightCache.m */; };
+		CE62174F1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62174A1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m */; };
+		CE6217501F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62174C1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m */; };
+		CE6217581F15F1430067FDBF /* police.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CE6217571F15F1430067FDBF /* police.m4a */; };
 		CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */; };
 		CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */; };
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
@@ -551,6 +556,15 @@
 		CE60BE0E1ED71EF400C328A1 /* LRCameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCameraVC.h; sourceTree = "<group>"; };
 		CE60BE0F1ED71EF400C328A1 /* LRCameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCameraVC.m; sourceTree = "<group>"; };
 		CE60BE101ED71EF400C328A1 /* LRCameraVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRCameraVC.xib; sourceTree = "<group>"; };
+		CE6217451F15B5380067FDBF /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
+		CE6217461F15B5380067FDBF /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
+		CE6217471F15B5380067FDBF /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
+		CE6217481F15B5380067FDBF /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
+		CE6217491F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
+		CE62174A1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
+		CE62174B1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
+		CE62174C1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
+		CE6217571F15F1430067FDBF /* police.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = police.m4a; sourceTree = "<group>"; };
 		CE6314D11ED4FCCA00A885A7 /* YUSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegment.h; sourceTree = "<group>"; };
 		CE6314D21ED4FCCA00A885A7 /* YUSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegmentedControl.h; sourceTree = "<group>"; };
 		CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUSegmentedControl.m; sourceTree = "<group>"; };
@@ -769,6 +783,7 @@
 		C7E0DB861EC15DBA008ED063 /* trafficPolice */ = {
 			isa = PBXGroup;
 			children = (
+				CE6217571F15F1430067FDBF /* police.m4a */,
 				CE3D811A1F0F22A100A2C19B /* trafficPolice.entitlements */,
 				C7E0DB8A1EC15DBA008ED063 /* AppDelegate.h */,
 				C7E0DB8B1EC15DBA008ED063 /* AppDelegate.mm */,
@@ -839,6 +854,7 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE6217441F15B5380067FDBF /* UITableView+FDTemplateLayoutCell */,
 				CE55A7C31F02586100E66291 /* Reachability */,
 				CE7123611F00BDF0002151FB /* HSUpdateApp */,
 				CECC91DD1EF10249003CED99 /* SuperLogger */,
@@ -1420,6 +1436,21 @@
 			path = LRCameraVC;
 			sourceTree = "<group>";
 		};
+		CE6217441F15B5380067FDBF /* UITableView+FDTemplateLayoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE6217451F15B5380067FDBF /* UITableView+FDIndexPathHeightCache.h */,
+				CE6217461F15B5380067FDBF /* UITableView+FDIndexPathHeightCache.m */,
+				CE6217471F15B5380067FDBF /* UITableView+FDKeyedHeightCache.h */,
+				CE6217481F15B5380067FDBF /* UITableView+FDKeyedHeightCache.m */,
+				CE6217491F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.h */,
+				CE62174A1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m */,
+				CE62174B1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.h */,
+				CE62174C1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m */,
+			);
+			path = "UITableView+FDTemplateLayoutCell";
+			sourceTree = "<group>";
+		};
 		CE6314D01ED4FCBE00A885A7 /* YUSegment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1698,6 +1729,7 @@
 				CECC91EA1EF10249003CED99 /* SuperLogger.bundle in Resources */,
 				CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
+				CE6217581F15F1430067FDBF /* police.m4a in Resources */,
 				CE7F14E11EDE9B3900C7AEDA /* IllegalParkVC.xib in Resources */,
 				CE57863E1ED4088700B4CC9F /* btn_circle@2x.png in Resources */,
 				CE5786461ED4088700B4CC9F /* btn_unselected.png in Resources */,
@@ -1835,6 +1867,7 @@
 				CE8834D41ED1E62800666CEE /* VideoColectAPI.m in Sources */,
 				CE435F071ECDA73B00F85B38 /* SAMKeychainQuery.m in Sources */,
 				CE3C45401EECA89E00E59465 /* SearchListVC.m in Sources */,
+				CE6217501F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				C7621D0F1EC4192C00980058 /* UIButton+NoRepeatClick.m in Sources */,
 				CE92B2961ED577F600563749 /* BottomPickerView.m in Sources */,
 				CE8834C51ED1D38F00666CEE /* IllegalParkListModel.m in Sources */,
@@ -1852,6 +1885,7 @@
 				C7E0DC241EC1AF48008ED063 /* UserHomeVC.m in Sources */,
 				C7E0DB8C1EC15DBA008ED063 /* AppDelegate.mm in Sources */,
 				CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */,
+				CE62174E1F15B5380067FDBF /* UITableView+FDKeyedHeightCache.m in Sources */,
 				CE05AEF21EE826D20021F87F /* VideoListCell.m in Sources */,
 				CE4C93E91ECE7F1B00BE06F0 /* AccidentAPI.m in Sources */,
 				CE4F7DD41EE69A61007E40E2 /* NSString+ALi.m in Sources */,
@@ -1914,6 +1948,7 @@
 				CE0E990D1EE7AE56009D25B4 /* AccidentCell.m in Sources */,
 				CE5786641ED40EBA00B4CC9F /* AccidentVC.m in Sources */,
 				CE7F14EF1EDEC70200C7AEDA /* IllegalParkCell.m in Sources */,
+				CE62174F1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				CE343ECB1ECA8DC100C8E31B /* UITableView+Lr_Placeholder.m in Sources */,
 				CE3C45541EECF5F000E59465 /* TTGTagCollectionView.m in Sources */,
 				C72B56C91EC30BD6002523DE /* MainCellButton.m in Sources */,
@@ -1929,6 +1964,7 @@
 				CE343ED51ECAE2D000C8E31B /* UICollectionView+Lr_Placeholder.m in Sources */,
 				CE4CFDFD1ECB47EA00E59524 /* ShareFun.m in Sources */,
 				CE3E7E861ED1E7E800BBB5C0 /* VideoColectListModel.m in Sources */,
+				CE62174D1F15B5380067FDBF /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				CE4F7DCB1EE67F50007E40E2 /* ArtPlayerView.m in Sources */,
 				CE39E0131ECF355200F284C1 /* AccidentCountModel.m in Sources */,
 				CE8834CE1ED1DBA600666CEE /* IllegalThroughAPI.m in Sources */,

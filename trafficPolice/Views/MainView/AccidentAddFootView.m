@@ -532,7 +532,7 @@
 - (IBAction)handleBtnAccidentCausesClicked:(id)sender {
     WS(weakSelf);
     
-    [self showBottomPickViewWithTitle:@"事故成因" items:self.codes.behaviour block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
+    [self showBottomPickViewWithTitle:@"事故成因" items:self.codes.cause block:^(NSString *title, NSInteger itemId, NSInteger itemType) {
         
         SW(strongSelf, weakSelf);
         strongSelf.tf_accidentCauses.text = title;

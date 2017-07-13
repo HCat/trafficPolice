@@ -12,7 +12,9 @@
 #import "Reachability.h"
 
 #import "MessageCell.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 #import "IdentifyAPI.h"
+#import "JPUSHService.h"
 
 @interface MessageVC ()
 
@@ -28,20 +30,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"通知";
+    
     _tb_content.isNeedPlaceholderView = YES;
     _tb_content.firstReload = YES;
     //隐藏多余行的分割线
     _tb_content.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [_tb_content setSeparatorInset:UIEdgeInsetsZero];
     [_tb_content setLayoutMargins:UIEdgeInsetsZero];
+    [_tb_content registerNib:[UINib nibWithNibName:@"MessageCell" bundle:nil] forCellReuseIdentifier:@"MessageCellID"];
     
     self.arr_content = [NSMutableArray array];
 
     [self initRefresh];
-    
-    self.index = 0;
-    [_tb_content.mj_header beginRefreshing];
-    
+
     WS(weakSelf);
     
     //点击重新加载之后的处理
@@ -61,12 +63,22 @@
     };
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [JPUSHService resetBadge];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    self.index = 0;
+    [_tb_content.mj_header beginRefreshing];
+
+}
 
 #pragma mark - 创建下拉刷新，以及上拉加载更多
 
 - (void)initRefresh{
     
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
     [header setTitle:@"下拉查询" forState:MJRefreshStateIdle];
     [header setTitle:@"松手开始查询" forState:MJRefreshStatePulling];
     [header setTitle:@"查询中..." forState:MJRefreshStateRefreshing];
@@ -88,6 +100,12 @@
     _tb_content.mj_footer = footer;
     _tb_content.mj_footer.automaticallyHidden = YES;
     
+}
+
+- (void)reloadData{
+
+    self.index = 0;
+    [self loadData];
 }
 
 #pragma mark - 加载新数据
@@ -120,7 +138,7 @@
             if (strongSelf.arr_content.count == manger.identifyMsgListReponse.total) {
                 [strongSelf.tb_content.mj_footer endRefreshingWithNoMoreData];
             }else{
-                strongSelf.index += 1;
+                strongSelf.index += param.length;
             }
             [strongSelf.tb_content reloadData];
         }else{
@@ -158,24 +176,25 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MessageCell *cell = (MessageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    [cell layoutSubviews];
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    return height;
-    
+   return [tableView fd_heightForCellWithIdentifier:@"MessageCellID" cacheByIndexPath:indexPath configuration:^(MessageCell *cell) {
+        if (_arr_content && _arr_content.count > 0) {
+            cell.fd_enforceFrameLayout = NO;
+            IdentifyModel *t_model = _arr_content[indexPath.row];
+            cell.model = t_model;
+        }
+    }];
+   
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessageCellID"];
-    if (!cell) {
-        [tableView registerNib:[UINib nibWithNibName:@"MessageCell" bundle:nil] forCellReuseIdentifier:@"MessageCellID"];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"MessageCellID"];
-    }
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     if (_arr_content && _arr_content.count > 0) {
+        cell.fd_enforceFrameLayout = NO;
         IdentifyModel *t_model = _arr_content[indexPath.row];
         cell.model = t_model;
+        cell.tableView = tableView;
     }
     
     return cell;
@@ -188,6 +207,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     

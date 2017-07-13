@@ -12,6 +12,7 @@
 #import "LRCountDownButton.h"
 #import "LoginAPI.h"
 #import "AppDelegate.h"
+#import "JPUSHService.h"
 
 
 
@@ -164,6 +165,9 @@
         if (manger.responseModel.code == CODE_SUCCESS) {
             //归档用户
             [UserModel setUserModel:manger.userModel];
+            [JPUSHService setAlias:[UserModel getUserModel].userId completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                
+            } seq:0];
             /*********** 存储token值用于后面的请求 ************/
             [ShareValue sharedDefault].token = manger.userModel.token;
             /*********** 全局为统一的Url添加token ************/

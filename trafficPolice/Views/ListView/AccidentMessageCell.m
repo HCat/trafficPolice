@@ -45,7 +45,7 @@
         
         if (_accident.causesType) {
             if (self.codes) {
-                NSString * t_str = [self.codes searchNameWithModelId:[_accident.causesType integerValue] WithArray:self.codes.behaviour];
+                NSString * t_str = [self.codes searchNameWithModelId:[_accident.causesType integerValue] WithArray:self.codes.cause];
                 [self buildLableWithTitle:@"事故成因:" AndText:t_str];
             }
         }

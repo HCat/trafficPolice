@@ -24,7 +24,8 @@
 @interface AccidentGetCodesResponse : NSObject
 
 @property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *road;               //道路
-@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *behaviour;          //事故成因
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *cause;              //事故成因
+@property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *behaviour;          //违法行为
 @property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *vehicle;            //车辆类型
 @property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *insuranceCompany;   //保险公司
 @property (nonatomic,copy) NSArray<AccidentGetCodesModel *> *responsibility;     //事故责任

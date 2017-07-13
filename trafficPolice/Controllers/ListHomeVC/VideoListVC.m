@@ -129,7 +129,7 @@
             if (strongSelf.arr_content.count == manger.videoColectListPagingReponse.total) {
                 [strongSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
             }else{
-                strongSelf.index += 1;
+                strongSelf.index += param.length;
             }
             [strongSelf.collectionView reloadData];
         }else{

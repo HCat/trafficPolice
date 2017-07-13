@@ -14,6 +14,8 @@
 #import "ListHomeVC.h"
 #import "UserHomeVC.h"
 
+#import "MessageVC.h"
+
 #import "ShareValue.h"
 
 #import <WXApi.h>
@@ -21,8 +23,10 @@
 #import "LRBaseRequest.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "LSStatusBarHUD.h"
-
+#import <AVFoundation/AVFoundation.h>
 #import "Reachability.h"
+
+#import "UserModel.h"
 
 
 #if defined(DEBUG) || defined(_DEBUG)
@@ -34,6 +38,7 @@
 @interface AppDelegate ()<WXApiDelegate>
 
 @property(nonatomic,assign) NSInteger previousStatus;
+@property (nonatomic, strong) AVAudioPlayer *player;
 
 @end
 
@@ -54,7 +59,10 @@ BMKMapManager* _mapManager;
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
     if ([ShareValue sharedDefault].token) {
-        
+       
+        [JPUSHService setAlias:[UserModel getUserModel].userId completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+            
+        } seq:0];
         [LRBaseRequest setupRequestFilters:@{@"token": [ShareValue sharedDefault].token}];
         
         [self initAKTabBarController];
@@ -201,8 +209,6 @@ BMKMapManager* _mapManager;
                  apsForProduction:NO
             advertisingIdentifier:nil];
     
-
-
 }
 
 
@@ -367,10 +373,24 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
     // Required
+    
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_RECEIVENOTIFICATION_SUCCESS object:userInfo];
+        
+        NSDictionary *aps = [userInfo objectForKey:@"aps"];
+        NSString *sound = [aps objectForKey:@"sound"];
+        
+        if ([sound containsString:@"police"]) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"police" ofType:@"m4a"];
+            self.player = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfFile:path] error:nil];
+            self.player.numberOfLoops = 0;
+            self.player.volume = 1.0;
+            [self.player play];
+        }
+        
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WILLPRESENTNOTIFICATION object:userInfo];
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
 }
@@ -378,10 +398,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
     // Required
+    
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_RECEIVENOTIFICATION_SUCCESS object:userInfo];
+        
+        MessageVC * t_messageVC = [[MessageVC alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:t_messageVC];
+        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+            
+        }];
     }
     completionHandler();  // 系统要求执行这个方法
 }

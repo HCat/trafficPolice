@@ -12,5 +12,6 @@
 @interface MessageCell : UITableViewCell
 
 @property (nonatomic,strong) IdentifyModel *model;
+@property (nonatomic, weak) UITableView  *tableView;
 
 @end

@@ -151,7 +151,7 @@
                 if (strongSelf.arr_content.count == manger.accidentListPagingReponse.total) {
                     [strongSelf.tb_content.mj_footer endRefreshingWithNoMoreData];
                 }else{
-                    strongSelf.index += 1;
+                    strongSelf.index += param.length;
                 }
                 [strongSelf.tb_content reloadData];
             }else{
@@ -198,7 +198,7 @@
                 if (strongSelf.arr_content.count == manger.fastAccidentListPagingReponse.total) {
                     [strongSelf.tb_content.mj_footer endRefreshingWithNoMoreData];
                 }else{
-                    strongSelf.index += 1;
+                    strongSelf.index += param.length;
                 }
                 [strongSelf.tb_content reloadData];
             }else{

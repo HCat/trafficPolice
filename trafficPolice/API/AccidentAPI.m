@@ -28,6 +28,7 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"road" : [AccidentGetCodesModel class],
              @"behaviour" : [AccidentGetCodesModel class],
+             @"cause" : [AccidentGetCodesModel class],
              @"vehicle" : [AccidentGetCodesModel class],
              @"insuranceCompany" : [AccidentGetCodesModel class],
              @"responsibility" : [AccidentGetCodesModel class],
