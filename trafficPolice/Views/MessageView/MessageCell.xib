@@ -15,9 +15,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="152.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10R-Yx-Og7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="142.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-05-11 12:12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcC-Bc-0h7">
                         <rect key="frame" x="183.5" y="17" width="124.5" height="16"/>
                         <constraints>
@@ -51,17 +55,23 @@
                         </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="bLR-ed-0uu" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="3HR-gm-3Xj"/>
                     <constraint firstAttribute="bottom" secondItem="m5N-Et-EUA" secondAttribute="bottom" constant="75" id="6FA-uQ-AL1"/>
                     <constraint firstAttribute="bottom" secondItem="bLR-ed-0uu" secondAttribute="bottom" constant="25" id="8HQ-Yi-Z5h"/>
+                    <constraint firstAttribute="bottom" secondItem="10R-Yx-Og7" secondAttribute="bottom" constant="10" id="BFE-nt-3nf"/>
+                    <constraint firstItem="10R-Yx-Og7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="BOW-3m-eE3"/>
+                    <constraint firstItem="10R-Yx-Og7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CcY-gb-zou"/>
                     <constraint firstItem="RcC-Bc-0h7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="IJh-zv-H2c"/>
                     <constraint firstAttribute="trailing" secondItem="m5N-Et-EUA" secondAttribute="trailing" constant="20" id="T2z-Dl-Ail"/>
                     <constraint firstItem="m5N-Et-EUA" firstAttribute="top" secondItem="RcC-Bc-0h7" secondAttribute="bottom" constant="15" id="X2B-rv-4In"/>
                     <constraint firstAttribute="trailing" secondItem="RcC-Bc-0h7" secondAttribute="trailing" constant="12" id="Yfp-rj-AW2"/>
                     <constraint firstItem="m5N-Et-EUA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="eGP-lg-YSm"/>
+                    <constraint firstAttribute="trailing" secondItem="10R-Yx-Og7" secondAttribute="trailing" id="ieX-Y2-2CJ"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="btn_commit" destination="bLR-ed-0uu" id="nNq-Mz-9CH"/>
                 <outlet property="layout_label" destination="6FA-uQ-AL1" id="Q6M-Rs-VVK"/>

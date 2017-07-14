@@ -53,13 +53,13 @@
                 
             }else{
                 _btn_commit.hidden = YES;
-                _layout_label.constant = 25.f;
+                _layout_label.constant = 35.f;
                 [self setNeedsLayout];
             }
         }else{
             
             _btn_commit.hidden = YES;
-            _layout_label.constant = 25.f;
+            _layout_label.constant = 35.f;
             [self setNeedsLayout];
 
         }
@@ -90,6 +90,8 @@
         
             } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
                 [hud hide];
+                
+                
             }];
         }
         
