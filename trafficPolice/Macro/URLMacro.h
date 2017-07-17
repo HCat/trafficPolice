@@ -12,9 +12,9 @@
 #pragma mark - 基地址
 
 #define DEBUG_URL @"http://test20.degal.cn/police-wx"
-#define RELEASE_URL @"http://jinjiang.degal.cn/police_wx_jj"
+#define RELEASE_URL @"http://jinjiang.degal.cn/police-wx_jj"
 
-#define Base_URL DEBUG_URL
+#define Base_URL RELEASE_URL
 
 //上传用的key
 #define key_file @"file" 

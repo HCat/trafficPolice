@@ -112,6 +112,15 @@
             }
         }
         
+    }else if (self.responseModel.code == CODE_NOLOGIN){
+        
+        [ShareFun LoginOut];
+        
+        MBProgressHUD *hud = [MBProgressHUD HUDForView:[UIApplication sharedApplication].keyWindow];
+        if (!hud) {
+            [ShowHUD showError:@"登录超时" duration:1.2f inView:[UIApplication sharedApplication].keyWindow config:nil];
+        }
+    
     }
     
 }
@@ -133,7 +142,7 @@
         
         MBProgressHUD *hud = [MBProgressHUD HUDForView:[UIApplication sharedApplication].keyWindow];
         if (!hud) {
-            [ShowHUD showError:self.responseModel.msg duration:1.2f inView:[UIApplication sharedApplication].keyWindow config:nil];
+            [ShowHUD showError:@"登录超时" duration:1.2f inView:[UIApplication sharedApplication].keyWindow config:nil];
         }
         
     }else{
