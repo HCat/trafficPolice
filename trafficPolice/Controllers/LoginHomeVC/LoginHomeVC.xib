@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginHomeVC">
             <connections>
                 <outlet property="btn_Visitor" destination="tb7-Zi-Ej6" id="ESl-lV-qa9"/>
+                <outlet property="btn_wexinLogin" destination="a0r-46-M90" id="NwH-jC-iuL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

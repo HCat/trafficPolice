@@ -19,7 +19,7 @@
 @interface LoginHomeVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_Visitor;
-
+@property (weak, nonatomic) IBOutlet UIButton *btn_wexinLogin;
 
 @end
 
@@ -31,6 +31,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinLoginSuccess:) name:NOTIFICATION_WX_LOGIN_SUCCESS object:nil];
     
     self.btn_Visitor.hidden = YES;
+    if (![WXApi isWXAppInstalled]) {
+        self.btn_wexinLogin.hidden = YES;
+    }else{
+        self.btn_wexinLogin.hidden = NO;
+    }
+    
     
     [self judgeNeedShowVisitor];
     
@@ -45,22 +51,13 @@
 
 - (IBAction)weixinLoginAction:(id)sender {
     
-    if (![WXApi isWXAppInstalled]) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"请先安装微信" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alert show];
-        
-    }else{
-        
-        SendAuthReq *req =[[SendAuthReq alloc]init];
-        
-        req.scope = @"snsapi_userinfo" ;
-        req.state = @"wxlogin" ;
-        req.openID = WEIXIN_APP_ID;
-        //第三方向微信终端发送一个SendAuthReq消息结构
-        [WXApi sendReq:req];
-        
-    }
+    SendAuthReq *req =[[SendAuthReq alloc]init];
+    
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"wxlogin" ;
+    req.openID = WEIXIN_APP_ID;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    [WXApi sendReq:req];
 
 }
 

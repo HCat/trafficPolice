@@ -1659,6 +1659,9 @@
 						DevelopmentTeam = XYWLXM32EU;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
