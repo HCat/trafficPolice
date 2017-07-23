@@ -28,6 +28,8 @@
 @property (strong, nonatomic) UIPinchGestureRecognizer *pinchGesture;
 @property (nonatomic, assign) CGFloat beginGestureScale;
 @property (nonatomic, assign) CGFloat effectiveScale;
+
+
 @property (nonatomic, copy) void (^didRecordCompletionBlock)(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error);
 @end
 
@@ -90,7 +92,6 @@ NSString *const LLSimpleCameraErrorDomain = @"LLSimpleCameraErrorDomain";
     
     self.view.backgroundColor = [UIColor clearColor];
     self.view.autoresizingMask = UIViewAutoresizingNone;
-    
     self.preview = [[UIView alloc] initWithFrame:CGRectZero];
     self.preview.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.preview];
@@ -440,6 +441,7 @@ NSString *const LLSimpleCameraErrorDomain = @"LLSimpleCameraErrorDomain";
     }
 }
 
+
 #pragma mark - Helpers
 
 - (void)passError:(NSError *)error
@@ -755,11 +757,13 @@ NSString *const LLSimpleCameraErrorDomain = @"LLSimpleCameraErrorDomain";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
 }
 
 - (void)viewWillLayoutSubviews
@@ -780,21 +784,37 @@ NSString *const LLSimpleCameraErrorDomain = @"LLSimpleCameraErrorDomain";
     AVCaptureVideoOrientation videoOrientation = AVCaptureVideoOrientationPortrait;
     
     if(self.useDeviceOrientation) {
-        switch ([UIDevice currentDevice].orientation) {
-            case UIDeviceOrientationLandscapeLeft:
+//        switch ([UIDevice currentDevice].orientation) {
+//            case UIDeviceOrientationLandscapeLeft:
+//                // yes to the right, this is not bug!
+//                videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+//                break;
+//            case UIDeviceOrientationLandscapeRight:
+//                videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+//                break;
+//            case UIDeviceOrientationPortraitUpsideDown:
+//                videoOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
+//                break;
+//            default:
+//                videoOrientation = AVCaptureVideoOrientationPortrait;
+//                break;
+//        }
+        switch (self.direction) {
+            case TgDirectionleft:
                 // yes to the right, this is not bug!
                 videoOrientation = AVCaptureVideoOrientationLandscapeRight;
                 break;
-            case UIDeviceOrientationLandscapeRight:
+            case TgDirectionRight:
                 videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
                 break;
-            case UIDeviceOrientationPortraitUpsideDown:
+            case TgDirectionDown:
                 videoOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
                 break;
             default:
                 videoOrientation = AVCaptureVideoOrientationPortrait;
                 break;
         }
+
     }
     else {
         switch ([[UIApplication sharedApplication] statusBarOrientation]) {

@@ -190,6 +190,11 @@
 		CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */; };
 		CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */; };
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
+		CE68FF701F23839C0034415B /* DeviceOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE68FF6F1F23839C0034415B /* DeviceOrientation.m */; };
+		CE68FF721F2384000034415B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE68FF711F2384000034415B /* CoreMotion.framework */; };
+		CE68FF7A1F238E240034415B /* LLSimpleCamera+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE68FF751F238E240034415B /* LLSimpleCamera+Helper.m */; };
+		CE68FF7B1F238E240034415B /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = CE68FF771F238E240034415B /* LLSimpleCamera.m */; };
+		CE68FF7C1F238E240034415B /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE68FF791F238E240034415B /* UIImage+FixOrientation.m */; };
 		CE6C04DB1EE4FEFC0053F4D8 /* IllegalSecSaveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C04D91EE4FEFC0053F4D8 /* IllegalSecSaveVC.m */; };
 		CE6C04DC1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6C04DA1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib */; };
 		CE6C04E01EE552010053F4D8 /* IllegalThroughSecAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C04DE1EE552010053F4D8 /* IllegalThroughSecAddView.m */; };
@@ -573,6 +578,15 @@
 		CE67EFCC1ED2C868000CB8F4 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		CE67EFCF1ED2E324000CB8F4 /* UserDefaultMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultMacro.h; sourceTree = "<group>"; };
+		CE68FF6E1F23839C0034415B /* DeviceOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceOrientation.h; sourceTree = "<group>"; };
+		CE68FF6F1F23839C0034415B /* DeviceOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceOrientation.m; sourceTree = "<group>"; };
+		CE68FF711F2384000034415B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		CE68FF741F238E240034415B /* LLSimpleCamera+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLSimpleCamera+Helper.h"; sourceTree = "<group>"; };
+		CE68FF751F238E240034415B /* LLSimpleCamera+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LLSimpleCamera+Helper.m"; sourceTree = "<group>"; };
+		CE68FF761F238E240034415B /* LLSimpleCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSimpleCamera.h; sourceTree = "<group>"; };
+		CE68FF771F238E240034415B /* LLSimpleCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSimpleCamera.m; sourceTree = "<group>"; };
+		CE68FF781F238E240034415B /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
+		CE68FF791F238E240034415B /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 		CE6C04D81EE4FEFC0053F4D8 /* IllegalSecSaveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllegalSecSaveVC.h; sourceTree = "<group>"; };
 		CE6C04D91EE4FEFC0053F4D8 /* IllegalSecSaveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllegalSecSaveVC.m; sourceTree = "<group>"; };
 		CE6C04DA1EE4FEFC0053F4D8 /* IllegalSecSaveVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllegalSecSaveVC.xib; sourceTree = "<group>"; };
@@ -679,6 +693,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE68FF721F2384000034415B /* CoreMotion.framework in Frameworks */,
 				CE55A7C81F02589600E66291 /* SystemConfiguration.framework in Frameworks */,
 				CECC91F01EF1041D003CED99 /* MessageUI.framework in Frameworks */,
 				CE5495C51ED66F0B00B19111 /* libcrypto.a in Frameworks */,
@@ -854,6 +869,8 @@
 		C7E0DBE11EC1A1C8008ED063 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CE68FF731F238E240034415B /* LLSimpleCamera */,
+				CE68FF6D1F2383920034415B /* DeviceOrientation */,
 				CE6217441F15B5380067FDBF /* UITableView+FDTemplateLayoutCell */,
 				CE55A7C31F02586100E66291 /* Reachability */,
 				CE7123611F00BDF0002151FB /* HSUpdateApp */,
@@ -1047,6 +1064,7 @@
 		CA950E019092A6EE264A0A75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE68FF711F2384000034415B /* CoreMotion.framework */,
 				CE55A7C71F02589600E66291 /* SystemConfiguration.framework */,
 				CECC91EF1EF1041D003CED99 /* MessageUI.framework */,
 				CE5495C31ED66F0B00B19111 /* libcrypto.a */,
@@ -1461,6 +1479,28 @@
 				CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */,
 			);
 			path = YUSegment;
+			sourceTree = "<group>";
+		};
+		CE68FF6D1F2383920034415B /* DeviceOrientation */ = {
+			isa = PBXGroup;
+			children = (
+				CE68FF6E1F23839C0034415B /* DeviceOrientation.h */,
+				CE68FF6F1F23839C0034415B /* DeviceOrientation.m */,
+			);
+			path = DeviceOrientation;
+			sourceTree = "<group>";
+		};
+		CE68FF731F238E240034415B /* LLSimpleCamera */ = {
+			isa = PBXGroup;
+			children = (
+				CE68FF741F238E240034415B /* LLSimpleCamera+Helper.h */,
+				CE68FF751F238E240034415B /* LLSimpleCamera+Helper.m */,
+				CE68FF761F238E240034415B /* LLSimpleCamera.h */,
+				CE68FF771F238E240034415B /* LLSimpleCamera.m */,
+				CE68FF781F238E240034415B /* UIImage+FixOrientation.h */,
+				CE68FF791F238E240034415B /* UIImage+FixOrientation.m */,
+			);
+			path = LLSimpleCamera;
 			sourceTree = "<group>";
 		};
 		CE6C04E21EE570ED0053F4D8 /* VideoColectVC */ = {
@@ -1916,6 +1956,7 @@
 				CECC91EC1EF10249003CED99 /* SuperLogger.m in Sources */,
 				CEC50ABA1EEBC61F00ECA43A /* IllegalMessageCell.m in Sources */,
 				CE9B377A1EE7CBA700CA7417 /* UIWindow+FHH.m in Sources */,
+				CE68FF701F23839C0034415B /* DeviceOrientation.m in Sources */,
 				CE57867A1ED441E600B4CC9F /* CALayer+Additions.m in Sources */,
 				CE4F7DC31EE6775B007E40E2 /* LRVideoVC.m in Sources */,
 				CE57866B1ED4229E00B4CC9F /* AccidentAddFootView.m in Sources */,
@@ -1942,6 +1983,7 @@
 				C79C99481EC5959000258CF1 /* UserReusableView.m in Sources */,
 				C7E0DC1A1EC1AF18008ED063 /* MainHomeVC.m in Sources */,
 				CE3D81251F0F747600A2C19B /* MessageVC.m in Sources */,
+				CE68FF7B1F238E240034415B /* LLSimpleCamera.m in Sources */,
 				C7E0DBF91EC1A1C9008ED063 /* AKTabBarController.m in Sources */,
 				CE9B377E1EE7F35600CA7417 /* IllegalListVC.m in Sources */,
 				C7E0DB891EC15DBA008ED063 /* main.m in Sources */,
@@ -1958,6 +2000,7 @@
 				CE6E52D61ED2B59A002C4603 /* ShowHUD.m in Sources */,
 				C7E0DBFB1EC1A1C9008ED063 /* UINavigationController+AKTabBarController.m in Sources */,
 				CE435EFA1ECD996800F85B38 /* LRBaseResponse.m in Sources */,
+				CE68FF7A1F238E240034415B /* LLSimpleCamera+Helper.m in Sources */,
 				CE6C04DB1EE4FEFC0053F4D8 /* IllegalSecSaveVC.m in Sources */,
 				C78138AA1EC2C29300A124B7 /* ImagePlayerView.m in Sources */,
 				CE6C04E01EE552010053F4D8 /* IllegalThroughSecAddView.m in Sources */,
@@ -1976,6 +2019,7 @@
 				CE8834C81ED1D5BA00666CEE /* IllegalParkDetailModel.m in Sources */,
 				CE3D811D1F0F62C000A2C19B /* IdentifyAPI.m in Sources */,
 				CE39E0101ECF2B8000F284C1 /* AccidentPicListModel.m in Sources */,
+				CE68FF7C1F238E240034415B /* UIImage+FixOrientation.m in Sources */,
 				CE5786761ED436C200B4CC9F /* AccidentAddHeadView.m in Sources */,
 				CE9C51661EC4BA65004A7611 /* ListCollectionCell.m in Sources */,
 				CE0E99121EE7B148009D25B4 /* AccidentListVC.m in Sources */,

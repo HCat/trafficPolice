@@ -27,7 +27,6 @@ PODS:
     - LKDBHelper/standard (= 2.4.3)
   - LKDBHelper/standard (2.4.3):
     - FMDB
-  - LLSimpleCamera (5.0.0)
   - LxDBAnything (1.1.0)
   - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
@@ -50,7 +49,6 @@ DEPENDENCIES:
   - IQKeyboardManager
   - JPush
   - LKDBHelper
-  - LLSimpleCamera
   - LxDBAnything
   - Masonry
   - MBProgressHUD
@@ -71,7 +69,6 @@ SPEC CHECKSUMS:
   JCore: 9bd9c770c877c583d98b90a68792b8361974c231
   JPush: c41be50eb1a574a66aeb68d237f00a4ec6ec3a82
   LKDBHelper: dc4a629efc8855cc19f61737ee4d9cfdf098ec97
-  LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
   LxDBAnything: 154a2ad1ae32e70355d886b5443260543bb60c71
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -83,6 +80,6 @@ SPEC CHECKSUMS:
   YTKNetwork: c4b0c29c9d639dc050d475de69ee626d53eac598
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 378c0799a59a840e4199cfe0004743b421eebcae
+PODFILE CHECKSUM: 9878ecbb0f38fb695845884e6b9c63536976d298
 
 COCOAPODS: 1.2.1

@@ -9,6 +9,7 @@
 #import "MessageCell.h"
 #import "ShareFun.h"
 #import "IdentifyAPI.h"
+#import "AppDelegate.h"
 
 @interface MessageCell()
 
@@ -75,6 +76,8 @@
     if ([_model.type isEqualToNumber:@2]) {
         
         if ([_model.flag isEqualToNumber:@0]) {
+            
+            [ApplicationDelegate.player stop];
             
             IdentifySetMsgReadManger *manger = [[IdentifySetMsgReadManger alloc] init];
             manger.msgId = _model.msgId;

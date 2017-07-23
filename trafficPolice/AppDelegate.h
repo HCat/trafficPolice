@@ -16,7 +16,7 @@
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
-
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,JPUSHRegisterDelegate>
@@ -26,6 +26,7 @@
 @property (strong, nonatomic) AKTabBarController *vc_tabBar;
 
 @property (nonatomic,assign)NSInteger allowRotate; //进行横竖屏的切换用的
+@property (nonatomic, strong) AVAudioPlayer *player;
 
 -(void)initAKTabBarController;
 

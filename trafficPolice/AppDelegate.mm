@@ -23,11 +23,10 @@
 #import "LRBaseRequest.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "LSStatusBarHUD.h"
-#import <AVFoundation/AVFoundation.h>
+
 #import "Reachability.h"
 
 #import "UserModel.h"
-
 
 #if defined(DEBUG) || defined(_DEBUG)
 #import "FHHFPSIndicator.h"
@@ -38,7 +37,7 @@
 @interface AppDelegate ()<WXApiDelegate>
 
 @property(nonatomic,assign) NSInteger previousStatus;
-@property (nonatomic, strong) AVAudioPlayer *player;
+
 
 @end
 
@@ -337,20 +336,22 @@ BMKMapManager* _mapManager;
 {
     
     //   NSLog(@"方向  =============   %ld", _allowRotate);
-    if (_allowRotate == 1) {
-        return UIInterfaceOrientationMaskAll;
-    }else{
-        return (UIInterfaceOrientationMaskPortrait);
-    }
+//    if (_allowRotate == 1) {
+//        return UIInterfaceOrientationMaskAll;
+//    }else{
+//        return (UIInterfaceOrientationMaskPortrait);
+//    }
+    return (UIInterfaceOrientationMaskPortrait);
 }
 
 
 // 返回是否支持设备自动旋转
 - (BOOL)shouldAutorotate
 {
-    if (_allowRotate == 1) {
-        return YES;
-    }
+//    if (_allowRotate == 1) {
+//        return YES;
+//    }
+//    return NO;
     return NO;
 }
 
@@ -404,6 +405,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [JPUSHService handleRemoteNotification:userInfo];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_RECEIVENOTIFICATION_SUCCESS object:userInfo];
         
+        NSDictionary *aps = [userInfo objectForKey:@"aps"];
+        NSString *sound = [aps objectForKey:@"sound"];
+        
+        if ([sound containsString:@"police"]) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"police" ofType:@"m4a"];
+            self.player = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfFile:path] error:nil];
+            self.player.numberOfLoops = 0;
+            self.player.volume = 1.0;
+            [self.player play];
+        }
+
         MessageVC * t_messageVC = [[MessageVC alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:t_messageVC];
         [self.window.rootViewController presentViewController:nav animated:YES completion:^{

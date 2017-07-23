@@ -68,16 +68,19 @@
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:[UIScreen mainScreen].bounds cornerRadius:0];
     
     CGRect myRect = CGRectZero;
-    if (ScreenHeight > ScreenWidth) {
+    if (!_isLandscape) {
         //竖屏
         [self setType:_type];
 
     }else{
         //横屏
+        CGFloat t_screenWidth = ScreenWidth;
+        CGFloat t_screenHeight = ScreenHeight;
+        
         if(_type == 1){
-            myRect =CGRectMake(ScreenWidth/2-(ScreenWidth*3/10),ScreenHeight/2-(ScreenHeight/4),ScreenWidth*3/5, ScreenHeight/2);
+            myRect =CGRectMake(t_screenWidth/2-(t_screenWidth*3/10),t_screenHeight/2-(t_screenHeight/4),t_screenWidth*3/5, t_screenHeight/2);
         }else if (_type == 2){
-            myRect =CGRectMake(ScreenWidth/2-(ScreenWidth*2/6),ScreenHeight/2-(ScreenHeight*2/6),ScreenWidth*2/3, ScreenHeight * 2/3);
+            myRect =CGRectMake(t_screenWidth/2-(t_screenWidth*2/6),t_screenHeight/2-(t_screenHeight*2/6),t_screenWidth*2/3, t_screenHeight * 2/3);
         }
         
         [self setNeedsDisplay];

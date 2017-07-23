@@ -8,15 +8,16 @@
 
 #import "LRCameraVC.h"
 #import <TOCropViewController.h>
-#import <LLSimpleCamera.h>
+#import "LLSimpleCamera.h"
 #import "ZLPhotoActionSheet.h"
 #import "ImageFileInfo.h"
 #import "AppDelegate.h"
 #import "PureLayout.h"
 #import "maskingView.h"
 #import "UIButton+Block.h"
+#import "DeviceOrientation.h"
 
-@interface LRCameraVC ()<TOCropViewControllerDelegate>
+@interface LRCameraVC ()<TOCropViewControllerDelegate,DeviceOrientationDelegate>
 
 //LLSimpleCamera是运用AVFoundation自定义的相机对象
 @property (strong, nonatomic) LLSimpleCamera *camera;
@@ -37,10 +38,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lb_tip;
 
+@property (nonatomic,strong) DeviceOrientation *deviceMotion;
 
 @end
 
 @implementation LRCameraVC
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +52,6 @@
     [_btn_photoAlbum setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
     [_btn_flash setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
     [_btn_close setEnlargeEdgeWithTop:20.f right:20.f bottom:20.f left:20.f];
-
     
     if(_type == 1) {
         
@@ -78,6 +81,8 @@
 
     //初始化照相机，通过AVFoundation自定义的相机
     [self initializeCamera];
+    self.deviceMotion = [[DeviceOrientation alloc]initWithDelegate:self];
+    [_deviceMotion startMonitor];
     
 }
 
@@ -99,37 +104,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    //允许单个页面可以横竖屏操作
-    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    delegate.allowRotate = 1;
-    //调用Start开始拍照功能
+    
+    self.camera.direction = TgDirectionPortrait;
     [self.camera start];
-
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
     
-    //退出这个页面禁止横竖屏操作，有个Bug,就是当横屏的时候退出，上一个页面也是横屏的，修复下面if方法有用，但是会延迟横屏，并没有马上退出就横屏
-    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    delegate.allowRotate = 0;
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        SEL selector = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-        int val = UIInterfaceOrientationPortrait;
-        [invocation setArgument:&val atIndex:2];
-        [invocation invoke];
-    }
-    
-    [super viewWillDisappear:animated];
+    self.deviceMotion = [[DeviceOrientation alloc]initWithDelegate:self];
+    [_deviceMotion startMonitor];
 
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     
     //停止拍照
+    [_deviceMotion stop];
     [self.camera stop];
     [super viewDidDisappear:animated];
 }
@@ -249,6 +236,11 @@
             
             //拍照成功之后，如果成功调用TOCropViewController 对照片进行裁剪
             
+            LxDBAnyVar(image.size.width);
+            LxDBAnyVar(image.size.height);
+            
+            
+            
             TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:image];
             cropController.delegate = weakSelf;
             [weakSelf presentViewController:cropController animated:YES completion:nil];
@@ -324,6 +316,51 @@
     
 }
 
+
+#pragma mark - DeviceOrientaionDelegate
+
+- (void)directionChange:(TgDirection)direction {
+    
+    switch (direction) {
+        case TgDirectionPortrait:
+            
+            self.camera.direction = TgDirectionPortrait;
+            self.v_masking.isLandscape = NO;
+            LxPrintf(@"TgDirectionPortrait");
+            
+            break;
+        case TgDirectionDown:
+            
+            self.camera.direction = TgDirectionDown;
+            self.v_masking.isLandscape = NO;
+            LxPrintf(@"TgDirectionDown");
+            
+            break;
+        case TgDirectionRight:
+            
+            self.camera.direction = TgDirectionRight;
+            self.v_masking.isLandscape = YES;
+            LxPrintf(@"TgDirectionRight");
+            
+            break;
+        case TgDirectionleft:
+            
+            self.camera.direction = TgDirectionleft;
+            self.v_masking.isLandscape = YES;
+            LxPrintf(@"TgDirectionleft");
+            
+            break;
+            
+        default:
+            
+            break;
+    }
+    [_v_masking layoutSubviews];
+    
+    
+}
+
+
 #pragma mark - TOCropViewControllerDelegate
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle{
@@ -381,7 +418,6 @@
     }
 
 }
-
 
 #pragma mark - dealloc
 

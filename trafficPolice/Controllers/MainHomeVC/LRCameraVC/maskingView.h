@@ -11,5 +11,6 @@
 @interface maskingView : UIView
 
 @property(nonatomic,assign) NSInteger type;
+@property(nonatomic,assign) BOOL isLandscape; //是否横屏
 
 @end

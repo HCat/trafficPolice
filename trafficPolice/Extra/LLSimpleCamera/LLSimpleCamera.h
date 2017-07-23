@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "DeviceOrientation.h"
 
 typedef enum : NSUInteger {
     LLCameraPositionRear,
@@ -64,6 +65,9 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, readonly) LLCameraFlash flash;
 
+
+
+@property (nonatomic, assign) TgDirection direction;
 /**
  * Camera mirror mode.
  */
