@@ -25,7 +25,7 @@
         self.delegate = self;
         self.minimumZoomScale = MinScale;
         self.maximumZoomScale = MaxSCale;
-        self.backgroundColor  = [UIColor blackColor];
+        self.backgroundColor  = [UIColor whiteColor];
         
         _images   = [[NSMutableArray alloc] initWithCapacity:1];
         
@@ -62,6 +62,7 @@
     }
     else if ([ll_image isKindOfClass:[NSString class]]) {
         [self setPath:(NSString *)ll_image];
+        
     }
 }
 

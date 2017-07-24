@@ -8,7 +8,7 @@
 
 #import "IllegalParkAddHeadView.h"
 #import "IllegalParkVC.h"
-#import "LRCameraVC.h"
+
 #import "SearchLocationVC.h"
 
 #import "ShareFun.h"
@@ -87,7 +87,7 @@
                 [strongSelf takePhotoToDiscernmentWithCarNumber:camera.commonIdentifyResponse.carNo];
                 
                 if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(recognitionCarNumber:)]) {
-                    [strongSelf.delegate recognitionCarNumber:camera.imageInfo];
+                    [strongSelf.delegate recognitionCarNumber:camera];
                 }
             
             }

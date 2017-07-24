@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "IllegalParkAPI.h"
+#import "LRCameraVC.h"
 
 @protocol IllegalParkAddHeadViewDelegate <NSObject>
 
 
--(void)recognitionCarNumber:(ImageFileInfo *)imageInfo;
+-(void)recognitionCarNumber:(LRCameraVC *)cameraVC;
 -(void)listentCarNumber;
 
 @end

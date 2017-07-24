@@ -51,6 +51,7 @@
 		CE05AF011EE84DF70021F87F /* AboutAppVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05AEFF1EE84DF70021F87F /* AboutAppVC.m */; };
 		CE05AF021EE84DF70021F87F /* AboutAppVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE05AF001EE84DF70021F87F /* AboutAppVC.xib */; };
 		CE08F7231ED7FAAF00D481DF /* ImageFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */; };
+		CE0C35881F25837D00405A99 /* police.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CE0C35871F25837D00405A99 /* police.m4a */; };
 		CE0E990D1EE7AE56009D25B4 /* AccidentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E990B1EE7AE56009D25B4 /* AccidentCell.m */; };
 		CE0E990E1EE7AE56009D25B4 /* AccidentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0E990C1EE7AE56009D25B4 /* AccidentCell.xib */; };
 		CE0E99121EE7B148009D25B4 /* AccidentListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0E99101EE7B148009D25B4 /* AccidentListVC.m */; };
@@ -186,7 +187,6 @@
 		CE62174E1F15B5380067FDBF /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6217481F15B5380067FDBF /* UITableView+FDKeyedHeightCache.m */; };
 		CE62174F1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62174A1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m */; };
 		CE6217501F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62174C1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m */; };
-		CE6217581F15F1430067FDBF /* police.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CE6217571F15F1430067FDBF /* police.m4a */; };
 		CE6314D61ED4FCCA00A885A7 /* YUSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */; };
 		CE6314D71ED4FCCA00A885A7 /* YUSegmentedControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6314D51ED4FCCA00A885A7 /* YUSegmentedControlItem.m */; };
 		CE67EFCE1ED2C868000CB8F4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67EFCD1ED2C868000CB8F4 /* BaseModel.m */; };
@@ -335,6 +335,7 @@
 		CE05AF001EE84DF70021F87F /* AboutAppVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppVC.xib; sourceTree = "<group>"; };
 		CE08F7211ED7FAAF00D481DF /* ImageFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFileInfo.h; sourceTree = "<group>"; };
 		CE08F7221ED7FAAF00D481DF /* ImageFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFileInfo.m; sourceTree = "<group>"; };
+		CE0C35871F25837D00405A99 /* police.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = police.m4a; sourceTree = "<group>"; };
 		CE0E990A1EE7AE56009D25B4 /* AccidentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidentCell.h; sourceTree = "<group>"; };
 		CE0E990B1EE7AE56009D25B4 /* AccidentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidentCell.m; sourceTree = "<group>"; };
 		CE0E990C1EE7AE56009D25B4 /* AccidentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccidentCell.xib; sourceTree = "<group>"; };
@@ -569,7 +570,6 @@
 		CE62174A1F15B5380067FDBF /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
 		CE62174B1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
 		CE62174C1F15B5380067FDBF /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
-		CE6217571F15F1430067FDBF /* police.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = police.m4a; sourceTree = "<group>"; };
 		CE6314D11ED4FCCA00A885A7 /* YUSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegment.h; sourceTree = "<group>"; };
 		CE6314D21ED4FCCA00A885A7 /* YUSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUSegmentedControl.h; sourceTree = "<group>"; };
 		CE6314D31ED4FCCA00A885A7 /* YUSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUSegmentedControl.m; sourceTree = "<group>"; };
@@ -798,7 +798,7 @@
 		C7E0DB861EC15DBA008ED063 /* trafficPolice */ = {
 			isa = PBXGroup;
 			children = (
-				CE6217571F15F1430067FDBF /* police.m4a */,
+				CE0C35871F25837D00405A99 /* police.m4a */,
 				CE3D811A1F0F22A100A2C19B /* trafficPolice.entitlements */,
 				C7E0DB8A1EC15DBA008ED063 /* AppDelegate.h */,
 				C7E0DB8B1EC15DBA008ED063 /* AppDelegate.mm */,
@@ -1772,7 +1772,7 @@
 				CECC91EA1EF10249003CED99 /* SuperLogger.bundle in Resources */,
 				CE5786421ED4088700B4CC9F /* btn_original_circle@3x.png in Resources */,
 				C7E0DC0D1EC1A65C008ED063 /* LoginHomeVC.xib in Resources */,
-				CE6217581F15F1430067FDBF /* police.m4a in Resources */,
+				CE0C35881F25837D00405A99 /* police.m4a in Resources */,
 				CE7F14E11EDE9B3900C7AEDA /* IllegalParkVC.xib in Resources */,
 				CE57863E1ED4088700B4CC9F /* btn_circle@2x.png in Resources */,
 				CE5786461ED4088700B4CC9F /* btn_unselected.png in Resources */,

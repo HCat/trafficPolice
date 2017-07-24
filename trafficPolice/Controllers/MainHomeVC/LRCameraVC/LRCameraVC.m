@@ -137,6 +137,9 @@
     
     manger.imageInfo = self.imageInfo;
     manger.type = self.type;
+    if (_isIllegal && _type == 5) {
+        manger.type = 1;
+    }
     
     ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"识别中.." inView:self.view config:nil];
     
@@ -373,7 +376,7 @@
         [cropViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
     
-    if (_type != 5) {
+    if (_type != 5 || _isIllegal) {
         WS(weakSelf);
         //获取的照片转换成ImageFileInfo对象来得到图片信息，并且赋值name用于服务端需要的key中
         ShowHUD *hud = [ShowHUD showWhiteLoadingWithText:@"图片压缩中..." inView:self.view config:nil];
@@ -415,6 +418,19 @@
             });
         });
 
+    }
+
+}
+
+
+- (void)setIsIllegal:(BOOL)isIllegal{
+
+    _isIllegal = isIllegal;
+    
+    if (_isIllegal) {
+        
+    }else{
+    
     }
 
 }

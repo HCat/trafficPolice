@@ -385,7 +385,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         if ([sound containsString:@"police"]) {
             NSString *path = [[NSBundle mainBundle] pathForResource:@"police" ofType:@"m4a"];
             self.player = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfFile:path] error:nil];
-            self.player.numberOfLoops = 0;
+            self.player.numberOfLoops = 1000;
             self.player.volume = 1.0;
             [self.player play];
         }
@@ -411,7 +411,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         if ([sound containsString:@"police"]) {
             NSString *path = [[NSBundle mainBundle] pathForResource:@"police" ofType:@"m4a"];
             self.player = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfFile:path] error:nil];
-            self.player.numberOfLoops = 0;
+            self.player.numberOfLoops = 1000;
             self.player.volume = 1.0;
             [self.player play];
         }

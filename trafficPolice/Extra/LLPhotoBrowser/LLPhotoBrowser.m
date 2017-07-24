@@ -161,7 +161,13 @@
     if (_arr_upImages && _arr_upImages.count > 0) {
         NSMutableDictionary *t_dic = _arr_upImages[indexPath.item];
         ImageFileInfo *imageInfo = [t_dic objectForKey:@"files"];
-        cell.photo.ll_image = imageInfo.image;
+        
+        if (imageInfo) {
+            cell.photo.ll_image = imageInfo.image;
+        }else{
+            NSString *t_cutImageUrl = [t_dic objectForKey:@"cutImageUrl"];
+            cell.photo.ll_image = t_cutImageUrl;
+        }
     }
     
     if (_images&&_images.count > 0) {
@@ -214,8 +220,7 @@
 #pragma mark - 垃圾桶按钮
 
 - (void)trachBtn{
-
-
+    
     // 取出可见cell
     // 判断即将显示哪一张
     NSIndexPath *currentIndexPath = [NSIndexPath indexPathForItem:_currentIndex inSection:0];
