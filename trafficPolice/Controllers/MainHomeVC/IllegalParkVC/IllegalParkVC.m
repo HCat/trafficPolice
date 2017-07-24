@@ -408,9 +408,9 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                 SW(strongSelf, weakSelf);
                 
                 if (camera.type == 5) {
-                    if (_illegalType == IllegalTypePark) {
+                    if (strongSelf.illegalType == IllegalTypePark) {
                         [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"违停照片%d",indexPath.row]];
-                    }else if(_illegalType == IllegalTypeThrough){
+                    }else if(strongSelf.illegalType == IllegalTypeThrough){
                         [strongSelf addUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:[NSString stringWithFormat:@"闯禁令照片%d",indexPath.row]];
                     }
                     
@@ -435,10 +435,10 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                     if (camera.type == 5) {
                         //替换违停照片的图片
                         
-                        if (_illegalType == IllegalTypePark) {
+                        if (strongSelf.illegalType == IllegalTypePark) {
                             [strongSelf replaceUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:@"违停照片" replaceIndex:0];
                             [strongSelf.collectionView reloadData];
-                        }else if(_illegalType == IllegalTypeThrough){
+                        }else if(strongSelf.illegalType == IllegalTypeThrough){
                             [strongSelf replaceUpImageItemToUpImagesWithImageInfo:camera.imageInfo remark:@"闯禁令照片" replaceIndex:0];
                             [strongSelf.collectionView reloadData];
                         }
@@ -447,8 +447,8 @@ static NSString *const headId = @"IllegalParkAddHeadViewID";
                             //识别之后所做的操作
                             
                             if (camera.commonIdentifyResponse && camera.commonIdentifyResponse.cutImageUrl && [camera.commonIdentifyResponse.cutImageUrl length] > 0) {
-                                self.param.cutImageUrl = camera.commonIdentifyResponse.cutImageUrl;
-                                self.param.taketime = [ShareFun getCurrentTime];
+                                strongSelf.param.cutImageUrl = camera.commonIdentifyResponse.cutImageUrl;
+                                strongSelf.param.taketime = [ShareFun getCurrentTime];
                                 
                                 [strongSelf replaceUpImageItemToUpImagesWithImageInfo:nil remark:@"车牌近照" replaceIndex:1];
                                 
