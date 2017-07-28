@@ -51,9 +51,7 @@ BMKMapManager* _mapManager;
     
     //注册第三方：微信，百度地图
     [self addThirthPart:launchOptions];
-    //开始定位
-    [[LocationHelper sharedDefault] startLocation];
-
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = UIColorFromRGB(0xf2f2f2);
     
